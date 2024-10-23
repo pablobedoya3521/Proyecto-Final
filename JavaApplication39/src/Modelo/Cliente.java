@@ -8,6 +8,11 @@ package Modelo;
  *
  * @author juan
  */
-public class e {
+public class Cliente extends Usuario{
+    private int puntosAcumulados;
+    public Cliente(String cedula, String nombre, String correo, String contraseña) {
+        super(cedula, nombre, correo, contraseña);
+        this.puntosAcumulados=0;
+    }
     
 }

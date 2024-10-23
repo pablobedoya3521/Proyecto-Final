@@ -1,0 +1,58 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package Modelo;
+
+/**
+ *
+ * @author juan
+ */
+public class Usuario {
+    private String cedula;
+    private String nombre;
+    private String correo;
+    private String contraseña;
+    //constructor
+    public Usuario(String cedula, String nombre, String correo, String contraseña) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.correo = correo;
+        this.contraseña = contraseña;
+    }
+    //getters and setters
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+    
+    
+}

@@ -9,5 +9,5 @@ package Validador;
  * @author juan
  */
 public class e {
-    int carro=0;
+
 }

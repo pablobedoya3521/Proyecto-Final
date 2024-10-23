@@ -188,7 +188,7 @@ public class VentanaRegistroUsuario extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Contraseña");
 
-        opciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rol", "Cliente", "Administrador Flota", "Administrador Terminal" }));
+        opciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Administrador Flota", "Administrador Terminal" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -330,10 +330,10 @@ public class VentanaRegistroUsuario extends javax.swing.JFrame {
         String cedula= txtCedula.getText();
         String correo= txtCorreo.getText();
         String contraseña= txtContraseña.getText();
-        String opcion = (String) opciones.getSelectedItem();
+        String opcion = opciones.getSelectedItem().toString();
         
         if (opcion != null) {
-        opcion = opcion.trim(); // Eliminar espacios en blanco
+       
         System.out.println("Opción seleccionada: " + opcion); // Depuración
 
         switch (opcion) {

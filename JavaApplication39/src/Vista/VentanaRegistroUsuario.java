@@ -10,6 +10,7 @@ import Modelo.AdministradorTerminal;
 import Modelo.Cliente;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -59,8 +60,8 @@ public class VentanaRegistroUsuario extends javax.swing.JFrame {
         txtCorreo = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtContraseña = new javax.swing.JTextField();
-        opciones = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
+        opciones = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -183,13 +184,11 @@ public class VentanaRegistroUsuario extends javax.swing.JFrame {
             }
         });
 
-        opciones.setBackground(new java.awt.Color(0, 0, 0));
-        opciones.setForeground(new java.awt.Color(255, 255, 255));
-        opciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipo de Usuario", "Cliente", "Administrador Terminal", "Administrador Flota" }));
-
         jLabel9.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Contraseña");
+
+        opciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rol", "Cliente", "Administrador Flota", "Administrador Terminal" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -205,23 +204,22 @@ public class VentanaRegistroUsuario extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(47, 47, 47)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
                             .addComponent(jLabel8)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(opciones, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtContraseña, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtApellido, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnRegistrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel9))))
+                            .addComponent(txtContraseña)
+                            .addComponent(txtCorreo)
+                            .addComponent(txtApellido)
+                            .addComponent(btnRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtNombre)
+                            .addComponent(txtCedula)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel9)
+                            .addComponent(opciones, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -257,9 +255,9 @@ public class VentanaRegistroUsuario extends javax.swing.JFrame {
                 .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(opciones, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(opciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
         );
@@ -334,22 +332,33 @@ public class VentanaRegistroUsuario extends javax.swing.JFrame {
         String contraseña= txtContraseña.getText();
         String opcion = (String) opciones.getSelectedItem();
         
-        if(opcion.equals("Cliente")){
-            Cliente cliente= new Cliente(cedula, nombre, apellido, correo, contraseña);
-            String respuesta= controladorRegistro.registrar(cliente);
-            JOptionPane.showMessageDialog(null, respuesta);
-            return;
-        }else if(opcion.equals("Administrador Flota")){
-            AdministradorFlota admin= new AdministradorFlota(cedula, nombre, apellido, correo, contraseña);
-            String respuesta= controladorRegistro.registrar(admin);
-            JOptionPane.showMessageDialog(null, respuesta);
-            return;
-        }else if(opcion.equals("Administrador Terminal")){
-            AdministradorTerminal admin= new AdministradorTerminal(cedula, nombre, apellido, correo, contraseña);
-            String respuesta= controladorRegistro.registrar(admin);
-            JOptionPane.showMessageDialog(null, respuesta);
-            return;
+        if (opcion != null) {
+        opcion = opcion.trim(); // Eliminar espacios en blanco
+        System.out.println("Opción seleccionada: " + opcion); // Depuración
+
+        switch (opcion) {
+            case "Cliente":
+                Cliente cliente = new Cliente(cedula, nombre, apellido, correo, contraseña);
+                String respuestaCliente = controladorRegistro.registrar(cliente);
+                System.out.println(respuestaCliente);
+                break;
+            case "Administrador Flota":
+                AdministradorFlota adminFlota = new AdministradorFlota(cedula, nombre, apellido, correo, contraseña);
+                String respuestaAdminFlota = controladorRegistro.registrar(adminFlota);
+                JOptionPane.showMessageDialog(null, respuestaAdminFlota);
+                break;
+            case "Administrador Terminal":
+                AdministradorTerminal adminTerminal = new AdministradorTerminal(cedula, nombre, apellido, correo, contraseña);
+                String respuestaAdminTerminal = controladorRegistro.registrar(adminTerminal);
+                JOptionPane.showMessageDialog(null, respuestaAdminTerminal);
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Opción no válida.");
+                break;
         }
+    } else {
+        JOptionPane.showMessageDialog(null, "Por favor selecciona un tipo de usuario.");
+    }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**

@@ -9,7 +9,7 @@ package Modelo;
  * @author juan
  */
 public class AdministradorFlota extends Usuario {
-    public AdministradorFlota(String cedula, String nombre, String correo, String contraseña) {
-        super(cedula, nombre, correo, contraseña);
+    public AdministradorFlota(String cedula, String nombre,String apellido, String correo, String contraseña) {
+        super(cedula, nombre,apellido, correo, contraseña);
     }
 }

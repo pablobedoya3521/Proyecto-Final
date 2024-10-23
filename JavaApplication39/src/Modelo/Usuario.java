@@ -11,12 +11,14 @@ package Modelo;
 public class Usuario {
     private String cedula;
     private String nombre;
+    private String apellido;
     private String correo;
     private String contraseña;
     //constructor
-    public Usuario(String cedula, String nombre, String correo, String contraseña) {
+    public Usuario(String cedula, String nombre, String apellido, String correo, String contraseña) {
         this.cedula = cedula;
         this.nombre = nombre;
+        this.apellido=apellido;
         this.correo = correo;
         this.contraseña = contraseña;
     }
@@ -53,6 +55,13 @@ public class Usuario {
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
-    
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
     
 }

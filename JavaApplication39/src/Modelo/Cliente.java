@@ -10,8 +10,8 @@ package Modelo;
  */
 public class Cliente extends Usuario{
     private int puntosAcumulados;
-    public Cliente(String cedula, String nombre, String correo, String contraseña) {
-        super(cedula, nombre, correo, contraseña);
+    public Cliente(String cedula, String nombre,String apellido, String correo, String contraseña) {
+        super(cedula, nombre,apellido, correo, contraseña);
         this.puntosAcumulados=0;
     }
     

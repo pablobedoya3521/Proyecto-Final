@@ -10,8 +10,8 @@ package Modelo;
  */
 public class AdministradorTerminal extends Usuario{
     
-    public AdministradorTerminal(String cedula, String nombre, String correo, String contraseña) {
-        super(cedula, nombre, correo, contraseña);
+    public AdministradorTerminal(String cedula, String nombre,String apellido, String correo, String contraseña) {
+        super(cedula, nombre,apellido, correo, contraseña);
     }
     
 }

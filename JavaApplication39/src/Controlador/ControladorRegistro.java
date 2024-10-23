@@ -15,9 +15,15 @@ import java.util.ArrayList;
  * @author juan
  */
 public class ControladorRegistro {
-    ArrayList<Cliente> clientes;
-    ArrayList<AdministradorFlota> administradoresFlota;
-    ArrayList<AdministradorTerminal> administradoresTerminal;
+    private ArrayList<Cliente> clientes;
+    private ArrayList<AdministradorFlota> administradoresFlota;
+    private ArrayList<AdministradorTerminal> administradoresTerminal;
+    
+    public ControladorRegistro(){
+        this.clientes=new ArrayList<>();
+        this.administradoresFlota=new ArrayList<>();
+        this.administradoresTerminal=new ArrayList<>();
+    }
     
     public String registrar(Usuario usuario){
         if(usuario instanceof AdministradorFlota){

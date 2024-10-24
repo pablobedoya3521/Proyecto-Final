@@ -54,8 +54,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         background = new javax.swing.JPanel();
         menu = new javax.swing.JPanel();
         mensaje = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnComprar = new javax.swing.JButton();
+        btnReservar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -72,40 +72,42 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         mensaje.setText("Transs-App");
         menu.add(mensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 31, 156, -1));
 
-        jButton1.setBackground(new java.awt.Color(51, 51, 51));
-        jButton1.setText("Comprar");
-        jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
-        jButton1.setBorderPainted(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton1.setIconTextGap(12);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnComprar.setBackground(new java.awt.Color(51, 51, 51));
+        btnComprar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cheque (3).png"))); // NOI18N
+        btnComprar.setText("Comprar");
+        btnComprar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
+        btnComprar.setBorderPainted(false);
+        btnComprar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnComprar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnComprar.setIconTextGap(12);
+        btnComprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnComprarActionPerformed(evt);
             }
         });
-        menu.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 206, 330, 60));
+        menu.add(btnComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 206, 330, 60));
 
-        jButton2.setBackground(new java.awt.Color(51, 51, 51));
-        jButton2.setText("Reservar");
-        jButton2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
-        jButton2.setBorderPainted(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton2.setIconTextGap(12);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnReservar.setBackground(new java.awt.Color(51, 51, 51));
+        btnReservar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/factura (1) (1).png"))); // NOI18N
+        btnReservar.setText("Reservar");
+        btnReservar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
+        btnReservar.setBorderPainted(false);
+        btnReservar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnReservar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnReservar.setIconTextGap(12);
+        btnReservar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnReservarActionPerformed(evt);
             }
         });
-        menu.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 330, 60));
+        menu.add(btnReservar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 330, 60));
 
         jButton3.setBackground(new java.awt.Color(51, 51, 51));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ubicacion (1).png"))); // NOI18N
         jButton3.setText("Viajes");
         jButton3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
         jButton3.setBorderPainted(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton3.setIconTextGap(12);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -120,7 +122,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton4.setText("Viajes");
         jButton4.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
         jButton4.setBorderPainted(false);
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton4.setIconTextGap(12);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +137,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton5.setText("Viajes");
         jButton5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
         jButton5.setBorderPainted(false);
-        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton5.setIconTextGap(12);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -188,7 +190,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, 802, Short.MAX_VALUE)
             .addGroup(backgroundLayout.createSequentialGroup()
                 .addComponent(head, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -210,13 +212,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnComprarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnReservarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -233,9 +235,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;
+    private javax.swing.JButton btnComprar;
+    private javax.swing.JButton btnReservar;
     private javax.swing.JPanel head;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;

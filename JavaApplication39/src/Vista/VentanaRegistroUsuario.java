@@ -31,10 +31,7 @@ public class VentanaRegistroUsuario extends javax.swing.JFrame {
         setResizable(false);
         pack();
         
-         ButtonGroup grupoUsuarios = new ButtonGroup();
-            grupoUsuarios.add(radioCliente);
-            grupoUsuarios.add(radioAdminFlota);
-            grupoUsuarios.add(radioAdminTerminal);
+        
         this.controladorRegistro=new ControladorRegistro();
     }
 
@@ -67,9 +64,7 @@ public class VentanaRegistroUsuario extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtContraseña = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        radioCliente = new javax.swing.JRadioButton();
-        radioAdminTerminal = new javax.swing.JRadioButton();
-        radioAdminFlota = new javax.swing.JRadioButton();
+        opciones = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -196,11 +191,7 @@ public class VentanaRegistroUsuario extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Contraseña");
 
-        radioCliente.setText("Cliente");
-
-        radioAdminTerminal.setText("Administrador Terminal");
-
-        radioAdminFlota.setText("Administrador Flota");
+        opciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Administrador Terminal", "Administrador Flota" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -232,12 +223,8 @@ public class VentanaRegistroUsuario extends javax.swing.JFrame {
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel9)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(radioCliente)
-                        .addGap(31, 31, 31)
-                        .addComponent(radioAdminFlota)
-                        .addGap(18, 18, 18)
-                        .addComponent(radioAdminTerminal)))
+                        .addGap(59, 59, 59)
+                        .addComponent(opciones, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -274,11 +261,8 @@ public class VentanaRegistroUsuario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(radioCliente)
-                    .addComponent(radioAdminTerminal)
-                    .addComponent(radioAdminFlota))
-                .addGap(37, 37, 37)
+                .addComponent(opciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
         );
@@ -352,17 +336,10 @@ public class VentanaRegistroUsuario extends javax.swing.JFrame {
         String correo= txtCorreo.getText();
         String contraseña= txtContraseña.getText();
        
-        String opcion = null;
+        String opcion = opciones.getSelectedItem().toString();
 
     // Determinar cuál opción fue seleccionada
-        if (radioCliente.isSelected()) {    
-            opcion = "Cliente";
-        } else if (radioAdminFlota.isSelected()) {
-            opcion = "Administrador Flota";
-        } else if (radioAdminTerminal.isSelected()) {
-            opcion = "Administrador Terminal";
-        }
-        
+       
         if (opcion != null) {
        
         System.out.println("Opción seleccionada: " + opcion); // Depuración
@@ -433,9 +410,7 @@ public class VentanaRegistroUsuario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JRadioButton radioAdminFlota;
-    private javax.swing.JRadioButton radioAdminTerminal;
-    private javax.swing.JRadioButton radioCliente;
+    private javax.swing.JComboBox<String> opciones;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtContraseña;

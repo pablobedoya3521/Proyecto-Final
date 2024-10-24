@@ -25,6 +25,7 @@ public class VentanaRegistroUsuario extends javax.swing.JFrame {
      * Creates new form VentanaRegistroUsuario
      */
     public VentanaRegistroUsuario() {
+        LookAndFeelUtil.setLookAndFeel();
         initComponents();
         
         setLocationRelativeTo(this);
@@ -34,6 +35,17 @@ public class VentanaRegistroUsuario extends javax.swing.JFrame {
         
         this.controladorRegistro=new ControladorRegistro();
     }
+    
+    public class LookAndFeelUtil {
+    public static void setLookAndFeel() {
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+            FlatHighContrastIJTheme.setup();
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.

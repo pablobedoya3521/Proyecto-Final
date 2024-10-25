@@ -70,7 +70,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         mensaje.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
         mensaje.setForeground(new java.awt.Color(247, 227, 244));
         mensaje.setText("Transs-App");
-        menu.add(mensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 31, 156, -1));
+        menu.add(mensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 156, -1));
 
         btnComprar.setBackground(new java.awt.Color(51, 51, 51));
         btnComprar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cheque (3).png"))); // NOI18N

@@ -91,7 +91,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         mensaje.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
-        mensaje.setForeground(new java.awt.Color(247, 227, 244));
+        mensaje.setForeground(new java.awt.Color(204, 0, 204));
         mensaje.setText("Transs-App");
         menu.add(mensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 156, -1));
 

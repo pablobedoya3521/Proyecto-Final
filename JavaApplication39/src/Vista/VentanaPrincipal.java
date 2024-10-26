@@ -86,7 +86,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnCliente = new javax.swing.JButton();
         btnCliente1 = new javax.swing.JButton();
         Container = new javax.swing.JPanel();
-        btnCompras3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1839, 848));
@@ -358,34 +357,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(3, 9, Short.MAX_VALUE))
         );
 
-        btnCompras3.setBackground(new java.awt.Color(51, 51, 51));
-        btnCompras3.setForeground(new java.awt.Color(255, 255, 255));
-        btnCompras3.setText("Compras");
-        btnCompras3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
-        btnCompras3.setBorderPainted(false);
-        btnCompras3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnCompras3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnCompras3.setIconTextGap(12);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 1839, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 879, Short.MAX_VALUE)
-                    .addComponent(btnCompras3)
-                    .addGap(0, 878, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(btnCompras3)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -416,11 +396,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReservasActionPerformed
 
     private void btnNotificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotificacionesActionPerformed
-        // TODO add your handling code here:
+        showJPanel(new VentanaPrincipalNotificaciones());
     }//GEN-LAST:event_btnNotificacionesActionPerformed
 
     private void btnDevolucionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolucionesActionPerformed
-        // TODO add your handling code here:
+        showJPanel(new VentanaPrincipalDevoluciones());
     }//GEN-LAST:event_btnDevolucionesActionPerformed
 
     private void btnComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprasActionPerformed
@@ -443,7 +423,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnCliente1;
     private javax.swing.JButton btnComprar;
     private javax.swing.JButton btnCompras;
-    private javax.swing.JButton btnCompras3;
     private javax.swing.JButton btnDevoluciones;
     private javax.swing.JButton btnNotificaciones;
     private javax.swing.JButton btnPuntos;

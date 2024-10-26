@@ -35,10 +35,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         mensaje.putClientProperty( "FlatLaf.style", "font: 200% $light.font" );
     }
     
-    public void initContent(){
-        showJPanel(new VentanaPrincipalCompras());
-    }
-    
+  
     private void showJPanel(JPanel p){
     p.setSize(1500,430);
     p.setLocation(0,0);

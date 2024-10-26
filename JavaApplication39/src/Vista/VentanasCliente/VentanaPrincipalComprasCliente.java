@@ -8,12 +8,12 @@ package Vista;
  *
  * @author sebastian
  */
-public class VentanaPrincipalDevoluciones extends javax.swing.JPanel {
+public class VentanaPrincipalComprasCliente extends javax.swing.JPanel {
 
     /**
-     * Creates new form VentanaPrincipalDevoluciones
+     * Creates new form VentanaPrincipal2
      */
-    public VentanaPrincipalDevoluciones() {
+    public VentanaPrincipalComprasCliente() {
         initComponents();
     }
 
@@ -64,7 +64,7 @@ public class VentanaPrincipalDevoluciones extends javax.swing.JPanel {
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
-        jLabel1.setText("Devoluciones tiquetes");
+        jLabel1.setText("Compras tiquetes");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -72,8 +72,8 @@ public class VentanaPrincipalDevoluciones extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jLabel1)
-                .addContainerGap(1148, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1177, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,23 +194,23 @@ public class VentanaPrincipalDevoluciones extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 50, Short.MAX_VALUE))
+                .addGap(0, 18, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(1098, 1098, 1098)
+                    .addGap(721, 721, 721)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(370, Short.MAX_VALUE)))
+                    .addContainerGap(727, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 132, Short.MAX_VALUE))
+                .addGap(0, 126, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(647, 647, 647)
+                    .addGap(483, 483, 483)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(324, Short.MAX_VALUE)))
+                    .addContainerGap(484, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 

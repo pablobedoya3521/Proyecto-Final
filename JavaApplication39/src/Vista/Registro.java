@@ -19,12 +19,12 @@ import javax.swing.UIManager;
  *
  * @author sebastian
  */
-public class VentanaRegistroUsuario extends javax.swing.JFrame {
+public class Registro extends javax.swing.JFrame {
     private ControladorRegistro controladorRegistro;
     /**
      * Creates new form VentanaRegistroUsuario
      */
-    public VentanaRegistroUsuario() {
+    public Registro() {
         LookAndFeelUtil.setLookAndFeel();
         initComponents();
         
@@ -311,7 +311,7 @@ public class VentanaRegistroUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-        VentanaRegistroUsuario cambio=new VentanaRegistroUsuario();
+        Registro cambio=new Registro();
         cambio.setVisible(true);
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
@@ -336,7 +336,7 @@ public class VentanaRegistroUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtContraseñaActionPerformed
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        VentanaSeleccion cambio=new VentanaSeleccion();
+        Login cambio=new Login();
         cambio.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnIniciarSesionActionPerformed

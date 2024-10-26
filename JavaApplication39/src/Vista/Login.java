@@ -12,12 +12,12 @@ import javax.swing.UIManager;
  *
  * @author sebastian
  */
-public class VentanaSeleccion extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame {
 
     /**
      * Creates new form VentanaSeleccion
      */
-    public VentanaSeleccion() {
+    public Login() {
         initComponents();
         setLocationRelativeTo(this);
         setResizable(false);
@@ -236,13 +236,13 @@ public class VentanaSeleccion extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTema1ActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-        VentanaRegistroUsuario cambio=new VentanaRegistroUsuario();
+        Registro cambio=new Registro();
         cambio.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     private void btnIniarsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniarsesionActionPerformed
-        VentanaPrincipal cambio=new VentanaPrincipal();
+        VentanaPrincipalCliente cambio=new VentanaPrincipalCliente();
         cambio.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnIniarsesionActionPerformed
@@ -267,7 +267,7 @@ public class VentanaSeleccion extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaSeleccion().setVisible(true);
+                new Login().setVisible(true);
             }
         });
     }

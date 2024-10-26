@@ -16,13 +16,13 @@ import javax.swing.UIManager;
  *
  * @author sebastian
  */
-public class VentanaPrincipal extends javax.swing.JFrame {
+public class VentanaPrincipalCliente extends javax.swing.JFrame {
 
     /**
      * Creates new form VentanaPrincipal
      */
-    public VentanaPrincipal() {
-        VentanaRegistroUsuario.LookAndFeelUtil.setLookAndFeel();
+    public VentanaPrincipalCliente() {
+        Registro.LookAndFeelUtil.setLookAndFeel();
         initComponents();
         InitStyles();
         setLocationRelativeTo(this);
@@ -74,7 +74,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         head = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        panelBotonesSuperiores = new javax.swing.JPanel();
         btnReservas = new javax.swing.JButton();
         btnDevoluciones = new javax.swing.JButton();
         btnNotificaciones = new javax.swing.JButton();
@@ -172,7 +172,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         head.setBackground(new java.awt.Color(0, 0, 0));
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        panelBotonesSuperiores.setBackground(new java.awt.Color(51, 51, 51));
 
         btnReservas.setBackground(new java.awt.Color(51, 51, 51));
         btnReservas.setForeground(new java.awt.Color(255, 255, 255));
@@ -230,11 +230,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelBotonesSuperioresLayout = new javax.swing.GroupLayout(panelBotonesSuperiores);
+        panelBotonesSuperiores.setLayout(panelBotonesSuperioresLayout);
+        panelBotonesSuperioresLayout.setHorizontalGroup(
+            panelBotonesSuperioresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBotonesSuperioresLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(btnCompras, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -245,11 +245,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(btnNotificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        panelBotonesSuperioresLayout.setVerticalGroup(
+            panelBotonesSuperioresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBotonesSuperioresLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelBotonesSuperioresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnReservas)
                     .addComponent(btnNotificaciones)
                     .addComponent(btnDevoluciones)
@@ -298,7 +298,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             headLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelBotonesSuperiores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(466, 466, 466)
                 .addComponent(btnPuntos)
                 .addGap(66, 66, 66)
@@ -313,7 +313,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(headLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headLayout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(panelBotonesSuperiores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8))
                     .addGroup(headLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnPuntos)
@@ -389,19 +389,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void btnReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservasActionPerformed
-        showJPanel(new VentanaPrincipalReservas());
+        showJPanel(new VentanaPrincipalReservasCliente());
     }//GEN-LAST:event_btnReservasActionPerformed
 
     private void btnNotificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotificacionesActionPerformed
-        showJPanel(new VentanaPrincipalNotificaciones());
+        showJPanel(new VentanaPrincipalNotificacionesCliente());
     }//GEN-LAST:event_btnNotificacionesActionPerformed
 
     private void btnDevolucionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolucionesActionPerformed
-        showJPanel(new VentanaPrincipalDevoluciones());
+        showJPanel(new VentanaPrincipalDevolucionesCliente());
     }//GEN-LAST:event_btnDevolucionesActionPerformed
 
     private void btnComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprasActionPerformed
-        showJPanel(new VentanaPrincipalCompras());
+        showJPanel(new VentanaPrincipalComprasCliente());
     }//GEN-LAST:event_btnComprasActionPerformed
 
     private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
@@ -429,8 +429,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel head;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton8;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel mensaje;
     private javax.swing.JPanel menu;
+    private javax.swing.JPanel panelBotonesSuperiores;
     // End of variables declaration//GEN-END:variables
 }

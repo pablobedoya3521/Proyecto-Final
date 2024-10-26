@@ -37,25 +37,26 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
     
   
     private void showJPanel(JPanel p){
-    p.setSize(1500,430);
-    p.setLocation(0,0);
-    
-    Container.removeAll();
-    Container.add(p,BorderLayout.CENTER);
-    Container.revalidate();
-    Container.repaint();
+        p.setSize(1500,430);
+        p.setLocation(0,0);
+
+        Container.removeAll();
+        Container.add(p,BorderLayout.CENTER);
+        Container.revalidate();
+        Container.repaint();
     }
     
-        public class LookAndFeelUtil {
-    public static void setLookAndFeel() {
-        try {
-            UIManager.setLookAndFeel(new FlatLightLaf());
-            FlatHighContrastIJTheme.setup();
-        } catch (Exception ex) {
-            System.err.println("Failed to initialize LaF");
+    public class LookAndFeelUtil {
+        public static void setLookAndFeel() {
+            try {
+                UIManager.setLookAndFeel(new FlatLightLaf());
+                FlatHighContrastIJTheme.setup();
+            } catch (Exception ex) {
+                System.err.println("Failed to initialize LaF");
+            }
         }
     }
-}
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -79,9 +80,9 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
         btnDevoluciones = new javax.swing.JButton();
         btnNotificaciones = new javax.swing.JButton();
         btnCompras = new javax.swing.JButton();
-        btnPuntos = new javax.swing.JButton();
         btnCliente = new javax.swing.JButton();
         btnCliente1 = new javax.swing.JButton();
+        btnCliente2 = new javax.swing.JButton();
         Container = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -257,15 +258,10 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnPuntos.setBackground(new java.awt.Color(204, 233, 216));
-        btnPuntos.setForeground(new java.awt.Color(51, 204, 0));
-        btnPuntos.setText("Puntos:500");
-        btnPuntos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
         btnCliente.setBackground(new java.awt.Color(51, 51, 51));
         btnCliente.setForeground(new java.awt.Color(255, 255, 255));
-        btnCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/avatar (1).png"))); // NOI18N
-        btnCliente.setText("Ciente");
+        btnCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/dolar (1).png"))); // NOI18N
+        btnCliente.setText("Puntos");
         btnCliente.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
         btnCliente.setBorderPainted(false);
         btnCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -292,6 +288,21 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
             }
         });
 
+        btnCliente2.setBackground(new java.awt.Color(51, 51, 51));
+        btnCliente2.setForeground(new java.awt.Color(255, 255, 255));
+        btnCliente2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/avatar (1).png"))); // NOI18N
+        btnCliente2.setText("Ciente");
+        btnCliente2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
+        btnCliente2.setBorderPainted(false);
+        btnCliente2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCliente2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnCliente2.setIconTextGap(12);
+        btnCliente2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCliente2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout headLayout = new javax.swing.GroupLayout(head);
         head.setLayout(headLayout);
         headLayout.setHorizontalGroup(
@@ -299,27 +310,29 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
             .addGroup(headLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelBotonesSuperiores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(466, 466, 466)
-                .addComponent(btnPuntos)
-                .addGap(66, 66, 66)
+                .addGap(450, 450, 450)
                 .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
+                .addGap(36, 36, 36)
+                .addComponent(btnCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(101, 101, 101)
                 .addComponent(btnCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(435, Short.MAX_VALUE))
+                .addContainerGap(419, Short.MAX_VALUE))
         );
         headLayout.setVerticalGroup(
             headLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(headLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headLayout.createSequentialGroup()
+                    .addGroup(headLayout.createSequentialGroup()
                         .addComponent(panelBotonesSuperiores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8))
-                    .addGroup(headLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnPuntos)
-                        .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                        .addContainerGap(41, Short.MAX_VALUE))
+                    .addGroup(headLayout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addGroup(headLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         Container.setBackground(new java.awt.Color(51, 51, 51));
@@ -412,17 +425,21 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCliente1ActionPerformed
 
+    private void btnCliente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCliente2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCliente2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Container;
     private javax.swing.JPanel background;
     private javax.swing.JButton btnCliente;
     private javax.swing.JButton btnCliente1;
+    private javax.swing.JButton btnCliente2;
     private javax.swing.JButton btnComprar;
     private javax.swing.JButton btnCompras;
     private javax.swing.JButton btnDevoluciones;
     private javax.swing.JButton btnNotificaciones;
-    private javax.swing.JButton btnPuntos;
     private javax.swing.JButton btnReservar;
     private javax.swing.JButton btnReservas;
     private javax.swing.JButton btnViajes;

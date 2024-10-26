@@ -7,7 +7,9 @@ package Vista;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.security.Principal;
+import javax.swing.JPanel;
 import javax.swing.UIManager;
 
 /**
@@ -31,16 +33,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     
     public void InitStyles(){
         mensaje.putClientProperty( "FlatLaf.style", "font: 200% $light.font" );
-        
     }
     
     public void initContent(){
-    VentanaPrincipal2 p1=new VentanaPrincipal2();
-    p1.setSize(1500,430);
-    p1.setLocation(0,0);
+        showJPanel(new VentanaPrincipalCompras());
+    }
+    
+    private void showJPanel(JPanel p){
+    p.setSize(1500,430);
+    p.setLocation(0,0);
     
     Container.removeAll();
-    Container.add(p1,BorderLayout.CENTER);
+    Container.add(p,BorderLayout.CENTER);
     Container.revalidate();
     Container.repaint();
     }
@@ -85,6 +89,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnCompras3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1839, 848));
 
         menu.setBackground(new java.awt.Color(0, 0, 0));
         menu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -215,7 +220,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnCompras.setBackground(new java.awt.Color(0, 0, 0));
+        btnCompras.setBackground(new java.awt.Color(51, 51, 51));
         btnCompras.setForeground(new java.awt.Color(255, 255, 255));
         btnCompras.setText("Compras");
         btnCompras.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
@@ -416,7 +421,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void btnReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservasActionPerformed
-        // TODO add your handling code here:
+        showJPanel(new VentanaPrincipalReservas());
     }//GEN-LAST:event_btnReservasActionPerformed
 
     private void btnNotificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotificacionesActionPerformed
@@ -428,7 +433,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDevolucionesActionPerformed
 
     private void btnComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprasActionPerformed
-        initContent();
+        showJPanel(new VentanaPrincipalCompras());
     }//GEN-LAST:event_btnComprasActionPerformed
 
     private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed

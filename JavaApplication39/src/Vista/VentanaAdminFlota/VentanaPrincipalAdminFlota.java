@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
-package Vista.VistaAdmFlota;
+package Vista.VentanaAdminFlota;
 
 import Vista.Registro;
 import Vista.Login;
@@ -19,11 +19,11 @@ import javax.swing.UIManager;
  *
  * @author sebastian
  */
-public class VentanaPrincipal extends javax.swing.JFrame {
+public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
 
     /** Creates new form VentanaPrincipal */
-    public VentanaPrincipal() {
-        Registro.LookAndFeelUtil.setLookAndFeel();
+    public VentanaPrincipalAdminFlota() {
+       LookAndFeelUtil.setLookAndFeel();
         initComponents();
         setLocationRelativeTo(this);
         setResizable(false);
@@ -394,19 +394,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void btnTiquetesVendidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiquetesVendidosActionPerformed
-        showJPanel(new VentanaPrincipalTiqueteVendidos());
+        showJPanel(new VentanaPrincipalTiqueteVendidosAdminFlota());
     }//GEN-LAST:event_btnTiquetesVendidosActionPerformed
 
     private void btnReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservasActionPerformed
-        showJPanel(new VentanaPrincipalReservas());
+        showJPanel(new VentanaPrincipalReservasAdminFlota());
     }//GEN-LAST:event_btnReservasActionPerformed
 
     private void btnDevolucionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolucionesActionPerformed
-        showJPanel(new VentanaPrincipalDevoluciones());
+        showJPanel(new VentanaPrincipalDevolucionesAdminFlota());
     }//GEN-LAST:event_btnDevolucionesActionPerformed
 
     private void btnBusesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusesActionPerformed
-        showJPanel(new VentanaPrincipalBuses());
+        showJPanel(new VentanaPrincipalBusesAdminFlota());
     }//GEN-LAST:event_btnBusesActionPerformed
 
     private void btnAdministradorFlotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministradorFlotaActionPerformed
@@ -440,20 +440,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPrincipalAdminFlota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPrincipalAdminFlota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPrincipalAdminFlota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPrincipalAdminFlota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaPrincipal().setVisible(true);
+                new VentanaPrincipalAdminFlota().setVisible(true);
             }
         });
     }

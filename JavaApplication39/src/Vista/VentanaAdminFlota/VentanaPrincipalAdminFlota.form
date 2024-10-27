@@ -45,8 +45,7 @@
                           <Component id="head" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                          <Component id="menu" min="-2" pref="318" max="-2" attributes="0"/>
+                          <Component id="menu" min="-2" pref="324" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="Container" max="32767" attributes="0"/>
                       </Group>
@@ -58,16 +57,12 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="head" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="Container" max="32767" attributes="0"/>
-                      </Group>
-                      <Component id="menu" alignment="0" min="-2" pref="839" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="3" max="32767" attributes="0"/>
+                  <Component id="head" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="Container" min="-2" pref="733" max="-2" attributes="0"/>
+                  <EmptySpace min="3" pref="12" max="32767" attributes="0"/>
               </Group>
+              <Component id="menu" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -308,9 +303,9 @@
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="511" max="-2" attributes="0"/>
                       <Component id="btnAdministradorFlota" min="-2" pref="210" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                       <Component id="btnSalir" min="-2" pref="106" max="-2" attributes="0"/>
-                      <EmptySpace pref="434" max="32767" attributes="0"/>
+                      <EmptySpace pref="435" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

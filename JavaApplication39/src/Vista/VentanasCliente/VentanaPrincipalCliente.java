@@ -2,8 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Vista;
+package Vista.VentanasCliente;
 
+import Vista.Login;
+import Vista.Registro;
+import Vista.VentanaPrincipalComprasCliente;
+import Vista.VentanaPrincipalDevolucionesCliente;
+import Vista.VentanaPrincipalNotificacionesCliente;
+import Vista.VentanaPrincipalReservasCliente;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
 import java.awt.BorderLayout;

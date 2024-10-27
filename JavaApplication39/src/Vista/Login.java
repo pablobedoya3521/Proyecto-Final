@@ -4,6 +4,7 @@
  */
 package Vista;
 
+import Vista.VentanasCliente.VentanaPrincipalCliente;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
 import javax.swing.UIManager;

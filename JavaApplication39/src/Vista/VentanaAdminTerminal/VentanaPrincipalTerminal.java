@@ -5,7 +5,6 @@
 package Vista.VentanaAdminTerminal;
 
 import Vista.Login;
-import Vista.Registro;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
 import java.awt.BorderLayout;

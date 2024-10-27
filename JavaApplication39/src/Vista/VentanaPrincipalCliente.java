@@ -81,7 +81,7 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
         btnNotificaciones = new javax.swing.JButton();
         btnCompras = new javax.swing.JButton();
         btnCliente = new javax.swing.JButton();
-        btnCliente1 = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
         btnCliente2 = new javax.swing.JButton();
         Container = new javax.swing.JPanel();
 
@@ -273,18 +273,18 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
             }
         });
 
-        btnCliente1.setBackground(new java.awt.Color(51, 51, 51));
-        btnCliente1.setForeground(new java.awt.Color(255, 0, 51));
-        btnCliente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar-sesion (1).png"))); // NOI18N
-        btnCliente1.setText("Salir");
-        btnCliente1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
-        btnCliente1.setBorderPainted(false);
-        btnCliente1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnCliente1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnCliente1.setIconTextGap(12);
-        btnCliente1.addActionListener(new java.awt.event.ActionListener() {
+        btnRegresar.setBackground(new java.awt.Color(51, 51, 51));
+        btnRegresar.setForeground(new java.awt.Color(255, 0, 51));
+        btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar-sesion (1).png"))); // NOI18N
+        btnRegresar.setText("Salir");
+        btnRegresar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
+        btnRegresar.setBorderPainted(false);
+        btnRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnRegresar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnRegresar.setIconTextGap(12);
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCliente1ActionPerformed(evt);
+                btnRegresarActionPerformed(evt);
             }
         });
 
@@ -315,7 +315,7 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addComponent(btnCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(101, 101, 101)
-                .addComponent(btnCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(419, Short.MAX_VALUE))
         );
         headLayout.setVerticalGroup(
@@ -323,16 +323,14 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
             .addGroup(headLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(headLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(headLayout.createSequentialGroup()
-                        .addComponent(panelBotonesSuperiores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(41, Short.MAX_VALUE))
+                    .addComponent(panelBotonesSuperiores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(headLayout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addGroup(headLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         Container.setBackground(new java.awt.Color(51, 51, 51));
@@ -421,9 +419,11 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnClienteActionPerformed
 
-    private void btnCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCliente1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCliente1ActionPerformed
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        Login cambio = new Login();
+        cambio.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnCliente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCliente2ActionPerformed
         // TODO add your handling code here:
@@ -434,12 +434,12 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
     private javax.swing.JPanel Container;
     private javax.swing.JPanel background;
     private javax.swing.JButton btnCliente;
-    private javax.swing.JButton btnCliente1;
     private javax.swing.JButton btnCliente2;
     private javax.swing.JButton btnComprar;
     private javax.swing.JButton btnCompras;
     private javax.swing.JButton btnDevoluciones;
     private javax.swing.JButton btnNotificaciones;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnReservar;
     private javax.swing.JButton btnReservas;
     private javax.swing.JButton btnViajes;

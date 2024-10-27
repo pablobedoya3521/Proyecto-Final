@@ -9,6 +9,7 @@ import Vista.Registro;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
 import java.awt.BorderLayout;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
@@ -17,7 +18,7 @@ import javax.swing.UIManager;
  * @author juan
  */
 public class VentanaPrincipalTerminal extends javax.swing.JFrame {
-
+    JButton[][] botones;
     /**
      * Creates new form VentanaPrincipalTerminal
      */
@@ -27,9 +28,16 @@ public class VentanaPrincipalTerminal extends javax.swing.JFrame {
          setLocationRelativeTo(this);
         setResizable(false);
         pack(); 
+        botones=new JButton[4][];
+        botones[0]=new JButton[5];
+        botones[1]=new JButton[2];
+        botones[2]= new JButton[2];
+        botones[3]=new JButton[2];
+        
+        dibujarBotones();
     }
     
-     private void showJPanel(JPanel p){
+    private void showJPanel(JPanel p){
         p.setSize(1500,430);
         p.setLocation(0,0);
 
@@ -39,7 +47,74 @@ public class VentanaPrincipalTerminal extends javax.swing.JFrame {
         panelContainer.repaint();
     }
     
-     public class LookAndFeelUtil {
+    private void dibujarBotones(){
+        int separado=80;
+        int separado1=100;
+        int separado2= 740;
+        
+        int ancho=200;
+        int alto=110;
+        int texto=1;
+        int separadoSuperior=30;
+        int separadoSuperior2=60;
+        int desplazamientoEspecifico = 40;
+        int unPocoMas=65;
+        
+        for(int i=0; i<botones.length;i++){
+            for(int j=0; j<botones[i].length;j++){
+                
+      if (i == 0) {
+                botones[i][j] = new JButton();
+                botones[i][j].setBounds(
+                    ancho * j + separado,
+                    alto * i + separadoSuperior,
+                    ancho, alto
+                );
+            } else if (i == 1 && j > 0) {
+                botones[i][j] = new JButton();
+                botones[i][j].setBounds(
+                    ancho * j + separado1,
+                    alto * i + separadoSuperior2,
+                    ancho, alto
+                );
+            } else if (i == 2) {
+                botones[i][j] = new JButton();
+                // Aplica el desplazamiento solo si j == 0
+                int verticalOffset = (j == 0 || j==1) ? desplazamientoEspecifico : 0; 
+                botones[i][j].setBounds(
+                    ancho * j + separado-verticalOffset,
+                    alto * i + (separadoSuperior + unPocoMas ), // Solo ajusta la posición vertical
+                    ancho, alto
+                );
+            } else if (i == 3) {
+                int separadoFila3 = 20; // Ajusta el valor según lo necesites
+                botones[i][j] = new JButton();
+                botones[i][j].setBounds(
+                    ancho * j + separado2 + separadoFila3 * j,
+                    alto * i + (separadoSuperior2 + unPocoMas),
+                    ancho, alto
+                );
+            } else {
+                separado = 80;
+                botones[i][j] = new JButton();
+                botones[i][j].setBounds(
+                    ancho * j + separado,
+                    alto * i + separadoSuperior2,
+                    ancho, alto
+                );
+            }
+                    
+                botones[i][j].setText(String.valueOf(texto));
+                panelContainer.add(botones[i][j]);
+                texto++;
+                separado+=20;
+                separado1+=110;
+             
+            }
+        }
+    }
+    
+    public class LookAndFeelUtil {
         public static void setLookAndFeel() {
             try {
                 UIManager.setLookAndFeel(new FlatLightLaf());
@@ -124,7 +199,17 @@ public class VentanaPrincipalTerminal extends javax.swing.JFrame {
 
         panelContainer.setBackground(new java.awt.Color(51, 51, 51));
         panelContainer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-        panelContainer.setLayout(new java.awt.BorderLayout());
+
+        javax.swing.GroupLayout panelContainerLayout = new javax.swing.GroupLayout(panelContainer);
+        panelContainer.setLayout(panelContainerLayout);
+        panelContainerLayout.setHorizontalGroup(
+            panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1245, Short.MAX_VALUE)
+        );
+        panelContainerLayout.setVerticalGroup(
+            panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 583, Short.MAX_VALUE)
+        );
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
 
@@ -137,16 +222,13 @@ public class VentanaPrincipalTerminal extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(23, 23, 23)
                 .addComponent(jLabel1)
-                .addContainerGap(917, Short.MAX_VALUE))
+                .addContainerGap(918, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jLabel1)
-                .addContainerGap(47, Short.MAX_VALUE))
+            .addComponent(jLabel1)
         );
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
@@ -154,24 +236,28 @@ public class VentanaPrincipalTerminal extends javax.swing.JFrame {
         backgroundLayout.setHorizontalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(head, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, backgroundLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(panelContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addComponent(head, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(panelContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(backgroundLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
                 .addComponent(head, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addComponent(panelContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -182,7 +268,9 @@ public class VentanaPrincipalTerminal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();

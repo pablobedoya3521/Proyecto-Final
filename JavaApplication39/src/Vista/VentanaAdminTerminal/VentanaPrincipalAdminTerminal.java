@@ -4,6 +4,7 @@
  */
 package Vista.VentanaAdminTerminal;
 
+import Controlador.ControladorRegistro;
 import Vista.Login;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
@@ -16,12 +17,13 @@ import javax.swing.UIManager;
  *
  * @author juan
  */
-public class VentanaPrincipalTerminal extends javax.swing.JFrame {
+public class VentanaPrincipalAdminTerminal extends javax.swing.JFrame {
+    private ControladorRegistro controladorRegistro;
     JButton[][] botones;
     /**
      * Creates new form VentanaPrincipalTerminal
      */
-    public VentanaPrincipalTerminal() {
+    public VentanaPrincipalAdminTerminal(ControladorRegistro controladorRegistro) {
         LookAndFeelUtil.setLookAndFeel();
         initComponents();
          setLocationRelativeTo(this);
@@ -32,7 +34,7 @@ public class VentanaPrincipalTerminal extends javax.swing.JFrame {
         botones[1]=new JButton[2];
         botones[2]= new JButton[2];
         botones[3]=new JButton[2];
-        
+        this.controladorRegistro=controladorRegistro;
         dibujarBotones();
     }
     
@@ -280,7 +282,7 @@ public class VentanaPrincipalTerminal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdministradorFlotaActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        Login cambio=new Login();
+        Login cambio=new Login(this.controladorRegistro);
         cambio.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
@@ -288,37 +290,7 @@ public class VentanaPrincipalTerminal extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipalTerminal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipalTerminal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipalTerminal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipalTerminal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaPrincipalTerminal().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;

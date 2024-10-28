@@ -74,4 +74,30 @@ public class ControladorRegistro {
         clientes.add(cliente);
         return "Registrado correctamente";
     }
+
+    public ArrayList<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(ArrayList<Cliente> clientes) {
+        this.clientes = clientes;
+    }
+
+    public ArrayList<AdministradorFlota> getAdministradoresFlota() {
+        return administradoresFlota;
+    }
+
+    public void setAdministradoresFlota(ArrayList<AdministradorFlota> administradoresFlota) {
+        this.administradoresFlota = administradoresFlota;
+    }
+
+    public ArrayList<AdministradorTerminal> getAdministradoresTerminal() {
+        return administradoresTerminal;
+    }
+
+    public void setAdministradoresTerminal(ArrayList<AdministradorTerminal> administradoresTerminal) {
+        this.administradoresTerminal = administradoresTerminal;
+    }
+    
+    
 }

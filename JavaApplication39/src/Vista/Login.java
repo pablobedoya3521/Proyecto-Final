@@ -4,9 +4,14 @@
  */
 package Vista;
 
+import Controlador.ControladorRegistro;
+import Validador.ValidarIdentificacionUsuario;
+import Vista.VentanaAdminFlota.VentanaPrincipalAdminFlota;
+import Vista.VentanaAdminTerminal.VentanaPrincipalAdminTerminal;
 import Vista.VentanasCliente.VentanaPrincipalCliente;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 /**
@@ -14,15 +19,16 @@ import javax.swing.UIManager;
  * @author sebastian
  */
 public class Login extends javax.swing.JFrame {
-
+    private ControladorRegistro controladorRegistro;
     /**
      * Creates new form VentanaSeleccion
      */
-    public Login() {
+    public Login(ControladorRegistro controladorRegistro) {
         initComponents();
         setLocationRelativeTo(this);
         setResizable(false);
         pack();
+        this.controladorRegistro=controladorRegistro==null? new ControladorRegistro():controladorRegistro;
     }
 
     /**
@@ -44,10 +50,10 @@ public class Login extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         btnIniciarSesion = new javax.swing.JButton();
         btnRegistrarse = new javax.swing.JButton();
-        txtTema = new javax.swing.JTextField();
+        txtContraseña = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtTema1 = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
         btnIniarsesion = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -115,10 +121,10 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        txtTema.setBackground(new java.awt.Color(0, 0, 0));
-        txtTema.addActionListener(new java.awt.event.ActionListener() {
+        txtContraseña.setBackground(new java.awt.Color(0, 0, 0));
+        txtContraseña.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTemaActionPerformed(evt);
+                txtContraseñaActionPerformed(evt);
             }
         });
 
@@ -130,10 +136,10 @@ public class Login extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Correo electronico");
 
-        txtTema1.setBackground(new java.awt.Color(0, 0, 0));
-        txtTema1.addActionListener(new java.awt.event.ActionListener() {
+        txtCorreo.setBackground(new java.awt.Color(0, 0, 0));
+        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTema1ActionPerformed(evt);
+                txtCorreoActionPerformed(evt);
             }
         });
 
@@ -166,8 +172,8 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(btnIniarsesion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtTema1, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtTema, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtContraseña, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -185,11 +191,11 @@ public class Login extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtTema1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtTema, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(68, 68, 68)
                 .addComponent(btnIniarsesion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(112, Short.MAX_VALUE))
@@ -228,24 +234,44 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTemaActionPerformed
+    private void txtContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseñaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTemaActionPerformed
+    }//GEN-LAST:event_txtContraseñaActionPerformed
 
-    private void txtTema1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTema1ActionPerformed
+    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTema1ActionPerformed
+    }//GEN-LAST:event_txtCorreoActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-        Registro cambio=new Registro();
+        Registro cambio=new Registro(this.controladorRegistro);
         cambio.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     private void btnIniarsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniarsesionActionPerformed
-        VentanaPrincipalCliente cambio=new VentanaPrincipalCliente();
-        cambio.setVisible(true);
-        this.dispose();
+      String correo = txtCorreo.getText();
+    String contraseña = txtContraseña.getText();
+    
+    ValidarIdentificacionUsuario identificar = new ValidarIdentificacionUsuario(this.controladorRegistro);
+    
+    Object cambio = identificar.IdentificarUsuario(correo, contraseña);
+    
+    if (cambio instanceof VentanaPrincipalCliente) {
+        VentanaPrincipalCliente ventanaCliente = (VentanaPrincipalCliente) cambio;
+        ventanaCliente.setVisible(true); // Muestra la ventana del cliente
+        this.dispose(); // Cierra la ventana de inicio de sesión
+    } else if (cambio instanceof VentanaPrincipalAdminFlota) {
+        VentanaPrincipalAdminFlota ventanaAdminFlota = (VentanaPrincipalAdminFlota) cambio;
+        ventanaAdminFlota.setVisible(true); // Muestra la ventana del administrador de flota
+        this.dispose(); // Cierra la ventana de inicio de sesión
+    } else if (cambio instanceof VentanaPrincipalAdminTerminal) {
+        VentanaPrincipalAdminTerminal ventanaAdminTerminal = (VentanaPrincipalAdminTerminal) cambio;
+        ventanaAdminTerminal.setVisible(true); // Muestra la ventana del administrador de terminal
+        this.dispose(); // Cierra la ventana de inicio de sesión
+    } else {
+        // Manejo de error: usuario no encontrado o credenciales incorrectas
+        JOptionPane.showMessageDialog(this, "Credenciales incorrectas, por favor intenta de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnIniarsesionActionPerformed
 
     /**
@@ -268,7 +294,7 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new Login(null).setVisible(true);
             }
         });
     }
@@ -287,7 +313,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JTextField txtTema;
-    private javax.swing.JTextField txtTema1;
+    private javax.swing.JTextField txtContraseña;
+    private javax.swing.JTextField txtCorreo;
     // End of variables declaration//GEN-END:variables
 }

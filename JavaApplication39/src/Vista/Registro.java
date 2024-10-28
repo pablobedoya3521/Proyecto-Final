@@ -10,8 +10,6 @@ import Modelo.AdministradorTerminal;
 import Modelo.Cliente;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
-import javax.swing.ButtonGroup;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -24,7 +22,7 @@ public class Registro extends javax.swing.JFrame {
     /**
      * Creates new form VentanaRegistroUsuario
      */
-    public Registro() {
+    public Registro(ControladorRegistro controladorRegistro) {
         LookAndFeelUtil.setLookAndFeel();
         initComponents();
         
@@ -33,7 +31,7 @@ public class Registro extends javax.swing.JFrame {
         pack();
         
         
-        this.controladorRegistro=new ControladorRegistro();
+        this.controladorRegistro=controladorRegistro;
     }
     
     public class LookAndFeelUtil {
@@ -311,8 +309,7 @@ public class Registro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-        Registro cambio=new Registro();
-        cambio.setVisible(true);
+      
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
@@ -336,7 +333,7 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtContraseñaActionPerformed
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        Login cambio=new Login();
+        Login cambio=new Login(this.controladorRegistro);
         cambio.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
@@ -354,7 +351,7 @@ public class Registro extends javax.swing.JFrame {
        
         if (opcion != null) {
        
-        System.out.println("Opción seleccionada: " + opcion); // Depuración
+        System.out.println("Opción seleccionada: " + opcion); 
 
         switch (opcion) {
             case "Cliente":

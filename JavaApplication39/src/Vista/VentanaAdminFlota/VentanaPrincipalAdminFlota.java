@@ -66,8 +66,6 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
         btnViaje = new javax.swing.JButton();
         btnTiquete = new javax.swing.JButton();
         btnBus = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
         btnTiquete1 = new javax.swing.JButton();
         mensaje = new javax.swing.JLabel();
         head = new javax.swing.JPanel();
@@ -99,7 +97,7 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
                 btnViajeActionPerformed(evt);
             }
         });
-        menu.add(btnViaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 206, 330, 60));
+        menu.add(btnViaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 206, 320, 60));
 
         btnTiquete.setBackground(new java.awt.Color(51, 51, 51));
         btnTiquete.setForeground(new java.awt.Color(255, 255, 255));
@@ -131,37 +129,7 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
                 btnBusActionPerformed(evt);
             }
         });
-        menu.add(btnBus, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 146, 330, 60));
-
-        jButton5.setBackground(new java.awt.Color(51, 51, 51));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ubicacion (1).png"))); // NOI18N
-        jButton5.setText("Viajes");
-        jButton5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
-        jButton5.setBorderPainted(false);
-        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton5.setIconTextGap(12);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        menu.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 146, 330, 60));
-
-        jButton8.setBackground(new java.awt.Color(51, 51, 51));
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ubicacion (1).png"))); // NOI18N
-        jButton8.setText("Viajes");
-        jButton8.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
-        jButton8.setBorderPainted(false);
-        jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton8.setIconTextGap(12);
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-        menu.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 146, 330, 60));
+        menu.add(btnBus, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 320, 60));
 
         btnTiquete1.setBackground(new java.awt.Color(51, 51, 51));
         btnTiquete1.setForeground(new java.awt.Color(255, 255, 255));
@@ -384,14 +352,6 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBusActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
-
     private void btnTiquetesVendidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiquetesVendidosActionPerformed
         showJPanel(new VentanaPrincipalTiqueteVendidosAdminFlota());
     }//GEN-LAST:event_btnTiquetesVendidosActionPerformed
@@ -438,8 +398,6 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     private javax.swing.JButton btnTiquetesVendidos;
     private javax.swing.JButton btnViaje;
     private javax.swing.JPanel head;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel mensaje;
     private javax.swing.JPanel menu;

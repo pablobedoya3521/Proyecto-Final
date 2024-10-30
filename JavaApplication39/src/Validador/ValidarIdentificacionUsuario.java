@@ -23,22 +23,15 @@ public class ValidarIdentificacionUsuario {
     public Object IdentificarUsuario(String correo, String contraseña){
       for(int i=0; i<controladorRegistro.getClientes().size();i++){
           if(controladorRegistro.getClientes().get(i).getCorreo().equals(correo)){
-           return new VentanaPrincipalCliente(this.controladorRegistro);
+           return new VentanaPrincipalCliente();
           }     
       }
       
       for(int i=0; i<controladorRegistro.getAdministradoresFlota().size();i++){
           if(controladorRegistro.getAdministradoresFlota().get(i).getCorreo().equals(correo)){
-              return new VentanaPrincipalAdminFlota(this.controladorRegistro);
+              return new VentanaPrincipalAdminFlota();
           }
       }
-      
-      for(int i=0; i<controladorRegistro.getAdministradoresTerminal().size();i++){
-          if(controladorRegistro.getAdministradoresTerminal().get(i).getCorreo().equals(correo)){
-              return new VentanaPrincipalAdminTerminal(this.controladorRegistro);
-          }
-      }
-      
        return null;
     }
 }

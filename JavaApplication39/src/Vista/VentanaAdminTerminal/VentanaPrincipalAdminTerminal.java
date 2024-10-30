@@ -23,7 +23,7 @@ public class VentanaPrincipalAdminTerminal extends javax.swing.JFrame {
     /**
      * Creates new form VentanaPrincipalTerminal
      */
-    public VentanaPrincipalAdminTerminal(ControladorRegistro controladorRegistro) {
+    public VentanaPrincipalAdminTerminal() {
         LookAndFeelUtil.setLookAndFeel();
         initComponents();
          setLocationRelativeTo(this);
@@ -34,7 +34,7 @@ public class VentanaPrincipalAdminTerminal extends javax.swing.JFrame {
         botones[1]=new JButton[2];
         botones[2]= new JButton[2];
         botones[3]=new JButton[2];
-        this.controladorRegistro=controladorRegistro;
+        this.controladorRegistro=new ControladorRegistro();
         dibujarBotones();
     }
     
@@ -282,7 +282,7 @@ public class VentanaPrincipalAdminTerminal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdministradorFlotaActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        Login cambio=new Login(this.controladorRegistro);
+        Login cambio=new Login();
         cambio.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed

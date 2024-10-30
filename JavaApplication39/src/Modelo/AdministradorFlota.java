@@ -4,12 +4,17 @@
  */
 package Modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author juan
  */
-public class AdministradorFlota extends Usuario {
+public class AdministradorFlota extends Usuario implements Serializable {
     public AdministradorFlota(String cedula, String nombre,String apellido, String correo, String contraseña) {
         super(cedula, nombre,apellido, correo, contraseña);
+    }
+    
+    public AdministradorFlota(){
     }
 }

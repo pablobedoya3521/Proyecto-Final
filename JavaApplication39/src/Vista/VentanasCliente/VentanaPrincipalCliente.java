@@ -28,14 +28,14 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
     /**
      * Creates new form VentanaPrincipal
      */
-    public VentanaPrincipalCliente(ControladorRegistro controladorRegistro) {
+    public VentanaPrincipalCliente() {
         Registro.LookAndFeelUtil.setLookAndFeel();
         initComponents();
         InitStyles();
         setLocationRelativeTo(this);
         setResizable(false);
         pack(); 
-        this.controladorRegistro=controladorRegistro;
+        this.controladorRegistro=new ControladorRegistro();
     }
     
     
@@ -425,7 +425,7 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClienteActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-      Login cambio = new Login(this.controladorRegistro);
+      Login cambio = new Login();
         cambio.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed

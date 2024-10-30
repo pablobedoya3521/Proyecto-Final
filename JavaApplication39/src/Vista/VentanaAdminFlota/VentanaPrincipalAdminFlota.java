@@ -23,13 +23,13 @@ import javax.swing.UIManager;
 public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     private ControladorRegistro controladorRegistro;
     /** Creates new form VentanaPrincipal */
-    public VentanaPrincipalAdminFlota(ControladorRegistro controladorRegistro) {
+    public VentanaPrincipalAdminFlota() {
        LookAndFeelUtil.setLookAndFeel();
         initComponents();
         setLocationRelativeTo(this);
         setResizable(false);
         pack(); 
-        this.controladorRegistro=controladorRegistro;
+        this.controladorRegistro=new ControladorRegistro();
     }
     
     private void showJPanel(JPanel p){
@@ -373,7 +373,7 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdministradorFlotaActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        Login cambio=new Login(this.controladorRegistro);
+        Login cambio=new Login();
         cambio.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed

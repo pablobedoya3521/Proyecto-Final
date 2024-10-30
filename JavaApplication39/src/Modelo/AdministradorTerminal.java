@@ -4,14 +4,19 @@
  */
 package Modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author juan
  */
-public class AdministradorTerminal extends Usuario{
+public class AdministradorTerminal extends Usuario implements Serializable{
     
     public AdministradorTerminal(String cedula, String nombre,String apellido, String correo, String contraseña) {
         super(cedula, nombre,apellido, correo, contraseña);
+    }
+    
+    public AdministradorTerminal(){
     }
     
 }

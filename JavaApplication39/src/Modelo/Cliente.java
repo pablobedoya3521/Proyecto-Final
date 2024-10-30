@@ -4,15 +4,20 @@
  */
 package Modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author juan
  */
-public class Cliente extends Usuario{
+public class Cliente extends Usuario implements Serializable{
     private int puntosAcumulados;
     public Cliente(String cedula, String nombre,String apellido, String correo, String contraseña) {
         super(cedula, nombre,apellido, correo, contraseña);
         this.puntosAcumulados=0;
+    }
+    
+    public Cliente(){
     }
     
 }

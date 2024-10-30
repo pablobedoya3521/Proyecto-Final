@@ -8,6 +8,9 @@ import Modelo.AdministradorFlota;
 import Modelo.AdministradorTerminal;
 import Modelo.Cliente;
 import Modelo.Usuario;
+import Persistencia.SerializadoraAdmFlota;
+import Persistencia.SerializadoraAdmTerminal;
+import Persistencia.SerializadoraCliente;
 import java.util.ArrayList;
 
 /**
@@ -16,22 +19,28 @@ import java.util.ArrayList;
  */
 public class ControladorRegistro {
     private ArrayList<Cliente> clientes;
+    private SerializadoraAdmTerminal serializadoraAdmTerminal;
+    private SerializadoraAdmFlota serializadoraAdmFlota;
+    private SerializadoraCliente serializadoraCliente;
     private ArrayList<AdministradorFlota> administradoresFlota;
-    private ArrayList<AdministradorTerminal> administradoresTerminal;
+    private AdministradorTerminal administradoresTerminal;
     
     public ControladorRegistro(){
-        this.clientes=new ArrayList<>();
-        this.administradoresFlota=new ArrayList<>();
-        this.administradoresTerminal=new ArrayList<>();
+        this.serializadoraAdmTerminal=new SerializadoraAdmTerminal();
+        this.administradoresTerminal= serializadoraAdmTerminal.leerObjeto();
+        this.serializadoraAdmFlota=new SerializadoraAdmFlota();
+        this.administradoresFlota= serializadoraAdmFlota.leerObjeto();
+        this.serializadoraCliente= new SerializadoraCliente();
+        this.clientes=serializadoraCliente.leerObjeto();
+        
+        
+        
     }
     
     public String registrar(Usuario usuario){
         if(usuario instanceof AdministradorFlota){
             AdministradorFlota admin = (AdministradorFlota) usuario;
             return  registrarAdminFlota(admin);
-        }else if(usuario instanceof AdministradorTerminal){
-            AdministradorTerminal admin = (AdministradorTerminal) usuario;
-            return registrarAdminTerminal(admin);
         }else if(usuario instanceof Cliente){
             Cliente cliente = (Cliente) usuario;
             return registrarCliente(cliente);
@@ -50,18 +59,7 @@ public class ControladorRegistro {
         administradoresFlota.add(admin);
         return "Registrado correctamente";
     }
-    
-    private String registrarAdminTerminal(AdministradorTerminal admin){
-        for(int i=0; i< administradoresTerminal.size(); i++){
-            if(administradoresTerminal.get(i).getCedula().equals(admin.getCedula())){
-                  return "Ya estas registrado con esta cedula"; 
-            }else if(administradoresTerminal.get(i).getCorreo().equals(admin.getCorreo())){
-                 return "Ya existe un registro con este correo";
-            }
-        }
-        administradoresTerminal.add(admin);
-        return "Registrado correctamente";    
-    }
+   
     
     private String registrarCliente(Cliente cliente){
         for(int i=0; i< clientes.size();i++){
@@ -72,6 +70,7 @@ public class ControladorRegistro {
             }
         }
         clientes.add(cliente);
+        serializadoraCliente.escribirObjeto(clientes);
         return "Registrado correctamente";
     }
 
@@ -89,15 +88,5 @@ public class ControladorRegistro {
 
     public void setAdministradoresFlota(ArrayList<AdministradorFlota> administradoresFlota) {
         this.administradoresFlota = administradoresFlota;
-    }
-
-    public ArrayList<AdministradorTerminal> getAdministradoresTerminal() {
-        return administradoresTerminal;
-    }
-
-    public void setAdministradoresTerminal(ArrayList<AdministradorTerminal> administradoresTerminal) {
-        this.administradoresTerminal = administradoresTerminal;
-    }
-    
-    
+    }  
 }

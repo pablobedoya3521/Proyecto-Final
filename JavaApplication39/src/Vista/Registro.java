@@ -22,7 +22,7 @@ public class Registro extends javax.swing.JFrame {
     /**
      * Creates new form VentanaRegistroUsuario
      */
-    public Registro(ControladorRegistro controladorRegistro) {
+    public Registro() {
         LookAndFeelUtil.setLookAndFeel();
         initComponents();
         
@@ -31,7 +31,7 @@ public class Registro extends javax.swing.JFrame {
         pack();
         
         
-        this.controladorRegistro=controladorRegistro;
+        this.controladorRegistro=new ControladorRegistro();
     }
     
     public class LookAndFeelUtil {
@@ -333,7 +333,7 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtContraseñaActionPerformed
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        Login cambio=new Login(this.controladorRegistro);
+        Login cambio=new Login();
         cambio.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnIniciarSesionActionPerformed

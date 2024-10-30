@@ -6,7 +6,7 @@ package CRUD;
 
 /**
  *
- * @author juan
+ * @author sebastian
  */
 public class e {
     

@@ -23,12 +23,12 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form VentanaSeleccion
      */
-    public Login(ControladorRegistro controladorRegistro) {
+    public Login() {
         initComponents();
         setLocationRelativeTo(this);
         setResizable(false);
         pack();
-        this.controladorRegistro=controladorRegistro==null? new ControladorRegistro():controladorRegistro;
+        this.controladorRegistro=new ControladorRegistro();
     }
 
     /**
@@ -243,7 +243,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCorreoActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-        Registro cambio=new Registro(this.controladorRegistro);
+        Registro cambio=new Registro();
         cambio.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegistrarseActionPerformed
@@ -294,7 +294,7 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login(null).setVisible(true);
+                new Login().setVisible(true);
             }
         });
     }

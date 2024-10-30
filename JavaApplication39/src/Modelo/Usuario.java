@@ -4,11 +4,13 @@
  */
 package Modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author juan
  */
-public class Usuario {
+public class Usuario implements Serializable{
     private String cedula;
     private String nombre;
     private String apellido;
@@ -21,6 +23,9 @@ public class Usuario {
         this.apellido=apellido;
         this.correo = correo;
         this.contraseña = contraseña;
+    }
+    
+    public Usuario(){
     }
     //getters and setters
 

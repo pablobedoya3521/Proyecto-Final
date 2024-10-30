@@ -4,7 +4,7 @@
  */
 package Persistencia;
 
-import Modelo.Cliente;
+
 import Modelo.Viaje;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

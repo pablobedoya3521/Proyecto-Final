@@ -7,10 +7,9 @@ package Controlador;
 import Modelo.AdministradorFlota;
 import Modelo.AdministradorTerminal;
 import Modelo.Cliente;
-import Modelo.Usuario;
-import Persistencia.SerializadoraAdmFlota;
-import Persistencia.SerializadoraAdmTerminal;
-import Persistencia.SerializadoraCliente;
+import Persistencia.SerializadoraAdminFlota;
+import Persistencia.SerializadoraAdminTerminal;
+import Persistencia.SerializadoraClientes;
 import java.util.ArrayList;
 
 /**
@@ -18,75 +17,62 @@ import java.util.ArrayList;
  * @author juan
  */
 public class ControladorRegistro {
-    private ArrayList<Cliente> clientes;
-    private SerializadoraAdmTerminal serializadoraAdmTerminal;
-    private SerializadoraAdmFlota serializadoraAdmFlota;
-    private SerializadoraCliente serializadoraCliente;
-    private ArrayList<AdministradorFlota> administradoresFlota;
-    private AdministradorTerminal administradoresTerminal;
+    //listas
+    private ArrayList<Cliente> ListaClientes;
+    private ArrayList<AdministradorFlota> ListaAdministradoresFlota;
+    private AdministradorTerminal ListaAdministradorTerminal;
+    //serializable
+    private SerializadoraAdminTerminal serializadoraAdminiTerminal;
+    private SerializadoraClientes serializadoraClientes;
+    private SerializadoraAdminFlota serializadoraAdminFlota;
     
     public ControladorRegistro(){
-        this.serializadoraAdmTerminal=new SerializadoraAdmTerminal();
-        this.administradoresTerminal= serializadoraAdmTerminal.leerObjeto();
-        this.serializadoraAdmFlota=new SerializadoraAdmFlota();
-        this.administradoresFlota= serializadoraAdmFlota.leerObjeto();
-        this.serializadoraCliente= new SerializadoraCliente();
-        this.clientes=serializadoraCliente.leerObjeto();
-        
-        
-        
+       this.ListaClientes=serializadoraClientes.leerObjeto();
+       this.ListaAdministradoresFlota=serializadoraAdminFlota.leerObjeto();
+       this.ListaAdministradorTerminal=serializadoraAdminiTerminal.leerObjeto();
     }
     
-    public String registrar(Usuario usuario){
-        if(usuario instanceof AdministradorFlota){
-            AdministradorFlota admin = (AdministradorFlota) usuario;
-            return  registrarAdminFlota(admin);
-        }else if(usuario instanceof Cliente){
-            Cliente cliente = (Cliente) usuario;
-            return registrarCliente(cliente);
+    public String guardarCliente(Cliente cliente){
+        Cliente respuesta = buscarCliente(cliente.getCorreo());
+        if(respuesta==null){
+            ListaClientes.add(cliente);
+            serializadoraClientes.escribirObjeto(ListaClientes);
+            return "Guardado Correctamente";
         }
-        return "Error al registrar, escoge tu rol";
-    }
-
-    private String registrarAdminFlota(AdministradorFlota admin){
-        for(int i=0; i< administradoresFlota.size();i++){
-            if(administradoresFlota.get(i).getCedula().equals(admin.getCedula())){
-                return "Ya estas registrado con esta cedula";   
-            }else if(administradoresFlota.get(i).getCorreo().equals(admin.getCorreo())){
-                return "Ya existe un registro con este correo";
-            }
-        }
-        administradoresFlota.add(admin);
-        return "Registrado correctamente";
-    }
-   
+        return "Lo siento, ya hay una persona registrada con este correo";
+    } 
     
-    private String registrarCliente(Cliente cliente){
-        for(int i=0; i< clientes.size();i++){
-            if(clientes.get(i).getCedula().equals(cliente.getCedula())){
-                return "Ya estas registrado con esta cedula"; 
-            }else if(clientes.get(i).getCorreo().equals(cliente.getCorreo())){
-                 return "Ya existe un registro con este correo";
+    public Cliente buscarCliente(String correo){
+        for(int i=0; i<ListaClientes.size();i++){
+            if(ListaClientes.get(i).getCorreo().equals(correo)){
+                return ListaClientes.get(i);
             }
         }
-        clientes.add(cliente);
-        serializadoraCliente.escribirObjeto(clientes);
-        return "Registrado correctamente";
+        return null;
     }
 
     public ArrayList<Cliente> getClientes() {
-        return clientes;
+        return ListaClientes;
     }
 
     public void setClientes(ArrayList<Cliente> clientes) {
-        this.clientes = clientes;
+        this.ListaClientes = clientes;
     }
 
     public ArrayList<AdministradorFlota> getAdministradoresFlota() {
-        return administradoresFlota;
+        return ListaAdministradoresFlota;
     }
 
     public void setAdministradoresFlota(ArrayList<AdministradorFlota> administradoresFlota) {
-        this.administradoresFlota = administradoresFlota;
-    }  
+        this.ListaAdministradoresFlota = administradoresFlota;
+    }
+
+    public AdministradorTerminal getAdministradorTerminal() {
+        return ListaAdministradorTerminal;
+    }
+
+    public void setAdministradorTerminal(AdministradorTerminal administradorTerminal) {
+        this.ListaAdministradorTerminal = administradorTerminal;
+    }
+    
 }

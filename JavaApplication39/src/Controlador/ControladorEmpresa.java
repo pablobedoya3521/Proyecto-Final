@@ -15,17 +15,18 @@ import java.util.ArrayList;
  * @author sebastian
  */
 public class ControladorEmpresa {
-    private ArrayList<Viaje> viajes;
-    private ArrayList<Bus> buses;
+    //listas
+    private ArrayList<Viaje> listaViajes;
+    private ArrayList<Bus> listaBuses;
+    //serializable
     private SerializadoraBus serializadoraBus;
     private SerializadoraViaje serializadoraViaje;
     
     public ControladorEmpresa(){
-        
         this.serializadoraBus=new SerializadoraBus();
         this.serializadoraViaje=new SerializadoraViaje();
-        this.viajes=serializadoraViaje.leerObjeto();
-        this.buses=serializadoraBus.leerObjeto();
+        this.listaViajes=serializadoraViaje.leerObjeto();
+        this.listaBuses=serializadoraBus.leerObjeto();
     }
     
     //Metodos
@@ -33,25 +34,25 @@ public class ControladorEmpresa {
     public boolean guardarViaje(Viaje viaje){
     Viaje aux=buscarViaje(viaje.getId());
         if(aux == null){
-            viajes.add(viaje);
+            listaViajes.add(viaje);
             return true;
         }
         return false;
     }
     
     public Viaje buscarViaje(int id){
-        for(int i=0; i<viajes.size(); i++){
-            if(viajes.get(i).getId()==id){
-                return viajes.get(i);
+        for(int i=0; i<listaViajes.size(); i++){
+            if(listaViajes.get(i).getId()==id){
+                return listaViajes.get(i);
             }
         }
         return null;
     }
     
      public boolean eliminarViaje(int cedula){
-        for(int i=0; i<viajes.size(); i++){
-            if(viajes.get(i).getId() == cedula){
-                viajes.remove(i);
+        for(int i=0; i<listaViajes.size(); i++){
+            if(listaViajes.get(i).getId() == cedula){
+                listaViajes.remove(i);
                 return true;
             }
         }
@@ -77,25 +78,25 @@ public class ControladorEmpresa {
     public boolean guardarBus(Bus bus){
     Bus aux=buscarBus(bus.getPlaca());
         if(aux == null){
-            buses.add(bus);
+            listaBuses.add(bus);
             return true;
         }
         return false;
     }
     
     public Bus buscarBus(String placa){
-        for(int i=0; i<buses.size(); i++){
-            if(buses.get(i).getPlaca().equals(placa)){
-                return buses.get(i);
+        for(int i=0; i<listaBuses.size(); i++){
+            if(listaBuses.get(i).getPlaca().equals(placa)){
+                return listaBuses.get(i);
             }
         }
         return null;
     }
     
      public boolean eliminarBus(String placa){
-        for(int i=0; i<buses.size(); i++){
-            if(buses.get(i).getPlaca().equals(placa)){
-                buses.remove(i);
+        for(int i=0; i<listaBuses.size(); i++){
+            if(listaBuses.get(i).getPlaca().equals(placa)){
+                listaBuses.remove(i);
                 return true;
             }
         }

@@ -5,7 +5,6 @@
 package Persistencia;
 
 import Modelo.Bus;
-import Modelo.Cliente;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;

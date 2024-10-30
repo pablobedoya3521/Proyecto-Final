@@ -131,8 +131,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="206" max="-2" attributes="0"/>
-                      <EmptySpace pref="1177" max="32767" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="1167" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

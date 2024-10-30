@@ -5,8 +5,6 @@
 package Vista;
 
 import Controlador.ControladorRegistro;
-import Modelo.AdministradorFlota;
-import Modelo.AdministradorTerminal;
 import Modelo.Cliente;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
@@ -71,10 +69,8 @@ public class Registro extends javax.swing.JFrame {
         txtApellido = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         txtContraseña = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        opciones = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -186,10 +182,6 @@ public class Registro extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Tiopo de Usuario");
-
         txtContraseña.setBackground(new java.awt.Color(0, 0, 0));
         txtContraseña.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,8 +192,6 @@ public class Registro extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Contraseña");
-
-        opciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Administrador Terminal", "Administrador Flota" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -223,7 +213,6 @@ public class Registro extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
-                            .addComponent(jLabel8)
                             .addComponent(txtContraseña)
                             .addComponent(txtCorreo)
                             .addComponent(txtApellido)
@@ -231,10 +220,7 @@ public class Registro extends javax.swing.JFrame {
                             .addComponent(txtNombre)
                             .addComponent(txtCedula)
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel9)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addComponent(opciones, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel9))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -268,13 +254,9 @@ public class Registro extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(opciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(63, 63, 63)
                 .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -344,38 +326,10 @@ public class Registro extends javax.swing.JFrame {
         String cedula= txtCedula.getText();
         String correo= txtCorreo.getText();
         String contraseña= txtContraseña.getText();
-       
-        String opcion = opciones.getSelectedItem().toString();
-
-    // Determinar cuál opción fue seleccionada
-       
-        if (opcion != null) {
-       
-        System.out.println("Opción seleccionada: " + opcion); 
-
-        switch (opcion) {
-            case "Cliente":
-                Cliente cliente = new Cliente(cedula, nombre, apellido, correo, contraseña);
-                String respuestaCliente = controladorRegistro.registrar(cliente);
-                JOptionPane.showMessageDialog(null, respuestaCliente); 
-                break;
-            case "Administrador Flota":
-                AdministradorFlota adminFlota = new AdministradorFlota(cedula, nombre, apellido, correo, contraseña);
-                String respuestaAdminFlota = controladorRegistro.registrar(adminFlota);
-                JOptionPane.showMessageDialog(null, respuestaAdminFlota);
-                break;
-            case "Administrador Terminal":
-                AdministradorTerminal adminTerminal = new AdministradorTerminal(cedula, nombre, apellido, correo, contraseña);
-                String respuestaAdminTerminal = controladorRegistro.registrar(adminTerminal);
-                JOptionPane.showMessageDialog(null, respuestaAdminTerminal);
-                break;
-            default:
-                JOptionPane.showMessageDialog(null, "Opción no válida.");
-                break;
-        }
-    } else {
-        JOptionPane.showMessageDialog(null, "Por favor selecciona un tipo de usuario.");
-    }
+        
+        Cliente cliente= new Cliente(cedula, nombre, apellido, correo, contraseña);
+        String respuesta = controladorRegistro.guardarCliente(cliente);
+        JOptionPane.showMessageDialog(null, respuesta);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
 
@@ -390,12 +344,10 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JComboBox<String> opciones;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtContraseña;

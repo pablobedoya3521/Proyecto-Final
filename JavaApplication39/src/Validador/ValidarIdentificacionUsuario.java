@@ -15,23 +15,29 @@ import Vista.VentanasCliente.VentanaPrincipalCliente;
  */
 public class ValidarIdentificacionUsuario {
     private ControladorRegistro controladorRegistro;
-    public ValidarIdentificacionUsuario(ControladorRegistro controladorRegistro){
-        this.controladorRegistro=controladorRegistro;
+    
+    public ValidarIdentificacionUsuario(){
+        this.controladorRegistro=new ControladorRegistro();
     }
     
     
     public Object IdentificarUsuario(String correo, String contraseña){
-      for(int i=0; i<controladorRegistro.getClientes().size();i++){
+        for(int i=0; i<controladorRegistro.getClientes().size();i++){
           if(controladorRegistro.getClientes().get(i).getCorreo().equals(correo)){
            return new VentanaPrincipalCliente();
           }     
-      }
+        }
       
-      for(int i=0; i<controladorRegistro.getAdministradoresFlota().size();i++){
-          if(controladorRegistro.getAdministradoresFlota().get(i).getCorreo().equals(correo)){
+        for(int i=0; i<controladorRegistro.getAdministradoresFlota().size();i++){
+            if(controladorRegistro.getAdministradoresFlota().get(i).getCorreo().equals(correo)){
               return new VentanaPrincipalAdminFlota();
-          }
-      }
+            }
+        }
+      
+        if(controladorRegistro.getAdministradorTerminal().getCorreo().equals(correo)){
+            return new VentanaPrincipalAdminTerminal();
+        }
+   
        return null;
     }
 }

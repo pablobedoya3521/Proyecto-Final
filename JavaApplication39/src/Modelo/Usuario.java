@@ -10,7 +10,9 @@ import java.io.Serializable;
  *
  * @author juan
  */
-public class Usuario implements Serializable{
+public class Usuario implements Serializable {
+    private static final long serialVersionUID = 1L; 
+    
     private String cedula;
     private String nombre;
     private String apellido;
@@ -26,6 +28,7 @@ public class Usuario implements Serializable{
     }
     
     public Usuario(){
+        
     }
     //getters and setters
 

@@ -28,7 +28,7 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(this);
         setResizable(false);
         pack();
-        this.controladorRegistro=new ControladorRegistro();
+        this.controladorRegistro= new ControladorRegistro();
     }
 
     /**
@@ -249,29 +249,29 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     private void btnIniarsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniarsesionActionPerformed
-      String correo = txtCorreo.getText();
-    String contraseña = txtContraseña.getText();
+     String correo = txtCorreo.getText();
+     String contraseña = txtContraseña.getText();
     
-    ValidarIdentificacionUsuario identificar = new ValidarIdentificacionUsuario(this.controladorRegistro);
+     ValidarIdentificacionUsuario identificar = new ValidarIdentificacionUsuario();
     
-    Object cambio = identificar.IdentificarUsuario(correo, contraseña);
-    
-    if (cambio instanceof VentanaPrincipalCliente) {
-        VentanaPrincipalCliente ventanaCliente = (VentanaPrincipalCliente) cambio;
-        ventanaCliente.setVisible(true); // Muestra la ventana del cliente
-        this.dispose(); // Cierra la ventana de inicio de sesión
-    } else if (cambio instanceof VentanaPrincipalAdminFlota) {
-        VentanaPrincipalAdminFlota ventanaAdminFlota = (VentanaPrincipalAdminFlota) cambio;
-        ventanaAdminFlota.setVisible(true); // Muestra la ventana del administrador de flota
-        this.dispose(); // Cierra la ventana de inicio de sesión
-    } else if (cambio instanceof VentanaPrincipalAdminTerminal) {
-        VentanaPrincipalAdminTerminal ventanaAdminTerminal = (VentanaPrincipalAdminTerminal) cambio;
-        ventanaAdminTerminal.setVisible(true); // Muestra la ventana del administrador de terminal
-        this.dispose(); // Cierra la ventana de inicio de sesión
-    } else {
-        // Manejo de error: usuario no encontrado o credenciales incorrectas
-        JOptionPane.showMessageDialog(this, "Credenciales incorrectas, por favor intenta de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
+     Object cambio = identificar.IdentificarUsuario(correo, contraseña);
+
+        if (cambio instanceof VentanaPrincipalCliente) {
+            VentanaPrincipalCliente ventanaCliente = (VentanaPrincipalCliente) cambio;
+            ventanaCliente.setVisible(true); // Muestra la ventana del cliente
+            this.dispose(); // Cierra la ventana de inicio de sesión
+        } else if (cambio instanceof VentanaPrincipalAdminFlota) {
+            VentanaPrincipalAdminFlota ventanaAdminFlota = (VentanaPrincipalAdminFlota) cambio;
+            ventanaAdminFlota.setVisible(true); // Muestra la ventana del administrador de flota
+            this.dispose(); // Cierra la ventana de inicio de sesión
+        }else if(cambio instanceof VentanaPrincipalAdminTerminal){
+            VentanaPrincipalAdminTerminal ventanaAdminTerminal = (VentanaPrincipalAdminTerminal) cambio;
+            ventanaAdminTerminal.setVisible(true); // Muestra la ventana del administrador de flota
+            this.dispose();    
+        } else {
+            // Manejo de error: usuario no encontrado o credenciales incorrectas
+            JOptionPane.showMessageDialog(this, "Credenciales incorrectas, por favor intenta de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnIniarsesionActionPerformed
 
     /**
@@ -294,7 +294,7 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+               new Login().setVisible(true);
             }
         });
     }

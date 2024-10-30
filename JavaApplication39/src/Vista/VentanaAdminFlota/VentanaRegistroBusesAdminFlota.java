@@ -5,24 +5,21 @@
 package Vista.VentanaAdminFlota;
 
 import Controlador.ControladorEmpresa;
-import Controlador.ControladorRegistro;
 import Modelo.Bus;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author sebastian
+ * @author juan
  */
-public class RegistroBus extends javax.swing.JFrame {
+public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
     private ControladorEmpresa controladorEmpresa;
-    private ControladorRegistro controladorRegistro;
     /**
-     * Creates new form RegistroBus
+     * Creates new form VentanaRegistroBusesAdminFlota
      */
-    public RegistroBus() {
+    public VentanaRegistroBusesAdminFlota() {
         initComponents();
-        this.controladorEmpresa=new ControladorEmpresa();
-        this.controladorRegistro=new ControladorRegistro();
+        this.controladorEmpresa= new ControladorEmpresa();
     }
 
     /**
@@ -180,14 +177,9 @@ public class RegistroBus extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    private void  limpiarCampos(){
-        txtPlaca.setText("");
-        txtNumAsientos.setText("");
-    
-    }
+
     private void btnGuardarBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarBusActionPerformed
-         String placa=txtPlaca.getText();
+        String placa=txtPlaca.getText();
         int numAsientos=Integer.parseInt(txtNumAsientos.getText());
 
         Bus bus=new Bus(placa,numAsientos);
@@ -216,7 +208,7 @@ public class RegistroBus extends javax.swing.JFrame {
         boolean respuesta=controladorEmpresa.eliminarBus(placa);
         if(respuesta){
             JOptionPane.showMessageDialog(null, "Se eliminó el bus");
-            limpiarCampos();
+         
         } else{
             JOptionPane.showMessageDialog(null, "No se eliminó el bus");
         }
@@ -230,7 +222,7 @@ public class RegistroBus extends javax.swing.JFrame {
 
         if(respuesta){
             JOptionPane.showMessageDialog(null, "Se modificó el bus");
-            limpiarCampos();
+            
         }
         else{
             JOptionPane.showMessageDialog(null, "No se modificó el bus");
@@ -243,6 +235,9 @@ public class RegistroBus extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    /**
+     * @param args the command line arguments
+     */
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

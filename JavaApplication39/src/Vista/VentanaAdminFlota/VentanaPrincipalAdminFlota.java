@@ -6,10 +6,7 @@
 package Vista.VentanaAdminFlota;
 
 import Controlador.ControladorRegistro;
-import Vista.Registro;
 import Vista.Login;
-import Vista.Login;
-import Vista.Registro;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
 import java.awt.BorderLayout;
@@ -381,8 +378,28 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     private void btnTiquete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiquete1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTiquete1ActionPerformed
+//main temporal para hacer pruebas
+   public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+         try {
+              UIManager.setLookAndFeel( new FlatLightLaf() );
+              FlatHighContrastIJTheme.setup();
+                } catch( Exception ex ) {
+                    System.err.println( "Failed to initialize LaF" );
+}
+        //</editor-fold>
 
-   
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+               new VentanaPrincipalAdminFlota().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Container;

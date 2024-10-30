@@ -6,16 +6,8 @@ package Util;
 
 /**
  *
- * @author sebastian
+ * @author juan
  */
-public class Nodo <T> {
+public class e {
     
-    T dato;
-    Nodo<T> siguente;
-
-    public Nodo(T dato) {
-        this.dato = dato;
-        this.siguente = null;
-    }
-       
 }

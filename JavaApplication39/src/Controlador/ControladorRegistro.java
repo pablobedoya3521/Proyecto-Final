@@ -27,6 +27,9 @@ public class ControladorRegistro {
     private SerializadoraAdminFlota serializadoraAdminFlota;
     
     public ControladorRegistro(){
+        this.serializadoraAdminFlota= new SerializadoraAdminFlota();
+        this.serializadoraAdminiTerminal= new SerializadoraAdminTerminal();
+        this.serializadoraClientes= new SerializadoraClientes();
        this.ListaClientes=serializadoraClientes.leerObjeto();
        this.ListaAdministradoresFlota=serializadoraAdminFlota.leerObjeto();
        this.ListaAdministradorTerminal=serializadoraAdminiTerminal.leerObjeto();

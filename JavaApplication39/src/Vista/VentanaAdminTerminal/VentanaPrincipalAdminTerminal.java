@@ -5,10 +5,12 @@
 package Vista.VentanaAdminTerminal;
 
 import Controlador.ControladorRegistro;
+import Modelo.Caseta;
 import Vista.Login;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
@@ -19,6 +21,7 @@ import javax.swing.UIManager;
  */
 public class VentanaPrincipalAdminTerminal extends javax.swing.JFrame {
     private ControladorRegistro controladorRegistro;
+    /*private ControladorCasilla controladorCasilla;*/
     JButton[][] botones;
     /**
      * Creates new form VentanaPrincipalTerminal
@@ -114,6 +117,21 @@ public class VentanaPrincipalAdminTerminal extends javax.swing.JFrame {
             }
         }
     }
+    
+    /*public void actionPerformed(ActionEvent e){
+        for (int i = 0; i < botones.length; i++) {
+            for (int j = 0; j < botones[i].length; j++) {
+                if (e.getSource().equals(botones[i][j])) {
+                  int fila=i;
+                    int columna=j;
+                    Caseta respuesta= controladorCasillas.entregarAuditorio(fila, columna);
+                    RegistroCaseta cambiar = new RegistroCaseta();
+                    cambiar.setVisible(true);
+                    this.dispose();
+                }
+            }
+        }
+    }*/
     
     public class LookAndFeelUtil {
         public static void setLookAndFeel() {

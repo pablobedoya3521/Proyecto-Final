@@ -6,10 +6,8 @@ package Modelo;
 
 /**
  *
- * @author juan
+ * @author sebastian
  */
-public class Caseta {
-    private Empresa empresa;
-    private int cantidadPlazas;
+public class Empresa {
     
 }

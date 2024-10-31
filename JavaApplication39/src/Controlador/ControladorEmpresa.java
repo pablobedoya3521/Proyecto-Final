@@ -24,9 +24,9 @@ public class ControladorEmpresa {
     
     public ControladorEmpresa(){
         this.serializadoraBus=new SerializadoraBus();
+        this.listaBuses=serializadoraBus.leerObjeto();
         this.serializadoraViaje=new SerializadoraViaje();
         this.listaViajes=serializadoraViaje.leerObjeto();
-        this.listaBuses=serializadoraBus.leerObjeto();
     }
     
     //Metodos

@@ -4,6 +4,7 @@
  */
 package Controlador;
 
+import Excepciones.ExcepcionCorreoEnUso;
 import Modelo.AdministradorFlota;
 import Modelo.AdministradorTerminal;
 import Modelo.Cliente;
@@ -35,14 +36,13 @@ public class ControladorRegistro {
        this.ListaAdministradorTerminal=serializadoraAdminiTerminal.leerObjeto();
     }
     
-    public String guardarCliente(Cliente cliente){
+    public void guardarCliente(Cliente cliente) throws ExcepcionCorreoEnUso{
         Cliente respuesta = buscarCliente(cliente.getCorreo());
-        if(respuesta==null){
-            ListaClientes.add(cliente);
-            serializadoraClientes.escribirObjeto(ListaClientes);
-            return "Guardado Correctamente";
+        if(respuesta!=null){
+            throw new ExcepcionCorreoEnUso();
         }
-        return "Lo siento, ya hay una persona registrada con este correo";
+        ListaClientes.add(cliente);
+        serializadoraClientes.escribirObjeto(ListaClientes);
     } 
     
     public Cliente buscarCliente(String correo){

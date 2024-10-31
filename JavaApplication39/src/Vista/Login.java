@@ -5,6 +5,8 @@
 package Vista;
 
 import Controlador.ControladorRegistro;
+import Excepciones.ExcepcionContraseñaIncorrecta;
+import Validador.ValidarContraseña;
 import Validador.ValidarIdentificacionUsuario;
 import Vista.VentanaAdminFlota.VentanaPrincipalAdminFlota;
 import Vista.VentanaAdminTerminal.VentanaPrincipalAdminTerminal;
@@ -20,6 +22,8 @@ import javax.swing.UIManager;
  */
 public class Login extends javax.swing.JFrame {
     private ControladorRegistro controladorRegistro;
+    private ValidarIdentificacionUsuario identificar;
+    private ValidarContraseña validarContraseña;
     /**
      * Creates new form VentanaSeleccion
      */
@@ -29,6 +33,8 @@ public class Login extends javax.swing.JFrame {
         setResizable(false);
         pack();
         this.controladorRegistro= new ControladorRegistro();
+        this.identificar= new ValidarIdentificacionUsuario();
+        this.validarContraseña= new ValidarContraseña();
     }
 
     /**
@@ -249,31 +255,36 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     private void btnIniarsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniarsesionActionPerformed
-     String correo = txtCorreo.getText();
-     String contraseña = txtContraseña.getText();
-    
-     ValidarIdentificacionUsuario identificar = new ValidarIdentificacionUsuario();
-    
-     Object cambio = identificar.IdentificarUsuario(correo, contraseña);
-
-        if (cambio instanceof VentanaPrincipalCliente) {
-            VentanaPrincipalCliente ventanaCliente = (VentanaPrincipalCliente) cambio;
-            ventanaCliente.setVisible(true); // Muestra la ventana del cliente
-            this.dispose(); // Cierra la ventana de inicio de sesión
-        } else if (cambio instanceof VentanaPrincipalAdminFlota) {
-            VentanaPrincipalAdminFlota ventanaAdminFlota = (VentanaPrincipalAdminFlota) cambio;
-            ventanaAdminFlota.setVisible(true); // Muestra la ventana del administrador de flota
-            this.dispose(); // Cierra la ventana de inicio de sesión
-        }else if(cambio instanceof VentanaPrincipalAdminTerminal){
-            VentanaPrincipalAdminTerminal ventanaAdminTerminal = (VentanaPrincipalAdminTerminal) cambio;
-            ventanaAdminTerminal.setVisible(true); // Muestra la ventana del administrador de flota
-            this.dispose();    
-        } else {
-            // Manejo de error: usuario no encontrado o credenciales incorrectas
-            JOptionPane.showMessageDialog(this, "Credenciales incorrectas, por favor intenta de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+     
+        try{
+          String correo = txtCorreo.getText();
+          String contraseña = txtContraseña.getText();
+          validarContraseña.ValidarContraseña(correo, contraseña) ;
+          Object cambio = identificar.IdentificarUsuario(correo, contraseña);
+          
+           if(cambio instanceof VentanaPrincipalCliente){
+               VentanaPrincipalCliente ventanaCliente = (VentanaPrincipalCliente) cambio;
+               ventanaCliente.setVisible(true); // Muestra la ventana del cliente
+               this.dispose(); // Cierra la ventana de inicio de sesión
+           }else if(cambio instanceof VentanaPrincipalAdminFlota){
+               VentanaPrincipalAdminFlota ventanaAdminFlota = (VentanaPrincipalAdminFlota) cambio;
+               ventanaAdminFlota.setVisible(true); // Muestra la ventana del administrador de flota
+               this.dispose(); // Cierra la ventana de inicio de sesión
+           }else if(cambio instanceof VentanaPrincipalAdminTerminal){
+               VentanaPrincipalAdminTerminal ventanaAdminTerminal = (VentanaPrincipalAdminTerminal) cambio;
+               ventanaAdminTerminal.setVisible(true); // Muestra la ventana del administrador de flota
+               this.dispose();   
+           }else{
+                 // Manejo de error: usuario no encontrado o credenciales incorrectas
+               JOptionPane.showMessageDialog(this, "Credenciales incorrectas, por favor intenta de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+           }
+        
+        }catch(ExcepcionContraseñaIncorrecta ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
+     
     }//GEN-LAST:event_btnIniarsesionActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Vista.VentanasCliente;
+package Vista.VentanaAdminFlota;
 
 import Controlador.ControladorEmpresa;
 import javax.swing.table.DefaultTableModel;
@@ -11,16 +11,17 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author sebastian
  */
-public class VentanaPrincipalViajesDisponiblesCliente extends javax.swing.JPanel {
+public class PanelViajesAdminFlota extends javax.swing.JPanel {
     private ControladorEmpresa controladorEmpresa;
     /**
-     * Creates new form VentanaPrincipalViajesDisponiblesCliente
+     * Creates new form VentanaPrincipalViajesAdminFlota
      */
-    public VentanaPrincipalViajesDisponiblesCliente() {
+    public PanelViajesAdminFlota() {
         initComponents();
         this.controladorEmpresa=new ControladorEmpresa();
         llenarTabla();
     }
+    
     
     private void llenarTabla() {
         DefaultTableModel model = new DefaultTableModel();
@@ -32,13 +33,14 @@ public class VentanaPrincipalViajesDisponiblesCliente extends javax.swing.JPanel
                 controladorEmpresa.getListaViajes().get(i).getDestino(),
                 controladorEmpresa.getListaViajes().get(i).getHoraDeSalida(),
                 controladorEmpresa.getListaViajes().get(i).getHoraDeLlegada(),
-                controladorEmpresa.getListaViajes().get(i).getBus().getPlaca(),
+                controladorEmpresa.getListaViajes().get(i).getBus(),
                 controladorEmpresa.getListaViajes().get(i).getPrecioViaje()
                                     
             });
         }
         TablaViajes.setModel(model);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,11 +50,31 @@ public class VentanaPrincipalViajesDisponiblesCliente extends javax.swing.JPanel
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaViajes = new javax.swing.JTable();
+
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setLayout(new java.awt.BorderLayout());
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -119,21 +141,30 @@ public class VentanaPrincipalViajesDisponiblesCliente extends javax.swing.JPanel
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1485, Short.MAX_VALUE)
+            .addGap(0, 1712, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
+                    .addGap(235, 235, 235)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(1477, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGap(0, 239, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 762, Short.MAX_VALUE)
+            .addGap(0, 882, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(199, 199, 199)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(677, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(126, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -141,6 +172,8 @@ public class VentanaPrincipalViajesDisponiblesCliente extends javax.swing.JPanel
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaViajes;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;

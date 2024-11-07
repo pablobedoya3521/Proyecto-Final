@@ -387,7 +387,7 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReservarActionPerformed
 
     private void btnViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViajesActionPerformed
-        showJPanel(new VentanaPrincipalViajesDisponiblesCliente());
+        showJPanel(new PanelViajesDisponiblesCliente());
     }//GEN-LAST:event_btnViajesActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -403,15 +403,15 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReservasActionPerformed
 
     private void btnNotificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotificacionesActionPerformed
-        showJPanel(new VentanaPrincipalNotificacionesCliente());
+        showJPanel(new PanelNotificacionesCliente());
     }//GEN-LAST:event_btnNotificacionesActionPerformed
 
     private void btnDevolucionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolucionesActionPerformed
-        showJPanel(new VentanaPrincipalDevolucionesCliente());
+        showJPanel(new PanelDevolucionesCliente());
     }//GEN-LAST:event_btnDevolucionesActionPerformed
 
     private void btnComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprasActionPerformed
-        showJPanel(new VentanaPrincipalComprasCliente());
+        showJPanel(new PanelComprasCliente());
     }//GEN-LAST:event_btnComprasActionPerformed
 
     private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed

@@ -323,13 +323,7 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
 
     private void btnArrendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArrendarActionPerformed
          try {
-        // Validaciones de entrada
-        if (txtNit.getText().isEmpty() || txtNombreEmpresa.getText().isEmpty() || 
-            txtValorArrendo.getText().isEmpty() || txtCantPlazas.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-            return;
-        }
-
+        
         int nit = Integer.parseInt(txtNit.getText());
         String nombreEmpresa = txtNombreEmpresa.getText();
         double valorArrendo = Double.parseDouble(txtValorArrendo.getText());
@@ -339,6 +333,13 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
         String cedula = txtCedula.getText();
         String correo = txtCorreo.getText();
         String contraseña = txtContraseña.getText();
+        
+        // Validaciones de entrada
+        if (txtNit.getText().isEmpty() || txtNombreEmpresa.getText().isEmpty() || 
+            txtValorArrendo.getText().isEmpty() || txtCantPlazas.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+            return;
+        }
 
         AdministradorFlota administradorFlota = new AdministradorFlota(cedula, nombre, apellido, correo, contraseña);
         controladorRegistro.guardarAdministradorFlota(administradorFlota);

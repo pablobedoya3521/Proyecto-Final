@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Vista.VentanasCliente;
+package Vista.VentanaAdminFlota;
 
 /**
  *
- * @author sebastian
+ * @author juan
  */
-public class VentanaPrincipalNotificacionesCliente extends javax.swing.JPanel {
+public class PanelTiqueteVendidosAdminFlota extends javax.swing.JPanel {
 
     /**
-     * Creates new form VentanaPrincipalNotificaciones
+     * Creates new form VentanaPrincipalTiqueteVendidosAdminFlota
      */
-    public VentanaPrincipalNotificacionesCliente() {
+    public PanelTiqueteVendidosAdminFlota() {
         initComponents();
     }
 
@@ -60,11 +60,11 @@ public class VentanaPrincipalNotificacionesCliente extends javax.swing.JPanel {
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
 
-        jPanel4.setBackground(new java.awt.Color(255, 0, 0));
+        jPanel4.setBackground(new java.awt.Color(102, 102, 0));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
-        jLabel1.setText("Notificaciones ");
+        jLabel1.setText(" Tiquetes vendidos");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -72,8 +72,8 @@ public class VentanaPrincipalNotificacionesCliente extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1217, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1177, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,7 +185,7 @@ public class VentanaPrincipalNotificacionesCliente extends javax.swing.JPanel {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 547, Short.MAX_VALUE))
+                .addGap(0, 550, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -194,23 +194,23 @@ public class VentanaPrincipalNotificacionesCliente extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 24, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(715, 715, 715)
+                    .addGap(200, 200, 200)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(715, Short.MAX_VALUE)))
+                    .addContainerGap(1254, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 24, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(425, 425, 425)
+                    .addGap(144, 144, 144)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(413, Short.MAX_VALUE)))
+                    .addContainerGap(721, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 

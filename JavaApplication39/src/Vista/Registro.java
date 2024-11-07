@@ -328,6 +328,12 @@ public class Registro extends javax.swing.JFrame {
             String cedula= txtCedula.getText();
             String correo= txtCorreo.getText();
             String contraseña= txtContraseña.getText();
+            
+             if (txtNombre.getText().isEmpty()||txtApellido.getText().isEmpty() || txtCedula.getText().isEmpty() || 
+            txtCorreo.getText().isEmpty() || txtContraseña.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+            return;
+        }
 
             Cliente cliente= new Cliente(cedula, nombre, apellido, correo, contraseña);
             controladorRegistro.guardarCliente(cliente);

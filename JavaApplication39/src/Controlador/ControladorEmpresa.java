@@ -4,6 +4,9 @@
  */
 package Controlador;
 
+import Excepciones.ExcepcionBusVacio;
+import Excepciones.ExcepcionIdDeViajeEnUso;
+import Excepciones.ExcepcionPlacaEnUso;
 import Modelo.Bus;
 import Modelo.Caseta;
 import Modelo.Empresa;
@@ -87,14 +90,16 @@ public class ControladorEmpresa {
     
     //Metodos
     
-    public boolean guardarViaje(Viaje viaje){
+    public void guardarViaje(Viaje viaje)throws ExcepcionIdDeViajeEnUso,ExcepcionBusVacio{
     Viaje aux=buscarViaje(viaje.getId());
-        if(aux == null){
-            listaViajes.add(viaje);
-            serializadoraViaje.escribirObjeto(listaViajes);
-            return true;
+        if(aux != null){
+            throw new ExcepcionIdDeViajeEnUso();
         }
-        return false;
+        if(viaje.getBus()==null){
+            throw new ExcepcionBusVacio();
+        }
+        listaViajes.add(viaje);
+            serializadoraViaje.escribirObjeto(listaViajes);
     }
     
     public Viaje buscarViaje(int id){
@@ -135,14 +140,13 @@ public class ControladorEmpresa {
       return false;
     }    
       
-    public boolean guardarBus(Bus bus){
+    public void guardarBus(Bus bus) throws ExcepcionPlacaEnUso{
     Bus aux=buscarBus(bus.getPlaca());
-        if(aux == null){
-            listaBuses.add(bus);
-            serializadoraBus.escribirObjeto(listaBuses);
-            return true;
+        if(aux != null){
+          throw new ExcepcionPlacaEnUso();
         }
-        return false;
+          listaBuses.add(bus);
+            serializadoraBus.escribirObjeto(listaBuses);
     }
     
     public Bus buscarBus(String placa){

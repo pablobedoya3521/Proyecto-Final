@@ -8,12 +8,12 @@ package Vista.VentanasCliente;
  *
  * @author sebastian
  */
-public class VentanaPrincipalDevolucionesCliente extends javax.swing.JPanel {
+public class PanelDevolucionesCliente extends javax.swing.JPanel {
 
     /**
      * Creates new form VentanaPrincipalDevoluciones
      */
-    public VentanaPrincipalDevolucionesCliente() {
+    public PanelDevolucionesCliente() {
         initComponents();
     }
 

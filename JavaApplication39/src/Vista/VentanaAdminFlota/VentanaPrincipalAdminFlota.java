@@ -370,19 +370,19 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBusActionPerformed
 
     private void btnTiquetesVendidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiquetesVendidosActionPerformed
-        showJPanel(new VentanaPrincipalTiqueteVendidosAdminFlota());
+        showJPanel(new PanelTiqueteVendidosAdminFlota());
     }//GEN-LAST:event_btnTiquetesVendidosActionPerformed
 
     private void btnReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservasActionPerformed
-        showJPanel(new VentanaPrincipalReservasAdminFlota());
+        showJPanel(new PanelReservasAdminFlota());
     }//GEN-LAST:event_btnReservasActionPerformed
 
     private void btnDevolucionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolucionesActionPerformed
-        showJPanel(new VentanaPrincipalDevolucionesAdminFlota());
+        showJPanel(new PanelDevolucionesAdminFlota());
     }//GEN-LAST:event_btnDevolucionesActionPerformed
 
     private void btnBusesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusesActionPerformed
-        showJPanel(new VentanaPrincipalBusesAdminFlota());
+        showJPanel(new PanelBusesAdminFlota());
     }//GEN-LAST:event_btnBusesActionPerformed
 
     private void btnAdministradorFlotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministradorFlotaActionPerformed
@@ -400,30 +400,9 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTiquete1ActionPerformed
 
     private void btnViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViajesActionPerformed
-       showJPanel(new VentanaPrincipalViajesAdminFlota());
+       showJPanel(new PanelViajesAdminFlota());
     }//GEN-LAST:event_btnViajesActionPerformed
-//main temporal para hacer pruebas
-   public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-         try {
-              UIManager.setLookAndFeel( new FlatLightLaf() );
-              FlatHighContrastIJTheme.setup();
-                } catch( Exception ex ) {
-                    System.err.println( "Failed to initialize LaF" );
-}
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-               new VentanaPrincipalAdminFlota().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Container;

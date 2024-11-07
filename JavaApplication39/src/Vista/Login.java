@@ -278,6 +278,10 @@ public class Login extends javax.swing.JFrame {
         try{
           String correo = txtCorreo.getText();
           String contraseña = txtContraseña.getText();
+           if (txtCorreo.getText().isEmpty()||txtContraseña.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+            return;
+        }
           validarContraseña.ValidarContraseña(correo, contraseña) ;
           Object cambio = IdentificarUsuario(correo, contraseña);
           

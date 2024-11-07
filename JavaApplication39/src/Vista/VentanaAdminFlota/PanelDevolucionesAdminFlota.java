@@ -8,12 +8,12 @@ package Vista.VentanaAdminFlota;
  *
  * @author juan
  */
-public class VentanaPrincipalDevolucionesAdminFlota extends javax.swing.JPanel {
+public class PanelDevolucionesAdminFlota extends javax.swing.JPanel {
 
     /**
      * Creates new form VentanaPrincipalDevolucionesAdminFlota
      */
-    public VentanaPrincipalDevolucionesAdminFlota() {
+    public PanelDevolucionesAdminFlota() {
         initComponents();
     }
 

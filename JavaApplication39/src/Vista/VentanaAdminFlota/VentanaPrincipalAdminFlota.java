@@ -396,7 +396,8 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnTiquete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiquete1ActionPerformed
-        // TODO add your handling code here:
+        VentanaVentaTiquetesAdminFlota cambio=new VentanaVentaTiquetesAdminFlota();
+        cambio.setVisible(true);
     }//GEN-LAST:event_btnTiquete1ActionPerformed
 
     private void btnViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViajesActionPerformed

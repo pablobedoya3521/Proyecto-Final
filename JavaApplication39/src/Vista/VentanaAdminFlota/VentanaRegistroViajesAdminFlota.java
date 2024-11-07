@@ -269,7 +269,7 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
 
     private void btnGuardarViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarViajesActionPerformed
         try{
-        int id=Integer.parseInt(txtId.getText());
+        String id=txtId.getText();
         String origen=txtOrigen.getText();
         String destino=txtDestino.getText();
         String horaDeSalida=txtHoraDeSalida.getText();
@@ -297,18 +297,14 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
     
     private void btnBuscarViajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarViajeActionPerformed
         try{
-        int id = Integer.parseInt(txtId.getText());
+        String id = txtId.getText();
         if (txtId.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
             return;
         }
         Viaje respuesta = controladorEmpresa.buscarViaje(id);
         if(respuesta != null){
-            txtOrigen.setText(respuesta.getOrigen());
-            txtDestino.setText(respuesta.getDestino());
-            txtHoraDeSalida.setText(respuesta.getHoraDeSalida());
-            txtHoraDeLlegada.setText(respuesta.getHoraDeLlegada());
-            txtValorViaje.setText(String.valueOf(respuesta.getPrecioViaje()));
+             
             Bus bus = respuesta.getBus();
                 if (bus != null) {
                     txtBus.setText(bus.getPlaca());
@@ -325,7 +321,7 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
 
     private void btnEliminarViajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarViajeActionPerformed
         try{
-        int id = Integer.parseInt(txtId.getText());
+        String id = txtId.getText();
         if (txtId.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
             return;
@@ -345,7 +341,7 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         try{
-        int id = Integer.parseInt(txtId.getText());
+        String id =txtId.getText();
         String origen=txtOrigen.getText();
         String destino=txtDestino.getText();
         String horaDeSalida=txtHoraDeSalida.getText();

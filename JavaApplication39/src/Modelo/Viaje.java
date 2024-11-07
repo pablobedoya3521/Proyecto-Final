@@ -12,7 +12,7 @@ import java.time.LocalDate;
  * @author sebastian
  */
 public class Viaje implements Serializable{
-    private int id;
+    private String id;
     private String origen;
     private String destino;
     private String horaDeSalida;
@@ -21,7 +21,7 @@ public class Viaje implements Serializable{
     private Bus bus;
     private double precioViaje;
 
-    public Viaje(int id,String origen, String destino, String horaDeSalida, String horaDeLlegada,Bus bus, double precioViaje) {
+    public Viaje(String id,String origen, String destino, String horaDeSalida, String horaDeLlegada,Bus bus, double precioViaje) {
         this.id=id;
         this.origen = origen;
         this.destino = destino;
@@ -35,11 +35,11 @@ public class Viaje implements Serializable{
     public Viaje(){
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
     

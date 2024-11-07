@@ -5,13 +5,17 @@
 package Controlador;
 
 import Excepciones.ExcepcionBusVacio;
+import Excepciones.ExcepcionCodigoEnUso;
 import Excepciones.ExcepcionIdDeViajeEnUso;
 import Excepciones.ExcepcionPlacaEnUso;
+import Excepciones.ExcepcionViajeVacio;
 import Modelo.Bus;
 import Modelo.Caseta;
 import Modelo.Empresa;
+import Modelo.Tiquete;
 import Modelo.Viaje;
 import Persistencia.SerializadoraBus;
+import Persistencia.SerializadoraTiquete;
 import Persistencia.SerializadoraViaje;
 import Util.Lista;
 
@@ -24,9 +28,11 @@ public class ControladorEmpresa {
     //listas
     private Lista<Viaje> listaViajes;
     private Lista<Bus> listaBuses;
+    private Lista<Tiquete> listaTiquetes;
     //serializable
     private SerializadoraBus serializadoraBus;
     private SerializadoraViaje serializadoraViaje;
+    private SerializadoraTiquete serializadoraTiquete;
     private Empresa empresa;
     private Caseta caseta;
     
@@ -35,6 +41,8 @@ public class ControladorEmpresa {
         this.listaBuses=serializadoraBus.leerObjeto();
         this.serializadoraViaje=new SerializadoraViaje();
         this.listaViajes=serializadoraViaje.leerObjeto();
+        this.serializadoraTiquete=new SerializadoraTiquete();
+        this.listaTiquetes=serializadoraTiquete.leerObjeto();
         this.empresa=empresa;
         this.caseta=caseta;
     }
@@ -94,18 +102,18 @@ public class ControladorEmpresa {
         serializadoraViaje.escribirObjeto(listaViajes);
     }
     
-    public Viaje buscarViaje(int id){
+    public Viaje buscarViaje(String id){
         for(int i=0; i<listaViajes.size(); i++){
-            if(listaViajes.get(i).getId()==id){
+            if(listaViajes.get(i).getId().equals(id)){
                 return listaViajes.get(i);
             }
         }
         return null;
     }
     
-    public boolean eliminarViaje(int cedula){
+    public boolean eliminarViaje(String id){
         for(int i=0; i<listaViajes.size(); i++){
-            if(listaViajes.get(i).getId() == cedula){
+            if(listaViajes.get(i).getId().equals(id)){
                 listaViajes.remove(i);
                 serializadoraViaje.escribirObjeto(listaViajes);
                 return true;
@@ -179,5 +187,54 @@ public class ControladorEmpresa {
          this.caseta=caseta;
          return true;
     }
+    
+    public void guardarTiquete(Tiquete tiquete)throws ExcepcionCodigoEnUso,ExcepcionViajeVacio{
+    Tiquete aux=buscarTiquete(tiquete.getCodigo());
+        if(aux != null){
+            throw new ExcepcionCodigoEnUso();
+        }
+        if(tiquete.getViaje()==null){
+            throw new ExcepcionViajeVacio();
+        }
+        listaTiquetes.add(tiquete);
+        serializadoraTiquete.escribirObjeto(listaTiquetes);
+    }
+    
+    public Tiquete buscarTiquete(String codigo){
+        for(int i=0; i<listaTiquetes.size(); i++){
+            if(listaTiquetes.get(i).getCodigo().equals(codigo)){
+                return listaTiquetes.get(i);
+            }
+        }
+        return null;
+    }
+    
+    public boolean eliminarTiquete(String codigo){
+        for(int i=0; i<listaTiquetes.size(); i++){
+            if(listaTiquetes.get(i).getCodigo().equals(codigo)){
+                listaTiquetes.remove(i);
+                serializadoraTiquete.escribirObjeto(listaTiquetes);
+                return true;
+            }
+        }
+        return false;
+    } 
+     
+    public boolean modificarTiquete(Tiquete tiquete){
+      Tiquete aux=buscarTiquete(tiquete.getCodigo());
+      
+      if(aux != null){
+          aux.setViaje(tiquete.getViaje());
+          aux.setCliente(tiquete.getCliente());
+          aux.setCantidad(tiquete.getCantidad());
+          aux.setFechaDeCompra(tiquete.getFechaDeCompra());
+          
+          serializadoraTiquete.escribirObjeto(listaTiquetes);
+          return true;
+          
+        }
+      return false;
+    }    
+
     
 }

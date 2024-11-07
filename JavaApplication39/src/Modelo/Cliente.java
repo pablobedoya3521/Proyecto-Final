@@ -10,13 +10,15 @@ import java.io.Serializable;
  *
  * @author juan
  */
+
 public class Cliente extends Usuario implements Serializable{
     private static final long serialVersionUID = 1L; 
-    
+    private int puntosAcumulados;
     public Cliente(){
         
     }
-    private int puntosAcumulados;
+    
+    
     public Cliente(String cedula, String nombre,String apellido, String correo, String contraseña) {
         super(cedula, nombre,apellido, correo, contraseña);
         this.puntosAcumulados=0;

@@ -4,6 +4,7 @@
  */
 package Controlador;
 
+import Excepciones.ExcepcionCorreoEnUso;
 import Modelo.AdministradorFlota;
 import Modelo.AdministradorTerminal;
 import Modelo.Cliente;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 public class ControladorRegistro {
     //listas
     private ArrayList<Cliente> ListaClientes;
-    private ArrayList<AdministradorFlota> listaAdministradoresFlota;
+    private ArrayList<AdministradorFlota> ListaAdministradoresFlota;
     private AdministradorTerminal ListaAdministradorTerminal;
     //serializable
     private SerializadoraAdminTerminal serializadoraAdminiTerminal;
@@ -31,68 +32,41 @@ public class ControladorRegistro {
         this.serializadoraAdminiTerminal= new SerializadoraAdminTerminal();
         this.serializadoraClientes= new SerializadoraClientes();
        this.ListaClientes=serializadoraClientes.leerObjeto();
-       this.listaAdministradoresFlota=serializadoraAdminFlota.leerObjeto();
+       this.ListaAdministradoresFlota=serializadoraAdminFlota.leerObjeto();
        this.ListaAdministradorTerminal=serializadoraAdminiTerminal.leerObjeto();
     }
     
-    public boolean guardarAdministradorFlota(AdministradorFlota administradorFlota){
-    AdministradorFlota aux=buscarAdministradorFlota(administradorFlota.getCedula());
-        if(aux == null){
-            listaAdministradoresFlota.add(administradorFlota);
-            serializadoraAdminFlota.escribirObjeto(listaAdministradoresFlota);
-            return true;
-        }
-        return false;
-    }
-    
-    public AdministradorFlota buscarAdministradorFlota(String cedula){
-        for(int i=0; i<listaAdministradoresFlota.size(); i++){
-            if(listaAdministradoresFlota.get(i).getCedula().equals(cedula)){
-                return listaAdministradoresFlota.get(i);
-            }
-        }
-        return null;
-    }
-    
-     public boolean eliminarAdministradorFlota(String cedula){
-        for(int i=0; i<listaAdministradoresFlota.size(); i++){
-            if(listaAdministradoresFlota.get(i).getCedula().equals(cedula)){
-                listaAdministradoresFlota.remove(i);
-                return true;
-            }
-        }
-        return false;
-    } 
-     
-      public boolean modificarAdministradorFlota(AdministradorFlota administradorFlota){
-      AdministradorFlota aux=buscarAdministradorFlota(administradorFlota.getCedula());
-      
-      if(aux != null){
-          aux.setCedula(administradorFlota.getCedula());
-          aux.setNombre(administradorFlota.getNombre());
-          aux.setApellido(administradorFlota.getApellido());
-          aux.setCorreo(administradorFlota.getCorreo());
-          aux.setContraseña(administradorFlota.getContraseña());
-          
-          return true;
-      }
-      return false;
-    }
-      
-    public String guardarCliente(Cliente cliente){
+    public void guardarCliente(Cliente cliente) throws ExcepcionCorreoEnUso{
         Cliente respuesta = buscarCliente(cliente.getCorreo());
-        if(respuesta==null){
-            ListaClientes.add(cliente);
-            serializadoraClientes.escribirObjeto(ListaClientes);
-            return "Guardado Correctamente";
+        if(respuesta!=null){
+            throw new ExcepcionCorreoEnUso();
         }
-        return "Lo siento, ya hay una persona registrada con este correo";
+        ListaClientes.add(cliente);
+        serializadoraClientes.escribirObjeto(ListaClientes);
     } 
     
     public Cliente buscarCliente(String correo){
         for(int i=0; i<ListaClientes.size();i++){
             if(ListaClientes.get(i).getCorreo().equals(correo)){
                 return ListaClientes.get(i);
+            }
+        }
+        return null;
+    }
+    
+    public void guardarAdministradorFlota(AdministradorFlota administradorFlota) throws ExcepcionCorreoEnUso{
+        AdministradorFlota respuesta = buscarAdministradorFlota(administradorFlota.getCorreo());
+        if(respuesta!=null){
+            throw new ExcepcionCorreoEnUso();
+        }
+        ListaAdministradoresFlota.add(administradorFlota);
+        serializadoraAdminFlota.escribirObjeto(ListaAdministradoresFlota);
+    } 
+    
+    public AdministradorFlota buscarAdministradorFlota(String correo){
+        for(int i=0; i<ListaAdministradoresFlota.size();i++){
+            if(ListaAdministradoresFlota.get(i).getCorreo().equals(correo)){
+                return ListaAdministradoresFlota.get(i);
             }
         }
         return null;
@@ -107,7 +81,11 @@ public class ControladorRegistro {
     }
 
     public ArrayList<AdministradorFlota> getAdministradoresFlota() {
-        return listaAdministradoresFlota;
+        return ListaAdministradoresFlota;
+    }
+
+    public void setAdministradoresFlota(ArrayList<AdministradorFlota> administradoresFlota) {
+        this.ListaAdministradoresFlota = administradoresFlota;
     }
 
     public AdministradorTerminal getAdministradorTerminal() {

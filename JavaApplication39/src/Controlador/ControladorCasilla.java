@@ -5,46 +5,34 @@
 package Controlador;
 
 import Modelo.Caseta;
+import Persistencia.SerializadoraCaseta;
+import java.io.Serializable;
 
 /**
  *
- * @author sebastian
+ * @author juan
  */
-public class ControladorCasilla {
+public class ControladorCasilla implements Serializable{
+    private SerializadoraCaseta serializadoraCaseta;
     private Caseta[][] casetas;
     private int contador;
     
-    public ControladorCasilla(){
-    casetas = new Caseta[4][]; // Elimina la declaración de la variable local
-        casetas[0] = new Caseta[5];
-        casetas[1] = new Caseta[2];
-        casetas[2] = new Caseta[2];
-        casetas[3] = new Caseta[2];
-        initCasetas();
-        
+    public ControladorCasilla() { 
+        this.serializadoraCaseta=new SerializadoraCaseta();
+        casetas= serializadoraCaseta.leerObjeto();
     }
-     
-    private void initCasetas(){
-         for(int i=0; i<casetas.length;i++){
-             for(int j=0; j<casetas[i].length;j++){
-                casetas[i][j]=new Caseta(contador++);   
-             }
-         }
-    }
-    
+      
     public Caseta entregarCaseta(int fila, int columna){
         return casetas[fila][columna];
     }
 
-    public Caseta[][] getCasetas() {
+    public Caseta[][] getCaseta() {
         return casetas;
     }
 
-    public void setCasetas(Caseta[][] casetas) {
-        this.casetas = casetas;
+    public void setCaseta(Caseta[][] auditorios) {
+        this.casetas = auditorios;
     }
-
-    
 
     public int getContador() {
         return contador;

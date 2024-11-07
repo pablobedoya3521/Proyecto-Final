@@ -5,7 +5,6 @@
 
 package Vista.VentanaAdminFlota;
 
-import Controlador.ControladorCasilla;
 import Controlador.ControladorRegistro;
 import Vista.Login;
 import com.formdev.flatlaf.FlatLightLaf;
@@ -20,8 +19,7 @@ import javax.swing.UIManager;
  */
 public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     private ControladorRegistro controladorRegistro;
-    private ControladorCasilla controladorCasilla;
-    /** Creates new form VentanaPrincipal */
+   
     public VentanaPrincipalAdminFlota() {
        LookAndFeelUtil.setLookAndFeel();
         initComponents();
@@ -29,29 +27,28 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
         setResizable(false);
         pack(); 
         this.controladorRegistro=new ControladorRegistro();
-        this.controladorCasilla=controladorCasilla;
     }
     
     private void showJPanel(JPanel p){
-    p.setSize(1500,430);
-    p.setLocation(0,0);
-    
-    Container.removeAll();
-    Container.add(p,BorderLayout.CENTER);
-    Container.revalidate();
-    Container.repaint();
+        p.setSize(1500,430);
+        p.setLocation(0,0);
+
+        Container.removeAll();
+        Container.add(p,BorderLayout.CENTER);
+        Container.revalidate();
+        Container.repaint();
     }
     
-        public class LookAndFeelUtil {
-    public static void setLookAndFeel() {
-        try {
-            UIManager.setLookAndFeel(new FlatLightLaf());
-            FlatHighContrastIJTheme.setup();
-        } catch (Exception ex) {
-            System.err.println("Failed to initialize LaF");
+    public class LookAndFeelUtil {
+        public static void setLookAndFeel() {
+            try {
+                UIManager.setLookAndFeel(new FlatLightLaf());
+                FlatHighContrastIJTheme.setup();
+            } catch (Exception ex) {
+                System.err.println("Failed to initialize LaF");
+            }
         }
     }
-}
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -74,7 +71,6 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
         btnReservas = new javax.swing.JButton();
         btnDevoluciones = new javax.swing.JButton();
         btnBuses = new javax.swing.JButton();
-        btnViajes = new javax.swing.JButton();
         btnAdministradorFlota = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         Container = new javax.swing.JPanel();
@@ -213,32 +209,16 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
             }
         });
 
-        btnViajes.setBackground(new java.awt.Color(51, 51, 51));
-        btnViajes.setForeground(new java.awt.Color(255, 255, 255));
-        btnViajes.setText("Viajes");
-        btnViajes.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
-        btnViajes.setBorderPainted(false);
-        btnViajes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnViajes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnViajes.setIconTextGap(12);
-        btnViajes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViajesActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addComponent(btnViajes, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addComponent(btnBuses, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnTiquetesVendidos, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnTiquetesVendidos, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnReservas, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDevoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -252,8 +232,7 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
                     .addComponent(btnTiquetesVendidos)
                     .addComponent(btnDevoluciones)
                     .addComponent(btnReservas)
-                    .addComponent(btnBuses)
-                    .addComponent(btnViajes))
+                    .addComponent(btnBuses))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -294,7 +273,7 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
             .addGroup(headLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(413, 413, 413)
+                .addGap(511, 511, 511)
                 .addComponent(btnAdministradorFlota, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -312,7 +291,7 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
                     .addGroup(headLayout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         Container.setBackground(new java.awt.Color(51, 51, 51));
@@ -340,7 +319,7 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
                 .addComponent(head, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Container, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 10, Short.MAX_VALUE))
+                .addGap(3, 12, Short.MAX_VALUE))
             .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -359,9 +338,7 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViajeActionPerformed
-         VentanaRegistroViajesAdminFlota cambio=new VentanaRegistroViajesAdminFlota();
-         cambio.setVisible(true);
-         this.dispose();
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnViajeActionPerformed
 
     private void btnTiqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiqueteActionPerformed
@@ -369,9 +346,7 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTiqueteActionPerformed
 
     private void btnBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusActionPerformed
-        VentanaRegistroBusesAdminFlota cambio=new VentanaRegistroBusesAdminFlota();
-        cambio.setVisible(true);
-        this.dispose();
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnBusActionPerformed
 
     private void btnTiquetesVendidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiquetesVendidosActionPerformed
@@ -395,7 +370,7 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdministradorFlotaActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        Login cambio=new Login(this.controladorCasilla);
+        Login cambio=new Login();
         cambio.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
@@ -403,10 +378,6 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     private void btnTiquete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiquete1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTiquete1ActionPerformed
-
-    private void btnViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViajesActionPerformed
-        showJPanel(new VentanaPrincipalViajesAdminFlota());
-    }//GEN-LAST:event_btnViajesActionPerformed
 //main temporal para hacer pruebas
    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -443,7 +414,6 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     private javax.swing.JButton btnTiquete1;
     private javax.swing.JButton btnTiquetesVendidos;
     private javax.swing.JButton btnViaje;
-    private javax.swing.JButton btnViajes;
     private javax.swing.JPanel head;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel mensaje;

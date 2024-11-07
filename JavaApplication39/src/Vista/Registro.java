@@ -4,8 +4,8 @@
  */
 package Vista;
 
-import Controlador.ControladorCasilla;
 import Controlador.ControladorRegistro;
+import Excepciones.ExcepcionCorreoEnUso;
 import Modelo.Cliente;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
@@ -18,11 +18,10 @@ import javax.swing.UIManager;
  */
 public class Registro extends javax.swing.JFrame {
     private ControladorRegistro controladorRegistro;
-    private ControladorCasilla controladorCasilla;
     /**
      * Creates new form VentanaRegistroUsuario
      */
-    public Registro(ControladorCasilla controladorCasilla) {
+    public Registro() {
         LookAndFeelUtil.setLookAndFeel();
         initComponents();
         
@@ -32,7 +31,6 @@ public class Registro extends javax.swing.JFrame {
         
         
         this.controladorRegistro=new ControladorRegistro();
-        this.controladorCasilla=controladorCasilla;
     }
     
     public class LookAndFeelUtil {
@@ -318,21 +316,25 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtContraseñaActionPerformed
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        Login cambio=new Login(this.controladorCasilla);
+        Login cambio=new Login();
         cambio.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        String nombre = txtNombre.getText();
-        String apellido= txtApellido.getText();
-        String cedula= txtCedula.getText();
-        String correo= txtCorreo.getText();
-        String contraseña= txtContraseña.getText();
-        
-        Cliente cliente= new Cliente(cedula, nombre, apellido, correo, contraseña);
-        String respuesta = controladorRegistro.guardarCliente(cliente);
-        JOptionPane.showMessageDialog(null, respuesta);
+        try{
+            String nombre = txtNombre.getText();
+            String apellido= txtApellido.getText();
+            String cedula= txtCedula.getText();
+            String correo= txtCorreo.getText();
+            String contraseña= txtContraseña.getText();
+
+            Cliente cliente= new Cliente(cedula, nombre, apellido, correo, contraseña);
+            controladorRegistro.guardarCliente(cliente);
+            JOptionPane.showMessageDialog(null, "Registrado Correctamente");
+        }catch(ExcepcionCorreoEnUso ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
 

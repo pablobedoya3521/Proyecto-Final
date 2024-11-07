@@ -3,8 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Vista.VentanaAdminTerminal;
+
 import Controlador.ControladorCasilla;
-import Controlador.ControladorRegistro;
+
 import Modelo.Caseta;
 import Vista.Login;
 import com.formdev.flatlaf.FlatLightLaf;
@@ -21,26 +22,24 @@ import javax.swing.UIManager;
  *
  * @author juan
  */
-public class VentanaPrincipalAdminTerminal extends javax.swing.JFrame implements ActionListener {
-    private ControladorRegistro controladorRegistro;
+public final class VentanaPrincipalAdminTerminal extends javax.swing.JFrame implements ActionListener{
     private ControladorCasilla controladorCasilla;
     JButton[][] botones;
     /**
      * Creates new form VentanaPrincipalTerminal
      */
-    public VentanaPrincipalAdminTerminal(ControladorCasilla controladorCasilla) {
+    public VentanaPrincipalAdminTerminal() {
         LookAndFeelUtil.setLookAndFeel();
         initComponents();
         setLocationRelativeTo(this);
         setResizable(false);
         pack(); 
-        this.controladorRegistro=new ControladorRegistro();
-        this.controladorCasilla=controladorCasilla==null?new ControladorCasilla():controladorCasilla;
         botones=new JButton[4][];
         botones[0]=new JButton[5];
         botones[1]=new JButton[2];
         botones[2]= new JButton[2];
         botones[3]=new JButton[2];
+        this.controladorCasilla=new ControladorCasilla();
         dibujarBotones();
         pintarBotones();
     }
@@ -113,8 +112,8 @@ public class VentanaPrincipalAdminTerminal extends javax.swing.JFrame implements
             }
                     
                 botones[i][j].setText(String.valueOf(texto));
-                panelContainer.add(botones[i][j]);
                 botones[i][j].addActionListener(this);
+                panelContainer.add(botones[i][j]);
                 texto++;
                 separado+=20;
                 separado1+=110;
@@ -123,33 +122,36 @@ public class VentanaPrincipalAdminTerminal extends javax.swing.JFrame implements
         }
     }
     
-    public void pintarBotones(){
-        for(int i=0; i< botones.length;i++){
-            for(int j=0; j<botones[i].length;j++){
-                Caseta  casetaRespuesta = controladorCasilla.entregarCaseta(i, j);
-                if(casetaRespuesta.getEmpresa()!= null){
-                    botones[i][j].setBackground(Color.WHITE);
-                }else{
-                    botones[i][j].setBackground(Color.GREEN);
-            }
-            }
-        }
-    }
+    public void pintarBotones() {
+       for (int i = 0; i < botones.length; i++) {
+           for (int j = 0; j < botones[i].length; j++) {
+               Caseta casetaRespuesta = controladorCasilla.entregarCaseta(i, j);
+               System.out.println("Caseta en [" + i + "][" + j + "]: " + casetaRespuesta.getEmpresa());
+               if (casetaRespuesta.getEmpresa() != null) { 
+                   botones[i][j].setBackground(Color.BLUE);
+               } else {
+                   botones[i][j].setBackground(Color.WHITE);
+               }
+           }
+       }
+   }
     
     public void actionPerformed(ActionEvent e){
         for (int i = 0; i < botones.length; i++) {
             for (int j = 0; j < botones[i].length; j++) {
                 if (e.getSource().equals(botones[i][j])) {
-                  int fila=i;
+                    int fila=i;
                     int columna=j;
                     Caseta respuesta= controladorCasilla.entregarCaseta(fila, columna);
-                    RegistroCaseta cambiar = new RegistroCaseta(respuesta,this.controladorCasilla);
+                    VentanaRegistroCasetaAdminTerminal cambiar = new VentanaRegistroCasetaAdminTerminal(respuesta);
                     cambiar.setVisible(true);
                     this.dispose();
                 }
             }
         }
     }
+    
+    
     
     public class LookAndFeelUtil {
         public static void setLookAndFeel() {
@@ -318,10 +320,14 @@ public class VentanaPrincipalAdminTerminal extends javax.swing.JFrame implements
     }//GEN-LAST:event_btnAdministradorFlotaActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        Login cambio=new Login(this.controladorCasilla);
+        Login cambio=new Login();
         cambio.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

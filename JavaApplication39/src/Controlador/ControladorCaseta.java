@@ -6,19 +6,46 @@ package Controlador;
 
 import Modelo.Caseta;
 import Modelo.Empresa;
+import Persistencia.SerializadoraCaseta;
 
 /**
  *
- * @author sebastian
+ * @author juan
  */
 public class ControladorCaseta {
     private Caseta caseta;
+    private SerializadoraCaseta serializadora;
+//    private ControladorCasilla controladorCasilla;
     
     public ControladorCaseta(Caseta caseta){
         this.caseta=caseta;
+        this.serializadora = new SerializadoraCaseta();
     }
     
-    public boolean asignarEmpresa(Empresa empresa){
-        return caseta.asignarEmpresa(empresa);
+    public boolean AsignarEmpresa(Empresa empresa) {
+        Caseta[][] casetas = serializadora.leerObjeto();
+        for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; j < casetas[i].length; j++) {
+                if (casetas[i][j].getId() == caseta.getId()) {
+                    boolean resp = casetas[i][j].asignarEmpresa(empresa);
+                    if (resp) {
+                        serializadora.escribirObjeto(casetas);
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
+    
+    public boolean asignarValorArrendamiento(double valor){
+        return caseta.asignarValorArrendamiento(valor);
+    }
+    
+    public boolean asignarCantidadPlazas(int plazas){
+        return caseta.asignarCantidadPlazas(plazas);
+    }
+
+
+    
 }

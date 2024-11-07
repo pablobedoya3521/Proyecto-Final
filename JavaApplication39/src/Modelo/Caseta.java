@@ -4,29 +4,23 @@
  */
 package Modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author juan
  */
-public class Caseta {
+public class Caseta implements Serializable{
     private int id;
     private Empresa empresa;
+    private double valorArrendamiento;
     private int cantidadPlazas;
-    private double valorArrendo;
     
     public Caseta(int id){
         this.id=id;
         this.empresa=null;
+        this.valorArrendamiento=0.0;
         this.cantidadPlazas=0;
-        this.valorArrendo=0.0;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Empresa getEmpresa() {
@@ -37,6 +31,14 @@ public class Caseta {
         this.empresa = empresa;
     }
 
+    public double getValorArrendamiento() {
+        return valorArrendamiento;
+    }
+
+    public void setValorArrendamiento(double valorArrendamiento) {
+        this.valorArrendamiento = valorArrendamiento;
+    }
+
     public int getCantidadPlazas() {
         return cantidadPlazas;
     }
@@ -44,18 +46,31 @@ public class Caseta {
     public void setCantidadPlazas(int cantidadPlazas) {
         this.cantidadPlazas = cantidadPlazas;
     }
-
-    public double getValorArrendo() {
-        return valorArrendo;
-    }
-
-    public void setValorArrendo(double valorArrendo) {
-        this.valorArrendo = valorArrendo;
-    }
     
     public boolean asignarEmpresa(Empresa empresa){
-         this.empresa=empresa;
-         return true;
-     }
+        if(this.empresa==null){
+            this.empresa=empresa;
+            return true;
+        }
+       return false;
+    }
+    
+    public boolean asignarValorArrendamiento(double valor){
+        this.valorArrendamiento=valor;
+        return true;
+    }
+    
+    public boolean asignarCantidadPlazas(int plazas){
+        this.cantidadPlazas=plazas;
+        return true;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     
 }

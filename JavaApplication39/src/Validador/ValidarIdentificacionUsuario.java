@@ -23,5 +23,23 @@ public class ValidarIdentificacionUsuario {
         this.controladorRegistro=new ControladorRegistro();
     }
     
-    
+    public Object IdentificarUsuario(String correo, String contraseña) throws ExcepcionContraseñaIncorrecta, ExcepcionUsuarioNoEncontrado{
+        for(int i=0; i<controladorRegistro.getClientes().size();i++){
+          if(controladorRegistro.getClientes().get(i).getCorreo().equals(correo)){
+           return new VentanaPrincipalCliente();
+          }     
+        }
+      
+        for(int i=0; i<controladorRegistro.getAdministradoresFlota().size();i++){
+            if(controladorRegistro.getAdministradoresFlota().get(i).getCorreo().equals(correo)){
+              return new VentanaPrincipalAdminFlota();
+            }
+        }
+      
+        if(controladorRegistro.getAdministradorTerminal().getCorreo().equals(correo)){
+            return new VentanaPrincipalAdminTerminal();
+        }
+   
+        throw new ExcepcionUsuarioNoEncontrado();
+    }
 }

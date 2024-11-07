@@ -10,6 +10,8 @@ import Excepciones.ExcepcionBusVacio;
 import Excepciones.ExcepcionIdDeViajeEnUso;
 import Modelo.Bus;
 import Modelo.Viaje;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -314,11 +316,11 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
                     txtBus.setText("No asignado"); // O un mensaje que indique que no hay bus asignado
                 }
         } else {
-            JOptionPane.showMessageDialog(null, "No se encontró el viaje");
+               JOptionPane.showMessageDialog(null, "No se encontró el viaje");
             }
         }   catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-    }
+            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+        }
     }//GEN-LAST:event_btnBuscarViajeActionPerformed
 
     private void btnEliminarViajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarViajeActionPerformed
@@ -369,8 +371,8 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No se modificó el bus");
             }
         }   catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-    }
+             JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+        }
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed

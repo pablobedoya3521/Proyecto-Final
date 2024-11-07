@@ -6,10 +6,12 @@ package Excepciones;
 
 /**
  *
- * @author sebastian
+ * @author juan
  */
-public class ExcepcionBusVacio extends Exception {
-    public ExcepcionBusVacio(){
-        super("No existe ningun bus con esa placa");
+public class ExcepcionBusYaRegistrado extends Exception{
+
+    public ExcepcionBusYaRegistrado() {
+        super("Lo siento, ya hay un bus registrado con esta placa");
     }
+    
 }

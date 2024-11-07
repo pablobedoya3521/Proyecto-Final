@@ -9,6 +9,7 @@ import Controlador.ControladorRegistro;
 import Excepciones.ExcepcionContraseñaIncorrecta;
 import Excepciones.ExcepcionUsuarioNoEncontrado;
 import Validador.ValidarContraseña;
+import Validador.ValidarIdentificacionUsuario;
 import Vista.VentanaAdminFlota.VentanaPrincipalAdminFlota;
 import Vista.VentanaAdminTerminal.VentanaPrincipalAdminTerminal;
 import Vista.VentanasCliente.VentanaPrincipalCliente;
@@ -23,7 +24,7 @@ import javax.swing.UIManager;
  */
 public class Login extends javax.swing.JFrame {
     private ControladorRegistro controladorRegistro;
-   
+    private ValidarIdentificacionUsuario validador; 
     private ValidarContraseña validarContraseña;
     /**
      * Creates new form VentanaSeleccion
@@ -35,27 +36,10 @@ public class Login extends javax.swing.JFrame {
         pack();
         this.controladorRegistro= new ControladorRegistro();
         this.validarContraseña= new ValidarContraseña();
+        this.validador=new ValidarIdentificacionUsuario();
     }
     
-    private Object IdentificarUsuario(String correo, String contraseña) throws ExcepcionContraseñaIncorrecta, ExcepcionUsuarioNoEncontrado{
-        for(int i=0; i<controladorRegistro.getClientes().size();i++){
-          if(controladorRegistro.getClientes().get(i).getCorreo().equals(correo)){
-           return new VentanaPrincipalCliente();
-          }     
-        }
-      
-        for(int i=0; i<controladorRegistro.getAdministradoresFlota().size();i++){
-            if(controladorRegistro.getAdministradoresFlota().get(i).getCorreo().equals(correo)){
-              return new VentanaPrincipalAdminFlota();
-            }
-        }
-      
-        if(controladorRegistro.getAdministradorTerminal().getCorreo().equals(correo)){
-            return new VentanaPrincipalAdminTerminal();
-        }
-   
-        throw new ExcepcionUsuarioNoEncontrado();
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -278,12 +262,14 @@ public class Login extends javax.swing.JFrame {
         try{
           String correo = txtCorreo.getText();
           String contraseña = txtContraseña.getText();
+          
+              //verifica que los campos que piden numeros, no se les ingrese Strings
            if (txtCorreo.getText().isEmpty()||txtContraseña.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-            return;
-        }
-          validarContraseña.ValidarContraseña(correo, contraseña) ;
-          Object cambio = IdentificarUsuario(correo, contraseña);
+              JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+              return;
+            }
+          
+          Object cambio = validador.IdentificarUsuario(correo, contraseña);
           
            if(cambio instanceof VentanaPrincipalCliente){
                VentanaPrincipalCliente ventanaCliente = (VentanaPrincipalCliente) cambio;

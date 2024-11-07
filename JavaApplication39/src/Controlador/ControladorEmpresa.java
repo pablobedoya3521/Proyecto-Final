@@ -85,9 +85,7 @@ public class ControladorEmpresa {
     public void setCaseta(Caseta caseta) {
         this.caseta = caseta;
     }
-    
-    
-    
+       
     //Metodos
     
     public void guardarViaje(Viaje viaje)throws ExcepcionIdDeViajeEnUso,ExcepcionBusVacio{
@@ -99,7 +97,7 @@ public class ControladorEmpresa {
             throw new ExcepcionBusVacio();
         }
         listaViajes.add(viaje);
-            serializadoraViaje.escribirObjeto(listaViajes);
+        serializadoraViaje.escribirObjeto(listaViajes);
     }
     
     public Viaje buscarViaje(int id){
@@ -111,7 +109,7 @@ public class ControladorEmpresa {
         return null;
     }
     
-     public boolean eliminarViaje(int cedula){
+    public boolean eliminarViaje(int cedula){
         for(int i=0; i<listaViajes.size(); i++){
             if(listaViajes.get(i).getId() == cedula){
                 listaViajes.remove(i);
@@ -122,7 +120,7 @@ public class ControladorEmpresa {
         return false;
     } 
      
-      public boolean modificarViaje(Viaje viaje){
+    public boolean modificarViaje(Viaje viaje){
       Viaje aux=buscarViaje(viaje.getId());
       
       if(aux != null){
@@ -136,7 +134,7 @@ public class ControladorEmpresa {
           serializadoraViaje.escribirObjeto(listaViajes);
           return true;
           
-      }
+        }
       return false;
     }    
       
@@ -146,7 +144,7 @@ public class ControladorEmpresa {
           throw new ExcepcionPlacaEnUso();
         }
           listaBuses.add(bus);
-            serializadoraBus.escribirObjeto(listaBuses);
+          serializadoraBus.escribirObjeto(listaBuses);
     }
     
     public Bus buscarBus(String placa){
@@ -158,7 +156,7 @@ public class ControladorEmpresa {
         return null;
     }
     
-     public boolean eliminarBus(String placa){
+    public boolean eliminarBus(String placa){
         for(int i=0; i<listaBuses.size(); i++){
             if(listaBuses.get(i).getPlaca().equals(placa)){
                 listaBuses.remove(i);
@@ -169,7 +167,7 @@ public class ControladorEmpresa {
         return false;
     } 
      
-      public boolean modificarBus(Bus bus){
+    public boolean modificarBus(Bus bus){
       Bus aux=buscarBus(bus.getPlaca());
       
       if(aux != null){
@@ -183,8 +181,9 @@ public class ControladorEmpresa {
       return false;
     }    
      
-     public boolean aignarCaseta(Caseta caseta){
+    public boolean aignarCaseta(Caseta caseta){
          this.caseta=caseta;
          return true;
-     }
+    }
+    
 }

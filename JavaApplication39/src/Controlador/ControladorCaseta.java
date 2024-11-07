@@ -45,7 +45,5 @@ public class ControladorCaseta {
     public boolean asignarCantidadPlazas(int plazas){
         return caseta.asignarCantidadPlazas(plazas);
     }
-
-
     
 }

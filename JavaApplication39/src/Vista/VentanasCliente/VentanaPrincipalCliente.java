@@ -387,7 +387,7 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReservarActionPerformed
 
     private void btnViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViajesActionPerformed
-        // TODO add your handling code here:
+        showJPanel(new VentanaPrincipalViajesDisponiblesCliente());
     }//GEN-LAST:event_btnViajesActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

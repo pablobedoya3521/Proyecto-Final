@@ -71,6 +71,7 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
         btnReservas = new javax.swing.JButton();
         btnDevoluciones = new javax.swing.JButton();
         btnBuses = new javax.swing.JButton();
+        btnViajes = new javax.swing.JButton();
         btnAdministradorFlota = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         Container = new javax.swing.JPanel();
@@ -209,6 +210,20 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
             }
         });
 
+        btnViajes.setBackground(new java.awt.Color(51, 51, 51));
+        btnViajes.setForeground(new java.awt.Color(255, 255, 255));
+        btnViajes.setText("Viajes");
+        btnViajes.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
+        btnViajes.setBorderPainted(false);
+        btnViajes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnViajes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnViajes.setIconTextGap(12);
+        btnViajes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViajesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -216,13 +231,15 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(btnBuses, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnViajes, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnTiquetesVendidos, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                .addComponent(btnTiquetesVendidos, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnReservas, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDevoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addGap(76, 76, 76))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,7 +249,8 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
                     .addComponent(btnTiquetesVendidos)
                     .addComponent(btnDevoluciones)
                     .addComponent(btnReservas)
-                    .addComponent(btnBuses))
+                    .addComponent(btnBuses)
+                    .addComponent(btnViajes))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -272,8 +290,8 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
             headLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(511, 511, 511)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(455, 455, 455)
                 .addComponent(btnAdministradorFlota, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -338,7 +356,8 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViajeActionPerformed
-        // TODO add your handling code here:
+       VentanaRegistroViajesAdminFlota cambio = new VentanaRegistroViajesAdminFlota();
+        cambio.setVisible(true);
     }//GEN-LAST:event_btnViajeActionPerformed
 
     private void btnTiqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiqueteActionPerformed
@@ -346,7 +365,8 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTiqueteActionPerformed
 
     private void btnBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusActionPerformed
-        // TODO add your handling code here:
+        VentanaRegistroBusesAdminFlota cambio = new VentanaRegistroBusesAdminFlota();
+        cambio.setVisible(true);
     }//GEN-LAST:event_btnBusActionPerformed
 
     private void btnTiquetesVendidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiquetesVendidosActionPerformed
@@ -378,6 +398,10 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     private void btnTiquete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiquete1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTiquete1ActionPerformed
+
+    private void btnViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViajesActionPerformed
+       showJPanel(new VentanaPrincipalViajesAdminFlota());
+    }//GEN-LAST:event_btnViajesActionPerformed
 //main temporal para hacer pruebas
    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -414,6 +438,7 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     private javax.swing.JButton btnTiquete1;
     private javax.swing.JButton btnTiquetesVendidos;
     private javax.swing.JButton btnViaje;
+    private javax.swing.JButton btnViajes;
     private javax.swing.JPanel head;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel mensaje;

@@ -266,6 +266,10 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
         String placa=txtBus.getText();
         double valorViaje=Double.parseDouble(txtValorViaje.getText());
         Bus bus=controladorEmpresa.buscarBus(placa);
+        if(bus==null){
+            JOptionPane.showMessageDialog(null, "Papi se jodio, no hay bus");
+            return;
+        }
         Viaje viaje=new Viaje (id,origen,destino,horaDeSalida,horaDeLlegada,bus,valorViaje);
         boolean aux=controladorEmpresa.guardarViaje(viaje);
         if(aux){

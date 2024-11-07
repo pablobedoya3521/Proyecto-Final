@@ -11,7 +11,8 @@ import Modelo.Cliente;
 import Persistencia.SerializadoraAdminFlota;
 import Persistencia.SerializadoraAdminTerminal;
 import Persistencia.SerializadoraClientes;
-import java.util.ArrayList;
+import Util.Lista;
+
 
 /**
  *
@@ -19,8 +20,8 @@ import java.util.ArrayList;
  */
 public class ControladorRegistro {
     //listas
-    private ArrayList<Cliente> ListaClientes;
-    private ArrayList<AdministradorFlota> ListaAdministradoresFlota;
+    private Lista<Cliente> ListaClientes;
+    private Lista<AdministradorFlota> ListaAdministradoresFlota;
     private AdministradorTerminal ListaAdministradorTerminal;
     //serializable
     private SerializadoraAdminTerminal serializadoraAdminiTerminal;
@@ -72,21 +73,14 @@ public class ControladorRegistro {
         return null;
     }
 
-    public ArrayList<Cliente> getClientes() {
+    public Lista<Cliente> getClientes() {
         return ListaClientes;
     }
 
-    public void setClientes(ArrayList<Cliente> clientes) {
-        this.ListaClientes = clientes;
-    }
-
-    public ArrayList<AdministradorFlota> getAdministradoresFlota() {
+    public Lista<AdministradorFlota> getAdministradoresFlota() {
         return ListaAdministradoresFlota;
     }
 
-    public void setAdministradoresFlota(ArrayList<AdministradorFlota> administradoresFlota) {
-        this.ListaAdministradoresFlota = administradoresFlota;
-    }
 
     public AdministradorTerminal getAdministradorTerminal() {
         return ListaAdministradorTerminal;

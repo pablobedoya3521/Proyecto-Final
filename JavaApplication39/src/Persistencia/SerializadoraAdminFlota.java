@@ -5,19 +5,19 @@
 package Persistencia;
 
 import Modelo.AdministradorFlota;
+import Util.Lista;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 
 /**
  *
  * @author juan
  */
 public class SerializadoraAdminFlota {
-    public void escribirObjeto(ArrayList<AdministradorFlota> administradoresFlota){
+    public void escribirObjeto(Lista<AdministradorFlota> administradoresFlota){
         try{
             FileOutputStream file = new FileOutputStream("administradoresFlota.dat");//archivo  donde se guardara el objeto
             ObjectOutputStream escritor = new ObjectOutputStream(file);// objeto que permite escribir el objeto en el archivo
@@ -27,15 +27,15 @@ public class SerializadoraAdminFlota {
         }
     }
 
- public ArrayList<AdministradorFlota> leerObjeto() {
+ public Lista<AdministradorFlota> leerObjeto() {
        try {
            FileInputStream file = new FileInputStream("administradoresFlota.dat");
            ObjectInputStream lector = new ObjectInputStream(file);
-           return ( ArrayList<AdministradorFlota>) lector.readObject();
+           return ( Lista<AdministradorFlota>) lector.readObject();
        }
         catch (IOException | ClassNotFoundException ex) {
            ex.printStackTrace();
-           return new ArrayList<>(); // Manejo de otras excepciones
+           return new Lista<>(); // Manejo de otras excepciones
        }
    }
 }

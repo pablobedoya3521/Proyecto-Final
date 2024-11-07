@@ -5,19 +5,20 @@
 package Persistencia;
 
 import Modelo.Bus;
+import Util.Lista;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
+
 
 /**
  *
  * @author sebastian
  */
 public class SerializadoraBus {
-    public void escribirObjeto(ArrayList<Bus> buses){
+    public void escribirObjeto(Lista<Bus> buses){
         try{
             FileOutputStream file = new FileOutputStream("buses.dat");//archivo  donde se guardara el objeto
             ObjectOutputStream escritor = new ObjectOutputStream(file);// objeto que permite escribir el objeto en el archivo
@@ -27,15 +28,15 @@ public class SerializadoraBus {
         }
     }
 
- public ArrayList<Bus> leerObjeto() {
+ public Lista<Bus> leerObjeto() {
        try {
            FileInputStream file = new FileInputStream("buses.dat");
            ObjectInputStream lector = new ObjectInputStream(file);
-           return (ArrayList<Bus>) lector.readObject();
+           return (Lista<Bus>) lector.readObject();
        }
         catch (IOException | ClassNotFoundException ex) {
            ex.printStackTrace();
-           return new ArrayList<>(); // Manejo de otras excepciones
+           return new Lista<>(); // Manejo de otras excepciones
        }
    }
 }

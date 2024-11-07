@@ -13,7 +13,8 @@ import Modelo.Empresa;
 import Modelo.Viaje;
 import Persistencia.SerializadoraBus;
 import Persistencia.SerializadoraViaje;
-import java.util.ArrayList;
+import Util.Lista;
+
 
 /**
  *
@@ -21,8 +22,8 @@ import java.util.ArrayList;
  */
 public class ControladorEmpresa {
     //listas
-    private ArrayList<Viaje> listaViajes;
-    private ArrayList<Bus> listaBuses;
+    private Lista<Viaje> listaViajes;
+    private Lista<Bus> listaBuses;
     //serializable
     private SerializadoraBus serializadoraBus;
     private SerializadoraViaje serializadoraViaje;
@@ -38,20 +39,13 @@ public class ControladorEmpresa {
         this.caseta=caseta;
     }
 
-    public ArrayList<Viaje> getListaViajes() {
+    public Lista<Viaje> getListaViajes() {
         return listaViajes;
     }
 
-    public void setListaViajes(ArrayList<Viaje> listaViajes) {
-        this.listaViajes = listaViajes;
-    }
 
-    public ArrayList<Bus> getListaBuses() {
+    public Lista<Bus> getListaBuses() {
         return listaBuses;
-    }
-
-    public void setListaBuses(ArrayList<Bus> listaBuses) {
-        this.listaBuses = listaBuses;
     }
 
     public SerializadoraBus getSerializadoraBus() {

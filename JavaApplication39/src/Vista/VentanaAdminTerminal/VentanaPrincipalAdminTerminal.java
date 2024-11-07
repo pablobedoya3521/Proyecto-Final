@@ -3,14 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Vista.VentanaAdminTerminal;
-
+import Controlador.ControladorCasilla;
 import Controlador.ControladorRegistro;
 import Modelo.Caseta;
 import Vista.Login;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
@@ -19,26 +21,28 @@ import javax.swing.UIManager;
  *
  * @author juan
  */
-public class VentanaPrincipalAdminTerminal extends javax.swing.JFrame {
+public class VentanaPrincipalAdminTerminal extends javax.swing.JFrame implements ActionListener {
     private ControladorRegistro controladorRegistro;
-    /*private ControladorCasilla controladorCasilla;*/
+    private ControladorCasilla controladorCasilla;
     JButton[][] botones;
     /**
      * Creates new form VentanaPrincipalTerminal
      */
-    public VentanaPrincipalAdminTerminal() {
+    public VentanaPrincipalAdminTerminal(ControladorCasilla controladorCasilla) {
         LookAndFeelUtil.setLookAndFeel();
         initComponents();
-         setLocationRelativeTo(this);
+        setLocationRelativeTo(this);
         setResizable(false);
         pack(); 
+        this.controladorRegistro=new ControladorRegistro();
+        this.controladorCasilla=controladorCasilla==null?new ControladorCasilla():controladorCasilla;
         botones=new JButton[4][];
         botones[0]=new JButton[5];
         botones[1]=new JButton[2];
         botones[2]= new JButton[2];
         botones[3]=new JButton[2];
-        this.controladorRegistro=new ControladorRegistro();
         dibujarBotones();
+        pintarBotones();
     }
     
     private void showJPanel(JPanel p){
@@ -110,6 +114,7 @@ public class VentanaPrincipalAdminTerminal extends javax.swing.JFrame {
                     
                 botones[i][j].setText(String.valueOf(texto));
                 panelContainer.add(botones[i][j]);
+                botones[i][j].addActionListener(this);
                 texto++;
                 separado+=20;
                 separado1+=110;
@@ -118,20 +123,33 @@ public class VentanaPrincipalAdminTerminal extends javax.swing.JFrame {
         }
     }
     
-    /*public void actionPerformed(ActionEvent e){
+    public void pintarBotones(){
+        for(int i=0; i< botones.length;i++){
+            for(int j=0; j<botones[i].length;j++){
+                Caseta  casetaRespuesta = controladorCasilla.entregarCaseta(i, j);
+                if(casetaRespuesta.getEmpresa()!= null){
+                    botones[i][j].setBackground(Color.WHITE);
+                }else{
+                    botones[i][j].setBackground(Color.GREEN);
+            }
+            }
+        }
+    }
+    
+    public void actionPerformed(ActionEvent e){
         for (int i = 0; i < botones.length; i++) {
             for (int j = 0; j < botones[i].length; j++) {
                 if (e.getSource().equals(botones[i][j])) {
                   int fila=i;
                     int columna=j;
-                    Caseta respuesta= controladorCasillas.entregarAuditorio(fila, columna);
-                    RegistroCaseta cambiar = new RegistroCaseta();
+                    Caseta respuesta= controladorCasilla.entregarCaseta(fila, columna);
+                    RegistroCaseta cambiar = new RegistroCaseta(respuesta,this.controladorCasilla);
                     cambiar.setVisible(true);
                     this.dispose();
                 }
             }
         }
-    }*/
+    }
     
     public class LookAndFeelUtil {
         public static void setLookAndFeel() {
@@ -300,14 +318,10 @@ public class VentanaPrincipalAdminTerminal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdministradorFlotaActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        Login cambio=new Login();
+        Login cambio=new Login(this.controladorCasilla);
         cambio.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

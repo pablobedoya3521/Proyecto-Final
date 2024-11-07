@@ -4,6 +4,7 @@
  */
 package Vista;
 
+import Controlador.ControladorCasilla;
 import Controlador.ControladorRegistro;
 import Validador.ValidarIdentificacionUsuario;
 import Vista.VentanaAdminFlota.VentanaPrincipalAdminFlota;
@@ -20,15 +21,17 @@ import javax.swing.UIManager;
  */
 public class Login extends javax.swing.JFrame {
     private ControladorRegistro controladorRegistro;
+    private ControladorCasilla controladorCasilla;
     /**
      * Creates new form VentanaSeleccion
      */
-    public Login() {
+    public Login(ControladorCasilla controladorCasilla) {
         initComponents();
         setLocationRelativeTo(this);
         setResizable(false);
         pack();
         this.controladorRegistro= new ControladorRegistro();
+        this.controladorCasilla=controladorCasilla;
     }
 
     /**
@@ -243,7 +246,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCorreoActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-        Registro cambio=new Registro();
+        Registro cambio=new Registro(this.controladorCasilla);
         cambio.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegistrarseActionPerformed
@@ -294,7 +297,7 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               new Login().setVisible(true);
+               new Login(null).setVisible(true);
             }
         });
     }

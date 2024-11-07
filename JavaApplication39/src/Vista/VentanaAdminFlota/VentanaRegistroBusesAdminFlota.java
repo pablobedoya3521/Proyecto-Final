@@ -7,6 +7,7 @@ package Vista.VentanaAdminFlota;
 import Controlador.ControladorEmpresa;
 import Modelo.Bus;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,6 +20,9 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
      */
     public VentanaRegistroBusesAdminFlota() {
         initComponents();
+        setLocationRelativeTo(this);
+        setResizable(false);
+        pack();
         this.controladorEmpresa= new ControladorEmpresa();
     }
 
@@ -186,6 +190,7 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
         boolean aux=controladorEmpresa.guardarBus(bus);
         if(aux){
             JOptionPane.showMessageDialog(null, "Se guardo el bus");
+            limpiarCampos();
         }
 
         else{
@@ -193,6 +198,7 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnGuardarBusActionPerformed
 
+    
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String placa = txtPlaca.getText();
         Bus respuesta = controladorEmpresa.buscarBus(placa);
@@ -228,7 +234,12 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No se modificó el bus");
         }
     }//GEN-LAST:event_btnModificarActionPerformed
-
+    
+    public void limpiarCampos(){
+        txtPlaca.setText("");
+        txtNumAsientos.setText("");
+    }
+    
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         VentanaPrincipalAdminFlota cambio=new VentanaPrincipalAdminFlota();
         cambio.setVisible(true);

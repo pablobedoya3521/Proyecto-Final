@@ -35,7 +35,7 @@ public class ValidarIdentificacionUsuario {
         }
       
         if(controladorRegistro.getAdministradorTerminal().getCorreo().equals(correo)){
-            return new VentanaPrincipalAdminTerminal();
+            return new VentanaPrincipalAdminTerminal(null);
         }
    
        return null;

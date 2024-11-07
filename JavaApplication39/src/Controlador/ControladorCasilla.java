@@ -32,16 +32,16 @@ public class ControladorCasilla {
          }
     }
     
-    public Locker entregarLocker(int fila, int columna){
-        return lockers[fila][columna];
+    public Caseta entregarCaseta(int fila, int columna){
+        return casetas[fila][columna];
     }
 
-    public Locker[][] getLockers() {
-        return lockers;
+    public Caseta[][] getCasetas() {
+        return casetas;
     }
 
-    public void setLockers(Locker[][] lockers) {
-        this.lockers = lockers;
+    public void setCasetas(Caseta[][] casetas) {
+        this.casetas = casetas;
     }
 
     

@@ -4,6 +4,7 @@
  */
 package Vista;
 
+import Controlador.ControladorCasilla;
 import Controlador.ControladorRegistro;
 import Modelo.Cliente;
 import com.formdev.flatlaf.FlatLightLaf;
@@ -17,10 +18,11 @@ import javax.swing.UIManager;
  */
 public class Registro extends javax.swing.JFrame {
     private ControladorRegistro controladorRegistro;
+    private ControladorCasilla controladorCasilla;
     /**
      * Creates new form VentanaRegistroUsuario
      */
-    public Registro() {
+    public Registro(ControladorCasilla controladorCasilla) {
         LookAndFeelUtil.setLookAndFeel();
         initComponents();
         
@@ -30,6 +32,7 @@ public class Registro extends javax.swing.JFrame {
         
         
         this.controladorRegistro=new ControladorRegistro();
+        this.controladorCasilla=controladorCasilla;
     }
     
     public class LookAndFeelUtil {
@@ -315,7 +318,7 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtContraseñaActionPerformed
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        Login cambio=new Login();
+        Login cambio=new Login(this.controladorCasilla);
         cambio.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnIniciarSesionActionPerformed

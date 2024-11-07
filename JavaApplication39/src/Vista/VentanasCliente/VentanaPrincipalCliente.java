@@ -4,6 +4,7 @@
  */
 package Vista.VentanasCliente;
 
+import Controlador.ControladorCasilla;
 import Controlador.ControladorRegistro;
 import Vista.Login;
 import Vista.Registro;
@@ -19,6 +20,7 @@ import javax.swing.UIManager;
  */
 public class VentanaPrincipalCliente extends javax.swing.JFrame {
     private ControladorRegistro controladorRegistro;
+    private ControladorCasilla controladorCasilla;
     /**
      * Creates new form VentanaPrincipal
      */
@@ -30,6 +32,7 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
         setResizable(false);
         pack(); 
         this.controladorRegistro=new ControladorRegistro();
+        this.controladorCasilla=controladorCasilla;
     }
     
     
@@ -387,7 +390,7 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReservarActionPerformed
 
     private void btnViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViajesActionPerformed
-        // TODO add your handling code here:
+        showJPanel(new VentanaPrincipalViajesDisponiblesCliente());
     }//GEN-LAST:event_btnViajesActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -419,7 +422,7 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClienteActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-      Login cambio = new Login();
+      Login cambio = new Login(this.controladorCasilla);
         cambio.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed

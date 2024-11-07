@@ -9,31 +9,38 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author juan
+ * @author sebastian
  */
-public class VentanaPrincipalBusesAdminFlota extends javax.swing.JPanel {
+public class VentanaPrincipalViajesAdminFlota extends javax.swing.JPanel {
     private ControladorEmpresa controladorEmpresa;
     /**
-     * Creates new form VentanaPrincipalBusesAdminFlota
+     * Creates new form VentanaPrincipalViajesAdminFlota
      */
-    public VentanaPrincipalBusesAdminFlota() {
+    public VentanaPrincipalViajesAdminFlota() {
         initComponents();
         this.controladorEmpresa=new ControladorEmpresa();
         llenarTabla();
     }
     
+    
     private void llenarTabla() {
         DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new Object[]{"Placa", "Numero de asientos"});
-        for (int i = 0; i < controladorEmpresa.getListaBuses().size(); i++) {
+        model.setColumnIdentifiers(new Object[]{"id", "Origen", "Destino", "Hora de Salida", "Hora de Llegada", "Bus", "Precio del Viaje"});
+        for (int i = 0; i < controladorEmpresa.getListaViajes().size(); i++) {
             model.addRow(new Object[]{
-                controladorEmpresa.getListaBuses().get(i).getPlaca(),
-                controladorEmpresa.getListaBuses().get(i).getNumAsientos()
+                controladorEmpresa.getListaViajes().get(i).getId(),
+                controladorEmpresa.getListaViajes().get(i).getOrigen(),
+                controladorEmpresa.getListaViajes().get(i).getDestino(),
+                controladorEmpresa.getListaViajes().get(i).getHoraDeSalida(),
+                controladorEmpresa.getListaViajes().get(i).getHoraDeLlegada(),
+                controladorEmpresa.getListaViajes().get(i).getBus().getPlaca(),
+                controladorEmpresa.getListaViajes().get(i).getPrecioViaje()
                                     
             });
         }
-        TablaBuses.setModel(model);
+        TablaViajes.setModel(model);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,7 +56,7 @@ public class VentanaPrincipalBusesAdminFlota extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TablaBuses = new javax.swing.JTable();
+        TablaViajes = new javax.swing.JTable();
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setLayout(new java.awt.BorderLayout());
@@ -75,7 +82,7 @@ public class VentanaPrincipalBusesAdminFlota extends javax.swing.JPanel {
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
-        jLabel1.setText("Buses");
+        jLabel1.setText("Viajes Disponibles");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -84,7 +91,7 @@ public class VentanaPrincipalBusesAdminFlota extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1177, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,9 +101,9 @@ public class VentanaPrincipalBusesAdminFlota extends javax.swing.JPanel {
                 .addGap(15, 15, 15))
         );
 
-        TablaBuses.setBackground(new java.awt.Color(0, 0, 0));
-        TablaBuses.setForeground(new java.awt.Color(255, 255, 255));
-        TablaBuses.setModel(new javax.swing.table.DefaultTableModel(
+        TablaViajes.setBackground(new java.awt.Color(0, 0, 0));
+        TablaViajes.setForeground(new java.awt.Color(255, 255, 255));
+        TablaViajes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -107,17 +114,17 @@ public class VentanaPrincipalBusesAdminFlota extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(TablaBuses);
+        jScrollPane1.setViewportView(TablaViajes);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1461, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -125,40 +132,45 @@ public class VentanaPrincipalBusesAdminFlota extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 167, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 84, Short.MAX_VALUE))
+            .addGap(0, 1712, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(200, 200, 200)
+                    .addGap(235, 235, 235)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(1302, Short.MAX_VALUE)))
+                    .addContainerGap(1477, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 239, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
+            .addGap(0, 882, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(144, 144, 144)
+                    .addGap(199, 199, 199)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(721, Short.MAX_VALUE)))
+                    .addContainerGap(677, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(126, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TablaBuses;
+    private javax.swing.JTable TablaViajes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

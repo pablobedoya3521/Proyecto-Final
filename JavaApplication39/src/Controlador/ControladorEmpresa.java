@@ -5,6 +5,8 @@
 package Controlador;
 
 import Modelo.Bus;
+import Modelo.Caseta;
+import Modelo.Empresa;
 import Modelo.Viaje;
 import Persistencia.SerializadoraBus;
 import Persistencia.SerializadoraViaje;
@@ -21,13 +23,67 @@ public class ControladorEmpresa {
     //serializable
     private SerializadoraBus serializadoraBus;
     private SerializadoraViaje serializadoraViaje;
+    private Empresa empresa;
+    private Caseta caseta;
     
     public ControladorEmpresa(){
         this.serializadoraBus=new SerializadoraBus();
         this.listaBuses=serializadoraBus.leerObjeto();
         this.serializadoraViaje=new SerializadoraViaje();
         this.listaViajes=serializadoraViaje.leerObjeto();
+        this.empresa=empresa;
+        this.caseta=caseta;
     }
+
+    public ArrayList<Viaje> getListaViajes() {
+        return listaViajes;
+    }
+
+    public void setListaViajes(ArrayList<Viaje> listaViajes) {
+        this.listaViajes = listaViajes;
+    }
+
+    public ArrayList<Bus> getListaBuses() {
+        return listaBuses;
+    }
+
+    public void setListaBuses(ArrayList<Bus> listaBuses) {
+        this.listaBuses = listaBuses;
+    }
+
+    public SerializadoraBus getSerializadoraBus() {
+        return serializadoraBus;
+    }
+
+    public void setSerializadoraBus(SerializadoraBus serializadoraBus) {
+        this.serializadoraBus = serializadoraBus;
+    }
+
+    public SerializadoraViaje getSerializadoraViaje() {
+        return serializadoraViaje;
+    }
+
+    public void setSerializadoraViaje(SerializadoraViaje serializadoraViaje) {
+        this.serializadoraViaje = serializadoraViaje;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+    public Caseta getCaseta() {
+        return caseta;
+    }
+
+    public void setCaseta(Caseta caseta) {
+        this.caseta = caseta;
+    }
+    
+    
     
     //Metodos
     
@@ -35,6 +91,7 @@ public class ControladorEmpresa {
     Viaje aux=buscarViaje(viaje.getId());
         if(aux == null){
             listaViajes.add(viaje);
+            serializadoraViaje.escribirObjeto(listaViajes);
             return true;
         }
         return false;
@@ -53,6 +110,7 @@ public class ControladorEmpresa {
         for(int i=0; i<listaViajes.size(); i++){
             if(listaViajes.get(i).getId() == cedula){
                 listaViajes.remove(i);
+                serializadoraViaje.escribirObjeto(listaViajes);
                 return true;
             }
         }
@@ -70,7 +128,9 @@ public class ControladorEmpresa {
           aux.setBus(viaje.getBus());
           aux.setPrecioViaje(viaje.getPrecioViaje());
           
+          serializadoraViaje.escribirObjeto(listaViajes);
           return true;
+          
       }
       return false;
     }    
@@ -79,6 +139,7 @@ public class ControladorEmpresa {
     Bus aux=buscarBus(bus.getPlaca());
         if(aux == null){
             listaBuses.add(bus);
+            serializadoraBus.escribirObjeto(listaBuses);
             return true;
         }
         return false;
@@ -97,6 +158,7 @@ public class ControladorEmpresa {
         for(int i=0; i<listaBuses.size(); i++){
             if(listaBuses.get(i).getPlaca().equals(placa)){
                 listaBuses.remove(i);
+                serializadoraBus.escribirObjeto(listaBuses);
                 return true;
             }
         }
@@ -110,8 +172,15 @@ public class ControladorEmpresa {
           aux.setPlaca(bus.getPlaca());
           aux.setNumAsientos(bus.getNumAsientos());
           
+          serializadoraBus.escribirObjeto(listaBuses);
+          
           return true;
       }
       return false;
     }    
+     
+     public boolean aignarCaseta(Caseta caseta){
+         this.caseta=caseta;
+         return true;
+     }
 }

@@ -6,11 +6,15 @@ package Vista.VentanaAdminFlota;
 
 import Controlador.ControladorEmpresa;
 import Controlador.ControladorRegistro;
+import Excepciones.ExcepcionBusYaRegistrado;
 import Excepciones.ExcepcionCodigoEnUso;
+import Excepciones.ExcepcionUsuarioNoEncontrado;
 import Excepciones.ExcepcionViajeVacio;
 import Modelo.Cliente;
 import Modelo.Tiquete;
 import Modelo.Viaje;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -288,7 +292,7 @@ public class VentanaVentaTiquetesAdminFlota extends javax.swing.JFrame {
         controladorEmpresa.guardarTiquete(tiquete);
             JOptionPane.showMessageDialog(null, "Tiquete vendido");
             
-        } catch(ExcepcionCodigoEnUso|ExcepcionViajeVacio ex){
+        } catch(ExcepcionCodigoEnUso|ExcepcionViajeVacio | ExcepcionUsuarioNoEncontrado ex){
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_btnVenderActionPerformed
@@ -343,14 +347,14 @@ public class VentanaVentaTiquetesAdminFlota extends javax.swing.JFrame {
             txtCliente.getText().isEmpty() || txtFechaCompra.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
             return;
-        }
+         }
         Viaje viaje=controladorEmpresa.buscarViaje(idViaje);
         Cliente cliente=controladorRegistro.buscarCliente(correo);
         Tiquete tiquete=new Tiquete(codigo,viaje,cliente,cantidad,fechaDeCompra);
         controladorEmpresa.guardarTiquete(tiquete);
         JOptionPane.showMessageDialog(null, "Tiquete vendido");
             
-        } catch(ExcepcionCodigoEnUso|ExcepcionViajeVacio ex){
+        } catch(ExcepcionCodigoEnUso|ExcepcionViajeVacio | ExcepcionUsuarioNoEncontrado ex){
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_btnModificarActionPerformed

@@ -5,9 +5,11 @@
 package Controlador;
 
 import Excepciones.ExcepcionBusVacio;
+
 import Excepciones.ExcepcionCodigoEnUso;
 import Excepciones.ExcepcionIdDeViajeEnUso;
 import Excepciones.ExcepcionPlacaEnUso;
+import Excepciones.ExcepcionUsuarioNoEncontrado;
 import Excepciones.ExcepcionViajeVacio;
 import Modelo.Bus;
 import Modelo.Caseta;
@@ -188,13 +190,16 @@ public class ControladorEmpresa {
          return true;
     }
     
-    public void guardarTiquete(Tiquete tiquete)throws ExcepcionCodigoEnUso,ExcepcionViajeVacio{
+    public void guardarTiquete(Tiquete tiquete)throws ExcepcionCodigoEnUso,ExcepcionViajeVacio,ExcepcionUsuarioNoEncontrado{
     Tiquete aux=buscarTiquete(tiquete.getCodigo());
         if(aux != null){
             throw new ExcepcionCodigoEnUso();
         }
         if(tiquete.getViaje()==null){
             throw new ExcepcionViajeVacio();
+        }
+        if(tiquete.getCliente()==null){
+            throw new ExcepcionUsuarioNoEncontrado();
         }
         listaTiquetes.add(tiquete);
         serializadoraTiquete.escribirObjeto(listaTiquetes);

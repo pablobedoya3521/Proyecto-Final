@@ -6,15 +6,12 @@ package Vista.VentanaAdminFlota;
 
 import Controlador.ControladorEmpresa;
 import Controlador.ControladorRegistro;
-import Excepciones.ExcepcionBusYaRegistrado;
 import Excepciones.ExcepcionCodigoEnUso;
 import Excepciones.ExcepcionUsuarioNoEncontrado;
 import Excepciones.ExcepcionViajeVacio;
 import Modelo.Cliente;
 import Modelo.Tiquete;
 import Modelo.Viaje;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -289,8 +286,12 @@ public class VentanaVentaTiquetesAdminFlota extends javax.swing.JFrame {
         Viaje viaje=controladorEmpresa.buscarViaje(idViaje);
         Cliente cliente=controladorRegistro.buscarCliente(correo);
         Tiquete tiquete=new Tiquete(codigo,viaje,cliente,cantidad,fechaCompra);
+        if(viaje.getBus().getNumAsientos()<=0){
+            JOptionPane.showMessageDialog(null, "No hay mas puestos disponibles");
+            return;
+        }
         controladorEmpresa.guardarTiquete(tiquete);
-            JOptionPane.showMessageDialog(null, "Tiquete vendido");
+        JOptionPane.showMessageDialog(null, "Tiquete vendido");
             
         } catch(ExcepcionCodigoEnUso|ExcepcionViajeVacio | ExcepcionUsuarioNoEncontrado ex){
             JOptionPane.showMessageDialog(null, ex.getMessage());

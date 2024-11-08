@@ -12,6 +12,7 @@ import java.io.Serializable;
  * @author sebastian
  */
 public class Bus implements Serializable{
+    private static final long serialVersionUID = -761086192410419774L; 
     private String placa;
     private int numAsientos;
     private Viaje viaje;
@@ -49,8 +50,12 @@ public class Bus implements Serializable{
         this.viaje = viaje;
     }
     
-    public void asignarViajeAbus(Viaje viaje){
-        this.viaje=viaje;
+    public boolean asignarViajeAbus(Viaje viaje){
+        if(this.viaje==null){
+            this.viaje=viaje;
+            return true;
+        }
+        return false;
     }
     
     public void desasignarViaje(){

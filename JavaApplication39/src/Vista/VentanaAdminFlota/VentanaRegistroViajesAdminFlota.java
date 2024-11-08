@@ -269,29 +269,35 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
 
     private void btnGuardarViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarViajesActionPerformed
         try{
-        String id=txtId.getText();
-        String origen=txtOrigen.getText();
-        String destino=txtDestino.getText();
-        String horaDeSalida=txtHoraDeSalida.getText();
-        String horaDeLlegada=txtHoraDeLlegada.getText();
-        String placa=txtBus.getText();
-        double valorViaje=Double.parseDouble(txtValorViaje.getText());
-        if (txtId.getText().isEmpty()||txtOrigen.getText().isEmpty() || txtDestino.getText().isEmpty() || 
-            txtHoraDeSalida.getText().isEmpty() || txtHoraDeLlegada.getText().isEmpty()||
-            txtBus.getText().isEmpty() || txtValorViaje.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-            return;
+            String id=txtId.getText();
+            String origen=txtOrigen.getText();
+            String destino=txtDestino.getText();
+            String horaDeSalida=txtHoraDeSalida.getText();
+            String horaDeLlegada=txtHoraDeLlegada.getText();
+            String placa=txtBus.getText();
+            double valorViaje=Double.parseDouble(txtValorViaje.getText());
+            if (txtId.getText().isEmpty()||txtOrigen.getText().isEmpty() || txtDestino.getText().isEmpty() || 
+                txtHoraDeSalida.getText().isEmpty() || txtHoraDeLlegada.getText().isEmpty()||
+                txtBus.getText().isEmpty() || txtValorViaje.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+                return;
+            }
+            Bus bus=controladorEmpresa.buscarBus(placa);
+            Viaje viaje=new Viaje (id,origen,destino,horaDeSalida,horaDeLlegada,bus,valorViaje);
+            
+               boolean respuesta= bus.asignarViajeAbus(viaje);
+               if(respuesta==false){
+                   JOptionPane.showMessageDialog(null, "El bus ya tiene un viaje asignado");
+                   return;
+               }
+                controladorEmpresa.guardarViaje(viaje);
+                JOptionPane.showMessageDialog(null, "Se guardo el viaje");
+                limpiarCampos(); 
+            } catch(ExcepcionIdDeViajeEnUso|ExcepcionBusVacio ex){
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
         }
-        Bus bus=controladorEmpresa.buscarBus(placa);
-        Viaje viaje=new Viaje (id,origen,destino,horaDeSalida,horaDeLlegada,bus,valorViaje);
-        controladorEmpresa.guardarViaje(viaje);
-            JOptionPane.showMessageDialog(null, "Se guardo el viaje");
-            limpiarCampos(); 
-        } catch(ExcepcionIdDeViajeEnUso|ExcepcionBusVacio ex){
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-    }
     }//GEN-LAST:event_btnGuardarViajesActionPerformed
 
     

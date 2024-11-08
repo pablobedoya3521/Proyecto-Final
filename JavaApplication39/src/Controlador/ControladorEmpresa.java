@@ -191,7 +191,7 @@ public class ControladorEmpresa {
     }
     
     public void guardarTiquete(Tiquete tiquete)throws ExcepcionCodigoEnUso,ExcepcionViajeVacio,ExcepcionUsuarioNoEncontrado{
-    Tiquete aux=buscarTiquete(tiquete.getCodigo());
+        Tiquete aux=buscarTiquete(tiquete.getCodigo());
         if(aux != null){
             throw new ExcepcionCodigoEnUso();
         }
@@ -202,6 +202,8 @@ public class ControladorEmpresa {
             throw new ExcepcionUsuarioNoEncontrado();
         }
         listaTiquetes.add(tiquete);
+        int restar= tiquete.getViaje().getBus().getNumAsientos()-tiquete.getCantidad();
+        tiquete.getViaje().getBus().setNumAsientos(restar);
         serializadoraTiquete.escribirObjeto(listaTiquetes);
     }
     

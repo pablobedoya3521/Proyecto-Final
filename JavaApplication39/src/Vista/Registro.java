@@ -6,9 +6,12 @@ package Vista;
 
 import Controlador.ControladorRegistro;
 import Excepciones.ExcepcionCorreoEnUso;
+import Excepciones.ExcepcionUsuarioNoEncontrado;
 import Modelo.Cliente;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -329,14 +332,14 @@ public class Registro extends javax.swing.JFrame {
             String correo= txtCorreo.getText();
             String contraseña= txtContraseña.getText();
             
-             if (txtNombre.getText().isEmpty()||txtApellido.getText().isEmpty() || txtCedula.getText().isEmpty() || 
-            txtCorreo.getText().isEmpty() || txtContraseña.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-            return;
-        }
+            if (txtNombre.getText().isEmpty()||txtApellido.getText().isEmpty() || txtCedula.getText().isEmpty() || 
+                txtCorreo.getText().isEmpty() || txtContraseña.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+                return;
+            }
 
-            Cliente cliente= new Cliente(cedula, nombre, apellido, correo, contraseña);
-            controladorRegistro.guardarCliente(cliente);
+            Cliente cliente= new Cliente(nombre, apellido, cedula, correo, contraseña, apellido, 0);
+            controladorRegistro.guardar(cliente);
             JOptionPane.showMessageDialog(null, "Registrado Correctamente");
         }catch(ExcepcionCorreoEnUso ex){
             JOptionPane.showMessageDialog(null, ex.getMessage());

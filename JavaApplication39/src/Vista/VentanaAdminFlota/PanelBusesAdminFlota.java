@@ -24,11 +24,12 @@ public class PanelBusesAdminFlota extends javax.swing.JPanel {
     
     private void llenarTabla() {
         DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new Object[]{"Placa", "Numero de asientos"});
+        model.setColumnIdentifiers(new Object[]{"Placa", "Numero de asientos", "Estado"});
         for (int i = 0; i < controladorEmpresa.getListaBuses().size(); i++) {
             model.addRow(new Object[]{
                 controladorEmpresa.getListaBuses().get(i).getPlaca(),
-                controladorEmpresa.getListaBuses().get(i).getNumAsientos()
+                controladorEmpresa.getListaBuses().get(i).getNumAsientos(),
+                controladorEmpresa.getListaBuses().get(i).isEstado()
                                     
             });
         }

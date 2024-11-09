@@ -292,6 +292,7 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
                }
                 controladorEmpresa.guardarViaje(viaje);
                 JOptionPane.showMessageDialog(null, "Se guardo el viaje");
+                bus.cambiarEstado();
                 limpiarCampos(); 
             } catch(ExcepcionIdDeViajeEnUso|ExcepcionBusVacio ex){
                 JOptionPane.showMessageDialog(null, ex.getMessage());

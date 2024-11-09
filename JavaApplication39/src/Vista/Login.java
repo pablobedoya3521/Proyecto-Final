@@ -8,8 +8,8 @@ package Vista;
 import Controlador.ControladorRegistro;
 import Excepciones.ExcepcionContraseñaIncorrecta;
 import Excepciones.ExcepcionUsuarioNoEncontrado;
+import Modelo.Usuario;
 import Validador.ValidarContraseña;
-import Validador.ValidarIdentificacionUsuario;
 import Vista.VentanaAdminFlota.VentanaPrincipalAdminFlota;
 import Vista.VentanaAdminTerminal.VentanaPrincipalAdminTerminal;
 import Vista.VentanasCliente.VentanaPrincipalCliente;
@@ -24,7 +24,6 @@ import javax.swing.UIManager;
  */
 public class Login extends javax.swing.JFrame {
     private ControladorRegistro controladorRegistro;
-    private ValidarIdentificacionUsuario validador; 
     private ValidarContraseña validarContraseña;
     /**
      * Creates new form VentanaSeleccion
@@ -36,7 +35,7 @@ public class Login extends javax.swing.JFrame {
         pack();
         this.controladorRegistro= new ControladorRegistro();
         this.validarContraseña= new ValidarContraseña();
-        this.validador=new ValidarIdentificacionUsuario();
+        
     }
     
     
@@ -264,30 +263,15 @@ public class Login extends javax.swing.JFrame {
           String contraseña = txtContraseña.getText();
           
               //verifica que los campos que piden numeros, no se les ingrese Strings
-           if (txtCorreo.getText().isEmpty()||txtContraseña.getText().isEmpty()) {
+            if (txtCorreo.getText().isEmpty()||txtContraseña.getText().isEmpty()) {
               JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
               return;
             }
           
-          Object cambio = validador.IdentificarUsuario(correo, contraseña);
-          
-           if(cambio instanceof VentanaPrincipalCliente){
-               VentanaPrincipalCliente ventanaCliente = (VentanaPrincipalCliente) cambio;
-               ventanaCliente.setVisible(true); // Muestra la ventana del cliente
-               this.dispose(); // Cierra la ventana de inicio de sesión
-           }else if(cambio instanceof VentanaPrincipalAdminFlota){
-               VentanaPrincipalAdminFlota ventanaAdminFlota = (VentanaPrincipalAdminFlota) cambio;
-               ventanaAdminFlota.setVisible(true); // Muestra la ventana del administrador de flota
-               this.dispose(); // Cierra la ventana de inicio de sesión
-           }else if(cambio instanceof VentanaPrincipalAdminTerminal){
-               VentanaPrincipalAdminTerminal ventanaAdminTerminal = (VentanaPrincipalAdminTerminal) cambio;
-               ventanaAdminTerminal.setVisible(true); // Muestra la ventana del administrador de flota
-               this.dispose();   
-           }else{
-                 // Manejo de error: usuario no encontrado o credenciales incorrectas
-               JOptionPane.showMessageDialog(this, "Credenciales incorrectas, por favor intenta de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
-           }
+            Usuario respuesta = controladorRegistro.buscar(correo);
+            validarContraseña.ValidarContraseña(correo, contraseña);
         
+            respuesta.login();
         }catch(ExcepcionContraseñaIncorrecta | ExcepcionUsuarioNoEncontrado ex){
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }

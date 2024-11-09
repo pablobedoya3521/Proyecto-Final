@@ -4,24 +4,33 @@
  */
 package Modelo;
 
+
+import Vista.VentanasCliente.VentanaPrincipalCliente;
 import java.io.Serializable;
 
 /**
  *
  * @author juan
  */
-
 public class Cliente extends Usuario implements Serializable{
-    private static final long serialVersionUID = 1L; 
     private int puntosAcumulados;
-    public Cliente(){
-        
-    }
-    
-    
-    public Cliente(String cedula, String nombre,String apellido, String correo, String contraseña) {
-        super(cedula, nombre,apellido, correo, contraseña);
+    private String telefono;
+    private int edad;
+    //private Lista<Reserva> listaReservas;
+    //private Lista<Tiquete> listaTiquetes;
+    //private Lista<Reserva> listaReservasCanceladas;
+
+    public Cliente(String nombre, String apellido, String cedula, String correo, String contraseña, String telefono, int edad) {
+        super(nombre, apellido, cedula, correo, contraseña);
         this.puntosAcumulados=0;
+        this.telefono=telefono;
+        this.edad=edad;
+    }
+
+    //@Override
+    public void login() {
+       VentanaPrincipalCliente ventana = new VentanaPrincipalCliente();
+       ventana.setVisible(true);
     }
     
 }

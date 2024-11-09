@@ -272,97 +272,97 @@ public class VentanaVentaTiquetesAdminFlota extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
-         try{
-        String codigo=txtCodigo.getText();
-        String idViaje=txtIdViaje.getText();
-        int cantidad=Integer.parseInt(txtCantidadTiquetes.getText());
-        String correo=txtCliente.getText();
-        String fechaCompra=txtFechaCompra.getText();
-        if (txtCodigo.getText().isEmpty()||txtIdViaje.getText().isEmpty() || txtCantidadTiquetes.getText().isEmpty() || 
-            txtCliente.getText().isEmpty() || txtFechaCompra.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-            return;
-        }
-        Viaje viaje=controladorEmpresa.buscarViaje(idViaje);
-        Cliente cliente=controladorRegistro.buscarCliente(correo);
-        Tiquete tiquete=new Tiquete(codigo,viaje,cliente,cantidad,fechaCompra);
-        if(viaje.getBus().getNumAsientos()<=0){
-            JOptionPane.showMessageDialog(null, "No hay mas puestos disponibles");
-            return;
-        }
-        controladorEmpresa.guardarTiquete(tiquete);
-        JOptionPane.showMessageDialog(null, "Tiquete vendido");
-            
-        } catch(ExcepcionCodigoEnUso|ExcepcionViajeVacio | ExcepcionUsuarioNoEncontrado ex){
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
+//         try{
+//        String codigo=txtCodigo.getText();
+//        String idViaje=txtIdViaje.getText();
+//        int cantidad=Integer.parseInt(txtCantidadTiquetes.getText());
+//        String correo=txtCliente.getText();
+//        String fechaCompra=txtFechaCompra.getText();
+//        if (txtCodigo.getText().isEmpty()||txtIdViaje.getText().isEmpty() || txtCantidadTiquetes.getText().isEmpty() || 
+//            txtCliente.getText().isEmpty() || txtFechaCompra.getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+//            return;
+//        }
+//        Viaje viaje=controladorEmpresa.buscarViaje(idViaje);
+//        Cliente cliente=controladorRegistro.buscarCliente(correo);
+//        Tiquete tiquete=new Tiquete(codigo,viaje,cliente,cantidad,fechaCompra);
+//        if(viaje.getBus().getNumAsientos()<=0){
+//            JOptionPane.showMessageDialog(null, "No hay mas puestos disponibles");
+//            return;
+//        }
+//        controladorEmpresa.guardarTiquete(tiquete);
+//        JOptionPane.showMessageDialog(null, "Tiquete vendido");
+//            
+//        } catch(ExcepcionCodigoEnUso|ExcepcionViajeVacio | ExcepcionUsuarioNoEncontrado ex){
+//            JOptionPane.showMessageDialog(null, ex.getMessage());
+//        }
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        try{
-        String codigo=txtCodigo.getText();
-        if (txtCodigo.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-            return;
-        }
-        Tiquete aux=controladorEmpresa.buscarTiquete(codigo);
-        if(aux != null){
-            txtIdViaje.setText(aux.getViaje().getId());
-            txtCantidadTiquetes.setText(String.valueOf(aux.getCantidad()));
-            txtCliente.setText(aux.getCliente().getCedula());
-            txtFechaCompra.setText(aux.getFechaDeCompra());
-        }
-      } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-      }
+//        try{
+//        String codigo=txtCodigo.getText();
+//        if (txtCodigo.getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+//            return;
+//        }
+//        Tiquete aux=controladorEmpresa.buscarTiquete(codigo);
+//        if(aux != null){
+//            txtIdViaje.setText(aux.getViaje().getId());
+//            txtCantidadTiquetes.setText(String.valueOf(aux.getCantidad()));
+//            txtCliente.setText(aux.getCliente().getCedula());
+//            txtFechaCompra.setText(aux.getFechaDeCompra());
+//        }
+//      } catch (NumberFormatException ex) {
+//            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+//      }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        try{
-        String codigo = txtCodigo.getText();
-        if (txtCodigo.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-            return;
-        }
-        boolean respuesta=controladorEmpresa.eliminarTiquete(codigo);
-        if(respuesta){
-            JOptionPane.showMessageDialog(null, "Se eliminó el tiquete");
-            limpiarCampos();
-
-        } else{
-            JOptionPane.showMessageDialog(null, "No se eliminó el viaje");
-        }
-       } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-    }
+//        try{
+//        String codigo = txtCodigo.getText();
+//        if (txtCodigo.getText().isEmpty()){
+//            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+//            return;
+//        }
+//        boolean respuesta=controladorEmpresa.eliminarTiquete(codigo);
+//        if(respuesta){
+//            JOptionPane.showMessageDialog(null, "Se eliminó el tiquete");
+//            limpiarCampos();
+//
+//        } else{
+//            JOptionPane.showMessageDialog(null, "No se eliminó el viaje");
+//        }
+//       } catch (NumberFormatException ex) {
+//        JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+//    }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        try{
-        String codigo =txtCodigo.getText();
-        String idViaje=txtIdViaje.getText();
-        int cantidad=Integer.parseInt(txtCantidadTiquetes.getText());
-        String correo=txtCliente.getText();
-        String fechaDeCompra=txtFechaCompra.getText(); 
-         if (txtCodigo.getText().isEmpty()||txtIdViaje.getText().isEmpty() || txtCantidadTiquetes.getText().isEmpty() || 
-            txtCliente.getText().isEmpty() || txtFechaCompra.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-            return;
-         }
-        Viaje viaje=controladorEmpresa.buscarViaje(idViaje);
-        Cliente cliente=controladorRegistro.buscarCliente(correo);
-        Tiquete tiquete=new Tiquete(codigo,viaje,cliente,cantidad,fechaDeCompra);
-        controladorEmpresa.guardarTiquete(tiquete);
-        JOptionPane.showMessageDialog(null, "Tiquete vendido");
-            
-        } catch(ExcepcionCodigoEnUso|ExcepcionViajeVacio | ExcepcionUsuarioNoEncontrado ex){
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
+//        try{
+//        String codigo =txtCodigo.getText();
+//        String idViaje=txtIdViaje.getText();
+//        int cantidad=Integer.parseInt(txtCantidadTiquetes.getText());
+//        String correo=txtCliente.getText();
+//        String fechaDeCompra=txtFechaCompra.getText(); 
+//         if (txtCodigo.getText().isEmpty()||txtIdViaje.getText().isEmpty() || txtCantidadTiquetes.getText().isEmpty() || 
+//            txtCliente.getText().isEmpty() || txtFechaCompra.getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+//            return;
+//         }
+//        Viaje viaje=controladorEmpresa.buscarViaje(idViaje);
+//        Cliente cliente=controladorRegistro.buscarCliente(correo);
+//        Tiquete tiquete=new Tiquete(codigo,viaje,cliente,cantidad,fechaDeCompra);
+//        controladorEmpresa.guardarTiquete(tiquete);
+//        JOptionPane.showMessageDialog(null, "Tiquete vendido");
+//            
+//        } catch(ExcepcionCodigoEnUso|ExcepcionViajeVacio | ExcepcionUsuarioNoEncontrado ex){
+//            JOptionPane.showMessageDialog(null, ex.getMessage());
+//        }
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        VentanaPrincipalAdminFlota cambio=new VentanaPrincipalAdminFlota();
-        cambio.setVisible(true);
+//        VentanaPrincipalAdminFlota cambio=new VentanaPrincipalAdminFlota();
+//        cambio.setVisible(true);
     }//GEN-LAST:event_btnVolverActionPerformed
     
     

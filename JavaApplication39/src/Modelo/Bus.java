@@ -16,11 +16,13 @@ public class Bus implements Serializable{
     private String placa;
     private int numAsientos;
     private Viaje viaje;
+    private boolean estado;
 
     public Bus(String placa,int numAsientos) {
         this.placa=placa;
         this.numAsientos = numAsientos;
         this.viaje = null;
+        this.estado=false;
     }
     
     public Bus(){
@@ -61,4 +63,18 @@ public class Bus implements Serializable{
     public void desasignarViaje(){
         this.viaje=null;
     }
+    
+    public void cambiarEstado(){
+        if(this.estado==true){
+            this.estado=false;
+        }else if(this.estado==false){
+            this.estado=true;
+        }
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+    
+    
 }

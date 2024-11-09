@@ -322,51 +322,51 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCantPlazasActionPerformed
 
     private void btnArrendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArrendarActionPerformed
-         try {
-        
-        int nit = Integer.parseInt(txtNit.getText());
-        String nombreEmpresa = txtNombreEmpresa.getText();
-        double valorArrendo = Double.parseDouble(txtValorArrendo.getText());
-        int cantPlazas = Integer.parseInt(txtCantPlazas.getText());
-        String nombre = txtNombre.getText();
-        String apellido = txtApellido.getText();
-        String cedula = txtCedula.getText();
-        String correo = txtCorreo.getText();
-        String contraseña = txtContraseña.getText();
-        
-        // Validaciones de entrada
-        if (txtNit.getText().isEmpty() || txtNombreEmpresa.getText().isEmpty() || 
-            txtValorArrendo.getText().isEmpty() || txtCantPlazas.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-            return;
-        }
-
-        AdministradorFlota administradorFlota = new AdministradorFlota(cedula, nombre, apellido, correo, contraseña);
-        controladorRegistro.guardarAdministradorFlota(administradorFlota);
-        Empresa empresa = new Empresa(nit, nombreEmpresa, administradorFlota);
-        
-        // Asegúrate de que estás usando el controlador correcto para asignar la empresa
-        boolean asignado = controladorCaseta.AsignarEmpresa(empresa);
-        if (asignado) {
-            JOptionPane.showMessageDialog(null, "Empresa asignada correctamente.");
-            // Serializa usando el controlador de casillas
-          
-        } else {
-            JOptionPane.showMessageDialog(null, "No se pudo asignar la empresa, ya hay una empresa asignada.");
-        }
-
-        controladorCaseta.asignarCantidadPlazas(cantPlazas);
-        controladorCaseta.asignarValorArrendamiento(valorArrendo);
-        // Serializa nuevamente después de asignar valores
-     
-        JOptionPane.showMessageDialog(null, "Arrendado correctamente");
-    } catch (ExcepcionCorreoEnUso ex) {
-        JOptionPane.showMessageDialog(null, ex.getMessage());
-    } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, "Ocurrió un error: " + e.getMessage());
-    }
+//         try {
+//        
+//        int nit = Integer.parseInt(txtNit.getText());
+//        String nombreEmpresa = txtNombreEmpresa.getText();
+//        double valorArrendo = Double.parseDouble(txtValorArrendo.getText());
+//        int cantPlazas = Integer.parseInt(txtCantPlazas.getText());
+//        String nombre = txtNombre.getText();
+//        String apellido = txtApellido.getText();
+//        String cedula = txtCedula.getText();
+//        String correo = txtCorreo.getText();
+//        String contraseña = txtContraseña.getText();
+//        
+//        // Validaciones de entrada
+//        if (txtNit.getText().isEmpty() || txtNombreEmpresa.getText().isEmpty() || 
+//            txtValorArrendo.getText().isEmpty() || txtCantPlazas.getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+//            return;
+//        }
+//
+//        AdministradorFlota administradorFlota = new AdministradorFlota(cedula, nombre, apellido, correo, contraseña);
+//        controladorRegistro.guardarAdministradorFlota(administradorFlota);
+//        Empresa empresa = new Empresa(nit, nombreEmpresa, administradorFlota);
+//        
+//        // Asegúrate de que estás usando el controlador correcto para asignar la empresa
+//        boolean asignado = controladorCaseta.AsignarEmpresa(empresa);
+//        if (asignado) {
+//            JOptionPane.showMessageDialog(null, "Empresa asignada correctamente.");
+//            // Serializa usando el controlador de casillas
+//          
+//        } else {
+//            JOptionPane.showMessageDialog(null, "No se pudo asignar la empresa, ya hay una empresa asignada.");
+//        }
+//
+//        controladorCaseta.asignarCantidadPlazas(cantPlazas);
+//        controladorCaseta.asignarValorArrendamiento(valorArrendo);
+//        // Serializa nuevamente después de asignar valores
+//     
+//        JOptionPane.showMessageDialog(null, "Arrendado correctamente");
+//    } catch (ExcepcionCorreoEnUso ex) {
+//        JOptionPane.showMessageDialog(null, ex.getMessage());
+//    } catch (NumberFormatException ex) {
+//        JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+//    } catch (Exception e) {
+//        JOptionPane.showMessageDialog(null, "Ocurrió un error: " + e.getMessage());
+//    }
     }//GEN-LAST:event_btnArrendarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed

@@ -27,9 +27,9 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
      * Creates new form VentanaRegistroCasetaAdminTerminal
      */
     public VentanaRegistroCasetaAdminTerminal(Caseta caseta) {
-        initComponents();
+       initComponents();
        this.controladorCasilla=new ControladorCasilla();
-        this.controladorRegistro= new ControladorRegistro();
+       this.controladorRegistro= new ControladorRegistro();
        this.controladorCaseta=new ControladorCaseta(caseta);
     }
 
@@ -64,6 +64,12 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
         txtContraseña = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        txtNivelExp = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        txtSueldo = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        txtHorario = new javax.swing.JTextField();
         btnArrendar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
 
@@ -98,7 +104,7 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtNombreEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNit, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,9 +155,8 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
                 .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtValorArrendo, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtCantPlazas, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22))))
+                    .addComponent(txtCantPlazas, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -182,46 +187,63 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
 
         jLabel6.setText("Apellido");
 
-        jLabel7.setText("cedula");
+        jLabel7.setText("Horarios de trabajo");
 
         jLabel8.setText("Correo");
 
         jLabel10.setText("Contraseña");
 
+        jLabel11.setText("cedula");
+
+        jLabel12.setText("Sueldo");
+
+        jLabel13.setText("Nivel de Experiencia");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 52, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSueldo, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(185, 185, 185)
-                        .addComponent(jLabel6))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(181, 181, 181)
-                        .addComponent(jLabel7)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                            .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNivelExp, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(175, 175, 175))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(179, 179, 179))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel8)
-                        .addGap(189, 189, 189))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel10)
-                .addGap(185, 185, 185))
+                        .addGap(175, 175, 175))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addGap(138, 138, 138))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(137, 137, 137))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(162, 162, 162))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(175, 175, 175))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(177, 177, 177))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(165, 165, 165))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,19 +256,31 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(jLabel7)
-                .addGap(2, 2, 2)
-                .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtSueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNivelExp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
-                .addGap(15, 15, 15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
-                .addGap(3, 3, 3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         btnArrendar.setText("Arrendar");
@@ -269,20 +303,19 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnVolver)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnArrendar)
-                        .addGap(62, 62, 62)
-                        .addComponent(btnVolver)
-                        .addGap(23, 23, 23))))
+                        .addGap(186, 186, 186))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,16 +323,17 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnArrendar)
-                            .addComponent(btnVolver)))
+                            .addComponent(btnVolver))
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))))
         );
 
         pack();
@@ -322,51 +356,55 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCantPlazasActionPerformed
 
     private void btnArrendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArrendarActionPerformed
-//         try {
-//        
-//        int nit = Integer.parseInt(txtNit.getText());
-//        String nombreEmpresa = txtNombreEmpresa.getText();
-//        double valorArrendo = Double.parseDouble(txtValorArrendo.getText());
-//        int cantPlazas = Integer.parseInt(txtCantPlazas.getText());
-//        String nombre = txtNombre.getText();
-//        String apellido = txtApellido.getText();
-//        String cedula = txtCedula.getText();
-//        String correo = txtCorreo.getText();
-//        String contraseña = txtContraseña.getText();
-//        
-//        // Validaciones de entrada
-//        if (txtNit.getText().isEmpty() || txtNombreEmpresa.getText().isEmpty() || 
-//            txtValorArrendo.getText().isEmpty() || txtCantPlazas.getText().isEmpty()) {
-//            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-//            return;
-//        }
-//
-//        AdministradorFlota administradorFlota = new AdministradorFlota(cedula, nombre, apellido, correo, contraseña);
-//        controladorRegistro.guardarAdministradorFlota(administradorFlota);
-//        Empresa empresa = new Empresa(nit, nombreEmpresa, administradorFlota);
-//        
-//        // Asegúrate de que estás usando el controlador correcto para asignar la empresa
-//        boolean asignado = controladorCaseta.AsignarEmpresa(empresa);
-//        if (asignado) {
-//            JOptionPane.showMessageDialog(null, "Empresa asignada correctamente.");
-//            // Serializa usando el controlador de casillas
-//          
-//        } else {
-//            JOptionPane.showMessageDialog(null, "No se pudo asignar la empresa, ya hay una empresa asignada.");
-//        }
-//
-//        controladorCaseta.asignarCantidadPlazas(cantPlazas);
-//        controladorCaseta.asignarValorArrendamiento(valorArrendo);
-//        // Serializa nuevamente después de asignar valores
-//     
-//        JOptionPane.showMessageDialog(null, "Arrendado correctamente");
-//    } catch (ExcepcionCorreoEnUso ex) {
-//        JOptionPane.showMessageDialog(null, ex.getMessage());
-//    } catch (NumberFormatException ex) {
-//        JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-//    } catch (Exception e) {
-//        JOptionPane.showMessageDialog(null, "Ocurrió un error: " + e.getMessage());
-//    }
+         try {
+        
+        int nit = Integer.parseInt(txtNit.getText());
+        String nombreEmpresa = txtNombreEmpresa.getText();
+        double valorArrendo = Double.parseDouble(txtValorArrendo.getText());
+        int cantPlazas = Integer.parseInt(txtCantPlazas.getText());
+        String nombre = txtNombre.getText();
+        String apellido = txtApellido.getText();
+        String cedula = txtCedula.getText();
+        String correo = txtCorreo.getText();
+        String contraseña = txtContraseña.getText();
+        double sueldo = Double.parseDouble(txtSueldo.getText());
+        String nivelExp= txtNivelExp.getText();
+        String horarios= txtHorario.getText();
+        
+        // Validaciones de entrada
+        if (txtNit.getText().isEmpty() || txtNombreEmpresa.getText().isEmpty() || 
+            txtValorArrendo.getText().isEmpty() || txtCantPlazas.getText().isEmpty() || 
+            txtSueldo.getText().isEmpty() || txtNivelExp.getText().isEmpty() || txtHorario.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+            return;
+        }
+
+        AdministradorFlota administradorFlota = new AdministradorFlota(nivelExp, sueldo, horarios, cedula, nombre, apellido, correo, contraseña);
+        controladorRegistro.guardar(administradorFlota);
+        Empresa empresa = new Empresa(nit, nombreEmpresa, administradorFlota);
+        
+        // Asegúrate de que estás usando el controlador correcto para asignar la empresa
+        boolean asignado = controladorCaseta.AsignarEmpresa(empresa);
+        if (asignado) {
+            JOptionPane.showMessageDialog(null, "Empresa asignada correctamente.");
+            // Serializa usando el controlador de casillas
+          
+        } else {
+            JOptionPane.showMessageDialog(null, "No se pudo asignar la empresa, ya hay una empresa asignada.");
+        }
+
+        controladorCaseta.asignarCantidadPlazas(cantPlazas);
+        controladorCaseta.asignarValorArrendamiento(valorArrendo);
+        // Serializa nuevamente después de asignar valores
+     
+        JOptionPane.showMessageDialog(null, "Arrendado correctamente");
+    } catch (ExcepcionCorreoEnUso ex) {
+        JOptionPane.showMessageDialog(null, ex.getMessage());
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Ocurrió un error: " + e.getMessage());
+    }
     }//GEN-LAST:event_btnArrendarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
@@ -382,6 +420,9 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -398,9 +439,12 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtContraseña;
     private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtHorario;
     private javax.swing.JTextField txtNit;
+    private javax.swing.JTextField txtNivelExp;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNombreEmpresa;
+    private javax.swing.JTextField txtSueldo;
     private javax.swing.JTextField txtValorArrendo;
     // End of variables declaration//GEN-END:variables
 }

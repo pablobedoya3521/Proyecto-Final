@@ -15,13 +15,13 @@ public class AdministradorFlota extends Usuario implements Serializable{
     private static final long serialVersionUID = 1L;
     private String nivelExp;
     private double sueldo;
-    private String horarios;
+    private String horario;
 
-    public AdministradorFlota(String nivelExp, double sueldo, String horarios, String nombre, String apellido, String cedula, String correo, String contraseña) {
+    public AdministradorFlota(String nivelExp, double sueldo, String horario, String nombre, String apellido, String cedula, String correo, String contraseña) {
         super(nombre, apellido, cedula, correo, contraseña);
         this.nivelExp = nivelExp;
         this.sueldo = sueldo;
-        this.horarios = horarios;
+        this.horario = horario;
     }
 
     @Override

@@ -38,7 +38,7 @@ public class Empresa implements Serializable{
     }
     
     public Bus buscarBus(String placa){
-        for (int i = 0; listaBuses.size() < 10; i++) {
+        for (int i = 0; i<listaBuses.size(); i++) {
             if(listaBuses.get(i).getPlaca().equals(placa)){
                 return listaBuses.get(i);
             }

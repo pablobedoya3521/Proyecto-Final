@@ -7,14 +7,15 @@ package Vista;
 
 import Controlador.ControladorRegistro;
 import Excepciones.ExcepcionContraseñaIncorrecta;
+import Excepciones.ExcepcionCorreoEnUso;
 import Excepciones.ExcepcionUsuarioNoEncontrado;
+import Modelo.AdministradorTerminal;
 import Modelo.Usuario;
 import Validador.ValidarContraseña;
-import Vista.VentanaAdminFlota.VentanaPrincipalAdminFlota;
-import Vista.VentanaAdminTerminal.VentanaPrincipalAdminTerminal;
-import Vista.VentanasCliente.VentanaPrincipalCliente;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -35,7 +36,7 @@ public class Login extends javax.swing.JFrame {
         pack();
         this.controladorRegistro= new ControladorRegistro();
         this.validarContraseña= new ValidarContraseña();
-        
+
     }
     
     
@@ -274,7 +275,7 @@ public class Login extends javax.swing.JFrame {
             respuesta.login();
         }catch(ExcepcionContraseñaIncorrecta | ExcepcionUsuarioNoEncontrado ex){
             JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
+        } 
     }//GEN-LAST:event_btnIniarsesionActionPerformed
     
     /**
@@ -297,6 +298,7 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                new Login().setVisible(true);
             }
         });

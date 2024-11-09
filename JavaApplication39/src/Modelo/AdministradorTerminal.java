@@ -4,10 +4,24 @@
  */
 package Modelo;
 
+import Vista.VentanaAdminTerminal.VentanaPrincipalAdminTerminal;
+import java.io.Serializable;
+
 /**
  *
  * @author juan
  */
-public class AdministradorTerminal {
+public class AdministradorTerminal extends Usuario implements Serializable{
+    private static final long serialVersionUID = 1L;
+    
+    public AdministradorTerminal(String nombre, String apellido, String cedula, String correo, String contraseña) {
+        super(nombre, apellido, cedula, correo, contraseña);
+    }
+
+    @Override
+    public void login() {
+        VentanaPrincipalAdminTerminal ventana= new VentanaPrincipalAdminTerminal();
+        ventana.setVisible(true);
+    }
     
 }

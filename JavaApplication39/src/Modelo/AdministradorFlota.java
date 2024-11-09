@@ -4,10 +4,30 @@
  */
 package Modelo;
 
+import Vista.VentanaAdminFlota.VentanaPrincipalAdminFlota;
+import java.io.Serializable;
+
 /**
  *
  * @author juan
  */
-public class AdministradorFlota {
+public class AdministradorFlota extends Usuario implements Serializable{
+    private static final long serialVersionUID = 1L;
+    private String nivelExp;
+    private double sueldo;
+    private String horarios;
+
+    public AdministradorFlota(String nivelExp, double sueldo, String horarios, String nombre, String apellido, String cedula, String correo, String contraseña) {
+        super(nombre, apellido, cedula, correo, contraseña);
+        this.nivelExp = nivelExp;
+        this.sueldo = sueldo;
+        this.horarios = horarios;
+    }
+
+    @Override
+    public void login() {
+        VentanaPrincipalAdminFlota ventana = new VentanaPrincipalAdminFlota();
+        ventana.setVisible(true);
+    }
     
 }

@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @author sebastian
  */
 public class Bus implements Serializable{
-    private static final long serialVersionUID = -761086192410419774L; 
+    private static final long serialVersionUID = 1L;
     private String placa;
     private int numAsientos;
     private Viaje viaje;

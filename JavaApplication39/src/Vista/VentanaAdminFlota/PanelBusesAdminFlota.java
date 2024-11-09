@@ -5,6 +5,7 @@
 package Vista.VentanaAdminFlota;
 
 import Controlador.ControladorEmpresa;
+import Modelo.Empresa;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,20 +17,20 @@ public class PanelBusesAdminFlota extends javax.swing.JPanel {
     /**
      * Creates new form VentanaPrincipalBusesAdminFlota
      */
-    public PanelBusesAdminFlota() {
+    public PanelBusesAdminFlota(Empresa empresa) {
         initComponents();
-        this.controladorEmpresa=new ControladorEmpresa();
+        this.controladorEmpresa=new ControladorEmpresa(empresa);
         llenarTabla();
     }
     
     private void llenarTabla() {
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new Object[]{"Placa", "Numero de asientos", "Estado"});
-        for (int i = 0; i < controladorEmpresa.getListaBuses().size(); i++) {
+        for (int i = 0; i < controladorEmpresa.getEmpresa().getListaBuses().size(); i++) {
             model.addRow(new Object[]{
-                controladorEmpresa.getListaBuses().get(i).getPlaca(),
-                controladorEmpresa.getListaBuses().get(i).getNumAsientos(),
-                controladorEmpresa.getListaBuses().get(i).isEstado()
+                controladorEmpresa.getEmpresa().getListaBuses().get(i).getPlaca(),
+                controladorEmpresa.getEmpresa().getListaBuses().get(i).getNumAsientos(),
+                controladorEmpresa.getEmpresa().getListaBuses().get(i).isEstado()
                                     
             });
         }

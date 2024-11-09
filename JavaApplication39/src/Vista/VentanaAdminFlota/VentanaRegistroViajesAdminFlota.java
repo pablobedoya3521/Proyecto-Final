@@ -26,7 +26,7 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
         setLocationRelativeTo(this);
         setResizable(false);
         pack(); 
-        this.controladorEmpresa=new ControladorEmpresa();
+       // this.controladorEmpresa=new ControladorEmpresa();
     }
 
     /** This method is called from within the constructor to
@@ -268,120 +268,120 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarViajesActionPerformed
-        try{
-            String id=txtId.getText();
-            String origen=txtOrigen.getText();
-            String destino=txtDestino.getText();
-            String horaDeSalida=txtHoraDeSalida.getText();
-            String horaDeLlegada=txtHoraDeLlegada.getText();
-            String placa=txtBus.getText();
-            double valorViaje=Double.parseDouble(txtValorViaje.getText());
-            if (txtId.getText().isEmpty()||txtOrigen.getText().isEmpty() || txtDestino.getText().isEmpty() || 
-                txtHoraDeSalida.getText().isEmpty() || txtHoraDeLlegada.getText().isEmpty()||
-                txtBus.getText().isEmpty() || txtValorViaje.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-                return;
-            }
-            Bus bus=controladorEmpresa.buscarBus(placa);
-            Viaje viaje=new Viaje (id,origen,destino,horaDeSalida,horaDeLlegada,bus,valorViaje);
-            
-               boolean respuesta= bus.asignarViajeAbus(viaje);
-               if(respuesta==false){
-                   JOptionPane.showMessageDialog(null, "El bus ya tiene un viaje asignado");
-                   return;
-               }
-                controladorEmpresa.guardarViaje(viaje);
-                JOptionPane.showMessageDialog(null, "Se guardo el viaje");
-                bus.cambiarEstado();
-                limpiarCampos(); 
-            } catch(ExcepcionIdDeViajeEnUso|ExcepcionBusVacio ex){
-                JOptionPane.showMessageDialog(null, ex.getMessage());
-            } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-        }
+//        try{
+//            String id=txtId.getText();
+//            String origen=txtOrigen.getText();
+//            String destino=txtDestino.getText();
+//            String horaDeSalida=txtHoraDeSalida.getText();
+//            String horaDeLlegada=txtHoraDeLlegada.getText();
+//            String placa=txtBus.getText();
+//            double valorViaje=Double.parseDouble(txtValorViaje.getText());
+//            if (txtId.getText().isEmpty()||txtOrigen.getText().isEmpty() || txtDestino.getText().isEmpty() || 
+//                txtHoraDeSalida.getText().isEmpty() || txtHoraDeLlegada.getText().isEmpty()||
+//                txtBus.getText().isEmpty() || txtValorViaje.getText().isEmpty()) {
+//                JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+//                return;
+//            }
+//            Bus bus=controladorEmpresa.buscarBus(placa);
+//            Viaje viaje=new Viaje (id,origen,destino,horaDeSalida,horaDeLlegada,bus,valorViaje);
+//            
+//               boolean respuesta= bus.asignarViajeAbus(viaje);
+//               if(respuesta==false){
+//                   JOptionPane.showMessageDialog(null, "El bus ya tiene un viaje asignado");
+//                   return;
+//               }
+//                controladorEmpresa.guardarViaje(viaje);
+//                JOptionPane.showMessageDialog(null, "Se guardo el viaje");
+//                bus.cambiarEstado();
+//                limpiarCampos(); 
+//            } catch(ExcepcionIdDeViajeEnUso|ExcepcionBusVacio ex){
+//                JOptionPane.showMessageDialog(null, ex.getMessage());
+//            } catch (NumberFormatException ex) {
+//            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+//        }
     }//GEN-LAST:event_btnGuardarViajesActionPerformed
 
     
     private void btnBuscarViajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarViajeActionPerformed
-        try{
-        String id = txtId.getText();
-        if (txtId.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-            return;
-        }
-        Viaje respuesta = controladorEmpresa.buscarViaje(id);
-        if(respuesta != null){
-             
-            Bus bus = respuesta.getBus();
-                if (bus != null) {
-                    txtBus.setText(bus.getPlaca());
-                } else {
-                    txtBus.setText("No asignado"); // O un mensaje que indique que no hay bus asignado
-                }
-        } else {
-               JOptionPane.showMessageDialog(null, "No se encontró el viaje");
-            }
-        }   catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-        }
+//        try{
+//        String id = txtId.getText();
+//        if (txtId.getText().isEmpty()){
+//            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+//            return;
+//        }
+//        Viaje respuesta = controladorEmpresa.buscarViaje(id);
+//        if(respuesta != null){
+//             
+//            Bus bus = respuesta.getBus();
+//                if (bus != null) {
+//                    txtBus.setText(bus.getPlaca());
+//                } else {
+//                    txtBus.setText("No asignado"); // O un mensaje que indique que no hay bus asignado
+//                }
+//        } else {
+//               JOptionPane.showMessageDialog(null, "No se encontró el viaje");
+//            }
+//        }   catch (NumberFormatException ex) {
+//            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+//        }
     }//GEN-LAST:event_btnBuscarViajeActionPerformed
 
     private void btnEliminarViajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarViajeActionPerformed
-        try{
-        String id = txtId.getText();
-        if (txtId.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-            return;
-        }
-        boolean respuesta=controladorEmpresa.eliminarViaje(id);
-        if(respuesta){
-            JOptionPane.showMessageDialog(null, "Se eliminó el viaje");
-            limpiarCampos();
-
-        } else{
-            JOptionPane.showMessageDialog(null, "No se eliminó el viaje");
-        }
-       } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-    }
+//        try{
+//        String id = txtId.getText();
+//        if (txtId.getText().isEmpty()){
+//            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+//            return;
+//        }
+//        boolean respuesta=controladorEmpresa.eliminarViaje(id);
+//        if(respuesta){
+//            JOptionPane.showMessageDialog(null, "Se eliminó el viaje");
+//            limpiarCampos();
+//
+//        } else{
+//            JOptionPane.showMessageDialog(null, "No se eliminó el viaje");
+//        }
+//       } catch (NumberFormatException ex) {
+//        JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+//    }
     }//GEN-LAST:event_btnEliminarViajeActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        try{
-        String id =txtId.getText();
-        String origen=txtOrigen.getText();
-        String destino=txtDestino.getText();
-        String horaDeSalida=txtHoraDeSalida.getText();
-        String horaDeLlegada=txtHoraDeLlegada.getText();
-        String placa=txtBus.getText();
-        double valorViaje=Double.parseDouble(txtValorViaje.getText()); 
-         if (txtId.getText().isEmpty()||txtOrigen.getText().isEmpty() || txtDestino.getText().isEmpty() || 
-            txtHoraDeSalida.getText().isEmpty() || txtHoraDeLlegada.getText().isEmpty()||
-            txtBus.getText().isEmpty() || txtValorViaje.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-            return;
-        }
-        Bus bus=controladorEmpresa.buscarBus(placa);
-        
-        Viaje viaje=new Viaje(id,origen,destino,horaDeSalida,horaDeLlegada,bus,valorViaje);
-        boolean respuesta=controladorEmpresa.modificarViaje(viaje);
-
-        if(respuesta){
-            JOptionPane.showMessageDialog(null, "Se modificó el bus");
-
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "No se modificó el bus");
-            }
-        }   catch (NumberFormatException ex) {
-             JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-        }
+//        try{
+//        String id =txtId.getText();
+//        String origen=txtOrigen.getText();
+//        String destino=txtDestino.getText();
+//        String horaDeSalida=txtHoraDeSalida.getText();
+//        String horaDeLlegada=txtHoraDeLlegada.getText();
+//        String placa=txtBus.getText();
+//        double valorViaje=Double.parseDouble(txtValorViaje.getText()); 
+//         if (txtId.getText().isEmpty()||txtOrigen.getText().isEmpty() || txtDestino.getText().isEmpty() || 
+//            txtHoraDeSalida.getText().isEmpty() || txtHoraDeLlegada.getText().isEmpty()||
+//            txtBus.getText().isEmpty() || txtValorViaje.getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+//            return;
+//        }
+//        Bus bus=controladorEmpresa.buscarBus(placa);
+//        
+//        Viaje viaje=new Viaje(id,origen,destino,horaDeSalida,horaDeLlegada,bus,valorViaje);
+//        boolean respuesta=controladorEmpresa.modificarViaje(viaje);
+//
+//        if(respuesta){
+//            JOptionPane.showMessageDialog(null, "Se modificó el bus");
+//
+//        }
+//        else{
+//            JOptionPane.showMessageDialog(null, "No se modificó el bus");
+//            }
+//        }   catch (NumberFormatException ex) {
+//             JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+//        }
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        VentanaPrincipalAdminFlota cambio=new VentanaPrincipalAdminFlota();
-        cambio.setVisible(true);
-        this.dispose();
+//        VentanaPrincipalAdminFlota cambio=new VentanaPrincipalAdminFlota();
+//        cambio.setVisible(true);
+//        this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed

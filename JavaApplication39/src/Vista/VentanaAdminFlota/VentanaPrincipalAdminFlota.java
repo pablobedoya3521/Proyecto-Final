@@ -5,7 +5,9 @@
 
 package Vista.VentanaAdminFlota;
 
-import Controlador.ControladorRegistro;
+
+import Modelo.Empresa;
+import Validador.ValidarInformacion;
 import Vista.Login;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
@@ -18,15 +20,16 @@ import javax.swing.UIManager;
  * @author sebastian
  */
 public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
-    private ControladorRegistro controladorRegistro;
+    private Empresa empresa;
    
-    public VentanaPrincipalAdminFlota() {
-       LookAndFeelUtil.setLookAndFeel();
+   
+    public VentanaPrincipalAdminFlota(Empresa empresa) {
+        LookAndFeelUtil.setLookAndFeel();
         initComponents();
         setLocationRelativeTo(this);
         setResizable(false);
         pack(); 
-        this.controladorRegistro=new ControladorRegistro();
+        this.empresa=empresa;
     }
     
     private void showJPanel(JPanel p){
@@ -365,7 +368,7 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTiqueteActionPerformed
 
     private void btnBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusActionPerformed
-        VentanaRegistroBusesAdminFlota cambio = new VentanaRegistroBusesAdminFlota();
+        VentanaRegistroBusesAdminFlota cambio = new VentanaRegistroBusesAdminFlota(this.empresa);
         cambio.setVisible(true);
     }//GEN-LAST:event_btnBusActionPerformed
 
@@ -382,7 +385,7 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDevolucionesActionPerformed
 
     private void btnBusesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusesActionPerformed
-        showJPanel(new PanelBusesAdminFlota());
+        showJPanel(new PanelBusesAdminFlota(this.empresa));
     }//GEN-LAST:event_btnBusesActionPerformed
 
     private void btnAdministradorFlotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministradorFlotaActionPerformed

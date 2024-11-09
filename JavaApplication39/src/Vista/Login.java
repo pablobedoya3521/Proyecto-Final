@@ -12,6 +12,7 @@ import Excepciones.ExcepcionUsuarioNoEncontrado;
 import Modelo.AdministradorTerminal;
 import Modelo.Usuario;
 import Validador.ValidarContraseña;
+import Validador.ValidarInformacion;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
 import java.util.logging.Level;
@@ -26,6 +27,7 @@ import javax.swing.UIManager;
 public class Login extends javax.swing.JFrame {
     private ControladorRegistro controladorRegistro;
     private ValidarContraseña validarContraseña;
+    private ValidarInformacion validarInformacion;
     /**
      * Creates new form VentanaSeleccion
      */
@@ -36,7 +38,7 @@ public class Login extends javax.swing.JFrame {
         pack();
         this.controladorRegistro= new ControladorRegistro();
         this.validarContraseña= new ValidarContraseña();
-
+        this.validarInformacion= new ValidarInformacion();
     }
     
     
@@ -271,8 +273,8 @@ public class Login extends javax.swing.JFrame {
           
             Usuario respuesta = controladorRegistro.buscar(correo);
             validarContraseña.ValidarContraseña(correo, contraseña);
-        
-            respuesta.login();
+            Object informacion = validarInformacion.validarInformacion(correo);
+            respuesta.login(informacion);
         }catch(ExcepcionContraseñaIncorrecta | ExcepcionUsuarioNoEncontrado ex){
             JOptionPane.showMessageDialog(null, ex.getMessage());
         } 

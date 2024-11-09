@@ -31,8 +31,9 @@ public class Cliente extends Usuario implements Serializable{
     }
 
     //@Override
-    public void login() {
-       VentanaPrincipalCliente ventana = new VentanaPrincipalCliente();
+    public void login(Object cliente) {
+       Cliente cliente1 = (Cliente) cliente;
+       VentanaPrincipalCliente ventana = new VentanaPrincipalCliente(cliente1);
        ventana.setVisible(true);
     }
     

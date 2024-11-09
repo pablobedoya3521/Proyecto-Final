@@ -18,27 +18,27 @@ public class VentanaViajesDisponiblesAdminFlota extends javax.swing.JPanel {
      */
     public VentanaViajesDisponiblesAdminFlota() {
         initComponents();
-        this.controladorEmpresa=new ControladorEmpresa();
-        llenarTabla();
+//        this.controladorEmpresa=new ControladorEmpresa();
+//        llenarTabla();
     }
     
-    private void llenarTabla() {
-        DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new Object[]{"id", "Origen", "Destino", "Hora de Salida", "Hora de Llegada", "Bus", "Precio del Viaje"});
-        for (int i = 0; i < controladorEmpresa.getListaViajes().size(); i++) {
-            model.addRow(new Object[]{
-                controladorEmpresa.getListaViajes().get(i).getId(),
-                controladorEmpresa.getListaViajes().get(i).getOrigen(),
-                controladorEmpresa.getListaViajes().get(i).getDestino(),
-                controladorEmpresa.getListaViajes().get(i).getHoraDeSalida(),
-                controladorEmpresa.getListaViajes().get(i).getHoraDeLlegada(),
-                controladorEmpresa.getListaViajes().get(i).getBus().getPlaca(),
-                controladorEmpresa.getListaViajes().get(i).getPrecioViaje()
-                                    
-            });
-        }
-        tablaViajes.setModel(model);
-    }
+//    private void llenarTabla() {
+//        DefaultTableModel model = new DefaultTableModel();
+//        model.setColumnIdentifiers(new Object[]{"id", "Origen", "Destino", "Hora de Salida", "Hora de Llegada", "Bus", "Precio del Viaje"});
+//        for (int i = 0; i < controladorEmpresa.getListaViajes().size(); i++) {
+//            model.addRow(new Object[]{
+//                controladorEmpresa.getListaViajes().get(i).getId(),
+//                controladorEmpresa.getListaViajes().get(i).getOrigen(),
+//                controladorEmpresa.getListaViajes().get(i).getDestino(),
+//                controladorEmpresa.getListaViajes().get(i).getHoraDeSalida(),
+//                controladorEmpresa.getListaViajes().get(i).getHoraDeLlegada(),
+//                controladorEmpresa.getListaViajes().get(i).getBus().getPlaca(),
+//                controladorEmpresa.getListaViajes().get(i).getPrecioViaje()
+//                                    
+//            });
+//        }
+//        tablaViajes.setModel(model);
+//    }
 
 
     /**

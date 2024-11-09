@@ -25,9 +25,36 @@ public class AdministradorFlota extends Usuario implements Serializable{
     }
 
     @Override
-    public void login() {
-        VentanaPrincipalAdminFlota ventana = new VentanaPrincipalAdminFlota();
+    public void login(Object empresa) {
+        Empresa empresa1 = (Empresa) empresa;
+        VentanaPrincipalAdminFlota ventana = new VentanaPrincipalAdminFlota(empresa1);
         ventana.setVisible(true);
     }
+
+    public String getNivelExp() {
+        return nivelExp;
+    }
+
+    public void setNivelExp(String nivelExp) {
+        this.nivelExp = nivelExp;
+    }
+
+    public double getSueldo() {
+        return sueldo;
+    }
+
+    public void setSueldo(double sueldo) {
+        this.sueldo = sueldo;
+    }
+
+    public String getHorario() {
+        return horario;
+    }
+
+    public void setHorario(String horario) {
+        this.horario = horario;
+    }
+    
+    
     
 }

@@ -5,6 +5,7 @@
 package Controlador;
 
 import Modelo.Caseta;
+import Modelo.Empresa;
 import Persistencia.SerializadoraCaseta;
 import java.io.Serializable;
 
@@ -40,5 +41,16 @@ public class ControladorCasilla implements Serializable{
 
     public void setContador(int contador) {
         this.contador = contador;
+    }
+    
+    public Empresa entregarEmpresa(String correo){
+        for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; j < casetas[i].length; j++) {
+                if(casetas[i][j].getEmpresa().getAdministradorFlota().getCorreo().equals(correo)){
+                    return casetas[i][j].getEmpresa();
+                }
+            }
+        }
+        return null;
     }
 }

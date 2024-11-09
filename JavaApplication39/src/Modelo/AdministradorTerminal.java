@@ -19,7 +19,7 @@ public class AdministradorTerminal extends Usuario implements Serializable{
     }
 
     @Override
-    public void login() {
+    public void login(Object empresa) {
         VentanaPrincipalAdminTerminal ventana= new VentanaPrincipalAdminTerminal();
         ventana.setVisible(true);
     }

@@ -5,6 +5,8 @@
 package Vista.VentanasCliente;
 
 import Controlador.ControladorRegistro;
+import Modelo.Cliente;
+import Validador.ValidarInformacion;
 import Vista.Login;
 import Vista.Registro;
 import com.formdev.flatlaf.FlatLightLaf;
@@ -19,10 +21,12 @@ import javax.swing.UIManager;
  */
 public class VentanaPrincipalCliente extends javax.swing.JFrame {
     private ControladorRegistro controladorRegistro;
+    private Cliente cliente;
+    private ValidarInformacion validarInformacion;
     /**
      * Creates new form VentanaPrincipal
      */
-    public VentanaPrincipalCliente() {
+    public VentanaPrincipalCliente(Cliente cliente) {
         Registro.LookAndFeelUtil.setLookAndFeel();
         initComponents();
         InitStyles();
@@ -30,6 +34,8 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
         setResizable(false);
         pack(); 
         this.controladorRegistro=new ControladorRegistro();
+       
+        this.cliente=cliente;
     }
     
     

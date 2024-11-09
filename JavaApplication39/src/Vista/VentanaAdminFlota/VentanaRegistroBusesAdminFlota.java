@@ -8,6 +8,7 @@ import Controlador.ControladorEmpresa;
 import Excepciones.ExcepcionBusVacio;
 import Excepciones.ExcepcionPlacaEnUso;
 import Modelo.Bus;
+import Modelo.Empresa;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -19,15 +20,17 @@ import javax.swing.JOptionPane;
  */
 public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
     private ControladorEmpresa controladorEmpresa;
+    private Empresa empresa;
     /**
      * Creates new form VentanaRegistroBusesAdminFlota
      */
-    public VentanaRegistroBusesAdminFlota() {
+    public VentanaRegistroBusesAdminFlota(Empresa empresa) {
         initComponents();
         setLocationRelativeTo(this);
         setResizable(false);
         pack();
-        this.controladorEmpresa= new ControladorEmpresa();
+        this.controladorEmpresa= new ControladorEmpresa(empresa);
+        this.empresa=empresa;
     }
 
     /**
@@ -202,9 +205,9 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
             limpiarCampos();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-        } catch (ExcepcionPlacaEnUso ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
+//        } catch (ExcepcionPlacaEnUso ex) {
+//            JOptionPane.showMessageDialog(null, ex.getMessage());
+      }
     }//GEN-LAST:event_btnGuardarBusActionPerformed
 
     
@@ -227,38 +230,38 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        try{
-        String placa=txtPlaca.getText(); 
-        if (txtPlaca.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Por favor complete el campo de la placa.");
-            return;
-        }
-        boolean respuesta=controladorEmpresa.eliminarBus(placa);
-        if(respuesta){
-            JOptionPane.showMessageDialog(null, "Se eliminó el bus");
-         
-        } else{
-            JOptionPane.showMessageDialog(null, "No se eliminó el bus");
-            }
-        } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-    }
+//        try{
+//        String placa=txtPlaca.getText(); 
+//        if (txtPlaca.getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "Por favor complete el campo de la placa.");
+//            return;
+//        }
+//        boolean respuesta=controladorEmpresa.eliminarBus(placa);
+//        if(respuesta){
+//            JOptionPane.showMessageDialog(null, "Se eliminó el bus");
+//         
+//        } else{
+//            JOptionPane.showMessageDialog(null, "No se eliminó el bus");
+//            }
+//        } catch (NumberFormatException ex) {
+//        JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+//    }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        try{
-            String placa=txtPlaca.getText();
-            int numAsientos =Integer.parseInt(txtNumAsientos.getText());
-                if (txtPlaca.getText().isEmpty()||txtNumAsientos.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-                    return;
-                }
-            Bus bus=new Bus(placa,numAsientos);
-            controladorEmpresa.modificarBus(bus);
-            JOptionPane.showMessageDialog(null, "Se modificó el bus");
-        }catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-        }
+//        try{
+//            String placa=txtPlaca.getText();
+//            int numAsientos =Integer.parseInt(txtNumAsientos.getText());
+//                if (txtPlaca.getText().isEmpty()||txtNumAsientos.getText().isEmpty()) {
+//                    JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+//                    return;
+//                }
+//            Bus bus=new Bus(placa,numAsientos);
+//            controladorEmpresa.modificarBus(bus);
+//            JOptionPane.showMessageDialog(null, "Se modificó el bus");
+//        }catch (NumberFormatException ex) {
+//            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+//        }
     }//GEN-LAST:event_btnModificarActionPerformed
     
     public void limpiarCampos(){
@@ -267,7 +270,7 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
     }
     
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        VentanaPrincipalAdminFlota cambio=new VentanaPrincipalAdminFlota();
+        VentanaPrincipalAdminFlota cambio=new VentanaPrincipalAdminFlota(this.empresa);
         cambio.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed

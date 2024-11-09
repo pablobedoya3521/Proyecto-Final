@@ -68,7 +68,7 @@ public abstract class Usuario implements Serializable{
     }
     
     //metodos
-    public abstract void login();
+    public abstract void login(Object informacion);
     //
     public void logout(){
       

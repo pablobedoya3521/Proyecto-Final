@@ -12,20 +12,40 @@ import java.util.ArrayList;
  * @author juan
  */
 public class Empresa implements Serializable{
+    private static final long serialVersionUID = 1L;
     private int nit;
     private String nombreEmpresa;
     private AdministradorFlota administradorFlota;
-    private ArrayList<Bus> buses;
-    private ArrayList<Viaje> viajes;
+    private ArrayList<Bus> listaBuses;
+    private ArrayList<Viaje> listaViajes;
     
     public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFlota){
         this.nit=nit;
         this.nombreEmpresa=nombreEmpresa;
         this.administradorFlota=administradorFlota;
-        this.buses=new ArrayList<>();
-        this.viajes= new ArrayList<>();
+        this.listaBuses=new ArrayList<>();
+        this.listaViajes= new ArrayList<>();
     }
     
+    
+    public String guardarBus(Bus bus){
+        Bus respuesta = buscarBus(bus.getPlaca());
+        if(respuesta==null){
+            listaBuses.add(bus);
+            return "Bus guardado";
+        }
+        return "ya hay un bus registrado con esta placa";
+    }
+    
+    public Bus buscarBus(String placa){
+        for (int i = 0; listaBuses.size() < 10; i++) {
+            if(listaBuses.get(i).getPlaca().equals(placa)){
+                return listaBuses.get(i);
+            }
+        }
+        return null;
+    }
+
     public int getNit() {
         return nit;
     }
@@ -50,20 +70,12 @@ public class Empresa implements Serializable{
         this.administradorFlota = administradorFlota;
     }
 
-    public ArrayList<Bus> getBuses() {
-        return buses;
+    public ArrayList<Bus> getListaBuses() {
+        return listaBuses;
     }
 
-    public void setBuses(ArrayList<Bus> buses) {
-        this.buses = buses;
+    public ArrayList<Viaje> getListaViajes() {
+        return listaViajes;
     }
 
-    public ArrayList<Viaje> getViajes() {
-        return viajes;
-    }
-
-    public void setViajes(ArrayList<Viaje> viajes) {
-        this.viajes = viajes;
-    }
-    
 }

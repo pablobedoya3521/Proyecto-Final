@@ -12,7 +12,7 @@ import java.time.LocalDate;
  * @author sebastian
  */
 public class Viaje implements Serializable{
-    private static final long serialVersionUID = 8859056230541175833L; 
+    private static final long serialVersionUID = 1L;
     private String id;
     private String origen;
     private String destino;

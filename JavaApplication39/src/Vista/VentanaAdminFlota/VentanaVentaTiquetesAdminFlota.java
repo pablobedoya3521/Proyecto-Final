@@ -26,7 +26,7 @@ public class VentanaVentaTiquetesAdminFlota extends javax.swing.JFrame {
      */
     public VentanaVentaTiquetesAdminFlota() {
         initComponents();
-        this.controladorEmpresa=new ControladorEmpresa();
+//        this.controladorEmpresa=new ControladorEmpresa();
         this.controladorRegistro= new ControladorRegistro();
     }
 

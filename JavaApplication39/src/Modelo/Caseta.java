@@ -11,6 +11,7 @@ import java.io.Serializable;
  * @author juan
  */
 public class Caseta implements Serializable{
+    private static final long serialVersionUID = 1L;
     private int id;
     private Empresa empresa;
     private double valorArrendamiento;

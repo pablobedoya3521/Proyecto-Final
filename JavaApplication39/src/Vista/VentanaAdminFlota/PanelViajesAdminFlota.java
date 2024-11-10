@@ -5,6 +5,7 @@
 package Vista.VentanaAdminFlota;
 
 import Controlador.ControladorEmpresa;
+import Modelo.Empresa;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,30 +17,30 @@ public class PanelViajesAdminFlota extends javax.swing.JPanel {
     /**
      * Creates new form VentanaPrincipalViajesAdminFlota
      */
-    public PanelViajesAdminFlota() {
+    public PanelViajesAdminFlota(Empresa empresa) {
         initComponents();
-        //this.controladorEmpresa=new ControladorEmpresa();
-        //llenarTabla();
+        this.controladorEmpresa=new ControladorEmpresa(empresa);
+        llenarTabla();
     }
     
     
-//    private void llenarTabla() {
-//        DefaultTableModel model = new DefaultTableModel();
-//        model.setColumnIdentifiers(new Object[]{"id", "Origen", "Destino", "Hora de Salida", "Hora de Llegada", "Bus", "Precio del Viaje"});
-//        for (int i = 0; i < controladorEmpresa.getListaViajes().size(); i++) {
-//            model.addRow(new Object[]{
-//                controladorEmpresa.getListaViajes().get(i).getId(),
-//                controladorEmpresa.getListaViajes().get(i).getOrigen(),
-//                controladorEmpresa.getListaViajes().get(i).getDestino(),
-//                controladorEmpresa.getListaViajes().get(i).getHoraDeSalida(),
-//                controladorEmpresa.getListaViajes().get(i).getHoraDeLlegada(),
-//                controladorEmpresa.getListaViajes().get(i).getBus().getPlaca(),
-//                controladorEmpresa.getListaViajes().get(i).getPrecioViaje()
-//                                    
-//            });
-//        }
-//        TablaViajes.setModel(model);
-//    }
+    private void llenarTabla() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new Object[]{"Placa de bus", "ID", "Precio", "Origen", "Destino", "Hora de salida", "Hora de llegada", "Fecha de creacion" });
+        for (int i = 0; i < controladorEmpresa.getEmpresa().getListaViajes().size(); i++) {
+            model.addRow(new Object[]{
+                controladorEmpresa.getEmpresa().getListaViajes().get(i).getBus().getPlaca(),
+                controladorEmpresa.getEmpresa().getListaViajes().get(i).getId(),
+                controladorEmpresa.getEmpresa().getListaViajes().get(i).getPrecioViaje(),
+                controladorEmpresa.getEmpresa().getListaViajes().get(i).getOrigen(),
+                controladorEmpresa.getEmpresa().getListaViajes().get(i).getDestino(),
+                controladorEmpresa.getEmpresa().getListaViajes().get(i).getHoraDeSalida(),
+                controladorEmpresa.getEmpresa().getListaViajes().get(i).getHoraDeLlegada(),
+                controladorEmpresa.getEmpresa().getListaViajes().get(i).getFechaCreacion()                       
+            });
+        }
+        TablaViajes.setModel(model);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,13 +106,13 @@ public class PanelViajesAdminFlota extends javax.swing.JPanel {
         TablaViajes.setForeground(new java.awt.Color(255, 255, 255));
         TablaViajes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8"
             }
         ));
         jScrollPane1.setViewportView(TablaViajes);

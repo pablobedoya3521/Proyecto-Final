@@ -66,6 +66,42 @@ public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFl
         }
         return null; // No se encontró el bus
     }
+    
+    public String guardarViaje(Viaje viaje){
+        Caseta[][] casetas = serializadora.leerObjeto();
+        Viaje respuesta = buscarViaje(viaje.getId());
+        if(respuesta==null){
+            listaViajes.add(viaje);
+             for (int i = 0; i < casetas.length; i++) {
+               for (int j = 0; j < casetas[i].length; j++) {
+                   if(casetas[i][j].getEmpresa()!=null){
+                        if(casetas[i][j].getEmpresa().getNit()==this.nit){
+                            casetas[i][j].setEmpresa(this);
+                            serializadora.escribirObjeto(casetas);
+                        }
+                   }
+               }
+           }
+           return "Viaje guardado";  
+        }
+        return "ya hay un viaje registrado con este id";
+    } 
+    
+    public Viaje buscarViaje(String id) {
+        Caseta[][] casetas = serializadora.leerObjeto();
+        for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; j < casetas[i].length; j++) {
+                if (casetas[i][j].getEmpresa() != null && casetas[i][j].getEmpresa().getNit() == this.nit) {
+                    for (int k = 0; k < casetas[i][j].getEmpresa().getListaViajes().size(); k++) {
+                        if (casetas[i][j].getEmpresa().getListaViajes().get(k).getId().equals(id)) {
+                            return casetas[i][j].getEmpresa().getListaViajes().get(k);
+                        }
+                    }
+                }
+            }
+        }
+        return null; // No se encontró el viaje
+    }
 
     public int getNit() {
         return nit;

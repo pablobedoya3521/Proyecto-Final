@@ -103,7 +103,7 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
         btnTiquete.setBackground(new java.awt.Color(51, 51, 51));
         btnTiquete.setForeground(new java.awt.Color(255, 255, 255));
         btnTiquete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reservado (1).png"))); // NOI18N
-        btnTiquete.setText("Reservar Tiquete");
+        btnTiquete.setText("Efectuar Reserva");
         btnTiquete.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
         btnTiquete.setBorderPainted(false);
         btnTiquete.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -359,7 +359,7 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViajeActionPerformed
-       VentanaRegistroViajesAdminFlota cambio = new VentanaRegistroViajesAdminFlota();
+       VentanaRegistroViajesAdminFlota cambio = new VentanaRegistroViajesAdminFlota(this.empresa);
         cambio.setVisible(true);
     }//GEN-LAST:event_btnViajeActionPerformed
 
@@ -404,7 +404,7 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTiquete1ActionPerformed
 
     private void btnViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViajesActionPerformed
-       showJPanel(new PanelViajesAdminFlota());
+       showJPanel(new PanelViajesAdminFlota(this.empresa));
     }//GEN-LAST:event_btnViajesActionPerformed
 
 

@@ -77,7 +77,6 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
         background = new javax.swing.JPanel();
         menu = new javax.swing.JPanel();
         mensaje = new javax.swing.JLabel();
-        btnComprar = new javax.swing.JButton();
         btnReservar = new javax.swing.JButton();
         btnViajes = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -104,21 +103,6 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
         mensaje.setText("Transs-App");
         menu.add(mensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 156, -1));
 
-        btnComprar.setBackground(new java.awt.Color(51, 51, 51));
-        btnComprar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cheque (3).png"))); // NOI18N
-        btnComprar.setText("Comprar");
-        btnComprar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
-        btnComprar.setBorderPainted(false);
-        btnComprar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnComprar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnComprar.setIconTextGap(12);
-        btnComprar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnComprarActionPerformed(evt);
-            }
-        });
-        menu.add(btnComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 206, 330, 60));
-
         btnReservar.setBackground(new java.awt.Color(51, 51, 51));
         btnReservar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/factura (1) (1).png"))); // NOI18N
         btnReservar.setText("Reservar");
@@ -132,7 +116,7 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
                 btnReservarActionPerformed(evt);
             }
         });
-        menu.add(btnReservar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 330, 60));
+        menu.add(btnReservar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 330, 60));
 
         btnViajes.setBackground(new java.awt.Color(51, 51, 51));
         btnViajes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ubicacion (1).png"))); // NOI18N
@@ -384,10 +368,6 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnComprarActionPerformed
-
     private void btnReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnReservarActionPerformed
@@ -440,7 +420,6 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
     private javax.swing.JPanel background;
     private javax.swing.JButton btnCliente;
     private javax.swing.JButton btnCliente2;
-    private javax.swing.JButton btnComprar;
     private javax.swing.JButton btnCompras;
     private javax.swing.JButton btnDevoluciones;
     private javax.swing.JButton btnNotificaciones;

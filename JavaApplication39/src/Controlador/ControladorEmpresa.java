@@ -6,6 +6,7 @@ package Controlador;
 
 import Modelo.Bus;
 import Modelo.Empresa;
+import Modelo.Viaje;
 
 /**
  *
@@ -35,6 +36,10 @@ public class ControladorEmpresa {
     
     public Bus buscarBus(String placa){
         return empresa.buscarBus(placa);
+    }
+    
+    public String guardarViaje(Viaje viaje){
+        return empresa.guardarViaje(viaje);
     }
    
 }

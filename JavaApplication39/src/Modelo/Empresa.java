@@ -4,6 +4,7 @@
  */
 package Modelo;
 
+import Persistencia.SerializadoraCaseta;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -18,23 +19,36 @@ public class Empresa implements Serializable{
     private AdministradorFlota administradorFlota;
     private ArrayList<Bus> listaBuses;
     private ArrayList<Viaje> listaViajes;
+    private SerializadoraCaseta serializadora;
     
-    public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFlota){
-        this.nit=nit;
-        this.nombreEmpresa=nombreEmpresa;
-        this.administradorFlota=administradorFlota;
-        this.listaBuses=new ArrayList<>();
-        this.listaViajes= new ArrayList<>();
-    }
+public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFlota){
+       this.nit = nit;
+       this.nombreEmpresa = nombreEmpresa;
+       this.administradorFlota = administradorFlota;
+       this.listaBuses = new ArrayList<>();
+       this.listaViajes = new ArrayList<>();
+       this.serializadora = new SerializadoraCaseta();
+   }
     
     
     public String guardarBus(Bus bus){
-        Bus respuesta = buscarBus(bus.getPlaca());
-        if(respuesta==null){
-            listaBuses.add(bus);
-            return "Bus guardado";
-        }
-        return "ya hay un bus registrado con esta placa";
+       Caseta[][] casetas = serializadora.leerObjeto();
+       Bus respuesta = buscarBus(bus.getPlaca());
+       if (respuesta == null) {
+           listaBuses.add(bus);
+           for (int i = 0; i < casetas.length; i++) {
+               for (int j = 0; j < casetas[i].length; j++) {
+                   if(casetas[i][j].getEmpresa()!=null){
+                        if(casetas[i][j].getEmpresa().getNit()==this.nit){
+                            casetas[i][j].setEmpresa(this);
+                            serializadora.escribirObjeto(casetas);
+                        }
+                   }
+               }
+           }
+           return "Bus guardado";
+       }
+       return "ya hay un bus registrado con esta placa";
     }
     
     public Bus buscarBus(String placa){

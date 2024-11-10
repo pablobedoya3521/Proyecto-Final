@@ -7,16 +7,12 @@ package Vista;
 
 import Controlador.ControladorRegistro;
 import Excepciones.ExcepcionContraseñaIncorrecta;
-import Excepciones.ExcepcionCorreoEnUso;
 import Excepciones.ExcepcionUsuarioNoEncontrado;
-import Modelo.AdministradorTerminal;
 import Modelo.Usuario;
 import Validador.ValidarContraseña;
 import Validador.ValidarInformacion;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 

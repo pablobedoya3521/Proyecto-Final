@@ -51,13 +51,20 @@ public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFl
        return "ya hay un bus registrado con esta placa";
     }
     
-    public Bus buscarBus(String placa){
-        for (int i = 0; i<listaBuses.size(); i++) {
-            if(listaBuses.get(i).getPlaca().equals(placa)){
-                return listaBuses.get(i);
+    public Bus buscarBus(String placa) {
+        Caseta[][] casetas = serializadora.leerObjeto();
+        for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; j < casetas[i].length; j++) {
+                if (casetas[i][j].getEmpresa() != null && casetas[i][j].getEmpresa().getNit() == this.nit) {
+                    for (int k = 0; k < casetas[i][j].getEmpresa().getListaBuses().size(); k++) {
+                        if (casetas[i][j].getEmpresa().getListaBuses().get(k).getPlaca().equals(placa)) {
+                            return casetas[i][j].getEmpresa().getListaBuses().get(k);
+                        }
+                    }
+                }
             }
         }
-        return null;
+        return null; // No se encontró el bus
     }
 
     public int getNit() {

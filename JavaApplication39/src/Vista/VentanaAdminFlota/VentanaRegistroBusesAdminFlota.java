@@ -200,8 +200,8 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
             }
         
             Bus bus=new Bus(placa,numAsientos);
-            controladorEmpresa.guardarBus(bus);
-            JOptionPane.showMessageDialog(null, "Se guardo el bus");
+            String respuesta = controladorEmpresa.guardarBus(bus);
+            JOptionPane.showMessageDialog(null, respuesta);
             limpiarCampos();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");

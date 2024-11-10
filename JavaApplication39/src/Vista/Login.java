@@ -7,12 +7,16 @@ package Vista;
 
 import Controlador.ControladorRegistro;
 import Excepciones.ExcepcionContraseñaIncorrecta;
+import Excepciones.ExcepcionCorreoEnUso;
 import Excepciones.ExcepcionUsuarioNoEncontrado;
+import Modelo.AdministradorTerminal;
 import Modelo.Usuario;
 import Validador.ValidarContraseña;
 import Validador.ValidarInformacion;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -260,7 +264,6 @@ public class Login extends javax.swing.JFrame {
         try{
           String correo = txtCorreo.getText();
           String contraseña = txtContraseña.getText();
-          
               //verifica que los campos que piden numeros, no se les ingrese Strings
             if (txtCorreo.getText().isEmpty()||txtContraseña.getText().isEmpty()) {
               JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
@@ -273,7 +276,7 @@ public class Login extends javax.swing.JFrame {
             respuesta.login(informacion);
         }catch(ExcepcionContraseñaIncorrecta | ExcepcionUsuarioNoEncontrado ex){
             JOptionPane.showMessageDialog(null, ex.getMessage());
-        } 
+        }
     }//GEN-LAST:event_btnIniarsesionActionPerformed
     
     /**

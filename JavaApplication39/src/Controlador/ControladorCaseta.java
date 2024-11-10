@@ -15,7 +15,7 @@ import Persistencia.SerializadoraCaseta;
 public class ControladorCaseta {
     private Caseta caseta;
     private SerializadoraCaseta serializadora;
-//    private ControladorCasilla controladorCasilla;
+
     
     public ControladorCaseta(Caseta caseta){
         this.caseta=caseta;

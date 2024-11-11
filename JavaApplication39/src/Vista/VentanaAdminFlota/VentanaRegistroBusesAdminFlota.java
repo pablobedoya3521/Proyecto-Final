@@ -10,8 +10,6 @@ import Excepciones.ExcepcionBusYaRegistrado;
 import Excepciones.ExcepcionCantidadPlazasNula;
 import Modelo.Bus;
 import Modelo.Empresa;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
@@ -220,12 +218,8 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
               return;
             }
             Bus respuesta = controladorEmpresa.buscarBus(placa);
-            if(respuesta != null){
                 txtNumAsientos.setText(String.valueOf(respuesta.getNumAsientos()));
-            } else {
-                JOptionPane.showMessageDialog(null, "No se encontró el bus");
-            }
-        }catch (NumberFormatException ex) {
+        }catch (NumberFormatException | ExcepcionBusVacio ex) {
             JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
         }
     }//GEN-LAST:event_btnBuscarActionPerformed

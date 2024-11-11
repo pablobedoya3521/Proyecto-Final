@@ -10,6 +10,6 @@ package Excepciones;
  */
 public class ExcepcionViajeVacio extends Exception{
     public ExcepcionViajeVacio(){
-        super("No se puede crear el tiquete, no hay viaje disponible");
+        super("No existe ningun viaje con este ID");
     }
 }

@@ -6,7 +6,7 @@ package Vista.VentanaAdminFlota;
 
 import Controlador.ControladorEmpresa;
 import Controlador.ControladorRegistro;
-import Excepciones.ExcepcionCodigoEnUso;
+import Excepciones.ExcepcionCodigoTiqueteEnUso;
 import Excepciones.ExcepcionUsuarioNoEncontrado;
 import Excepciones.ExcepcionViajeVacio;
 import Modelo.Cliente;
@@ -293,7 +293,7 @@ public class VentanaVentaTiquetesAdminFlota extends javax.swing.JFrame {
 //        controladorEmpresa.guardarTiquete(tiquete);
 //        JOptionPane.showMessageDialog(null, "Tiquete vendido");
 //            
-//        } catch(ExcepcionCodigoEnUso|ExcepcionViajeVacio | ExcepcionUsuarioNoEncontrado ex){
+//        } catch(ExcepcionCodigoTiqueteEnUso|ExcepcionViajeVacio | ExcepcionUsuarioNoEncontrado ex){
 //            JOptionPane.showMessageDialog(null, ex.getMessage());
 //        }
     }//GEN-LAST:event_btnVenderActionPerformed
@@ -355,7 +355,7 @@ public class VentanaVentaTiquetesAdminFlota extends javax.swing.JFrame {
 //        controladorEmpresa.guardarTiquete(tiquete);
 //        JOptionPane.showMessageDialog(null, "Tiquete vendido");
 //            
-//        } catch(ExcepcionCodigoEnUso|ExcepcionViajeVacio | ExcepcionUsuarioNoEncontrado ex){
+//        } catch(ExcepcionCodigoTiqueteEnUso|ExcepcionViajeVacio | ExcepcionUsuarioNoEncontrado ex){
 //            JOptionPane.showMessageDialog(null, ex.getMessage());
 //        }
     }//GEN-LAST:event_btnModificarActionPerformed

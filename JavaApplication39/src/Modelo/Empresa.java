@@ -10,9 +10,8 @@ import Excepciones.ExcepcionCantidadPlazasNula;
 import Excepciones.ExcepcionIdDeViajeEnUso;
 import Excepciones.ExcepcionViajeVacio;
 import Persistencia.SerializadoraCaseta;
+import Util.Lista;
 import java.io.Serializable;
-import java.util.ArrayList;
-
 /**
  *
  * @author juan
@@ -22,16 +21,16 @@ public class Empresa implements Serializable{
     private int nit;
     private String nombreEmpresa;
     private AdministradorFlota administradorFlota;
-    private ArrayList<Bus> listaBuses;
-    private ArrayList<Viaje> listaViajes;
+    private Lista<Bus> listaBuses;
+    private Lista<Viaje> listaViajes;
     private SerializadoraCaseta serializadora;
     
 public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFlota){
        this.nit = nit;
        this.nombreEmpresa = nombreEmpresa;
        this.administradorFlota = administradorFlota;
-       this.listaBuses = new ArrayList<>();
-       this.listaViajes = new ArrayList<>();
+       this.listaBuses = new Lista<>();
+       this.listaViajes = new Lista<>();
        this.serializadora = new SerializadoraCaseta();
    }
     
@@ -43,9 +42,9 @@ public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFl
         for (int i = 0; i < casetas.length; i++) {
             for (int j = 0; j < casetas[i].length; j++) {
                 if (casetas[i][j].getEmpresa() != null && casetas[i][j].getEmpresa().getNit() == this.nit) {
-                    for (Bus b : casetas[i][j].getEmpresa().getListaBuses()) {
-                        if (b.getPlaca().equals(bus.getPlaca())) {
-                            throw new ExcepcionBusYaRegistrado();//si encontro el bus lanzo la excepcicion
+                    for (int k = 0; k < casetas[i][j].getEmpresa().getListaBuses().size(); k++) {
+                        if(casetas[i][j].getEmpresa().getListaBuses().get(i).getPlaca().equals(bus.getPlaca())){
+                            throw new ExcepcionBusYaRegistrado();
                         }
                     }
                 }
@@ -278,11 +277,11 @@ public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFl
         this.administradorFlota = administradorFlota;
     }
 
-    public ArrayList<Bus> getListaBuses() {
+    public Lista<Bus> getListaBuses() {
         return listaBuses;
     }
 
-    public ArrayList<Viaje> getListaViajes() {
+    public Lista<Viaje> getListaViajes() {
         return listaViajes;
     }
 

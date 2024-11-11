@@ -34,7 +34,6 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
         setResizable(false);
         pack(); 
         this.controladorRegistro=new ControladorRegistro();
-       
         this.cliente=cliente;
     }
     

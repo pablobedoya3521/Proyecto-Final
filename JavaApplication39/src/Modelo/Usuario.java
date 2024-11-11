@@ -4,6 +4,7 @@
  */
 package Modelo;
 
+import Vista.Login;
 import java.io.Serializable;
 
 /**
@@ -12,11 +13,11 @@ import java.io.Serializable;
  */
 public abstract class Usuario implements Serializable{
     private static final long serialVersionUID = 1L;
-    private String nombre;
-    private String apellido;
-    private String cedula;
-    private String correo;
-    private String contraseña;
+    protected String nombre;
+    protected String apellido;
+    protected String cedula;
+    protected String correo;
+    protected String contraseña;
 
     public Usuario(String nombre, String apellido, String cedula, String correo, String contraseña) {
         this.nombre = nombre;
@@ -68,9 +69,5 @@ public abstract class Usuario implements Serializable{
     
     //metodos
     public abstract void login(Object informacion);
-    //
-    public void logout(){
-      
-    };
     
 }

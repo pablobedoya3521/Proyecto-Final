@@ -17,7 +17,7 @@ import Modelo.Viaje;
  *
  * @author sebastian
  */
-public class ControladorEmpresa {
+public class ControladorEmpresa{
     private Empresa empresa;
 
     

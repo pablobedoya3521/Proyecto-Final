@@ -14,7 +14,7 @@ import Util.Lista;
  *
  * @author juan
  */
-public class ControladorRegistro {
+public class ControladorRegistro{
     private Lista<Usuario> usuarios;
     private SerializadoraUsuarios serializadora;
     

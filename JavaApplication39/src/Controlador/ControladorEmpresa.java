@@ -4,6 +4,8 @@
  */
 package Controlador;
 
+import Excepciones.ExcepcionBusVacio;
+import Excepciones.ExcepcionBusYaRegistrado;
 import Modelo.Bus;
 import Modelo.Empresa;
 import Modelo.Viaje;
@@ -30,8 +32,8 @@ public class ControladorEmpresa {
     }
 
     //Metodos
-    public String guardarBus(Bus bus){
-        return empresa.guardarBus(bus);
+    public void guardarBus(Bus bus) throws ExcepcionBusYaRegistrado{
+       empresa.guardarBus(bus);
     }
     
     public Bus buscarBus(String placa){
@@ -41,5 +43,12 @@ public class ControladorEmpresa {
     public String guardarViaje(Viaje viaje){
         return empresa.guardarViaje(viaje);
     }
+    
+    public void eliminarBus(String placa) throws ExcepcionBusVacio{
+       empresa.eliminarBus(placa);
+    }
    
+    public void modificarBus(Bus bus) throws ExcepcionBusVacio{
+        empresa.modificarBus(bus);
+    }
 }

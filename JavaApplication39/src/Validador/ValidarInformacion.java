@@ -29,9 +29,11 @@ public Object validarInformacion(String correo) {
                 return controladorRegistro.getUsuarios().get(i);
             } else if (controladorRegistro.getUsuarios().get(i) instanceof AdministradorFlota) {
                 for (int k = 0; k < controladorCasillas.getCaseta().length; k++) {
-                    for (int l = 0; l < controladorCasillas.getCaseta()[k].length; l++) { // Cambiar i por k
-                        if (controladorCasillas.getCaseta()[k][l].getEmpresa().getAdministradorFlota().getCorreo().equals(correo)) {
-                            return controladorCasillas.getCaseta()[k][l].getEmpresa();
+                    for (int l = 0; l < controladorCasillas.getCaseta()[k].length; l++) { 
+                        if(controladorCasillas.getCaseta()[k][l].getEmpresa()!=null){
+                            if (controladorCasillas.getCaseta()[k][l].getEmpresa().getAdministradorFlota().getCorreo().equals(correo)) {
+                                return controladorCasillas.getCaseta()[k][l].getEmpresa();
+                            }
                         }
                     }
                 }

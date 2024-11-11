@@ -6,7 +6,7 @@ package Vista.VentanaAdminFlota;
 
 import Controlador.ControladorEmpresa;
 import Excepciones.ExcepcionBusVacio;
-import Excepciones.ExcepcionPlacaEnUso;
+import Excepciones.ExcepcionBusYaRegistrado;
 import Modelo.Bus;
 import Modelo.Empresa;
 import java.util.logging.Level;
@@ -200,13 +200,13 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
             }
         
             Bus bus=new Bus(placa,numAsientos);
-            String respuesta = controladorEmpresa.guardarBus(bus);
-            JOptionPane.showMessageDialog(null, respuesta);
+            controladorEmpresa.guardarBus(bus);
+            JOptionPane.showMessageDialog(null, "Bus registrado correctamente");
             limpiarCampos();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-//        } catch (ExcepcionPlacaEnUso ex) {
-//            JOptionPane.showMessageDialog(null, ex.getMessage());
+        } catch (ExcepcionBusYaRegistrado ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
       }
     }//GEN-LAST:event_btnGuardarBusActionPerformed
 
@@ -230,38 +230,36 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-//        try{
-//        String placa=txtPlaca.getText(); 
-//        if (txtPlaca.getText().isEmpty()) {
-//            JOptionPane.showMessageDialog(null, "Por favor complete el campo de la placa.");
-//            return;
-//        }
-//        boolean respuesta=controladorEmpresa.eliminarBus(placa);
-//        if(respuesta){
-//            JOptionPane.showMessageDialog(null, "Se eliminó el bus");
-//         
-//        } else{
-//            JOptionPane.showMessageDialog(null, "No se eliminó el bus");
-//            }
-//        } catch (NumberFormatException ex) {
-//        JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-//    }
+        try{
+            String placa=txtPlaca.getText(); 
+            if (txtPlaca.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Por favor complete el campo de la placa.");
+                return;
+            }
+               controladorEmpresa.eliminarBus(placa);
+               JOptionPane.showMessageDialog(null, "Se eliminó el bus");
+               limpiarCampos();
+        } catch (ExcepcionBusVacio ex) {
+           JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-//        try{
-//            String placa=txtPlaca.getText();
-//            int numAsientos =Integer.parseInt(txtNumAsientos.getText());
-//                if (txtPlaca.getText().isEmpty()||txtNumAsientos.getText().isEmpty()) {
-//                    JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-//                    return;
-//                }
-//            Bus bus=new Bus(placa,numAsientos);
-//            controladorEmpresa.modificarBus(bus);
-//            JOptionPane.showMessageDialog(null, "Se modificó el bus");
-//        }catch (NumberFormatException ex) {
-//            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-//        }
+        try{
+            String placa=txtPlaca.getText();
+            int numAsientos =Integer.parseInt(txtNumAsientos.getText());
+                if (txtPlaca.getText().isEmpty()||txtNumAsientos.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+                    return;
+                }
+            Bus bus=new Bus(placa,numAsientos);
+            controladorEmpresa.modificarBus(bus);
+            JOptionPane.showMessageDialog(null, "Se modificó el bus");
+        }catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+        }catch (ExcepcionBusVacio ex) {
+           JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
     }//GEN-LAST:event_btnModificarActionPerformed
     
     public void limpiarCampos(){

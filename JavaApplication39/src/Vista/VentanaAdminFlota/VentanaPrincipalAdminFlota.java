@@ -359,7 +359,7 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViajeActionPerformed
-       VentanaRegistroViajesAdminFlota cambio = new VentanaRegistroViajesAdminFlota(this.empresa);
+        VentanaRegistroViajesAdminFlota cambio = new VentanaRegistroViajesAdminFlota(this.empresa);
         cambio.setVisible(true);
     }//GEN-LAST:event_btnViajeActionPerformed
 

@@ -4,6 +4,8 @@
  */
 package Modelo;
 
+import Excepciones.ExcepcionBusVacio;
+import Excepciones.ExcepcionBusYaRegistrado;
 import Persistencia.SerializadoraCaseta;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -31,10 +33,13 @@ public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFl
    }
     
     
-    public String guardarBus(Bus bus){
+    public void guardarBus(Bus bus) throws ExcepcionBusYaRegistrado{
        Caseta[][] casetas = serializadora.leerObjeto();
        Bus respuesta = buscarBus(bus.getPlaca());
-       if (respuesta == null) {
+       if (respuesta != null) {
+          throw new ExcepcionBusYaRegistrado();
+       }
+       
            listaBuses.add(bus);
            for (int i = 0; i < casetas.length; i++) {
                for (int j = 0; j < casetas[i].length; j++) {
@@ -43,15 +48,12 @@ public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFl
                             casetas[i][j].setEmpresa(this);
                             serializadora.escribirObjeto(casetas);
                         }
-                   }
-               }
-           }
-           return "Bus guardado";
-       }
-       return "ya hay un bus registrado con esta placa";
+                    }
+                }
+            }
     }
     
-    public Bus buscarBus(String placa) {
+    public Bus buscarBus(String placa){
         Caseta[][] casetas = serializadora.leerObjeto();
         for (int i = 0; i < casetas.length; i++) {
             for (int j = 0; j < casetas[i].length; j++) {
@@ -64,7 +66,63 @@ public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFl
                 }
             }
         }
-        return null; // No se encontró el bus
+        return null;
+    }
+    
+    public void eliminarBus(String placa) throws ExcepcionBusVacio{
+        Caseta[][] casetas = serializadora.leerObjeto();
+        for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; j < casetas[i].length; j++) {
+                if (casetas[i][j].getEmpresa() != null && casetas[i][j].getEmpresa().getNit() == this.nit) {
+                    for (int k = 0; k < casetas[i][j].getEmpresa().getListaBuses().size(); k++) {
+                        if (casetas[i][j].getEmpresa().getListaBuses().get(k).getPlaca().equals(placa)) {
+                            listaBuses.remove(k);
+                            casetas[i][j].setEmpresa(this);
+                            serializadora.escribirObjeto(casetas);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+        throw new ExcepcionBusVacio();
+    }
+    
+    public void modificarBus(Bus bus) throws ExcepcionBusVacio {
+        boolean modificado = false;
+        Caseta[][] casetas = serializadora.leerObjeto();
+
+        for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; j < casetas[i].length; j++) {
+                if (casetas[i][j].getEmpresa() != null && casetas[i][j].getEmpresa().getNit() == this.nit) {
+                    for (int k = 0; k < listaBuses.size(); k++) {  // Modificamos directamente la lista local
+                        if (listaBuses.get(k).getPlaca().equals(bus.getPlaca())) {
+
+                            listaBuses.get(k).setNumAsientos(bus.getNumAsientos());
+
+                            modificado = true; 
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (!modificado) {
+            throw new ExcepcionBusVacio(); 
+        }
+
+
+        for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; j < casetas[i].length; j++) {
+                if (casetas[i][j].getEmpresa() != null && casetas[i][j].getEmpresa().getNit() == this.nit) {
+                    casetas[i][j].setEmpresa(this); 
+                }
+            }
+        }
+
+
+        serializadora.escribirObjeto(casetas);
     }
     
     public String guardarViaje(Viaje viaje){

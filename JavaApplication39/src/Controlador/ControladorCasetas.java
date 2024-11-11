@@ -12,14 +12,17 @@ import Persistencia.SerializadoraCaseta;
  *
  * @author juan
  */
-public class ControladorCaseta {
+public class ControladorCasetas {
     private Caseta caseta;
     private SerializadoraCaseta serializadora;
-
     
-    public ControladorCaseta(Caseta caseta){
+    public ControladorCasetas(Caseta caseta){
         this.caseta=caseta;
         this.serializadora = new SerializadoraCaseta();
+    }
+    
+    public ControladorCasetas(){
+        this.serializadora=new SerializadoraCaseta();
     }
     
     public boolean AsignarEmpresa(Empresa empresa) {
@@ -69,5 +72,17 @@ public class ControladorCaseta {
         }
         return false;
     }
+    
+    public Caseta entregarCaseta(int fila, int columna){
+        Caseta[][] casetas= serializadora.leerObjeto();
+        return casetas[fila][columna];
+    }
+    
+    public Caseta[][] getCaseta() {
+        Caseta[][] casetas= serializadora.leerObjeto();
+        return casetas;
+    }
+
+
     
 }

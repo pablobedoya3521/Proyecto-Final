@@ -4,7 +4,7 @@
  */
 package Persistencia;
 
-import Modelo.Cliente;
+
 import Modelo.Usuario;
 import Util.Lista;
 import java.io.FileInputStream;

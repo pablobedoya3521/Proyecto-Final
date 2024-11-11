@@ -4,7 +4,6 @@
  */
 package Modelo;
 
-import Vista.Login;
 import java.io.Serializable;
 
 /**

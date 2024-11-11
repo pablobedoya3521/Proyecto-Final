@@ -7,7 +7,6 @@ package Vista.VentanaAdminFlota;
 
 
 import Modelo.Empresa;
-import Validador.ValidarInformacion;
 import Vista.Login;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;

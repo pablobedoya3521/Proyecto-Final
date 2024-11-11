@@ -4,7 +4,7 @@
  */
 package Vista.VentanaAdminTerminal;
 
-import Controlador.ControladorCasilla;
+import Controlador.ControladorCasetas;
 
 import Modelo.Caseta;
 import Vista.Login;
@@ -23,7 +23,7 @@ import javax.swing.UIManager;
  * @author juan
  */
 public final class VentanaPrincipalAdminTerminal extends javax.swing.JFrame implements ActionListener{
-    private ControladorCasilla controladorCasilla;
+    private ControladorCasetas controladorCaseta;
     JButton[][] botones;
     /**
      * Creates new form VentanaPrincipalTerminal
@@ -39,7 +39,7 @@ public final class VentanaPrincipalAdminTerminal extends javax.swing.JFrame impl
         botones[1]=new JButton[2];
         botones[2]= new JButton[2];
         botones[3]=new JButton[2];
-        this.controladorCasilla=new ControladorCasilla();
+        this.controladorCaseta=new ControladorCasetas();
         dibujarBotones();
         pintarBotones();
     }
@@ -125,7 +125,7 @@ public final class VentanaPrincipalAdminTerminal extends javax.swing.JFrame impl
     public void pintarBotones() {
        for (int i = 0; i < botones.length; i++) {
            for (int j = 0; j < botones[i].length; j++) {
-               Caseta casetaRespuesta = controladorCasilla.entregarCaseta(i, j);
+               Caseta casetaRespuesta = controladorCaseta.entregarCaseta(i, j);
                System.out.println("Caseta en [" + i + "][" + j + "]: " + casetaRespuesta.getEmpresa());
                if (casetaRespuesta.getEmpresa() != null) { 
                    botones[i][j].setBackground(Color.BLUE);
@@ -142,7 +142,7 @@ public final class VentanaPrincipalAdminTerminal extends javax.swing.JFrame impl
                 if (e.getSource().equals(botones[i][j])) {
                     int fila=i;
                     int columna=j;
-                    Caseta respuesta= controladorCasilla.entregarCaseta(fila, columna);
+                    Caseta respuesta= controladorCaseta.entregarCaseta(fila, columna);
                     VentanaRegistroCasetaAdminTerminal cambiar = new VentanaRegistroCasetaAdminTerminal(respuesta);
                     cambiar.setVisible(true);
                     this.dispose();

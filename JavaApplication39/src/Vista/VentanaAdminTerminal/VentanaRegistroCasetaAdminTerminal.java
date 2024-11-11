@@ -4,9 +4,7 @@
  */
 package Vista.VentanaAdminTerminal;
 
-import Controlador.ControladorCaseta;
-import Controlador.ControladorCasilla;
-
+import Controlador.ControladorCasetas;
 import Controlador.ControladorRegistro;
 import Excepciones.ExcepcionCorreoEnUso;
 import Modelo.AdministradorFlota;
@@ -20,17 +18,15 @@ import javax.swing.JOptionPane;
  */
 public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
   
-    private ControladorCasilla controladorCasilla;
     private ControladorRegistro controladorRegistro;
-    private ControladorCaseta controladorCaseta;
+    private ControladorCasetas controladorCaseta;
     /**
      * Creates new form VentanaRegistroCasetaAdminTerminal
      */
     public VentanaRegistroCasetaAdminTerminal(Caseta caseta) {
        initComponents();
-       this.controladorCasilla=new ControladorCasilla();
        this.controladorRegistro= new ControladorRegistro();
-       this.controladorCaseta=new ControladorCaseta(caseta);
+       this.controladorCaseta=new ControladorCasetas(caseta);
     }
 
     /**
@@ -392,6 +388,7 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Empresa asignada correctamente.");
         } else {
             JOptionPane.showMessageDialog(null, "No se pudo asignar la empresa, ya hay una empresa asignada.");
+            return;
         }
 
         

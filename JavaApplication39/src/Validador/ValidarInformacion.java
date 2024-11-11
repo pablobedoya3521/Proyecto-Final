@@ -4,7 +4,7 @@
  */
 package Validador;
 
-import Controlador.ControladorCasilla;
+import Controlador.ControladorCasetas;
 import Controlador.ControladorRegistro;
 import Modelo.AdministradorFlota;
 import Modelo.Cliente;
@@ -15,11 +15,11 @@ import Modelo.Cliente;
  */
 public class ValidarInformacion {
     private ControladorRegistro controladorRegistro;
-    private ControladorCasilla controladorCasillas;
+    private ControladorCasetas controladorCaseta;
     
     public ValidarInformacion(){
         this.controladorRegistro=new ControladorRegistro();
-        this.controladorCasillas= new ControladorCasilla();
+        this.controladorCaseta= new ControladorCasetas();
     }
     
 public Object validarInformacion(String correo) {
@@ -28,11 +28,11 @@ public Object validarInformacion(String correo) {
             if (controladorRegistro.getUsuarios().get(i) instanceof Cliente) {
                 return controladorRegistro.getUsuarios().get(i);
             } else if (controladorRegistro.getUsuarios().get(i) instanceof AdministradorFlota) {
-                for (int k = 0; k < controladorCasillas.getCaseta().length; k++) {
-                    for (int l = 0; l < controladorCasillas.getCaseta()[k].length; l++) { 
-                        if(controladorCasillas.getCaseta()[k][l].getEmpresa()!=null){
-                            if (controladorCasillas.getCaseta()[k][l].getEmpresa().getAdministradorFlota().getCorreo().equals(correo)) {
-                                return controladorCasillas.getCaseta()[k][l].getEmpresa();
+                for (int k = 0; k < controladorCaseta.getCaseta().length; k++) {
+                    for (int l = 0; l < controladorCaseta.getCaseta()[k].length; l++) { 
+                        if(controladorCaseta.getCaseta()[k][l].getEmpresa()!=null){
+                            if (controladorCaseta.getCaseta()[k][l].getEmpresa().getAdministradorFlota().getCorreo().equals(correo)) {
+                                return controladorCaseta.getCaseta()[k][l].getEmpresa();
                             }
                         }
                     }

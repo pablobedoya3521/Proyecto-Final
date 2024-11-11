@@ -6,6 +6,7 @@ package Modelo;
 
 import Excepciones.ExcepcionBusVacio;
 import Excepciones.ExcepcionBusYaRegistrado;
+import Excepciones.ExcepcionCantidadPlazasNula;
 import Persistencia.SerializadoraCaseta;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -33,24 +34,37 @@ public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFl
    }
     
     
-    public void guardarBus(Bus bus) throws ExcepcionBusYaRegistrado{
+    public void guardarBus(Bus bus) throws ExcepcionBusYaRegistrado, ExcepcionCantidadPlazasNula{
        Caseta[][] casetas = serializadora.leerObjeto();
        Bus respuesta = buscarBus(bus.getPlaca());
+       
        if (respuesta != null) {
           throw new ExcepcionBusYaRegistrado();
        }
        
-           listaBuses.add(bus);
-           for (int i = 0; i < casetas.length; i++) {
-               for (int j = 0; j < casetas[i].length; j++) {
-                   if(casetas[i][j].getEmpresa()!=null){
-                        if(casetas[i][j].getEmpresa().getNit()==this.nit){
+       boolean busGuardado=false;
+       
+        for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; j < casetas[i].length; j++) {
+                if(casetas[i][j].getEmpresa()!=null){
+                    if(casetas[i][j].getEmpresa().getNit()==this.nit){
+                        if(casetas[i][j].getCantidadPlazas()>0){
+                            listaBuses.add(bus);
+                            casetas[i][j].setCantidadPlazas(casetas[i][j].getCantidadPlazas()-1);
                             casetas[i][j].setEmpresa(this);
-                            serializadora.escribirObjeto(casetas);
+                            serializadora.escribirObjeto(casetas); 
+                            busGuardado=true;
+                            break;
                         }
                     }
                 }
             }
+        }
+       
+        if (!busGuardado) {
+            throw new ExcepcionCantidadPlazasNula();
+        }
+           
     }
     
     public Bus buscarBus(String placa){

@@ -7,6 +7,7 @@ package Vista.VentanaAdminFlota;
 import Controlador.ControladorEmpresa;
 import Excepciones.ExcepcionBusVacio;
 import Excepciones.ExcepcionBusYaRegistrado;
+import Excepciones.ExcepcionCantidadPlazasNula;
 import Modelo.Bus;
 import Modelo.Empresa;
 import java.util.logging.Level;
@@ -205,7 +206,7 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
             limpiarCampos();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-        } catch (ExcepcionBusYaRegistrado ex) {
+        } catch (ExcepcionBusYaRegistrado | ExcepcionCantidadPlazasNula ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
       }
     }//GEN-LAST:event_btnGuardarBusActionPerformed

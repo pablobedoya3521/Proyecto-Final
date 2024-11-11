@@ -6,6 +6,7 @@ package Controlador;
 
 import Excepciones.ExcepcionBusVacio;
 import Excepciones.ExcepcionBusYaRegistrado;
+import Excepciones.ExcepcionCantidadPlazasNula;
 import Modelo.Bus;
 import Modelo.Empresa;
 import Modelo.Viaje;
@@ -32,7 +33,7 @@ public class ControladorEmpresa {
     }
 
     //Metodos
-    public void guardarBus(Bus bus) throws ExcepcionBusYaRegistrado{
+    public void guardarBus(Bus bus) throws ExcepcionBusYaRegistrado, ExcepcionCantidadPlazasNula{
        empresa.guardarBus(bus);
     }
     

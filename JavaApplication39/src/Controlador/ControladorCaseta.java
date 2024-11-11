@@ -39,11 +39,35 @@ public class ControladorCaseta {
     }
     
     public boolean asignarValorArrendamiento(double valor){
-        return caseta.asignarValorArrendamiento(valor);
+        Caseta[][] casetas = serializadora.leerObjeto();
+         for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; j < casetas[i].length; j++) {
+                if (casetas[i][j].getId() == caseta.getId()) {
+                    boolean resp = casetas[i][j].asignarValorArrendamiento(valor);
+                    if (resp) {
+                        serializadora.escribirObjeto(casetas);
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
     
     public boolean asignarCantidadPlazas(int plazas){
-        return caseta.asignarCantidadPlazas(plazas);
+        Caseta[][] casetas= serializadora.leerObjeto();
+                 for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; j < casetas[i].length; j++) {
+                if (casetas[i][j].getId() == caseta.getId()) {
+                    boolean resp = casetas[i][j].asignarCantidadPlazas(plazas);
+                    if (resp) {
+                        serializadora.escribirObjeto(casetas);
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
     
 }

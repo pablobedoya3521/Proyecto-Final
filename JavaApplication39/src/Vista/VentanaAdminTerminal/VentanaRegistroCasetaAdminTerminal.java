@@ -383,19 +383,19 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
         controladorRegistro.guardar(administradorFlota);
         Empresa empresa = new Empresa(nit, nombreEmpresa, administradorFlota);
         
-        // Asegúrate de que estás usando el controlador correcto para asignar la empresa
+     
         boolean asignado = controladorCaseta.AsignarEmpresa(empresa);
+        controladorCaseta.asignarCantidadPlazas(cantPlazas);
+        controladorCaseta.asignarValorArrendamiento(valorArrendo);
+        
         if (asignado) {
             JOptionPane.showMessageDialog(null, "Empresa asignada correctamente.");
-            // Serializa usando el controlador de casillas
-          
         } else {
             JOptionPane.showMessageDialog(null, "No se pudo asignar la empresa, ya hay una empresa asignada.");
         }
 
-        controladorCaseta.asignarCantidadPlazas(cantPlazas);
-        controladorCaseta.asignarValorArrendamiento(valorArrendo);
-        // Serializa nuevamente después de asignar valores
+        
+        
      
         JOptionPane.showMessageDialog(null, "Arrendado correctamente");
     } catch (ExcepcionCorreoEnUso ex) {

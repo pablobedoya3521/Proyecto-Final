@@ -24,18 +24,23 @@ public class PanelBusesAdminFlota extends javax.swing.JPanel {
     }
     
     private void llenarTabla() {
-        DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new Object[]{"Placa", "Numero de asientos", "Estado"});
-        for (int i = 0; i < controladorEmpresa.getEmpresa().getListaBuses().size(); i++) {
-            model.addRow(new Object[]{
-                controladorEmpresa.getEmpresa().getListaBuses().get(i).getPlaca(),
-                controladorEmpresa.getEmpresa().getListaBuses().get(i).getNumAsientos(),
-                controladorEmpresa.getEmpresa().getListaBuses().get(i).isEstado()
-                                    
-            });
-        }
-        TablaBuses.setModel(model);
-    }
+         DefaultTableModel model = new DefaultTableModel();
+         model.setColumnIdentifiers(new Object[]{"Placa", "Numero de asientos", "Estado", "Bus programado para ir"});
+
+         for (int i = 0; i < controladorEmpresa.getEmpresa().getListaBuses().size(); i++) {
+             var bus = controladorEmpresa.getEmpresa().getListaBuses().get(i);
+             var viaje = bus.getViaje();
+
+             model.addRow(new Object[]{
+                 bus.getPlaca(),
+                 bus.getNumAsientos(),
+                 bus.isEstado(),
+                 (viaje == null || viaje.getDestino() == null) ? "Todavía no hay viaje asignado" : viaje.getDestino()
+             });
+         }
+
+         TablaBuses.setModel(model);
+     }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

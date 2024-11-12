@@ -285,10 +285,12 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
             Bus bus=controladorEmpresa.buscarBus(placa);
 
             Viaje viaje=new Viaje (id,origen,destino,horaDeSalida,horaDeLlegada,bus,valorViaje);
-            
+            bus.asignarViajeAbus(viaje);
+            System.out.println(bus.getViaje().getDestino());
+            System.out.println(bus.isEstado());
                 controladorEmpresa.guardarViaje(viaje);
                 JOptionPane.showMessageDialog(null, "Viaje guardado correctamente");
-                bus.cambiarEstado();
+               
                 limpiarCampos(); 
         }catch(ExcepcionIdDeViajeEnUso | ExcepcionBusVacio ex){
             JOptionPane.showMessageDialog(null, ex.getMessage());

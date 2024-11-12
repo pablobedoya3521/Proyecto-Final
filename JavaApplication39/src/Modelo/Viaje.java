@@ -21,6 +21,7 @@ public class Viaje implements Serializable{
     private LocalDate fechaCreacion;
     private Bus bus;
     private double precioViaje;
+    private String estado;
 
     public Viaje(String id,String origen, String destino, String horaDeSalida, String horaDeLlegada,Bus bus, double precioViaje) {
         this.id=id;
@@ -31,6 +32,7 @@ public class Viaje implements Serializable{
         this.fechaCreacion = null;
         this.bus = bus;
         this.precioViaje = precioViaje;
+        this.estado="Programado";
     }
     
     public Viaje(){
@@ -102,6 +104,13 @@ public class Viaje implements Serializable{
     public void setPrecioViaje(double precioViaje) {
         this.precioViaje = precioViaje;
     }
-    
-    
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+  
 }

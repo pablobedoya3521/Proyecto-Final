@@ -55,6 +55,7 @@ public class Bus implements Serializable{
     public boolean asignarViajeAbus(Viaje viaje){
         if(this.viaje==null){
             this.viaje=viaje;
+            cambiarEstado();
             return true;
         }
         return false;
@@ -64,7 +65,7 @@ public class Bus implements Serializable{
         this.viaje=null;
     }
     
-    public void cambiarEstado(){
+    private void cambiarEstado(){
         if(this.estado==true){
             this.estado=false;
         }else if(this.estado==false){

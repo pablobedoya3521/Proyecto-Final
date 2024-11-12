@@ -10,8 +10,10 @@ import Excepciones.ExcepcionCantidadPlazasNula;
 import Excepciones.ExcepcionIdDeViajeEnUso;
 import Excepciones.ExcepcionViajeVacio;
 import Modelo.Bus;
+import Modelo.Caseta;
 import Modelo.Empresa;
 import Modelo.Viaje;
+import Persistencia.SerializadoraCaseta;
 
 /**
  *
@@ -19,15 +21,25 @@ import Modelo.Viaje;
  */
 public class ControladorEmpresa{
     private Empresa empresa;
-
+    private Caseta[][] casetas;
+    private SerializadoraCaseta serializadora;
     
     public ControladorEmpresa(Empresa empresa){
         this.empresa=empresa;
+        this.serializadora=new SerializadoraCaseta();
+        this.casetas=serializadora.leerObjeto();
     }
 
     
     public Empresa getEmpresa() {
-        return empresa;
+        for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; casetas[i].length < 10; j++) {
+                if(casetas[i][j].getEmpresa()!=null && casetas[i][j].getEmpresa().getNit()==this.empresa.getNit()){ 
+                    return casetas[i][j].getEmpresa();
+                }
+            }
+        }
+        return null;
     }
 
     public void setEmpresa(Empresa empresa) {

@@ -5,6 +5,7 @@
 package Vista.VentanaAdminFlota;
 
 import Controlador.ControladorEmpresa;
+
 import Modelo.Empresa;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,19 +27,15 @@ public class PanelBusesAdminFlota extends javax.swing.JPanel {
     private void llenarTabla() {
          DefaultTableModel model = new DefaultTableModel();
          model.setColumnIdentifiers(new Object[]{"Placa", "Numero de asientos", "Estado", "Bus programado para ir"});
-
          for (int i = 0; i < controladorEmpresa.getEmpresa().getListaBuses().size(); i++) {
-             var bus = controladorEmpresa.getEmpresa().getListaBuses().get(i);
-             var viaje = bus.getViaje();
-
              model.addRow(new Object[]{
-                 bus.getPlaca(),
-                 bus.getNumAsientos(),
-                 bus.isEstado(),
-                 (viaje == null || viaje.getDestino() == null) ? "Todavía no hay viaje asignado" : viaje.getDestino()
+                controladorEmpresa.getEmpresa().getListaBuses().get(i).getPlaca(),
+                  controladorEmpresa.getEmpresa().getListaBuses().get(i).getNumAsientos(),
+                   controladorEmpresa.getEmpresa().getListaBuses().get(i).isEstado(),
+                    controladorEmpresa.getEmpresa().getListaBuses().get(i).getViaje()==null? "No hay viaje asignado aun":  controladorEmpresa.getEmpresa().getListaBuses().get(i).getViaje().getDestino(),
              });
          }
-
+         
          TablaBuses.setModel(model);
      }
     /**

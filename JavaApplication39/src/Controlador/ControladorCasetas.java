@@ -7,12 +7,14 @@ package Controlador;
 import Modelo.Caseta;
 import Modelo.Empresa;
 import Persistencia.SerializadoraCaseta;
+import java.io.Serializable;
 
 /**
  *
  * @author juan
  */
-public class ControladorCasetas {
+public class ControladorCasetas implements Serializable{
+    private static final long serialVersionUID = 1L;
     private Caseta caseta;
     private SerializadoraCaseta serializadora;
     
@@ -82,7 +84,4 @@ public class ControladorCasetas {
         Caseta[][] casetas= serializadora.leerObjeto();
         return casetas;
     }
-
-
-    
 }

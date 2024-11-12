@@ -266,37 +266,55 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarViajesActionPerformed
-        try{
-            String id=txtId.getText();
-            String origen=txtOrigen.getText();
-            String destino=txtDestino.getText();
-            String horaDeSalida=txtHoraDeSalida.getText();
-            String horaDeLlegada=txtHoraDeLlegada.getText();
-            String placa=txtBus.getText();
-            double valorViaje=Double.parseDouble(txtValorViaje.getText());
-            
-            if (txtId.getText().isEmpty()||txtOrigen.getText().isEmpty() || txtDestino.getText().isEmpty() || 
-                txtHoraDeSalida.getText().isEmpty() || txtHoraDeLlegada.getText().isEmpty()||
-                txtBus.getText().isEmpty() || txtValorViaje.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-                return;
-            }
-            
-            Bus bus=controladorEmpresa.buscarBus(placa);
+           try {
+        String id = txtId.getText();
+        String origen = txtOrigen.getText();
+        String destino = txtDestino.getText();
+        String horaDeSalida = txtHoraDeSalida.getText();
+        String horaDeLlegada = txtHoraDeLlegada.getText();
+        String placa = txtBus.getText();
+        double valorViaje = Double.parseDouble(txtValorViaje.getText());
 
-            Viaje viaje=new Viaje (id,origen,destino,horaDeSalida,horaDeLlegada,bus,valorViaje);
-            bus.asignarViajeAbus(viaje);
-            System.out.println(bus.getViaje().getDestino());
-            System.out.println(bus.isEstado());
-                controladorEmpresa.guardarViaje(viaje);
-                JOptionPane.showMessageDialog(null, "Viaje guardado correctamente");
-               
-                limpiarCampos(); 
-        }catch(ExcepcionIdDeViajeEnUso | ExcepcionBusVacio ex){
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+        if (txtId.getText().isEmpty() || txtOrigen.getText().isEmpty() || txtDestino.getText().isEmpty() || 
+            txtHoraDeSalida.getText().isEmpty() || txtHoraDeLlegada.getText().isEmpty() ||
+            txtBus.getText().isEmpty() || txtValorViaje.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+            return;
         }
+
+        Bus bus = controladorEmpresa.buscarBus(placa);
+        if (bus == null) {
+            JOptionPane.showMessageDialog(null, "Bus no encontrado.");
+            return;
+        }
+
+        Viaje viaje = new Viaje(id, origen, destino, horaDeSalida, horaDeLlegada, bus, valorViaje);
+        boolean asignado = bus.asignarViajeAbus(viaje);
+       
+        if (!asignado) {
+            JOptionPane.showMessageDialog(null, "No se pudo asignar el viaje al bus.");
+            return;
+        }
+
+        // Volver a buscar el bus para asegurarte de que tienes la versión más actualizada
+          
+        bus = controladorEmpresa.buscarBus(placa);
+      
+        if (bus.getViaje() != null) {
+            System.out.println("Destino del viaje asignado: " + bus.getViaje().getDestino());
+        } else {
+            System.out.println("El viaje no se ha asignado correctamente.");
+            return;
+        }
+
+        controladorEmpresa.guardarViaje(viaje);
+        JOptionPane.showMessageDialog(null, "Viaje guardado correctamente");
+        limpiarCampos(); 
+    } catch (ExcepcionIdDeViajeEnUso | ExcepcionBusVacio ex) {
+        JOptionPane.showMessageDialog(null, ex.getMessage());
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+    }
     }//GEN-LAST:event_btnGuardarViajesActionPerformed
 
     

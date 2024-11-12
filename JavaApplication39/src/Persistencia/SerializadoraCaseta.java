@@ -19,15 +19,17 @@ import java.io.Serializable;
  */
 public class SerializadoraCaseta implements Serializable{
     
-    public void escribirObjeto(Caseta[][] casetas){
-        try{
-            FileOutputStream file = new FileOutputStream("Casetas.dat");//archivo  donde se guardara el objeto
-            ObjectOutputStream escritor = new ObjectOutputStream(file);// objeto que permite escribir el objeto en el archivo
-            escritor.writeObject(casetas);// escribo el objeto en el archivo
-        }catch(IOException ex){
-            ex.printStackTrace();
-        }
+   public void escribirObjeto(Caseta[][] casetas) {
+    try {
+        FileOutputStream file = new FileOutputStream("Casetas.dat");
+        ObjectOutputStream escritor = new ObjectOutputStream(file);
+        System.out.println("Escribiendo casetas en el archivo..."); // Mensaje de depuración
+        escritor.writeObject(casetas);
+        System.out.println("Casetas escritas correctamente."); // Mensaje de depuración
+    } catch(IOException ex) {
+        ex.printStackTrace();
     }
+}
 
      public Caseta[][] leerObjeto() {
         Caseta[][] casetas;  // Declaración de la variable casetas
@@ -35,6 +37,7 @@ public class SerializadoraCaseta implements Serializable{
         try (FileInputStream file = new FileInputStream("Casetas.dat");
              ObjectInputStream lector = new ObjectInputStream(file)) {
             casetas = (Caseta[][]) lector.readObject();
+            System.out.println("Casetas leídas del archivo.");
         } catch (IOException | ClassNotFoundException ex) {
             ex.printStackTrace();
             // Si hay un error en la lectura, inicializo las casetas con valores predeterminados

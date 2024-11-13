@@ -52,6 +52,10 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
+        txtMarca = new javax.swing.JTextField();
+        txtTipoCombustible = new javax.swing.JTextField();
+        txtModelo = new javax.swing.JTextField();
+        txtPotenciaMotor = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,48 +119,64 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnModificar)
                 .addGap(173, 173, 173))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnGuardarBus, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(122, 122, 122))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(206, 206, 206)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(61, 61, 61)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addComponent(jLabel8)))
-                        .addGap(56, 56, 56)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNumAsientos, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(313, 313, 313)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnVolver)
                             .addComponent(btnEliminar))))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnGuardarBus, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(122, 122, 122))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel8)
+                        .addGap(30, 30, 30)
+                        .addComponent(txtNumAsientos, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPotenciaMotor, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTipoCombustible, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(67, 67, 67))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel7)
-                .addGap(141, 141, 141)
+                .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtNumAsientos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(txtTipoCombustible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(txtPotenciaMotor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addComponent(btnGuardarBus)
                 .addGap(18, 18, 18)
                 .addComponent(btnEliminar)
@@ -192,13 +212,18 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
         try{
             String placa=txtPlaca.getText();
             int numAsientos=Integer.parseInt(txtNumAsientos.getText());
+            String marca= txtMarca.getText();
+            String modelo = txtModelo.getText();
+            String combustible = txtTipoCombustible.getText();
+            String potenciaMotor = txtPotenciaMotor.getText();
 
-            if (txtPlaca.getText().isEmpty()||txtNumAsientos.getText().isEmpty()) {
+            if (txtPlaca.getText().isEmpty()||txtNumAsientos.getText().isEmpty() || txtMarca.getText().isEmpty() || 
+                 txtModelo.getText().isEmpty() || txtTipoCombustible.getText().isEmpty() || txtPotenciaMotor.getText().isEmpty() ) {
                 JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
                 return;
             }
         
-            Bus bus=new Bus(placa,numAsientos);
+            Bus bus=new Bus(placa, numAsientos ,marca, modelo, combustible, potenciaMotor);
             controladorEmpresa.guardarBus(bus);
             JOptionPane.showMessageDialog(null, "Bus registrado correctamente");
             limpiarCampos();
@@ -217,8 +242,12 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
               JOptionPane.showMessageDialog(null, "Por favor complete el campo de la placa.");
               return;
             }
-            Bus respuesta = controladorEmpresa.buscarBus(placa);
+                Bus respuesta = controladorEmpresa.buscarBus(placa);
                 txtNumAsientos.setText(String.valueOf(respuesta.getNumAsientos()));
+                txtMarca.setText(respuesta.getMarca());
+                txtModelo.setText(respuesta.getModelo());
+                txtTipoCombustible.setText(respuesta.getTipoCombustible());
+                txtPotenciaMotor.setText(respuesta.getPotenciaMotor());
         }catch (NumberFormatException | ExcepcionBusVacio ex) {
             JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
         }
@@ -243,11 +272,15 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
         try{
             String placa=txtPlaca.getText();
             int numAsientos =Integer.parseInt(txtNumAsientos.getText());
+            String marca= txtMarca.getText();
+            String modelo = txtModelo.getText();
+            String combustible = txtTipoCombustible.getText();
+            String potenciaMotor = txtPotenciaMotor.getText();
                 if (txtPlaca.getText().isEmpty()||txtNumAsientos.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
                     return;
                 }
-            Bus bus=new Bus(placa,numAsientos);
+           Bus bus=new Bus(placa, numAsientos ,marca, modelo, combustible, potenciaMotor);
             controladorEmpresa.modificarBus(bus);
             JOptionPane.showMessageDialog(null, "Se modificó el bus");
         }catch (NumberFormatException ex) {
@@ -283,7 +316,11 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField txtMarca;
+    private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtNumAsientos;
     private javax.swing.JTextField txtPlaca;
+    private javax.swing.JTextField txtPotenciaMotor;
+    private javax.swing.JTextField txtTipoCombustible;
     // End of variables declaration//GEN-END:variables
 }

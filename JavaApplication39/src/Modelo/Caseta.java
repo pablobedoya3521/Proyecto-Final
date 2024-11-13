@@ -16,12 +16,14 @@ public class Caseta implements Serializable{
     private Empresa empresa;
     private double valorArrendamiento;
     private int cantidadPlazas;
+    private String ubicacion;
     
     public Caseta(int id){
         this.id=id;
         this.empresa=null;
         this.valorArrendamiento=0.0;
         this.cantidadPlazas=0;
+        this.ubicacion=null;
     }
 
     public Empresa getEmpresa() {
@@ -47,23 +49,13 @@ public class Caseta implements Serializable{
     public void setCantidadPlazas(int cantidadPlazas) {
         this.cantidadPlazas = cantidadPlazas;
     }
-    
-    public boolean asignarEmpresa(Empresa empresa){
-        if(this.empresa==null){
-            this.empresa=empresa;
-            return true;
-        }
-       return false;
+
+    public String getUbicacion() {
+        return ubicacion;
     }
-    
-    public boolean asignarValorArrendamiento(double valor){
-        this.valorArrendamiento=valor;
-        return true;
-    }
-    
-    public boolean asignarCantidadPlazas(int plazas){
-        this.cantidadPlazas=plazas;
-        return true;
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
     }
 
     public int getId() {
@@ -74,4 +66,12 @@ public class Caseta implements Serializable{
         this.id = id;
     }
     
+    public boolean asignarEmpresa(Empresa empresa){
+        if(this.empresa==null){
+            this.empresa=empresa;
+            return true;
+        }
+       return false;
+    }
+
 }

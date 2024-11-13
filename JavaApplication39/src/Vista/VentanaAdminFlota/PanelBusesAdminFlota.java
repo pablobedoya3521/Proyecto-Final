@@ -26,13 +26,15 @@ public class PanelBusesAdminFlota extends javax.swing.JPanel {
     
     private void llenarTabla() {
          DefaultTableModel model = new DefaultTableModel();
-         model.setColumnIdentifiers(new Object[]{"Placa", "Numero de asientos", "Estado", "Bus programado para ir"});
+         model.setColumnIdentifiers(new Object[]{"Placa", "Numero de asientos", "Marca", "Modelo", "Tipo de combustible", "POtencia motor"});
          for (int i = 0; i < controladorEmpresa.getEmpresa().getListaBuses().size(); i++) {
              model.addRow(new Object[]{
                 controladorEmpresa.getEmpresa().getListaBuses().get(i).getPlaca(),
-                  controladorEmpresa.getEmpresa().getListaBuses().get(i).getNumAsientos(),
-                   controladorEmpresa.getEmpresa().getListaBuses().get(i).isEstado(),
-                    controladorEmpresa.getEmpresa().getListaBuses().get(i).getViaje()==null? "No hay viaje asignado aun":  controladorEmpresa.getEmpresa().getListaBuses().get(i).getViaje().getDestino(),
+                controladorEmpresa.getEmpresa().getListaBuses().get(i).getNumAsientos(),
+                controladorEmpresa.getEmpresa().getListaBuses().get(i).getMarca(),
+                controladorEmpresa.getEmpresa().getListaBuses().get(i).getModelo(),
+                controladorEmpresa.getEmpresa().getListaBuses().get(i).getTipoCombustible(),
+                controladorEmpresa.getEmpresa().getListaBuses().get(i).getPotenciaMotor()
              });
          }
          

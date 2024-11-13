@@ -35,9 +35,6 @@ public class Viaje implements Serializable{
         this.estado="Programado";
     }
     
-    public Viaje(){
-    }
-
     public String getId() {
         return id;
     }

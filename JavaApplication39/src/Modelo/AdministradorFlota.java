@@ -16,12 +16,14 @@ public class AdministradorFlota extends Usuario implements Serializable{
     private String nivelExp;
     private double sueldo;
     private String horario;
+   
 
     public AdministradorFlota(String nivelExp, double sueldo, String horario, String nombre, String apellido, String cedula, String correo, String contraseña) {
         super(nombre, apellido, cedula, correo, contraseña);
         this.nivelExp = nivelExp;
         this.sueldo = sueldo;
         this.horario = horario;
+        
     }
 
     @Override
@@ -54,7 +56,5 @@ public class AdministradorFlota extends Usuario implements Serializable{
     public void setHorario(String horario) {
         this.horario = horario;
     }
-    
-    
-    
+
 }

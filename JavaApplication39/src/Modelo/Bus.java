@@ -17,16 +17,18 @@ public class Bus implements Serializable{
     private static final long serialVersionUID = 1L;
     private String placa;
     private int numAsientos;
-    private Viaje viaje;
-    private boolean estado;
-    private SerializadoraCaseta serializadora;
+    private String marca;
+    private String modelo;
+    private String tipoCombustible;
+    private String potenciaMotor;
 
-    public Bus(String placa,int numAsientos) {
+    public Bus(String placa,int numAsientos, String marca, String modelo, String tipoCombustible, String potenciaMotor) {
         this.placa=placa;
         this.numAsientos = numAsientos;
-        this.viaje = null;
-        this.estado=false;
-        this.serializadora= new SerializadoraCaseta();
+        this.marca=marca;
+        this.modelo=modelo;
+        this.tipoCombustible=tipoCombustible;
+        this.potenciaMotor=potenciaMotor;
     }
     
     public Bus(){
@@ -48,55 +50,38 @@ public class Bus implements Serializable{
         this.numAsientos = numAsientos;
     }
 
-    public Viaje getViaje() {
-        return viaje;
+    public String getMarca() {
+        return marca;
     }
 
-    public void setViaje(Viaje viaje) {
-        this.viaje = viaje;
-    }
-    
-public boolean asignarViajeAbus(Viaje viaje) throws ExcepcionBusVacio {
-    Caseta[][] casetas = serializadora.leerObjeto();
-    System.out.println("Buscando en casetas..."); // Mensaje de depuración
-    for (int i = 0; i < casetas.length; i++) {
-        for (int j = 0; j < casetas[i].length; j++) {
-            if (casetas[i][j].getEmpresa() != null) {
-                System.out.println("Empresa encontrada: " + casetas[i][j].getEmpresa().getNombreEmpresa()); //Mensaje de depuración
-                for (int k = 0; k < casetas[i][j].getEmpresa().getListaBuses().size(); k++) {
-                    Bus busActual = casetas[i][j].getEmpresa().getListaBuses().get(k);
-                    System.out.println("Bus encontrado: " + busActual.getPlaca()); // Mensaje de depuración
-                    if (busActual.getPlaca().equals(this.placa)) {
-                        busActual.setViaje(viaje); //Asigna el viaje directamente
-                        busActual.setEstado(true); //Cambia el estado
-                        serializadora.escribirObjeto(casetas);
-                        System.out.println("Viaje asignado al bus: " + busActual.getPlaca()); //Mensaje de depuración
-                        return true;
-                    }
-                }
-            }
-        }
-    }
-    
-    System.out.println("No se encontró el bus con la placa: " + this.placa); // Mensaje de depuración
-    return false;
-}
-    
-    public void desasignarViaje(){
-        this.viaje=null;
-        
-    }
-    
-   
-
-    public boolean isEstado() {
-        return estado;
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getTipoCombustible() {
+        return tipoCombustible;
+    }
+
+    public void setTipoCombustible(String tipoCombustible) {
+        this.tipoCombustible = tipoCombustible;
+    }
+
+    public String getPotenciaMotor() {
+        return potenciaMotor;
+    }
+
+    public void setPotenciaMotor(String potenciaMotor) {
+        this.potenciaMotor = potenciaMotor;
     }
     
     
-    
+
 }

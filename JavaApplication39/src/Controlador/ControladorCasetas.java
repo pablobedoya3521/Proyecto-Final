@@ -48,11 +48,9 @@ public class ControladorCasetas implements Serializable{
          for (int i = 0; i < casetas.length; i++) {
             for (int j = 0; j < casetas[i].length; j++) {
                 if (casetas[i][j].getId() == caseta.getId()) {
-                    boolean resp = casetas[i][j].asignarValorArrendamiento(valor);
-                    if (resp) {
+                   casetas[i][j].setValorArrendamiento(valor);             
                         serializadora.escribirObjeto(casetas);
                         return true;
-                    }
                 }
             }
         }
@@ -64,11 +62,23 @@ public class ControladorCasetas implements Serializable{
                  for (int i = 0; i < casetas.length; i++) {
             for (int j = 0; j < casetas[i].length; j++) {
                 if (casetas[i][j].getId() == caseta.getId()) {
-                    boolean resp = casetas[i][j].asignarCantidadPlazas(plazas);
-                    if (resp) {
+                        casetas[i][j].setCantidadPlazas(plazas);
                         serializadora.escribirObjeto(casetas);
                         return true;
-                    }
+                }
+            }
+        }
+        return false;
+    }
+    
+    public boolean asignarUbicacion(String ubicacion){
+        Caseta[][] casetas= serializadora.leerObjeto();
+                 for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; j < casetas[i].length; j++) {
+                if (casetas[i][j].getId() == caseta.getId()) {
+                    casetas[i][j].setUbicacion(ubicacion);
+                        serializadora.escribirObjeto(casetas);
+                        return true;
                 }
             }
         }

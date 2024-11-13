@@ -283,30 +283,7 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
         }
 
         Bus bus = controladorEmpresa.buscarBus(placa);
-        if (bus == null) {
-            JOptionPane.showMessageDialog(null, "Bus no encontrado.");
-            return;
-        }
-
         Viaje viaje = new Viaje(id, origen, destino, horaDeSalida, horaDeLlegada, bus, valorViaje);
-        boolean asignado = bus.asignarViajeAbus(viaje);
-       
-        if (!asignado) {
-            JOptionPane.showMessageDialog(null, "No se pudo asignar el viaje al bus.");
-            return;
-        }
-
-        // Volver a buscar el bus para asegurarte de que tienes la versión más actualizada
-          
-        bus = controladorEmpresa.buscarBus(placa);
-      
-        if (bus.getViaje() != null) {
-            System.out.println("Destino del viaje asignado: " + bus.getViaje().getDestino());
-        } else {
-            System.out.println("El viaje no se ha asignado correctamente.");
-            return;
-        }
-
         controladorEmpresa.guardarViaje(viaje);
         JOptionPane.showMessageDialog(null, "Viaje guardado correctamente");
         limpiarCampos(); 

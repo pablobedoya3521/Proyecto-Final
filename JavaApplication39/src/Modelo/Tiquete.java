@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @author sebastian
  */
 public class Tiquete implements Serializable{
-     private static final long serialVersionUID = 1L; 
+    private static final long serialVersionUID = 1L; 
     private String codigo;
     private Viaje viaje;
     private Cliente cliente;

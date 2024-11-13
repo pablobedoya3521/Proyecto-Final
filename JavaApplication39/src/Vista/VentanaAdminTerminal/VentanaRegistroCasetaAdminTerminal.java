@@ -49,6 +49,8 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
         txtCantPlazas = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        txtUbicacion = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         txtNombre = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
@@ -143,16 +145,18 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
 
         jLabel4.setText("Cantidad de Plazas");
 
+        txtUbicacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUbicacionActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setText("Ubicacion de la caseta");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtValorArrendo, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCantPlazas, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -162,6 +166,17 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
                         .addGap(77, 77, 77)
                         .addComponent(jLabel3)))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtValorArrendo, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCantPlazas, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(81, 81, 81)
+                .addComponent(jLabel14)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,7 +189,11 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtCantPlazas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(txtUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
@@ -365,12 +384,14 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
         String contraseña = txtContraseña.getText();
         double sueldo = Double.parseDouble(txtSueldo.getText());
         String nivelExp= txtNivelExp.getText();
-        String horarios= txtHorario.getText();
+        String horarios= txtHorario.getText();   
+        String ubicacion = txtUbicacion.getText();
         
         // Validaciones de entrada
         if (txtNit.getText().isEmpty() || txtNombreEmpresa.getText().isEmpty() || 
             txtValorArrendo.getText().isEmpty() || txtCantPlazas.getText().isEmpty() || 
-            txtSueldo.getText().isEmpty() || txtNivelExp.getText().isEmpty() || txtHorario.getText().isEmpty()) {
+            txtSueldo.getText().isEmpty() || txtNivelExp.getText().isEmpty() || txtHorario.getText().isEmpty() ||
+                txtUbicacion.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
             return;
         }
@@ -383,7 +404,7 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
         boolean asignado = controladorCaseta.AsignarEmpresa(empresa);
         controladorCaseta.asignarCantidadPlazas(cantPlazas);
         controladorCaseta.asignarValorArrendamiento(valorArrendo);
-        
+        controladorCaseta.asignarUbicacion(ubicacion);
         if (asignado) {
             JOptionPane.showMessageDialog(null, "Empresa asignada correctamente.");
         } else {
@@ -407,6 +428,10 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
        this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    private void txtUbicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUbicacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUbicacionActionPerformed
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -417,6 +442,7 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -439,6 +465,7 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNombreEmpresa;
     private javax.swing.JTextField txtSueldo;
+    private javax.swing.JTextField txtUbicacion;
     private javax.swing.JTextField txtValorArrendo;
     // End of variables declaration//GEN-END:variables
 }

@@ -50,5 +50,4 @@ public class ControladorRegistro{
         this.usuarios = usuarios;
     }
     
-    
 }

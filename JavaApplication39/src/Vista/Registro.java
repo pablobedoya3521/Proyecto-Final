@@ -24,12 +24,9 @@ public class Registro extends javax.swing.JFrame {
     public Registro() {
         LookAndFeelUtil.setLookAndFeel();
         initComponents();
-        
         setLocationRelativeTo(this);
         setResizable(false);
         pack();
-        
-        
         this.controladorRegistro=new ControladorRegistro();
     }
     

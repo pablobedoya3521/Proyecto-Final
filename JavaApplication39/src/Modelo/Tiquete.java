@@ -5,6 +5,8 @@
 package Modelo;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  *
@@ -12,25 +14,29 @@ import java.io.Serializable;
  */
 public class Tiquete implements Serializable{
     private static final long serialVersionUID = 1L; 
-    private String codigo;
+    private static int contador = 1;
+    private int codigo;
     private Viaje viaje;
     private Cliente cliente;
     private int cantidad;
-    private String fechaDeCompra;
+    private LocalDate fechaDeCompra;
+    private LocalTime horaDeCompra;
+  
     
-    public Tiquete(String codigo,Viaje viaje,Cliente cliente, int cantidad,String fechaDeCompra){
-        this.codigo=codigo;
+    public Tiquete(Viaje viaje,Cliente cliente, int cantidad){
+        this.codigo=contador++;
         this.viaje=viaje;
         this.cliente=cliente;
         this.cantidad=cantidad;
-        this.fechaDeCompra=fechaDeCompra;
+        this.fechaDeCompra=LocalDate.now();
+        this.horaDeCompra=LocalTime.now();
     }
 
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 
@@ -58,13 +64,12 @@ public class Tiquete implements Serializable{
         this.cantidad = cantidad;
     }
 
-    public String getFechaDeCompra() {
+    public LocalDate getFechaDeCompra() {
         return fechaDeCompra;
     }
 
-    public void setFechaDeCompra(String fechaDeCompra) {
+    public void setFechaDeCompra(LocalDate fechaDeCompra) {
         this.fechaDeCompra = fechaDeCompra;
     }
-    
-    
+
 }

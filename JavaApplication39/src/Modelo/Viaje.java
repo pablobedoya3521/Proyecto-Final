@@ -4,13 +4,14 @@
  */
 package Modelo;
 
+import Excepciones.ExcepcionCodigoTiqueteEnUso;
+import Excepciones.ExcepcionViajeVacio;
+import Persistencia.SerializadoraCaseta;
+import Util.Lista;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-/**
- *
- * @author sebastian
- */
+
 public class Viaje implements Serializable{
     private static final long serialVersionUID = 1L;
     private String id;
@@ -24,8 +25,12 @@ public class Viaje implements Serializable{
     private Bus bus;
     private double precioViaje;
     private String estado;
+    private Lista<Tiquete> listaTiquetes;
+    private SerializadoraCaseta serializadora;
 
-    public Viaje(String id, String origen, String destino, String horaDeSalida, String horaDeLlegada, String fechaSalida, String fechaLLegada, Bus bus, double precioViaje) {
+    public Viaje(String id, String origen, String destino, String horaDeSalida, 
+            String horaDeLlegada, String fechaSalida, String fechaLLegada, Bus bus, double precioViaje) {
+        
         this.id=id;
         this.origen = origen;
         this.destino = destino;
@@ -33,10 +38,41 @@ public class Viaje implements Serializable{
         this.horaDeLlegada = horaDeLlegada;
         this.fechaSalida=fechaSalida;
         this.fechaLLegada=fechaLLegada;
-         this.fechaCreacion = LocalDate.now();
+        this.fechaCreacion = LocalDate.now();
         this.bus = bus;
         this.precioViaje = precioViaje;
         this.estado="Programado";
+        this.listaTiquetes=new Lista<>();
+        this.serializadora=new SerializadoraCaseta();
+    }
+    
+    public void guardarTiquete(Tiquete tiquete) throws ExcepcionCodigoTiqueteEnUso, ExcepcionViajeVacio{
+        Caseta[][] casetas= serializadora.leerObjeto();
+        for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; j < casetas[i].length; j++) {
+                if(casetas[i][j].getEmpresa()!=null && 
+                        casetas[i][j].getEmpresa().getListaViajes().get(i).getListaTiquetes().get(i).getCodigo()==tiquete.getCodigo()){
+                    throw new ExcepcionCodigoTiqueteEnUso();
+                }
+            }
+        }
+        
+        for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; j < casetas[i].length; j++) {
+                if(casetas[i][j].getEmpresa()!=null &&
+                        casetas[i][j].getEmpresa().getListaViajes().get(i).getId().equals(this.id)){
+                    
+                    Empresa empresa = casetas[i][j].getEmpresa();
+                    Viaje viaje = casetas[i][j].getEmpresa().getListaViajes().get(i);
+                    viaje.guardarTiquete(tiquete);
+                    viaje.setListaTiquetes(listaTiquetes);
+                    empresa.modificarViaje(this);
+                    casetas[i][j].setEmpresa(empresa);
+                    serializadora.escribirObjeto(casetas);
+                }
+            }
+        }
+        
     }
     
     public String getId() {
@@ -46,8 +82,6 @@ public class Viaje implements Serializable{
     public void setId(String id) {
         this.id = id;
     }
-    
-    
 
     public String getOrigen() {
         return origen;
@@ -129,7 +163,13 @@ public class Viaje implements Serializable{
     public void setFechaLLegada(String fechaLLegada) {
         this.fechaLLegada = fechaLLegada;
     }
-    
-    
+
+    public Lista<Tiquete> getListaTiquetes() {
+        return listaTiquetes;
+    }
+
+    public void setListaTiquetes(Lista<Tiquete> listaTiquetes) {
+        this.listaTiquetes = listaTiquetes;
+    }
   
 }

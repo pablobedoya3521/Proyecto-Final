@@ -6,10 +6,6 @@ package Util;
 
 import java.io.Serializable;
 
-/**
- *
- * @author juan
- */
 public class Nodo<T> implements Serializable{
     T dato;
     Nodo<T> siguiente;

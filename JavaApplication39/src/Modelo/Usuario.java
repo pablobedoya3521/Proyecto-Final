@@ -6,10 +6,7 @@ package Modelo;
 
 import java.io.Serializable;
 
-/**
- *
- * @author juan
- */
+
 public abstract class Usuario implements Serializable{
     private static final long serialVersionUID = 1L;
     protected String nombre;

@@ -5,7 +5,6 @@
 package Modelo;
 
 import Excepciones.ExcepcionCodigoTiqueteEnUso;
-import Excepciones.ExcepcionViajeVacio;
 import Persistencia.SerializadoraCaseta;
 import Util.Lista;
 import java.io.Serializable;
@@ -47,13 +46,38 @@ public class Viaje implements Serializable{
     }
     
     public void guardarTiquete(Tiquete tiquete) throws ExcepcionCodigoTiqueteEnUso{
-        for (int i = 0; i < listaTiquetes.size(); i++) {
-            if(listaTiquetes.get(i).getCodigo()==tiquete.getCodigo()){
-                throw new ExcepcionCodigoTiqueteEnUso();
+        
+        Caseta[][] casetas = serializadora.leerObjeto();
+        
+        for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; j < casetas[i].length; j++) {
+                if (casetas[i][j].getEmpresa() != null) {
+                    for (int k = 0; k < casetas[i][j].getEmpresa().getListaViajes().get(j).getListaTiquetes().size(); k++) {
+                        if (casetas[i][j].getEmpresa().getListaViajes().get(j).getListaTiquetes().get(k).getCodigoTiquete() == tiquete.getCodigoTiquete()) {
+                            throw new ExcepcionCodigoTiqueteEnUso();
+                        }
+                    }
+                }
             }
         }
         
-        listaTiquetes.add(tiquete);
+        for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; j < casetas[i].length; j++) {
+                if (casetas[i][j].getEmpresa() != null) {
+                    for (int k = 0; k < casetas[i][j].getEmpresa().getListaViajes().size(); k++) {
+                        if (casetas[i][j].getEmpresa().getListaViajes().get(k).getId().equals(this.id)) {
+                            listaTiquetes.add(tiquete);
+                            Viaje viaje = casetas[i][j].getEmpresa().getListaViajes().get(k);
+                            viaje.setListaTiquetes(this.listaTiquetes);
+                            Empresa empresa = casetas[i][j].getEmpresa();
+                            empresa.setListaViajes(casetas[i][j].getEmpresa().getListaViajes());
+                            casetas[i][j].setEmpresa(empresa);
+                            serializadora.escribirObjeto(casetas);
+                        }
+                    }
+                }
+            }
+        }
     }
     
     public String getId() {

@@ -2,12 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package Controlador;
+package CRUD;
 
-/**
- *
- * @author juan
- */
 public interface ITransaccionesCrud<T> {
     public void guardar(T dato) ;
     public T buscar(String dato);

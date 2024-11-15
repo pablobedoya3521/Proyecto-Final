@@ -9,10 +9,7 @@ import Modelo.Empresa;
 import Persistencia.SerializadoraCaseta;
 import java.io.Serializable;
 
-/**
- *
- * @author juan
- */
+
 public class ControladorCasetas implements Serializable{
     private static final long serialVersionUID = 1L;
     private Caseta caseta;

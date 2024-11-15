@@ -4,10 +4,6 @@
  */
 package Excepciones;
 
-/**
- *
- * @author juan
- */
 public class ExcepcionBusYaRegistrado extends Exception{
 
     public ExcepcionBusYaRegistrado() {

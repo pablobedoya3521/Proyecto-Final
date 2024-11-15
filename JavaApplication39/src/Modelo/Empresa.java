@@ -12,10 +12,7 @@ import Excepciones.ExcepcionViajeVacio;
 import Persistencia.SerializadoraCaseta;
 import Util.Lista;
 import java.io.Serializable;
-/**
- *
- * @author juan
- */
+
 public class Empresa implements Serializable{
     private static final long serialVersionUID = 1L;
     private int nit;
@@ -285,4 +282,12 @@ public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFl
         return listaViajes;
     }
 
+    public void setListaBuses(Lista<Bus> listaBuses) {
+        this.listaBuses = listaBuses;
+    }
+
+    public void setListaViajes(Lista<Viaje> listaViajes) {
+        this.listaViajes = listaViajes;
+    }
+    
 }

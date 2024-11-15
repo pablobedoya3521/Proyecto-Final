@@ -4,10 +4,6 @@
  */
 package Util;
 
-/**
- *
- * @author juan
- */
 public interface IList<T> {
     public void add(T dato);
     public T get(int index);

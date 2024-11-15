@@ -4,10 +4,7 @@
  */
 package Excepciones;
 
-/**
- *
- * @author juan
- */
+
 public class ExcepcionCantidadPlazasNula extends Exception{
     public ExcepcionCantidadPlazasNula() {
         super("Lo siento, No hay mas plazas disponibles");

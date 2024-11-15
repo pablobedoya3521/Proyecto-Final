@@ -5,14 +5,10 @@
 package Modelo;
 
 
-import Excepciones.ExcepcionBusVacio;
-import Persistencia.SerializadoraCaseta;
+
 import java.io.Serializable;
 
-/**
- *
- * @author sebastian
- */
+
 public class Bus implements Serializable{
     private static final long serialVersionUID = 1L;
     private String placa;

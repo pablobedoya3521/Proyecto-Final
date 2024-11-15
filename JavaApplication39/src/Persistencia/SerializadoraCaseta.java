@@ -13,10 +13,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 
-/**
- *
- * @author juan
- */
+
 public class SerializadoraCaseta implements Serializable{
     
    public void escribirObjeto(Caseta[][] casetas) {

@@ -9,10 +9,6 @@ import Controlador.ControladorRegistro;
 import Modelo.AdministradorFlota;
 import Modelo.Cliente;
 
-/**
- *
- * @author juan
- */
 public class ValidarInformacion {
     private ControladorRegistro controladorRegistro;
     private ControladorCasetas controladorCaseta;

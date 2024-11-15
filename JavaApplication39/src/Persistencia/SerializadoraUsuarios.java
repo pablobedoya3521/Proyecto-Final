@@ -13,10 +13,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-/**
- *
- * @author juan
- */
+
 public class SerializadoraUsuarios {
     public void escribirObjeto(Lista<Usuario> usuarios){
         try{

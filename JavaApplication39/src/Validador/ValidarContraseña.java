@@ -6,11 +6,6 @@ package Validador;
 import Controlador.ControladorRegistro;
 import Excepciones.ExcepcionContraseñaIncorrecta;
 
-
-/**
- *
- * @author juan
- */
 public class ValidarContraseña {
     private ControladorRegistro controladorRegistro;
     

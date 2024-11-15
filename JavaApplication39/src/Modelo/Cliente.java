@@ -9,10 +9,7 @@ import Util.Lista;
 import Vista.VentanasCliente.VentanaPrincipalCliente;
 import java.io.Serializable;
 
-/**
- *
- * @author juan
- */
+
     public class Cliente extends Usuario implements Serializable{
         private static final long serialVersionUID = 1L;
         private int puntosAcumulados;
@@ -117,8 +114,6 @@ import java.io.Serializable;
 
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
-    }
-        
-        
+    }  
 
-    }
+}

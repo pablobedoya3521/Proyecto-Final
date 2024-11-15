@@ -15,10 +15,6 @@ import Modelo.Empresa;
 import Modelo.Viaje;
 import Persistencia.SerializadoraCaseta;
 
-/**
- *
- * @author sebastian
- */
 public class ControladorEmpresa{
     private Empresa empresa;
     private Caseta[][] casetas;

@@ -7,10 +7,7 @@ package Modelo;
 import Vista.VentanaAdminFlota.VentanaPrincipalAdminFlota;
 import java.io.Serializable;
 
-/**
- *
- * @author juan
- */
+
 public class AdministradorFlota extends Usuario implements Serializable{
     private static final long serialVersionUID = 1L;
     private String nivelExp;

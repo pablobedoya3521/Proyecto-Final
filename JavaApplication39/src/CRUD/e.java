@@ -4,10 +4,6 @@
  */
 package CRUD;
 
-/**
- *
- * @author juan
- */
 public class e {
    
 }

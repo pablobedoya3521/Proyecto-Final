@@ -4,10 +4,7 @@
  */
 package Excepciones;
 
-/**
- *
- * @author juan
- */
+
 public class ExcepcionCorreoEnUso extends Exception {
     
     public ExcepcionCorreoEnUso(){

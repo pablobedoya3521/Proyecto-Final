@@ -4,10 +4,7 @@
  */
 package Excepciones;
 
-/**
- *
- * @author sebastian
- */
+
 public class ExcepcionCodigoTiqueteEnUso extends Exception{
     public ExcepcionCodigoTiqueteEnUso(){
         super("No se puede crear el tiquete, Codigo en uso");

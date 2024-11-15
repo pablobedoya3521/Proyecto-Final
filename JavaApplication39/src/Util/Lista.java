@@ -6,10 +6,6 @@ package Util;
 
 import java.io.Serializable;
 
-/**
- *
- * @author juan
- */
 public class Lista<S> implements IList<S>, Serializable{
     
     private Nodo<S> primero;

@@ -8,14 +8,11 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-/**
- *
- * @author sebastian
- */
+
 public class Tiquete implements Serializable{
     private static final long serialVersionUID = 1L; 
     private static int contador = 1;
-    private int codigo;
+    private int codigoTiquete;
     private Viaje viaje;
     private Cliente cliente;
     private int cantidad;
@@ -24,7 +21,7 @@ public class Tiquete implements Serializable{
   
     
     public Tiquete(Viaje viaje,Cliente cliente, int cantidad){
-        this.codigo=contador++;
+        this.codigoTiquete=contador++;
         this.viaje=viaje;
         this.cliente=cliente;
         this.cantidad=cantidad;
@@ -32,12 +29,12 @@ public class Tiquete implements Serializable{
         this.horaDeCompra=LocalTime.now();
     }
 
-    public int getCodigo() {
-        return codigo;
+    public int getCodigoTiquete() {
+        return codigoTiquete;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setCodigoTiquete(int codigo) {
+        this.codigoTiquete = codigo;
     }
 
     public Viaje getViaje() {

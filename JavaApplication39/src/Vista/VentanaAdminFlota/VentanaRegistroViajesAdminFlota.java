@@ -14,10 +14,6 @@ import Modelo.Empresa;
 import Modelo.Viaje;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author sebastian
- */
 public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
     private ControladorEmpresa controladorEmpresa;
     private Empresa empresa;

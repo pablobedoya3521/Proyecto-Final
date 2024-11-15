@@ -10,10 +10,7 @@ import Modelo.Usuario;
 import Persistencia.SerializadoraUsuarios;
 import Util.Lista;
 
-/**
- *
- * @author juan
- */
+
 public class ControladorRegistro{
     private Lista<Usuario> usuarios;
     private SerializadoraUsuarios serializadora;

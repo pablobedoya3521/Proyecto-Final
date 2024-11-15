@@ -46,33 +46,14 @@ public class Viaje implements Serializable{
         this.serializadora=new SerializadoraCaseta();
     }
     
-    public void guardarTiquete(Tiquete tiquete) throws ExcepcionCodigoTiqueteEnUso, ExcepcionViajeVacio{
-        Caseta[][] casetas= serializadora.leerObjeto();
-        for (int i = 0; i < casetas.length; i++) {
-            for (int j = 0; j < casetas[i].length; j++) {
-                if(casetas[i][j].getEmpresa()!=null && 
-                        casetas[i][j].getEmpresa().getListaViajes().get(i).getListaTiquetes().get(i).getCodigo()==tiquete.getCodigo()){
-                    throw new ExcepcionCodigoTiqueteEnUso();
-                }
+    public void guardarTiquete(Tiquete tiquete) throws ExcepcionCodigoTiqueteEnUso{
+        for (int i = 0; i < listaTiquetes.size(); i++) {
+            if(listaTiquetes.get(i).getCodigo()==tiquete.getCodigo()){
+                throw new ExcepcionCodigoTiqueteEnUso();
             }
         }
         
-        for (int i = 0; i < casetas.length; i++) {
-            for (int j = 0; j < casetas[i].length; j++) {
-                if(casetas[i][j].getEmpresa()!=null &&
-                        casetas[i][j].getEmpresa().getListaViajes().get(i).getId().equals(this.id)){
-                    
-                    Empresa empresa = casetas[i][j].getEmpresa();
-                    Viaje viaje = casetas[i][j].getEmpresa().getListaViajes().get(i);
-                    viaje.guardarTiquete(tiquete);
-                    viaje.setListaTiquetes(listaTiquetes);
-                    empresa.modificarViaje(this);
-                    casetas[i][j].setEmpresa(empresa);
-                    serializadora.escribirObjeto(casetas);
-                }
-            }
-        }
-        
+        listaTiquetes.add(tiquete);
     }
     
     public String getId() {

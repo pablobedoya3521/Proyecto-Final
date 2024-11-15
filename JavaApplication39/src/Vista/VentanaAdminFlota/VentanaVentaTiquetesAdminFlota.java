@@ -11,7 +11,9 @@ import Excepciones.ExcepcionCodigoTiqueteEnUso;
 import Excepciones.ExcepcionUsuarioNoEncontrado;
 import Excepciones.ExcepcionViajeVacio;
 import Modelo.Cliente;
+import Modelo.Empresa;
 import Modelo.Tiquete;
+import Modelo.Usuario;
 import Modelo.Viaje;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -26,13 +28,16 @@ import javax.swing.JOptionPane;
 public class VentanaVentaTiquetesAdminFlota extends javax.swing.JFrame {
     private ControladorEmpresa controladorEmpresa;
     private ControladorRegistro controladorRegistro;
+    private Empresa empresa;
     /**
      * Creates new form VentanaVentaTiquetesAdminFlota
      */
-    public VentanaVentaTiquetesAdminFlota() {
+    public VentanaVentaTiquetesAdminFlota(Empresa empresa) {
         initComponents();
 //        this.controladorEmpresa=new ControladorEmpresa();
         this.controladorRegistro= new ControladorRegistro();
+        this.controladorEmpresa=new ControladorEmpresa(empresa);
+        this.empresa=empresa;
         txtFecha.setText(String.valueOf(obtenerFecha()));
         txtHora.setText(String.valueOf(obtenerHora()));
     }
@@ -240,7 +245,12 @@ public class VentanaVentaTiquetesAdminFlota extends javax.swing.JFrame {
             int cantidad=Integer.parseInt(txtCantidad.getText());
             String correo=txtCliente.getText();
             LocalDate fechaCompra=LocalDate.parse(txtFecha.getText(), DateTimeFormatter.ISO_DATE);
-            LocalTime hora= LocalTime.parse(txtHora.getText(), DateTimeFormatter.ISO_DATE);
+            String horaStr = txtHora.getText();
+            int index = horaStr.indexOf(".");
+            if (index != -1) {
+                horaStr = horaStr.substring(0, index);
+            }
+            LocalTime hora = LocalTime.parse(horaStr, DateTimeFormatter.ISO_TIME);
             
                 if (txtIdViaje.getText().isEmpty() || txtCantidad.getText().isEmpty() || 
                     txtCliente.getText().isEmpty() || txtFecha.getText().isEmpty() || txtHora.getText().isEmpty()) {
@@ -253,7 +263,11 @@ public class VentanaVentaTiquetesAdminFlota extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No hay mas puestos disponibles");
             return;
         }
-        Cliente cliente=(Cliente)controladorRegistro.buscar(correo);
+         Usuario usuario = controladorRegistro.buscar(correo);
+         if(!(usuario instanceof Cliente)){
+             throw new ExcepcionUsuarioNoEncontrado();
+         }
+        Cliente cliente =(Cliente) usuario;
         ControladorViaje controladorViaje = new ControladorViaje(viaje); 
         Tiquete tiquete = new Tiquete(viaje, cliente, cantidad);
         controladorViaje.guardarTiquete(tiquete);
@@ -267,8 +281,9 @@ public class VentanaVentaTiquetesAdminFlota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-//        VentanaPrincipalAdminFlota cambio=new VentanaPrincipalAdminFlota();
-//        cambio.setVisible(true);
+       VentanaPrincipalAdminFlota cambio=new VentanaPrincipalAdminFlota(this.empresa);
+       cambio.setVisible(true);
+       this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed

@@ -407,7 +407,9 @@ public class Registro extends javax.swing.JFrame {
             Cliente cliente= new Cliente(nombre, apellido, cedula, correo, contraseña, telefono, edad, direccion);
             controladorRegistro.guardar(cliente);
             JOptionPane.showMessageDialog(null, "Registrado Correctamente");
-        }catch(ExcepcionCorreoEnUso ex){
+        }catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+        } catch(ExcepcionCorreoEnUso ex){
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed

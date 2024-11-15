@@ -372,7 +372,7 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBusActionPerformed
 
     private void btnTiquetesVendidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiquetesVendidosActionPerformed
-        showJPanel(new PanelTiqueteVendidosAdminFlota());
+        showJPanel(new PanelTiqueteVendidosAdminFlota(this.empresa));
     }//GEN-LAST:event_btnTiquetesVendidosActionPerformed
 
     private void btnReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservasActionPerformed
@@ -398,7 +398,7 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnTiquete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiquete1ActionPerformed
-        VentanaVentaTiquetesAdminFlota cambio=new VentanaVentaTiquetesAdminFlota();
+        VentanaVentaTiquetesAdminFlota cambio=new VentanaVentaTiquetesAdminFlota(this.empresa);
         cambio.setVisible(true);
     }//GEN-LAST:event_btnTiquete1ActionPerformed
 

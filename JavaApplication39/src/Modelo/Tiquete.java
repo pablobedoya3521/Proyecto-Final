@@ -72,4 +72,13 @@ public class Tiquete implements Serializable{
         this.fechaDeCompra = fechaDeCompra;
     }
 
+    public LocalTime getHoraDeCompra() {
+        return horaDeCompra;
+    }
+
+    public void setHoraDeCompra(LocalTime horaDeCompra) {
+        this.horaDeCompra = horaDeCompra;
+    }
+
+    
 }

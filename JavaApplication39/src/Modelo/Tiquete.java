@@ -26,7 +26,7 @@ public class Tiquete implements Serializable{
         this.cliente=cliente;
         this.cantidad=cantidad;
         this.fechaDeCompra=LocalDate.now();
-        this.horaDeCompra=LocalTime.now();
+        this.horaDeCompra=LocalTime.now().withNano(0);
     }
 
     public int getCodigoTiquete() {

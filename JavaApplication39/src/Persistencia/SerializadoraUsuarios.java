@@ -12,9 +12,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 
-public class SerializadoraUsuarios {
+public class SerializadoraUsuarios implements Serializable{
+    private static final long serialVersionUID = 1L;
     public void escribirObjeto(Lista<Usuario> usuarios){
         try{
             FileOutputStream file = new FileOutputStream("usuarios.dat");

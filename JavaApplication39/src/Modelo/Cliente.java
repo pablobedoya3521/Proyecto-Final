@@ -4,7 +4,8 @@
  */
 package Modelo;
 
-
+import Controlador.ControladorRegistro;
+import Persistencia.SerializadoraUsuarios;
 import Util.Lista;
 import Vista.VentanasCliente.VentanaPrincipalCliente;
 import java.io.Serializable;
@@ -19,7 +20,9 @@ import java.io.Serializable;
         //private Lista<Reserva> listaReservas;
         private Lista<Tiquete> listaTiquetes;
         //private Lista<Reserva> listaReservasCanceladas;
-
+        private SerializadoraUsuarios serializadoraUsuarios;
+        private ControladorRegistro controladorRegistro;
+        
         public Cliente(String nombre, String apellido, String cedula, String correo, String contraseña, String telefono, int edad, String direccion) {
             super(nombre, apellido, cedula, correo, contraseña);
             this.puntosAcumulados=0;
@@ -27,6 +30,8 @@ import java.io.Serializable;
             this.edad=edad;
             this.direccion=direccion;
             this.listaTiquetes=new Lista<>();
+            this.serializadoraUsuarios= new SerializadoraUsuarios();
+            this.controladorRegistro= new ControladorRegistro();
         }
 
         //@Override
@@ -34,6 +39,19 @@ import java.io.Serializable;
            Cliente cliente1 = (Cliente) cliente;
            VentanaPrincipalCliente ventana = new VentanaPrincipalCliente(cliente1);
            ventana.setVisible(true);
+        }
+        
+        public void guardarCompraTiquete(Tiquete tiquete){
+            Lista<Usuario> usuarios = serializadoraUsuarios.leerObjeto();
+            for (int i = 0; i < usuarios.size(); i++) {
+                if(usuarios.get(i).getCorreo().equals(this.correo)){
+                    listaTiquetes.add(tiquete);
+                    Cliente cliente =(Cliente) usuarios.get(i);
+                    cliente.setListaTiquetes(cliente.getListaTiquetes());
+                    controladorRegistro.setUsuarios(usuarios);
+                    serializadoraUsuarios.escribirObjeto(usuarios);
+                }
+            }
         }
 
     public int getPuntosAcumulados() {

@@ -386,7 +386,7 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDevolucionesActionPerformed
 
     private void btnComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprasActionPerformed
-        showJPanel(new PanelComprasCliente());
+        showJPanel(new PanelComprasCliente(this.cliente));
     }//GEN-LAST:event_btnComprasActionPerformed
 
     private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed

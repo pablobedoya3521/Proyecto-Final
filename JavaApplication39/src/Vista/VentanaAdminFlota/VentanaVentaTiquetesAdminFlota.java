@@ -28,6 +28,9 @@ public class VentanaVentaTiquetesAdminFlota extends javax.swing.JFrame {
 
     public VentanaVentaTiquetesAdminFlota(Empresa empresa) {
         initComponents();
+        setLocationRelativeTo(this);
+        setResizable(false);
+        pack(); 
         this.controladorRegistro= new ControladorRegistro();
         this.controladorEmpresa=new ControladorEmpresa(empresa);
         this.empresa=empresa;
@@ -39,8 +42,8 @@ public class VentanaVentaTiquetesAdminFlota extends javax.swing.JFrame {
         return LocalDate.now();
     }
     
-    private LocalTime obtenerHora(){
-        return LocalTime.now();
+    private String obtenerHora(){
+        return LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
     }
 
     @SuppressWarnings("unchecked")
@@ -232,13 +235,6 @@ public class VentanaVentaTiquetesAdminFlota extends javax.swing.JFrame {
             String idViaje=txtIdViaje.getText();
             int cantidad=Integer.parseInt(txtCantidad.getText());
             String correo=txtCliente.getText();
-            LocalDate fechaCompra=LocalDate.parse(txtFecha.getText(), DateTimeFormatter.ISO_DATE);
-            String horaStr = txtHora.getText();
-            int index = horaStr.indexOf(".");
-            if (index != -1) {
-                horaStr = horaStr.substring(0, index);
-            }
-            LocalTime hora = LocalTime.parse(horaStr, DateTimeFormatter.ISO_TIME);
             
                 if (txtIdViaje.getText().isEmpty() || txtCantidad.getText().isEmpty() || 
                     txtCliente.getText().isEmpty() || txtFecha.getText().isEmpty() || txtHora.getText().isEmpty()) {
@@ -246,19 +242,20 @@ public class VentanaVentaTiquetesAdminFlota extends javax.swing.JFrame {
                     return;
                 }
                 
-        Viaje viaje=controladorEmpresa.buscarViaje(idViaje);
-         if(viaje.getBus().getNumAsientos()<=0){
+        Viaje viaje=controladorEmpresa.buscarViaje(idViaje);//busco el viaje
+        if(viaje.getBus().getNumAsientos()<=0){
             JOptionPane.showMessageDialog(null, "No hay mas puestos disponibles");
             return;
         }
-         Usuario usuario = controladorRegistro.buscar(correo);
+         Usuario usuario = controladorRegistro.buscar(correo);//busco el cliente
          if(!(usuario instanceof Cliente)){
              throw new ExcepcionUsuarioNoEncontrado();
          }
-        Cliente cliente =(Cliente) usuario;
-        ControladorViaje controladorViaje = new ControladorViaje(viaje); 
-        Tiquete tiquete = new Tiquete(viaje, cliente, cantidad);
-        controladorViaje.guardarTiquete(tiquete);
+        Cliente cliente =(Cliente) usuario; //uso el cliente para la instancia
+        ControladorViaje controladorViaje = new ControladorViaje(viaje); //creo el controlador
+        Tiquete tiquete = new Tiquete(viaje, cliente, cantidad);//creo el tiquete
+        controladorViaje.guardarTiquete(tiquete);//guardo el tiquete
+        cliente.guardarCompraTiquete(tiquete);//le guardo el tiquete tambien al cliente
         JOptionPane.showMessageDialog(null, "Tiquete vendido");
             
         }catch (NumberFormatException ex) {

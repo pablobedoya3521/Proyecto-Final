@@ -37,7 +37,6 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         btnGuardarBus = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
         txtMarca = new javax.swing.JTextField();
@@ -77,13 +76,6 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
-            }
-        });
-
-        btnEliminar.setText("Eliminar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
             }
         });
 
@@ -131,17 +123,6 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnGuardarBus, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(122, 122, 122))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(206, 206, 206)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(313, 313, 313)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnVolver)
-                            .addComponent(btnEliminar))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -176,6 +157,15 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtTipoCombustible, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(67, 67, 67))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(206, 206, 206)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnVolver)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,15 +198,13 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
                     .addComponent(jLabel11))
                 .addGap(32, 32, 32)
                 .addComponent(btnGuardarBus)
-                .addGap(18, 18, 18)
-                .addComponent(btnEliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBuscar)
                     .addComponent(btnModificar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnVolver)
-                .addGap(26, 26, 26))
+                .addGap(19, 19, 19))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -264,62 +252,7 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
       }
     }//GEN-LAST:event_btnGuardarBusActionPerformed
 
-    
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        try{
-            String placa = txtPlaca.getText();
-            if (txtPlaca.getText().isEmpty()) {
-              JOptionPane.showMessageDialog(null, "Por favor complete el campo de la placa.");
-              return;
-            }
-                Bus respuesta = controladorEmpresa.buscarBus(placa);
-                txtNumAsientos.setText(String.valueOf(respuesta.getNumAsientos()));
-                txtMarca.setText(respuesta.getMarca());
-                txtModelo.setText(respuesta.getModelo());
-                txtTipoCombustible.setText(respuesta.getTipoCombustible());
-                txtPotenciaMotor.setText(respuesta.getPotenciaMotor());
-        }catch (NumberFormatException | ExcepcionBusVacio ex) {
-            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-        }
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        try{
-            String placa=txtPlaca.getText(); 
-            if (txtPlaca.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Por favor complete el campo de la placa.");
-                return;
-            }
-               controladorEmpresa.eliminarBus(placa);
-               JOptionPane.showMessageDialog(null, "Se eliminó el bus");
-               limpiarCampos();
-        } catch (ExcepcionBusVacio ex) {
-           JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        try{
-            String placa=txtPlaca.getText();
-            int numAsientos =Integer.parseInt(txtNumAsientos.getText());
-            String marca= txtMarca.getText();
-            String modelo = txtModelo.getText();
-            String combustible = txtTipoCombustible.getText();
-            String potenciaMotor = txtPotenciaMotor.getText();
-                if (txtPlaca.getText().isEmpty()||txtNumAsientos.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-                    return;
-                }
-           Bus bus=new Bus(placa, numAsientos ,marca, modelo, combustible, potenciaMotor);
-            controladorEmpresa.modificarBus(bus);
-            JOptionPane.showMessageDialog(null, "Se modificó el bus");
-        }catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-        }catch (ExcepcionBusVacio ex) {
-           JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-    }//GEN-LAST:event_btnModificarActionPerformed
-    
+        
     public void limpiarCampos(){
         txtPlaca.setText("");
         txtNumAsientos.setText("");
@@ -331,9 +264,48 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        try{
+            String placa = txtPlaca.getText();
+            if (txtPlaca.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Por favor complete el campo de la placa.");
+                return;
+            }
+            Bus respuesta = controladorEmpresa.buscarBus(placa);
+            txtNumAsientos.setText(String.valueOf(respuesta.getNumAsientos()));
+            txtMarca.setText(respuesta.getMarca());
+            txtModelo.setText(respuesta.getModelo());
+            txtTipoCombustible.setText(respuesta.getTipoCombustible());
+            txtPotenciaMotor.setText(respuesta.getPotenciaMotor());
+        }catch (NumberFormatException | ExcepcionBusVacio ex) {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        try{
+            String placa=txtPlaca.getText();
+            int numAsientos =Integer.parseInt(txtNumAsientos.getText());
+            String marca= txtMarca.getText();
+            String modelo = txtModelo.getText();
+            String combustible = txtTipoCombustible.getText();
+            String potenciaMotor = txtPotenciaMotor.getText();
+            if (txtPlaca.getText().isEmpty()||txtNumAsientos.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+                return;
+            }
+            Bus bus=new Bus(placa, numAsientos ,marca, modelo, combustible, potenciaMotor);
+            controladorEmpresa.modificarBus(bus);
+            JOptionPane.showMessageDialog(null, "Se modificó el bus");
+        }catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+        }catch (ExcepcionBusVacio ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardarBus;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnVolver;

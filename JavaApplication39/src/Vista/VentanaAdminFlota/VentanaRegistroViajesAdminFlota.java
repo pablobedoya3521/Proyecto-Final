@@ -41,7 +41,6 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         btnGuardarViajes = new javax.swing.JButton();
         btnBuscarViaje = new javax.swing.JButton();
-        btnEliminarViaje = new javax.swing.JButton();
         btnModificarViaje = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -98,13 +97,6 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
         btnBuscarViaje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarViajeActionPerformed(evt);
-            }
-        });
-
-        btnEliminarViaje.setText("Eliminar");
-        btnEliminarViaje.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarViajeActionPerformed(evt);
             }
         });
 
@@ -199,13 +191,10 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
                                             .addComponent(txtBus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtValorViaje, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addGap(9, 9, 9)
+                                        .addGap(133, 133, 133)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(btnGuardarViajes, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(btnEliminarViaje, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(btnModificarViaje, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(btnModificarViaje, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -278,9 +267,7 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
                     .addComponent(btnGuardarViajes)
                     .addComponent(btnBuscarViaje))
                 .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEliminarViaje)
-                    .addComponent(btnModificarViaje))
+                .addComponent(btnModificarViaje)
                 .addGap(27, 27, 27)
                 .addComponent(btnVolver)
                 .addContainerGap())
@@ -333,42 +320,15 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarViajesActionPerformed
 
     
-    private void btnBuscarViajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarViajeActionPerformed
-        try{
-        String id = txtId.getText();
-        if (txtId.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-            return;
-        }
-        Viaje respuesta = controladorEmpresa.buscarViaje(id);
-        txtId.setText(respuesta.getId());
-        txtOrigen.setText(respuesta.getOrigen());
-        txtDestino.setText(respuesta.getDestino());
-        txtHoraDeSalida.setText(respuesta.getHoraDeSalida());
-        txtHoraDeLlegada.setText(respuesta.getHoraDeLlegada());
-        txtBus.setText(respuesta.getBus().getPlaca());
-        txtValorViaje.setText(String.valueOf(respuesta.getPrecioViaje()));
-        }catch (NumberFormatException ex){
-            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-        } catch (ExcepcionViajeVacio ex) {
-           JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-    }//GEN-LAST:event_btnBuscarViajeActionPerformed
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        VentanaPrincipalAdminFlota cambio=new VentanaPrincipalAdminFlota(this.empresa);
+        cambio.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
-    private void btnEliminarViajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarViajeActionPerformed
-        try{
-        String id = txtId.getText();
-            if (txtId.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-                return;
-            }
-            controladorEmpresa.eliminarViaje(id);
-            JOptionPane.showMessageDialog(null, "Se eliminó el viaje");
-            limpiarCampos();
-       } catch (ExcepcionViajeVacio ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-       }
-    }//GEN-LAST:event_btnEliminarViajeActionPerformed
+    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
+        
+    }//GEN-LAST:event_txtIdActionPerformed
 
     private void btnModificarViajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarViajeActionPerformed
         try{
@@ -382,37 +342,48 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
             String placa = txtBus.getText();
             double valorViaje = Double.parseDouble(txtValorViaje.getText());
 
-            if (txtId.getText().isEmpty()||txtOrigen.getText().isEmpty() || txtDestino.getText().isEmpty() || 
-               txtHoraDeSalida.getText().isEmpty() || txtHoraDeLlegada.getText().isEmpty()||
-               txtBus.getText().isEmpty() || txtValorViaje.getText().isEmpty() || txtFechaSalida.getText().isEmpty() ||
-               txtFechaLLegada.getText().isEmpty()) {
-               JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-               return;
+            if (txtId.getText().isEmpty()||txtOrigen.getText().isEmpty() || txtDestino.getText().isEmpty() ||
+                txtHoraDeSalida.getText().isEmpty() || txtHoraDeLlegada.getText().isEmpty()||
+                txtBus.getText().isEmpty() || txtValorViaje.getText().isEmpty() || txtFechaSalida.getText().isEmpty() ||
+                txtFechaLLegada.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+                return;
             }
-            
+
             Bus bus=controladorEmpresa.buscarBus(placa);
-        
+
             Viaje viaje=new Viaje(id,origen,destino,horaDeSalida,horaDeLlegada, horaDeSalida, horaDeLlegada, bus, valorViaje);
             controladorEmpresa.modificarViaje(viaje);
             JOptionPane.showMessageDialog(null, "Viaje modificado correctamente");
 
-        
         }catch (NumberFormatException ex) {
-             JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
         }catch (ExcepcionBusVacio | ExcepcionViajeVacio ex){
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_btnModificarViajeActionPerformed
 
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        VentanaPrincipalAdminFlota cambio=new VentanaPrincipalAdminFlota(this.empresa);
-        cambio.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnVolverActionPerformed
-
-    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
-        
-    }//GEN-LAST:event_txtIdActionPerformed
+    private void btnBuscarViajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarViajeActionPerformed
+        try{
+            String id = txtId.getText();
+            if (txtId.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+                return;
+            }
+            Viaje respuesta = controladorEmpresa.buscarViaje(id);
+            txtId.setText(respuesta.getId());
+            txtOrigen.setText(respuesta.getOrigen());
+            txtDestino.setText(respuesta.getDestino());
+            txtHoraDeSalida.setText(respuesta.getHoraDeSalida());
+            txtHoraDeLlegada.setText(respuesta.getHoraDeLlegada());
+            txtBus.setText(respuesta.getBus().getPlaca());
+            txtValorViaje.setText(String.valueOf(respuesta.getPrecioViaje()));
+        }catch (NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+        } catch (ExcepcionViajeVacio ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_btnBuscarViajeActionPerformed
     
     public void limpiarCampos(){
         txtId.setText("");
@@ -426,7 +397,6 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarViaje;
-    private javax.swing.JButton btnEliminarViaje;
     private javax.swing.JButton btnGuardarViajes;
     private javax.swing.JButton btnModificarViaje;
     private javax.swing.JButton btnVolver;

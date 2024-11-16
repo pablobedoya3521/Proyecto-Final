@@ -62,11 +62,11 @@ public class Viaje implements Serializable{
                     Lista<Viaje> listaViajes = empresa.getListaViajes();
                     for (int k = 0; k < listaViajes.size(); k++) {
                         Viaje viaje = listaViajes.get(k);
-                        Lista<Tiquete> listaTiquetesViaje = viaje.getListaTiquetes();
-
-                        if (listaTiquetesViaje != null) {
-                            for (int l = 0; l < listaTiquetesViaje.size(); l++) {
-                                if (listaTiquetesViaje.get(l).getCodigoTiquete() == tiquete.getCodigoTiquete()) {
+                        if(viaje.getId().equals(this.id)){
+                            Lista<Tiquete> tiquetes= viaje.getListaTiquetes();
+                            for (int l = 0; l < tiquetes.size(); l++) {
+                                Tiquete tiqueteAdquirido = tiquetes.get(l);
+                                if(tiqueteAdquirido.getCodigoTiquete()==tiquete.getCodigoTiquete()){
                                     throw new ExcepcionCodigoTiqueteEnUso();
                                 }
                             }

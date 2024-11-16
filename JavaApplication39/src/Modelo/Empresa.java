@@ -38,9 +38,9 @@ public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFl
        
         for (int i = 0; i < casetas.length; i++) {
             for (int j = 0; j < casetas[i].length; j++) {
-                if (casetas[i][j].getEmpresa() != null && casetas[i][j].getEmpresa().getNit() == this.nit) {
+                if (casetas[i][j].getEmpresa() != null) {
                     for (int k = 0; k < casetas[i][j].getEmpresa().getListaBuses().size(); k++) {
-                        if(casetas[i][j].getEmpresa().getListaBuses().get(i).getPlaca().equals(bus.getPlaca())){
+                        if(casetas[i][j].getEmpresa().getListaBuses().get(k).getPlaca().equals(bus.getPlaca())){
                             throw new ExcepcionBusYaRegistrado();
                         }
                     }

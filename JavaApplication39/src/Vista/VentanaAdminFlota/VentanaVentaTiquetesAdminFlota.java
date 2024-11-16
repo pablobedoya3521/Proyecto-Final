@@ -7,6 +7,7 @@ package Vista.VentanaAdminFlota;
 import Controlador.ControladorEmpresa;
 import Controlador.ControladorRegistro;
 import Controlador.ControladorViaje;
+import Excepciones.ExcepcionAsientosInsuficientes;
 import Excepciones.ExcepcionCodigoTiqueteEnUso;
 import Excepciones.ExcepcionUsuarioNoEncontrado;
 import Excepciones.ExcepcionViajeVacio;
@@ -241,10 +242,9 @@ public class VentanaVentaTiquetesAdminFlota extends javax.swing.JFrame {
         controladorViaje.guardarTiquete(tiquete);//guardo el tiquete
         cliente.guardarCompraTiquete(tiquete);//le guardo el tiquete tambien al cliente
         JOptionPane.showMessageDialog(null, "Tiquete vendido");
-            
         }catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-        } catch (ExcepcionViajeVacio | ExcepcionUsuarioNoEncontrado | ExcepcionCodigoTiqueteEnUso ex) {
+        } catch (ExcepcionViajeVacio | ExcepcionUsuarioNoEncontrado | ExcepcionCodigoTiqueteEnUso | ExcepcionAsientosInsuficientes ex) {
             JOptionPane.showMessageDialog(null,ex.getMessage());
         }
     }//GEN-LAST:event_btnVenderActionPerformed

@@ -98,4 +98,9 @@ public class Lista<S> implements IList<S>, Serializable{
         }
         size++;
     }
+    
+    public void clear() {
+        primero = null; // Elimina la referencia al primer nodo
+        size = 0; // Restablece el tamaño de la lista a 0
+    }
 }

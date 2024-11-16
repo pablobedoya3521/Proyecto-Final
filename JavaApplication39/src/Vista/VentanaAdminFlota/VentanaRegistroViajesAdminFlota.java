@@ -125,9 +125,13 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Destino");
 
+        txtHoraDeSalida.setText("Hora:Minutos");
+
         jLabel9.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Fecha de salida");
+
+        txtHoraDeLlegada.setText("Hora:Minutos");
 
         jLabel4.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -136,6 +140,10 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Valor Viaje");
+
+        txtFechaLLegada.setText("YYYY/MM/DD");
+
+        txtFechaSalida.setText("YYYY/MM/DD");
 
         jLabel10.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));

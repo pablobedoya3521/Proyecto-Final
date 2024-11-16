@@ -227,7 +227,6 @@ public class Login extends javax.swing.JFrame {
         Registro cambio = new Registro();
         cambio.setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     private void btnIniarsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniarsesionActionPerformed

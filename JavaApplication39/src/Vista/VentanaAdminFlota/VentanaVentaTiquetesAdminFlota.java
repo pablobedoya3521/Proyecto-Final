@@ -216,37 +216,39 @@ public class VentanaVentaTiquetesAdminFlota extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
-        try{
-            String idViaje=txtIdViaje.getText();
-            int cantidad=Integer.parseInt(txtCantidad.getText());
-            String correo=txtCliente.getText();
-            
-                if (txtIdViaje.getText().isEmpty() || txtCantidad.getText().isEmpty() || 
-                    txtCliente.getText().isEmpty() || txtFecha.getText().isEmpty() || txtHora.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-                    return;
-                }
-                
-        Viaje viaje=controladorEmpresa.buscarViaje(idViaje);//busco el viaje
-        if(viaje.getBus().getNumAsientos()<=0){
-            JOptionPane.showMessageDialog(null, "No hay mas puestos disponibles");
+try {
+        String idViaje = txtIdViaje.getText();
+        int cantidad = Integer.parseInt(txtCantidad.getText());
+        String correo = txtCliente.getText();
+        
+        if (txtIdViaje.getText().isEmpty() || txtCantidad.getText().isEmpty() || 
+            txtCliente.getText().isEmpty() || txtFecha.getText().isEmpty() || txtHora.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
             return;
         }
-         Usuario usuario = controladorRegistro.buscar(correo);//busco el cliente
-         if(!(usuario instanceof Cliente)){
-             throw new ExcepcionUsuarioNoEncontrado();
-         }
-        Cliente cliente =(Cliente) usuario; //uso el cliente para la instancia
-        ControladorViaje controladorViaje = new ControladorViaje(viaje); //creo el controlador
-        Tiquete tiquete = new Tiquete(viaje, cliente, cantidad);//creo el tiquete
-        controladorViaje.guardarTiquete(tiquete);//guardo el tiquete
-        cliente.guardarCompraTiquete(tiquete);//le guardo el tiquete tambien al cliente
-        JOptionPane.showMessageDialog(null, "Tiquete vendido");
-        }catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-        } catch (ExcepcionViajeVacio | ExcepcionUsuarioNoEncontrado | ExcepcionCodigoTiqueteEnUso | ExcepcionAsientosInsuficientes ex) {
-            JOptionPane.showMessageDialog(null,ex.getMessage());
+        
+        Viaje viaje = controladorEmpresa.buscarViaje(idViaje); // Busco el viaje
+        if (viaje.getBus().getNumAsientos() <= 0) {
+            JOptionPane.showMessageDialog(null, "No hay más puestos disponibles");
+            return;
         }
+        
+        Usuario usuario = controladorRegistro.buscar(correo); // Busco el cliente
+        if (!(usuario instanceof Cliente)) {
+            throw new ExcepcionUsuarioNoEncontrado();
+        }
+        
+        Cliente cliente = (Cliente) usuario; // Uso el cliente para la instancia
+        ControladorViaje controladorViaje = new ControladorViaje(viaje); // Creo el controlador
+        Tiquete tiquete = new Tiquete(viaje, cliente, cantidad); // Creo el tiquete
+        controladorViaje.guardarTiquete(tiquete); // Guardar el tiquete
+        cliente.guardarCompraTiquete(tiquete); // Guardar el tiquete también en el cliente
+        JOptionPane.showMessageDialog(null, "Tiquete vendido");
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+    } catch (ExcepcionViajeVacio | ExcepcionUsuarioNoEncontrado | ExcepcionCodigoTiqueteEnUso | ExcepcionAsientosInsuficientes ex) {
+        JOptionPane.showMessageDialog(null, ex.getMessage());
+    }
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
@@ -300,8 +302,8 @@ public class VentanaVentaTiquetesAdminFlota extends javax.swing.JFrame {
              throw new ExcepcionUsuarioNoEncontrado();
          }
         Cliente cliente =(Cliente) usuario; //uso el cliente para la instancia
-        ControladorViaje controladorViaje = new ControladorViaje(viaje); //creo el controlador
         Tiquete tiquete = new Tiquete(viaje, cliente, cantidad);//creo el tiquete
+        ControladorViaje controladorViaje = new ControladorViaje(viaje); //creo el controlador
         controladorViaje.modificarTiquete(tiquete);//guardo el tiquete
         cliente.guardarCompraTiquete(tiquete);//le guardo el tiquete tambien al cliente
         JOptionPane.showMessageDialog(null, "Tiquete modificado");

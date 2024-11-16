@@ -41,18 +41,27 @@ import java.io.Serializable;
            ventana.setVisible(true);
         }
         
-        public void guardarCompraTiquete(Tiquete tiquete){
-            Lista<Usuario> usuarios = serializadoraUsuarios.leerObjeto();
-            for (int i = 0; i < usuarios.size(); i++) {
-                if(usuarios.get(i).getCorreo().equals(this.correo)){
-                    listaTiquetes.add(tiquete);
-                    Cliente cliente =(Cliente) usuarios.get(i);
-                    cliente.setListaTiquetes(cliente.getListaTiquetes());
-                    controladorRegistro.setUsuarios(usuarios);
-                    serializadoraUsuarios.escribirObjeto(usuarios);
-                }
-            }
+public void guardarCompraTiquete(Tiquete tiquete) {
+    // Leer la lista de usuarios desde el archivo
+    Lista<Usuario> usuarios = serializadoraUsuarios.leerObjeto();
+    
+    // Buscar el cliente en la lista de usuarios
+    for (int i = 0; i < usuarios.size(); i++) {
+        if (usuarios.get(i).getCorreo().equals(this.correo)) {
+            // Agregar el tiquete a la lista de tiquetes del cliente
+            this.listaTiquetes.add(tiquete);
+            
+            // Actualizar el cliente en la lista de usuarios
+            Cliente cliente = (Cliente) usuarios.get(i);
+            cliente.setListaTiquetes(this.listaTiquetes);
+            
+            // Escribir la lista de usuarios actualizada en el archivo
+            controladorRegistro.setUsuarios(usuarios);
+            serializadoraUsuarios.escribirObjeto(usuarios);
+            break; // Salir del bucle una vez que se ha actualizado
         }
+    }
+}
 
     public int getPuntosAcumulados() {
         return puntosAcumulados;

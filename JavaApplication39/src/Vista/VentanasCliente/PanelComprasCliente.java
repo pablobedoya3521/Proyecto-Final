@@ -17,20 +17,19 @@ public class PanelComprasCliente extends javax.swing.JPanel {
     }
     
    
-    private void llenarTabla() {
-         DefaultTableModel model = new DefaultTableModel();
-         model.setColumnIdentifiers(new Object[]{"Codigo", "Fecha de compra", "Hora de compra", "Destino de viaje"});
-         for (int i = 0; i < cliente.getListaTiquetes().size(); i++) {
-             model.addRow(new Object[]{
-                cliente.getListaTiquetes().get(i).getCodigoTiquete(),
-                cliente.getListaTiquetes().get(i).getFechaDeCompra(),
-                cliente.getListaTiquetes().get(i).getHoraDeCompra(),
-                cliente.getListaTiquetes().get(i).getViaje().getDestino(),
-             });
-         }
-         
-         tablaCompras.setModel(model);
-     }
+        private void llenarTabla() {
+            DefaultTableModel model = new DefaultTableModel();
+            model.setColumnIdentifiers(new Object[]{"Codigo", "Fecha de compra", "Hora de compra", "Destino de viaje"});
+            for (int i = 0; i < cliente.getListaTiquetes().size(); i++) {
+                model.addRow(new Object[]{
+                    cliente.getListaTiquetes().get(i).getCodigoTiquete(),
+                    cliente.getListaTiquetes().get(i).getFechaDeCompra(),
+                    cliente.getListaTiquetes().get(i).getHoraDeCompra(),
+                    cliente.getListaTiquetes().get(i).getViaje().getDestino(),
+                });
+            }
+            tablaCompras.setModel(model);
+        }
     
 
     @SuppressWarnings("unchecked")

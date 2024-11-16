@@ -4,6 +4,7 @@
  */
 package Modelo;
 
+import Persistencia.SerializadoraCaseta;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -18,16 +19,48 @@ public class Tiquete implements Serializable{
     private int cantidad;
     private LocalDate fechaDeCompra;
     private LocalTime horaDeCompra;
+    private SerializadoraCaseta serializadoraCaseta; 
   
     
     public Tiquete(Viaje viaje,Cliente cliente, int cantidad){
-        this.codigoTiquete=contador++;
+        this.serializadoraCaseta= new SerializadoraCaseta();
         this.viaje=viaje;
+        this.codigoTiquete=obtenerCodigo();
         this.cliente=cliente;
         this.cantidad=cantidad;
         this.fechaDeCompra=LocalDate.now();
         this.horaDeCompra=LocalTime.now().withNano(0);
+        
     }
+    
+    private int obtenerCodigo() {
+    Caseta[][] casetas = serializadoraCaseta.leerObjeto();
+    int maxCodigo = 0;
+
+    for (int i = 0; i < casetas.length; i++) {
+        for (int j = 0; j < casetas[i].length; j++) {
+            Empresa empresa = casetas[i][j].getEmpresa();
+            if (empresa != null) {
+                // Iterar por la lista de viajes
+                for (int k = 0; k < empresa.getListaViajes().size(); k++) {
+                    Viaje viajeActual = empresa.getListaViajes().get(k);
+                    if (viajeActual.getId().equals(this.viaje.getId())) {
+                        // Iterar por la lista de tiquetes
+                        for (int l = 0; l < viajeActual.getListaTiquetes().size(); l++) {
+                            Tiquete tiqueteActual = viajeActual.getListaTiquetes().get(l);
+                            if (tiqueteActual.getCodigoTiquete() > maxCodigo) {
+                                maxCodigo = tiqueteActual.getCodigoTiquete();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Retorna el próximo código disponible
+    return maxCodigo + 1;
+}
 
     public int getCodigoTiquete() {
         return codigoTiquete;

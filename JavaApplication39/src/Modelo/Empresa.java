@@ -111,35 +111,32 @@ public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFl
     public void modificarBus(Bus bus) throws ExcepcionBusVacio {
         boolean modificado = false;
         Caseta[][] casetas = serializadora.leerObjeto();
-
-        for (int i = 0; i < casetas.length; i++) {
-            for (int j = 0; j < casetas[i].length; j++) {
-                if (casetas[i][j].getEmpresa() != null && casetas[i][j].getEmpresa().getNit() == this.nit) {
-                    for (int k = 0; k < listaBuses.size(); k++) {  // Modificamos directamente la lista local
-                        if (listaBuses.get(k).getPlaca().equals(bus.getPlaca())) {
-
-                            listaBuses.get(k).setNumAsientos(bus.getNumAsientos());
-
-                            modificado = true; 
-                            break;
-                        }
-                    }
-                }
+  
+        for (int k = 0; k < listaBuses.size(); k++) {
+            if (listaBuses.get(k).getPlaca().equals(bus.getPlaca())) {
+               
+                listaBuses.get(k).setModelo(bus.getModelo());
+                listaBuses.get(k).setMarca(bus.getMarca());
+                listaBuses.get(k).setPotenciaMotor(bus.getPotenciaMotor());
+                listaBuses.get(k).setTipoCombustible(bus.getTipoCombustible());
+                listaBuses.get(k).setNumAsientos(bus.getNumAsientos());
+                modificado = true;
+                break;
             }
         }
 
         if (!modificado) {
-            throw new ExcepcionBusVacio(); 
+            throw new ExcepcionBusVacio();
         }
-
 
         for (int i = 0; i < casetas.length; i++) {
             for (int j = 0; j < casetas[i].length; j++) {
                 if (casetas[i][j].getEmpresa() != null && casetas[i][j].getEmpresa().getNit() == this.nit) {
-                    casetas[i][j].setEmpresa(this); 
+                    casetas[i][j].setEmpresa(this);
                 }
             }
         }
+
         serializadora.escribirObjeto(casetas);
     }
     

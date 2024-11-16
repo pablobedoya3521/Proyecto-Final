@@ -54,10 +54,10 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
 
         background = new javax.swing.JPanel();
         menu = new javax.swing.JPanel();
-        btnViaje = new javax.swing.JButton();
-        btnTiquete = new javax.swing.JButton();
-        btnBus = new javax.swing.JButton();
-        btnTiquete1 = new javax.swing.JButton();
+        btnCrearViaje = new javax.swing.JButton();
+        btnEfectuarReserva = new javax.swing.JButton();
+        btnGuardarBus = new javax.swing.JButton();
+        btnVenderTiquete = new javax.swing.JButton();
         mensaje = new javax.swing.JLabel();
         head = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -75,69 +75,69 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
         menu.setBackground(new java.awt.Color(0, 0, 0));
         menu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnViaje.setBackground(new java.awt.Color(51, 51, 51));
-        btnViaje.setForeground(new java.awt.Color(255, 255, 255));
-        btnViaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cheque (3).png"))); // NOI18N
-        btnViaje.setText("Crear Viaje");
-        btnViaje.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
-        btnViaje.setBorderPainted(false);
-        btnViaje.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnViaje.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnViaje.setIconTextGap(12);
-        btnViaje.addActionListener(new java.awt.event.ActionListener() {
+        btnCrearViaje.setBackground(new java.awt.Color(51, 51, 51));
+        btnCrearViaje.setForeground(new java.awt.Color(255, 255, 255));
+        btnCrearViaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cheque (3).png"))); // NOI18N
+        btnCrearViaje.setText("Crear Viaje");
+        btnCrearViaje.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
+        btnCrearViaje.setBorderPainted(false);
+        btnCrearViaje.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCrearViaje.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnCrearViaje.setIconTextGap(12);
+        btnCrearViaje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViajeActionPerformed(evt);
+                btnCrearViajeActionPerformed(evt);
             }
         });
-        menu.add(btnViaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 206, 320, 60));
+        menu.add(btnCrearViaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 206, 320, 60));
 
-        btnTiquete.setBackground(new java.awt.Color(51, 51, 51));
-        btnTiquete.setForeground(new java.awt.Color(255, 255, 255));
-        btnTiquete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reservado (1).png"))); // NOI18N
-        btnTiquete.setText("Efectuar Reserva");
-        btnTiquete.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
-        btnTiquete.setBorderPainted(false);
-        btnTiquete.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnTiquete.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnTiquete.setIconTextGap(12);
-        btnTiquete.addActionListener(new java.awt.event.ActionListener() {
+        btnEfectuarReserva.setBackground(new java.awt.Color(51, 51, 51));
+        btnEfectuarReserva.setForeground(new java.awt.Color(255, 255, 255));
+        btnEfectuarReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reservado (1).png"))); // NOI18N
+        btnEfectuarReserva.setText("Efectuar Reserva");
+        btnEfectuarReserva.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
+        btnEfectuarReserva.setBorderPainted(false);
+        btnEfectuarReserva.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEfectuarReserva.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnEfectuarReserva.setIconTextGap(12);
+        btnEfectuarReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTiqueteActionPerformed(evt);
+                btnEfectuarReservaActionPerformed(evt);
             }
         });
-        menu.add(btnTiquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 320, 60));
+        menu.add(btnEfectuarReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 320, 60));
 
-        btnBus.setBackground(new java.awt.Color(51, 51, 51));
-        btnBus.setForeground(new java.awt.Color(255, 255, 255));
-        btnBus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/autobus (1).png"))); // NOI18N
-        btnBus.setText("Guardar Bus");
-        btnBus.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
-        btnBus.setBorderPainted(false);
-        btnBus.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnBus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnBus.setIconTextGap(12);
-        btnBus.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardarBus.setBackground(new java.awt.Color(51, 51, 51));
+        btnGuardarBus.setForeground(new java.awt.Color(255, 255, 255));
+        btnGuardarBus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/autobus (1).png"))); // NOI18N
+        btnGuardarBus.setText("Guardar Bus");
+        btnGuardarBus.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
+        btnGuardarBus.setBorderPainted(false);
+        btnGuardarBus.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnGuardarBus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnGuardarBus.setIconTextGap(12);
+        btnGuardarBus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBusActionPerformed(evt);
+                btnGuardarBusActionPerformed(evt);
             }
         });
-        menu.add(btnBus, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 320, 60));
+        menu.add(btnGuardarBus, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 320, 60));
 
-        btnTiquete1.setBackground(new java.awt.Color(51, 51, 51));
-        btnTiquete1.setForeground(new java.awt.Color(255, 255, 255));
-        btnTiquete1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/tarjeta-de-credito (1) (1).png"))); // NOI18N
-        btnTiquete1.setText("Vender Tiquete");
-        btnTiquete1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
-        btnTiquete1.setBorderPainted(false);
-        btnTiquete1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnTiquete1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnTiquete1.setIconTextGap(12);
-        btnTiquete1.addActionListener(new java.awt.event.ActionListener() {
+        btnVenderTiquete.setBackground(new java.awt.Color(51, 51, 51));
+        btnVenderTiquete.setForeground(new java.awt.Color(255, 255, 255));
+        btnVenderTiquete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/tarjeta-de-credito (1) (1).png"))); // NOI18N
+        btnVenderTiquete.setText("Vender Tiquete");
+        btnVenderTiquete.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
+        btnVenderTiquete.setBorderPainted(false);
+        btnVenderTiquete.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnVenderTiquete.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnVenderTiquete.setIconTextGap(12);
+        btnVenderTiquete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTiquete1ActionPerformed(evt);
+                btnVenderTiqueteActionPerformed(evt);
             }
         });
-        menu.add(btnTiquete1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 320, 60));
+        menu.add(btnVenderTiquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 320, 60));
 
         mensaje.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
         mensaje.setForeground(new java.awt.Color(204, 0, 204));
@@ -349,19 +349,19 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnViajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViajeActionPerformed
+    private void btnCrearViajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearViajeActionPerformed
         VentanaRegistroViajesAdminFlota cambio = new VentanaRegistroViajesAdminFlota(this.empresa);
         cambio.setVisible(true);
-    }//GEN-LAST:event_btnViajeActionPerformed
+    }//GEN-LAST:event_btnCrearViajeActionPerformed
 
-    private void btnTiqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiqueteActionPerformed
+    private void btnEfectuarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEfectuarReservaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnTiqueteActionPerformed
+    }//GEN-LAST:event_btnEfectuarReservaActionPerformed
 
-    private void btnBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusActionPerformed
+    private void btnGuardarBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarBusActionPerformed
         VentanaRegistroBusesAdminFlota cambio = new VentanaRegistroBusesAdminFlota(this.empresa);
         cambio.setVisible(true);
-    }//GEN-LAST:event_btnBusActionPerformed
+    }//GEN-LAST:event_btnGuardarBusActionPerformed
 
     private void btnTiquetesVendidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiquetesVendidosActionPerformed
         showJPanel(new PanelTiqueteVendidosAdminFlota(this.empresa));
@@ -389,10 +389,10 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void btnTiquete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiquete1ActionPerformed
+    private void btnVenderTiqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderTiqueteActionPerformed
         VentanaVentaTiquetesAdminFlota cambio=new VentanaVentaTiquetesAdminFlota(this.empresa);
         cambio.setVisible(true);
-    }//GEN-LAST:event_btnTiquete1ActionPerformed
+    }//GEN-LAST:event_btnVenderTiqueteActionPerformed
 
     private void btnViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViajesActionPerformed
        showJPanel(new PanelViajesAdminFlota(this.empresa));
@@ -403,15 +403,15 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     private javax.swing.JPanel Container;
     private javax.swing.JPanel background;
     private javax.swing.JButton btnAdministradorFlota;
-    private javax.swing.JButton btnBus;
     private javax.swing.JButton btnBuses;
+    private javax.swing.JButton btnCrearViaje;
     private javax.swing.JButton btnDevoluciones;
+    private javax.swing.JButton btnEfectuarReserva;
+    private javax.swing.JButton btnGuardarBus;
     private javax.swing.JButton btnReservas;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JButton btnTiquete;
-    private javax.swing.JButton btnTiquete1;
     private javax.swing.JButton btnTiquetesVendidos;
-    private javax.swing.JButton btnViaje;
+    private javax.swing.JButton btnVenderTiquete;
     private javax.swing.JButton btnViajes;
     private javax.swing.JPanel head;
     private javax.swing.JPanel jPanel1;

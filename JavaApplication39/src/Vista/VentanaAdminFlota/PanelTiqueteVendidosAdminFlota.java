@@ -5,10 +5,12 @@
 package Vista.VentanaAdminFlota;
 
 import Controlador.ControladorEmpresa;
+import Excepciones.ExcepcionViajeVacio;
 import Modelo.Empresa;
 import Modelo.Tiquete;
 import Modelo.Viaje;
 import Util.Lista;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class PanelTiqueteVendidosAdminFlota extends javax.swing.JPanel {
@@ -22,7 +24,7 @@ public class PanelTiqueteVendidosAdminFlota extends javax.swing.JPanel {
     
     private void llenarTabla() {
          DefaultTableModel model = new DefaultTableModel();
-         model.setColumnIdentifiers(new Object[]{"Codigo", "Cliente", "Fecha de compra", "Hora de compra", "Destino de viaje"});
+         model.setColumnIdentifiers(new Object[]{"Codigo", "Cliente", "Fecha de compra", "Hora de compra", "Destino de viaje", "Cantidad de asientos"});
 
          Lista<Viaje> listaViajes = controladorEmpresa.getEmpresa().getListaViajes();
         if (listaViajes != null) {
@@ -38,7 +40,8 @@ public class PanelTiqueteVendidosAdminFlota extends javax.swing.JPanel {
                                  tiquete.getCliente().getNombre(),
                                  tiquete.getFechaDeCompra(),
                                  tiquete.getHoraDeCompra(),
-                                 tiquete.getViaje().getDestino()
+                                 tiquete.getViaje().getDestino(),
+                                 tiquete.getCantidad()
                             });
                         }
                     }
@@ -48,6 +51,10 @@ public class PanelTiqueteVendidosAdminFlota extends javax.swing.JPanel {
 
          tablaTiquetesVendidos.setModel(model);
      }
+    
+    private void limpiarCampos(){
+        txtBuscar.setText("");
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -101,6 +108,11 @@ public class PanelTiqueteVendidosAdminFlota extends javax.swing.JPanel {
         });
 
         btnCancelarTiquete.setText("Cancelar tiquete");
+        btnCancelarTiquete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarTiqueteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -136,13 +148,13 @@ public class PanelTiqueteVendidosAdminFlota extends javax.swing.JPanel {
 
         tablaTiquetesVendidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
             }
         ));
         jScrollPane1.setViewportView(tablaTiquetesVendidos);
@@ -195,8 +207,60 @@ public class PanelTiqueteVendidosAdminFlota extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        
+        try{
+            int codigoTiquete =Integer.parseInt(txtBuscar.getText());
+            if (txtBuscar.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Por favor complete el campo de la placa.");
+                return;
+            }
+            Viaje viaje = new Viaje();
+            Tiquete respuesta = viaje.buscarTiquete(codigoTiquete);
+            limpiarCampos();
+            
+            String mensaje = "<html><body style='width: 250px; padding: 5px;'>" +
+                    "<h2 style='color: #1a5f7a;'>Información del Bus</h2>" +
+                    "<hr>" +
+                    "<b>Codigo del tiquete:</b> " + respuesta.getCodigoTiquete() + "<br><br>" +
+                    "<b>Correo de cliente:</b> " + respuesta.getCliente().getCorreo() + "<br><br>" +
+                    "<b>Fecha de compra:</b> " + respuesta.getFechaDeCompra() + "<br><br>" +
+                    "<b>Hora de compra:</b> " + respuesta.getHoraDeCompra() + "<br><br>" +
+                    "<b>Destino de viaje:</b> " + respuesta.getViaje().getDestino() + "<br><br>" +
+                    "<b>Cantidad de asientos:</b> " + respuesta.getCantidad() + "<br><br>" +
+                    "</body></html>";
+    
+            JOptionPane.showMessageDialog(null, mensaje, "Detalles del Bus", JOptionPane.INFORMATION_MESSAGE);
+        }catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+        }catch (ExcepcionViajeVacio ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnCancelarTiqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarTiqueteActionPerformed
+        try{
+            int codigoTiquete =Integer.parseInt(txtBuscar.getText());
+            if (txtBuscar.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Por favor complete el campo de la placa.");
+                return;
+            }
+            
+            int confirmacion = JOptionPane.showConfirmDialog(null,"¿Está seguro de eliminar el Tiquete con el codigo: " + codigoTiquete + "?","Confirmar eliminación",JOptionPane.YES_NO_OPTION);
+            
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                Viaje viaje = new Viaje();
+                viaje.eliminarTiquete(codigoTiquete);
+                limpiarCampos();
+                llenarTabla();
+                JOptionPane.showMessageDialog(null, "Tiquete eliminado correctamete");
+           }
+            
+           
+        }catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+        }catch (ExcepcionViajeVacio ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_btnCancelarTiqueteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

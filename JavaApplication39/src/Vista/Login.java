@@ -4,7 +4,6 @@
  */
 package Vista;
 
-
 import Controlador.ControladorRegistro;
 import Excepciones.ExcepcionContraseñaIncorrecta;
 import Excepciones.ExcepcionUsuarioNoEncontrado;
@@ -17,9 +16,11 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 public class Login extends javax.swing.JFrame {
+
     private ControladorRegistro controladorRegistro;
     private ValidarContraseña validarContraseña;
     private ValidarInformacion validarInformacion;
+
     /**
      * Creates new form VentanaSeleccion
      */
@@ -28,11 +29,11 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(this);
         setResizable(false);
         pack();
-        this.controladorRegistro= new ControladorRegistro();
-        this.validarContraseña= new ValidarContraseña();
-        this.validarInformacion= new ValidarInformacion();
+        this.controladorRegistro = new ControladorRegistro();
+        this.validarContraseña = new ValidarContraseña();
+        this.validarInformacion = new ValidarInformacion();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -119,11 +120,6 @@ public class Login extends javax.swing.JFrame {
         );
 
         txtContraseña.setBackground(new java.awt.Color(0, 0, 0));
-        txtContraseña.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContraseñaActionPerformed(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -134,11 +130,6 @@ public class Login extends javax.swing.JFrame {
         jLabel5.setText("Correo electronico");
 
         txtCorreo.setBackground(new java.awt.Color(0, 0, 0));
-        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCorreoActionPerformed(evt);
-            }
-        });
 
         btnIniarsesion.setBackground(new java.awt.Color(51, 51, 51));
         btnIniarsesion.setForeground(new java.awt.Color(255, 255, 255));
@@ -231,36 +222,28 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseñaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtContraseñaActionPerformed
-
-    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCorreoActionPerformed
-
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-        Registro cambio=new Registro();
+        Registro cambio = new Registro();
         cambio.setVisible(true);
         this.dispose();
 
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     private void btnIniarsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniarsesionActionPerformed
-        try{
-          String correo = txtCorreo.getText();
-          String contraseña = txtContraseña.getText();
-              //verifica que los campos que piden numeros, no se les ingrese Strings
-            if (txtCorreo.getText().isEmpty()||txtContraseña.getText().isEmpty()) {
-              JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-              return;
+        try {
+            String correo = txtCorreo.getText();
+            String contraseña = txtContraseña.getText();
+            //verifica que los campos que piden numeros, no se les ingrese Strings
+            if (txtCorreo.getText().isEmpty() || txtContraseña.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+                return;
             }
-          
+
             Usuario respuesta = controladorRegistro.buscar(correo);
             validarContraseña.ValidarContraseña(correo, contraseña);
             Object informacion = validarInformacion.validarInformacion(correo);
             respuesta.login(informacion);
-        }catch(ExcepcionContraseñaIncorrecta | ExcepcionUsuarioNoEncontrado ex){
+        } catch (ExcepcionContraseñaIncorrecta | ExcepcionUsuarioNoEncontrado ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_btnIniarsesionActionPerformed
@@ -271,19 +254,19 @@ public class Login extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-         try {
-              UIManager.setLookAndFeel( new FlatLightLaf() );
-              FlatHighContrastIJTheme.setup();
-                } catch( Exception ex ) {
-                    System.err.println( "Failed to initialize LaF" );
-}
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+            FlatHighContrastIJTheme.setup();
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
-               new Login().setVisible(true);
+
+                new Login().setVisible(true);
             }
         });
     }

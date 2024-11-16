@@ -23,7 +23,7 @@ public class PanelBusesAdminFlota extends javax.swing.JPanel {
     
     private void llenarTabla() {
          DefaultTableModel model = new DefaultTableModel();
-         model.setColumnIdentifiers(new Object[]{"Placa", "Numero de asientos", "Marca", "Modelo", "Tipo de combustible", "POtencia motor"});
+         model.setColumnIdentifiers(new Object[]{"Placa", "Numero de asientos", "Marca", "Modelo", "Tipo de combustible", "Potencia motor"});
          for (int i = 0; i < controladorEmpresa.getEmpresa().getListaBuses().size(); i++) {
              model.addRow(new Object[]{
                 controladorEmpresa.getEmpresa().getListaBuses().get(i).getPlaca(),
@@ -55,7 +55,6 @@ public class PanelBusesAdminFlota extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaBuses = new javax.swing.JTable();
 
@@ -101,8 +100,6 @@ public class PanelBusesAdminFlota extends javax.swing.JPanel {
             }
         });
 
-        jButton3.setText("Modificar");
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -117,11 +114,9 @@ public class PanelBusesAdminFlota extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnBuscar)
                         .addGap(66, 66, 66)
-                        .addComponent(btnEliminar)
-                        .addGap(53, 53, 53)
-                        .addComponent(jButton3))
+                        .addComponent(btnEliminar))
                     .addComponent(jLabel2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(543, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,8 +128,7 @@ public class PanelBusesAdminFlota extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar)
-                    .addComponent(btnEliminar)
-                    .addComponent(jButton3))
+                    .addComponent(btnEliminar))
                 .addGap(13, 13, 13))
         );
 
@@ -185,7 +179,7 @@ public class PanelBusesAdminFlota extends javax.swing.JPanel {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(200, 200, 200)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(1302, Short.MAX_VALUE)))
+                    .addContainerGap(1314, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,7 +249,6 @@ public class PanelBusesAdminFlota extends javax.swing.JPanel {
     private javax.swing.JTable TablaBuses;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

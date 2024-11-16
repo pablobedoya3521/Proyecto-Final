@@ -18,7 +18,10 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
     private ControladorCasetas controladorCaseta;
 
     public VentanaRegistroCasetaAdminTerminal(Caseta caseta) {
-       initComponents();
+        initComponents();
+        setLocationRelativeTo(this);
+        setResizable(false);
+        pack(); 
        this.controladorRegistro= new ControladorRegistro();
        this.controladorCaseta=new ControladorCasetas(caseta);
     }

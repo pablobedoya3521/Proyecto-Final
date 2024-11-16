@@ -6,12 +6,14 @@
 package Vista.VentanaAdminFlota;
 
 import Controlador.ControladorEmpresa;
+import Excepciones.ExcepcionBusNoDisponible;
 import Excepciones.ExcepcionBusVacio;
 import Excepciones.ExcepcionIdDeViajeEnUso;
 import Excepciones.ExcepcionViajeVacio;
 import Modelo.Bus;
 import Modelo.Empresa;
 import Modelo.Viaje;
+import Validador.ValidarDisponibilidadDeBus;
 import javax.swing.JOptionPane;
 
 public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
@@ -305,11 +307,14 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
             }
 
         Bus bus = controladorEmpresa.buscarBus(placa);
+        
         Viaje viaje = new Viaje(id, origen, destino, horaDeSalida, horaDeLlegada, fechaSalida, fechaLLegada, bus, valorViaje);
+        ValidarDisponibilidadDeBus validarBus= new ValidarDisponibilidadDeBus();
+        validarBus.validarDisponibilidadDeBus(this.empresa,viaje );
         controladorEmpresa.guardarViaje(viaje);
         JOptionPane.showMessageDialog(null, "Viaje guardado correctamente");
         limpiarCampos(); 
-    } catch (ExcepcionIdDeViajeEnUso | ExcepcionBusVacio ex) {
+    } catch (ExcepcionIdDeViajeEnUso | ExcepcionBusVacio | ExcepcionBusNoDisponible ex) {
         JOptionPane.showMessageDialog(null, ex.getMessage());
     } catch (NumberFormatException ex) {
         JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");

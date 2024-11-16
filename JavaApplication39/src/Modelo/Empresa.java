@@ -172,7 +172,6 @@ public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFl
     public void guardarViaje(Viaje viaje) throws ExcepcionIdDeViajeEnUso {
         Caseta[][] casetas = serializadora.leerObjeto();
 
-       
         for (int i = 0; i < casetas.length; i++) {
             for (int j = 0; j < casetas[i].length; j++) {
                 if (casetas[i][j].getEmpresa() != null && casetas[i][j].getEmpresa().getNit() == this.nit) {
@@ -184,13 +183,10 @@ public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFl
                 }
             }
         }
-
         
         Lista<Viaje> viajesActuales = this.getListaViajes();
-
         
         listaViajes.add(viaje);
-
         
         for (int i = 0; i < casetas.length; i++) {
             for (int j = 0; j < casetas[i].length; j++) {

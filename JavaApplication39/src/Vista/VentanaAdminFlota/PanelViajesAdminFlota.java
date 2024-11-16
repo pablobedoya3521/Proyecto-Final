@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class PanelViajesAdminFlota extends javax.swing.JPanel {
     private ControladorEmpresa controladorEmpresa;
+    private Empresa empresa;
 
     public PanelViajesAdminFlota(Empresa empresa) {
         initComponents();
@@ -23,7 +24,7 @@ public class PanelViajesAdminFlota extends javax.swing.JPanel {
     
     private void llenarTabla() {
         DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new Object[]{"ID", "Placa de bus", "Precio", "Origen", "Destino", "Hora de salida", "Hora de llegada","Fecha de salida","Fecha de llegada", "Fecha de creacion" });
+        model.setColumnIdentifiers(new Object[]{"ID", "Placa de bus", "Precio", "Origen", "Destino", "Hora de salida", "Hora de llegada","Fecha de salida","Fecha de llegada", "Fecha de creacion"});
         for (int i = 0; i < controladorEmpresa.getEmpresa().getListaViajes().size(); i++) {
             model.addRow(new Object[]{
                 controladorEmpresa.getEmpresa().getListaViajes().get(i).getId(),

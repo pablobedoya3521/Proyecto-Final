@@ -88,25 +88,52 @@ public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFl
         throw new ExcepcionBusVacio();
     }
     
-    public void eliminarBus(String placa) throws ExcepcionBusVacio{
+    public void eliminarBus(String placa) throws ExcepcionBusVacio {
         Caseta[][] casetas = serializadora.leerObjeto();
+        boolean busEncontrado = false;
+
+        // Buscar y eliminar viajes relacionados con el bus
         for (int i = 0; i < casetas.length; i++) {
             for (int j = 0; j < casetas[i].length; j++) {
-                if (casetas[i][j].getEmpresa() != null && casetas[i][j].getEmpresa().getNit() == this.nit) {
-                    for (int k = 0; k < casetas[i][j].getEmpresa().getListaBuses().size(); k++) {
-                        if (casetas[i][j].getEmpresa().getListaBuses().get(k).getPlaca().equals(placa)) {
-                            listaBuses.remove(k);
-                            casetas[i][j].setCantidadPlazas(casetas[i][j].getCantidadPlazas() + 1);
-                            casetas[i][j].setEmpresa(this);
-                            serializadora.escribirObjeto(casetas);
-                            return;
+                Empresa empresa = casetas[i][j].getEmpresa();
+                if (empresa != null && empresa.getNit() == this.nit) {
+                    Lista<Viaje> listaViajes = empresa.getListaViajes();
+                    for (int k = 0; k < listaViajes.size(); k++) {
+                        Viaje viaje = listaViajes.get(k);
+                        if (viaje.getBus() != null && viaje.getBus().getPlaca().equals(placa)) {
+                            listaViajes.remove(k);
+                            k--; // Para evitar saltar el siguiente viaje
                         }
                     }
                 }
             }
         }
-        throw new ExcepcionBusVacio();
+
+        // Eliminar el bus después de limpiar los viajes
+        for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; j < casetas[i].length; j++) {
+                Empresa empresa = casetas[i][j].getEmpresa();
+                if (empresa != null && empresa.getNit() == this.nit) {
+                    for (int k = 0; k < empresa.getListaBuses().size(); k++) {
+                        if (empresa.getListaBuses().get(k).getPlaca().equals(placa)) {
+                            empresa.getListaBuses().remove(k);
+                            casetas[i][j].setCantidadPlazas(casetas[i][j].getCantidadPlazas() + 1);
+                            busEncontrado = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (!busEncontrado) {
+            throw new ExcepcionBusVacio();
+        }
+
+        // Serializar los cambios
+        serializadora.escribirObjeto(casetas);
     }
+
     
     public void modificarBus(Bus bus) throws ExcepcionBusVacio {
         boolean modificado = false;
@@ -192,34 +219,34 @@ public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFl
         throw new ExcepcionViajeVacio();
     }
     
-public void eliminarViaje(String id) throws ExcepcionViajeVacio {
-    Caseta[][] casetas = serializadora.leerObjeto();
-    boolean viajeEncontrado = false;
+    public void eliminarViaje(String id) throws ExcepcionViajeVacio {
+        Caseta[][] casetas = serializadora.leerObjeto();
+        boolean viajeEncontrado = false;
 
-    // Buscar y eliminar el viaje
-    for (int i = 0; i < casetas.length; i++) {
-        for (int j = 0; j < casetas[i].length; j++) {
-            Empresa empresa = casetas[i][j].getEmpresa();
-            if (empresa != null && empresa.getNit() == this.nit) {
-                Lista<Viaje> listaViajes = empresa.getListaViajes();
-                for (int k = 0; k < listaViajes.size(); k++) {
-                    if (listaViajes.get(k).getId().equals(id)) {
-                        listaViajes.remove(k); // Eliminar el viaje de la lista
-                        viajeEncontrado = true;
-                        break; // Salir del bucle
+        // Buscar y eliminar el viaje
+        for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; j < casetas[i].length; j++) {
+                Empresa empresa = casetas[i][j].getEmpresa();
+                if (empresa != null && empresa.getNit() == this.nit) {
+                    Lista<Viaje> listaViajes = empresa.getListaViajes();
+                    for (int k = 0; k < listaViajes.size(); k++) {
+                        if (listaViajes.get(k).getId().equals(id)) {
+                            listaViajes.remove(k); // Eliminar el viaje de la lista
+                            viajeEncontrado = true;
+                            break; // Salir del bucle
+                        }
                     }
                 }
             }
         }
-    }
 
-    if (!viajeEncontrado) {
-        throw new ExcepcionViajeVacio();
-    }
+        if (!viajeEncontrado) {
+            throw new ExcepcionViajeVacio();
+        }
 
-    // Serializar los cambios
-    serializadora.escribirObjeto(casetas);
-}
+        // Serializar los cambios
+        serializadora.escribirObjeto(casetas);
+    }
     
     public void modificarViaje(Viaje viaje) throws ExcepcionViajeVacio{
         boolean modificado=false;

@@ -11,6 +11,7 @@ import Modelo.Usuario;
 import Validador.ValidarContraseña;
 import Validador.ValidarInformacion;
 import com.formdev.flatlaf.FlatLightLaf;
+
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -256,7 +257,8 @@ public class Login extends javax.swing.JFrame {
          */
         try {
             UIManager.setLookAndFeel(new FlatLightLaf());
-            FlatHighContrastIJTheme.setup();
+           FlatHighContrastIJTheme.setup();
+
         } catch (Exception ex) {
             System.err.println("Failed to initialize LaF");
         }

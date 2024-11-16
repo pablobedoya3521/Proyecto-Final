@@ -375,6 +375,8 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
         txtHoraDeLlegada.setText("");
         txtBus.setText("");
         txtValorViaje.setText("");
+        txtFechaSalida.setText("");
+        txtFechaLLegada.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

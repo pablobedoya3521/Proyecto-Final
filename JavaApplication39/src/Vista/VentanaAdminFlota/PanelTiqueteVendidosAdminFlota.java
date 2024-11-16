@@ -61,7 +61,7 @@ public class PanelTiqueteVendidosAdminFlota extends javax.swing.JPanel {
         txtBuscar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
+        btnCancelarTiquete = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaTiquetesVendidos = new javax.swing.JTable();
 
@@ -94,8 +94,13 @@ public class PanelTiqueteVendidosAdminFlota extends javax.swing.JPanel {
         jLabel2.setText("Buscar");
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
-        btnEliminar.setText("Eliminar");
+        btnCancelarTiquete.setText("Cancelar tiquete");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -112,7 +117,7 @@ public class PanelTiqueteVendidosAdminFlota extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(btnBuscar)
                         .addGap(48, 48, 48)
-                        .addComponent(btnEliminar)))
+                        .addComponent(btnCancelarTiquete)))
                 .addContainerGap(561, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -125,7 +130,7 @@ public class PanelTiqueteVendidosAdminFlota extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar)
-                    .addComponent(btnEliminar))
+                    .addComponent(btnCancelarTiquete))
                 .addGap(13, 13, 13))
         );
 
@@ -169,12 +174,12 @@ public class PanelTiqueteVendidosAdminFlota extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 32, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(200, 200, 200)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(1254, Short.MAX_VALUE)))
+                    .addContainerGap(1269, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,10 +194,14 @@ public class PanelTiqueteVendidosAdminFlota extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnCancelarTiquete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

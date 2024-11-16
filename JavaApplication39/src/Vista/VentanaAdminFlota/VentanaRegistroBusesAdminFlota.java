@@ -265,21 +265,7 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        try{
-            String placa = txtPlaca.getText();
-            if (txtPlaca.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Por favor complete el campo de la placa.");
-                return;
-            }
-            Bus respuesta = controladorEmpresa.buscarBus(placa);
-            txtNumAsientos.setText(String.valueOf(respuesta.getNumAsientos()));
-            txtMarca.setText(respuesta.getMarca());
-            txtModelo.setText(respuesta.getModelo());
-            txtTipoCombustible.setText(respuesta.getTipoCombustible());
-            txtPotenciaMotor.setText(respuesta.getPotenciaMotor());
-        }catch (NumberFormatException | ExcepcionBusVacio ex) {
-            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-        }
+     
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed

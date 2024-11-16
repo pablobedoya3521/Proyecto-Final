@@ -96,6 +96,7 @@ public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFl
                     for (int k = 0; k < casetas[i][j].getEmpresa().getListaBuses().size(); k++) {
                         if (casetas[i][j].getEmpresa().getListaBuses().get(k).getPlaca().equals(placa)) {
                             listaBuses.remove(k);
+                            casetas[i][j].setCantidadPlazas(casetas[i][j].getCantidadPlazas() + 1);
                             casetas[i][j].setEmpresa(this);
                             serializadora.escribirObjeto(casetas);
                             return;

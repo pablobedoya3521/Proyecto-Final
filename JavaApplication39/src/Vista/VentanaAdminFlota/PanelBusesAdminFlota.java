@@ -5,8 +5,11 @@
 package Vista.VentanaAdminFlota;
 
 import Controlador.ControladorEmpresa;
+import Excepciones.ExcepcionBusVacio;
+import Modelo.Bus;
 
 import Modelo.Empresa;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class PanelBusesAdminFlota extends javax.swing.JPanel {
@@ -33,7 +36,11 @@ public class PanelBusesAdminFlota extends javax.swing.JPanel {
          }
          
          TablaBuses.setModel(model);
-     }
+    }
+    
+    private void limpiarCampos(){
+        txtBuscar.setText("");
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -44,10 +51,10 @@ public class PanelBusesAdminFlota extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtBuscar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaBuses = new javax.swing.JTable();
@@ -78,13 +85,21 @@ public class PanelBusesAdminFlota extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
         jLabel1.setText("Buses");
 
-        jTextField1.setText("jTextField1");
-
         jLabel2.setText("Buscar");
 
-        jButton1.setText("Buscar");
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Eliminar");
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Modificar");
 
@@ -98,11 +113,11 @@ public class PanelBusesAdminFlota extends javax.swing.JPanel {
                 .addGap(147, 147, 147)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(btnBuscar)
                         .addGap(66, 66, 66)
-                        .addComponent(jButton2)
+                        .addComponent(btnEliminar)
                         .addGap(53, 53, 53)
                         .addComponent(jButton3))
                     .addComponent(jLabel2))
@@ -116,9 +131,9 @@ public class PanelBusesAdminFlota extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar)
+                    .addComponent(btnEliminar)
                     .addComponent(jButton3))
                 .addGap(13, 13, 13))
         );
@@ -185,11 +200,61 @@ public class PanelBusesAdminFlota extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        try{
+            String placa = txtBuscar.getText();
+            if (txtBuscar.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Por favor complete el campo de la placa.");
+                return;
+            }
+            Bus respuesta = controladorEmpresa.buscarBus(placa);
+            limpiarCampos();
+            
+            String mensaje = "<html><body style='width: 250px; padding: 5px;'>" +
+                    "<h2 style='color: #1a5f7a;'>Información del Bus</h2>" +
+                    "<hr>" +
+                    "<b>Placa:</b> " + respuesta.getPlaca() + "<br><br>" +
+                    "<b>Número de asientos:</b> " + respuesta.getNumAsientos() + "<br><br>" +
+                    "<b>Marca:</b> " + respuesta.getMarca() + "<br><br>" +
+                    "<b>Modelo:</b> " + respuesta.getModelo() + "<br><br>" +
+                    "<b>Potencia del motor:</b> " + respuesta.getPotenciaMotor() + "<br><br>" +
+                    "<b>Tipo de combustible:</b> " + respuesta.getTipoCombustible() +
+                    "</body></html>";
+    
+            JOptionPane.showMessageDialog(null, mensaje, "Detalles del Bus", JOptionPane.INFORMATION_MESSAGE);
+        }catch (ExcepcionBusVacio ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        try {
+           String placa = txtBuscar.getText();
+           if (txtBuscar.getText().isEmpty()) {
+               JOptionPane.showMessageDialog(null, "Por favor complete el campo de la placa.");
+               return;
+           }
+
+          
+           int confirmacion = JOptionPane.showConfirmDialog(null,"¿Está seguro de eliminar el bus con placa " + placa + "?","Confirmar eliminación",JOptionPane.YES_NO_OPTION);
+
+           if (confirmacion == JOptionPane.YES_OPTION) {
+               controladorEmpresa.eliminarBus(placa);
+               limpiarCampos();
+               llenarTabla();
+               JOptionPane.showMessageDialog(null, "Bus eliminado correctamente");
+           }
+
+       } catch (ExcepcionBusVacio ex) {
+           JOptionPane.showMessageDialog(null, ex.getMessage());
+       }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaBuses;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -198,6 +263,6 @@ public class PanelBusesAdminFlota extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

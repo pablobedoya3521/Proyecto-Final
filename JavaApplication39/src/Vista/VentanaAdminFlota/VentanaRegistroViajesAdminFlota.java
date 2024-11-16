@@ -364,25 +364,7 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModificarViajeActionPerformed
 
     private void btnBuscarViajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarViajeActionPerformed
-        try{
-            String id = txtId.getText();
-            if (txtId.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-                return;
-            }
-            Viaje respuesta = controladorEmpresa.buscarViaje(id);
-            txtId.setText(respuesta.getId());
-            txtOrigen.setText(respuesta.getOrigen());
-            txtDestino.setText(respuesta.getDestino());
-            txtHoraDeSalida.setText(respuesta.getHoraDeSalida());
-            txtHoraDeLlegada.setText(respuesta.getHoraDeLlegada());
-            txtBus.setText(respuesta.getBus().getPlaca());
-            txtValorViaje.setText(String.valueOf(respuesta.getPrecioViaje()));
-        }catch (NumberFormatException ex){
-            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-        } catch (ExcepcionViajeVacio ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
+        
     }//GEN-LAST:event_btnBuscarViajeActionPerformed
     
     public void limpiarCampos(){

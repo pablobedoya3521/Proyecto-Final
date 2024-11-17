@@ -4,22 +4,31 @@
  */
 package Vista.VentanasCliente;
 
+import Excepciones.ExcepcionAsientosInsuficientes;
+import Excepciones.ExcepcionCodigoReservaEnUso;
+import Excepciones.ExcepcionViajeVacio;
 import Modelo.Caseta;
+import Modelo.Cliente;
+import Modelo.Reserva;
 import Modelo.Viaje;
 import Persistencia.SerializadoraCaseta;
 import Util.Lista;
 import Validador.Buscador;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class PanelViajesDisponiblesCliente extends javax.swing.JPanel {
     private Caseta[][] casetas;
     private SerializadoraCaseta serializadoraCaseta;
+    private Cliente cliente;
     
-    public PanelViajesDisponiblesCliente() {
+    public PanelViajesDisponiblesCliente(Cliente cliente) {
         initComponents();
         this.serializadoraCaseta=new SerializadoraCaseta();
         this.casetas=serializadoraCaseta.leerObjeto();
+        this.cliente=cliente;
         llenarTabla();
     }
     
@@ -62,7 +71,7 @@ public class PanelViajesDisponiblesCliente extends javax.swing.JPanel {
         txtBuscar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnReservar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaViajes = new javax.swing.JTable();
 
@@ -101,7 +110,12 @@ public class PanelViajesDisponiblesCliente extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("Reservar");
+        btnReservar.setText("Reservar");
+        btnReservar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReservarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -117,7 +131,7 @@ public class PanelViajesDisponiblesCliente extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(btnBuscar)
                         .addGap(37, 37, 37)
-                        .addComponent(jButton2))
+                        .addComponent(btnReservar))
                     .addComponent(jLabel2))
                 .addContainerGap(482, Short.MAX_VALUE))
         );
@@ -131,7 +145,7 @@ public class PanelViajesDisponiblesCliente extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar)
-                    .addComponent(jButton2))
+                    .addComponent(btnReservar))
                 .addGap(13, 13, 13))
         );
 
@@ -208,6 +222,66 @@ public class PanelViajesDisponiblesCliente extends javax.swing.JPanel {
         llenarTabla2(listaViajes);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void btnReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservarActionPerformed
+        String idViaje = txtBuscar.getText();
+        boolean viajeEncontrado = false;
+        Viaje viajeSeleccionado = null; 
+
+        for (int i = 0; i < casetas.length && !viajeEncontrado; i++) {
+            for (int j = 0; j < casetas[i].length && !viajeEncontrado; j++) {
+                if (casetas[i][j].getEmpresa() != null) {
+                    try {
+                        Viaje viaje = casetas[i][j].getEmpresa().buscarViaje(idViaje);
+                        if (viaje != null) {
+                            viajeEncontrado = true;
+                            viajeSeleccionado = viaje;
+                        }
+                    } catch (ExcepcionViajeVacio ex) {
+                        continue;
+                    }
+                }
+            }  
+        }
+
+
+        if (viajeEncontrado && viajeSeleccionado != null) {
+
+            String mensaje = "<html><body style='width: 250px; padding: 5px;'>" +
+                        "<h2 style='color: #1a5f7a;'>Información del Bus</h2>" +
+                        "<hr>" +
+                        "<b>ID del viaje:</b> " + viajeSeleccionado.getId() + "<br><br>" +
+                        "<b>Placa del bus:</b> " + viajeSeleccionado.getBus().getPlaca()+ "<br><br>" +
+                        "<b>Precio del viaje:</b> " + viajeSeleccionado.getPrecioViaje() + "<br><br>" +
+                        "<b>Origen:</b> " + viajeSeleccionado.getOrigen() + "<br><br>" +
+                        "<b>Destino:</b> " + viajeSeleccionado.getDestino() + "<br><br>" +
+                        "<b>Hora de salida:</b> " + viajeSeleccionado.getHoraDeSalida() + "<br><br>" +
+                        "<b>Hora de llegada:</b> " + viajeSeleccionado.getHoraDeLlegada()+ "<br><br>" +
+                        "<b>Fecha de salida:</b> " + viajeSeleccionado.getFechaSalida() + "<br><br>" +
+                        "<b>Fecha de llegada:</b> " + viajeSeleccionado.getFechaLLegada() + "<br><br>" +
+                        "<b>Fecha de creacion:</b> " + viajeSeleccionado.getFechaCreacion() + "<br><br>" +
+                            "<b>Cuantos tiquetes desea comprar?:</b> "+
+                        "</body></html>";
+            String input = JOptionPane.showInputDialog(null, mensaje, "Reservar Tiquetes", JOptionPane.QUESTION_MESSAGE);
+
+            int cantidadTiquetes = Integer.parseInt(input);
+                if (cantidadTiquetes > 0) {
+                    try{
+                        Reserva reserva = new Reserva(idViaje,this.cliente, viajeSeleccionado, cantidadTiquetes);
+                        cliente.guardarReserva(reserva);
+                        viajeSeleccionado.guardarReserva(reserva);
+                        JOptionPane.showMessageDialog(null, "Reserva solicitada correctamente");
+                    } catch (ExcepcionCodigoReservaEnUso | ExcepcionAsientosInsuficientes ex) {
+                        JOptionPane.showMessageDialog(null, ex.getMessage());
+                    } 
+                } else {
+                    JOptionPane.showMessageDialog(null, "Por favor, ingresa un número válido de tiquetes.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontró el viaje.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnReservarActionPerformed
+
     private void llenarTabla2(Lista<Viaje> listaViajes) {
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new Object[]{"Placa de bus", "ID", "Precio", "Origen", "Destino", "Hora de salida", "Hora de llegada", "Fecha de creacion", "Empresa" });
@@ -248,7 +322,7 @@ public class PanelViajesDisponiblesCliente extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnReservar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

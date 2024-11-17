@@ -5,6 +5,7 @@
 package Modelo;
 
 import Excepciones.ExcepcionAsientosInsuficientes;
+import Excepciones.ExcepcionCodigoReservaEnUso;
 import Excepciones.ExcepcionCodigoTiqueteEnUso;
 import Excepciones.ExcepcionTiqueteVacio;
 import Persistencia.SerializadoraCaseta;
@@ -28,6 +29,7 @@ public class Viaje implements Serializable{
     private String estado;
     private Lista<Tiquete> listaTiquetes;
     private SerializadoraCaseta serializadora;
+    private Lista<Reserva> listaReservas;
 
     public Viaje(String id,String destino, String horaDeSalida, 
             String horaDeLlegada, String fechaSalida, String fechaLLegada, Bus bus, double precioViaje) {
@@ -44,6 +46,7 @@ public class Viaje implements Serializable{
         this.precioViaje = precioViaje;
         this.estado="Programado";
         this.listaTiquetes=new Lista<>();
+        this.listaReservas= new Lista<>();
         this.serializadora=new SerializadoraCaseta();
     }
 
@@ -193,6 +196,55 @@ public class Viaje implements Serializable{
         throw new ExcepcionTiqueteVacio();
     }
     
+    public void guardarReserva(Reserva reserva) throws ExcepcionCodigoReservaEnUso, ExcepcionAsientosInsuficientes{
+        Caseta[][] casetas = serializadora.leerObjeto();
+
+        // Primero verificamos si el código de la reserva ya existe
+        for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; j < casetas[i].length; j++) {
+                Empresa empresa = casetas[i][j].getEmpresa();
+                if (empresa != null) {
+                    Lista<Viaje> listaViajes = empresa.getListaViajes();
+                    for (int k = 0; k < listaViajes.size(); k++) {
+                        Viaje viaje = listaViajes.get(k);
+                        if(viaje.getId().equals(this.id)){
+                            Lista<Reserva> reservas = viaje.getListaReservas();
+                            for (int l = 0; l < reservas.size(); l++) {
+                                Reserva reservaAdquirida = reservas.get(l);
+                                if(reservaAdquirida.getCodigo().equals(reserva.getCodigo())){
+                                    throw new ExcepcionCodigoReservaEnUso();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // busco el viaje para verificar asientos y guardar la reserva
+        for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; j < casetas[i].length; j++) {
+                Empresa empresa = casetas[i][j].getEmpresa();
+                if (empresa != null) {
+                    Lista<Viaje> listaViajes = empresa.getListaViajes();
+                    for (int k = 0; k < listaViajes.size(); k++) {
+                        Viaje viaje = listaViajes.get(k);
+                        if (viaje.getId().equals(this.id)) {
+                            int asientosDisponibles = viaje.getBus().getNumAsientos();
+                            if (asientosDisponibles < reserva.getCantidadDeTiquetes()) {
+                                throw new ExcepcionAsientosInsuficientes();
+                            }
+                            viaje.getListaReservas().add(reserva);
+                            viaje.getBus().setNumAsientos(asientosDisponibles - reserva.getCantidadDeTiquetes());
+                            serializadora.escribirObjeto(casetas);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     public String getId() {
         return id;
     }
@@ -289,5 +341,15 @@ public class Viaje implements Serializable{
     public void setListaTiquetes(Lista<Tiquete> listaTiquetes) {
         this.listaTiquetes = listaTiquetes;
     }
+
+    public Lista<Reserva> getListaReservas() {
+        return listaReservas;
+    }
+
+    public void setListaReservas(Lista<Reserva> listaReservas) {
+        this.listaReservas = listaReservas;
+    }
+    
+    
   
 }

@@ -362,7 +362,7 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTiquetesVendidosActionPerformed
 
     private void btnReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservasActionPerformed
-        showJPanel(new PanelReservasAdminFlota());
+        showJPanel(new PanelReservasAdminFlota(this.empresa));
     }//GEN-LAST:event_btnReservasActionPerformed
 
     private void btnDevolucionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolucionesActionPerformed

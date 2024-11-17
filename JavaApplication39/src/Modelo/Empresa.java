@@ -175,7 +175,7 @@ public class Empresa implements Serializable{
 
         for (int i = 0; i < casetas.length; i++) {
             for (int j = 0; j < casetas[i].length; j++) {
-                if (casetas[i][j].getEmpresa() != null && casetas[i][j].getEmpresa().getNit() == this.nit) {
+                if (casetas[i][j].getEmpresa() != null) {
                     for (int k = 0; k < casetas[i][j].getEmpresa().getListaViajes().size(); k++) {
                         if (casetas[i][j].getEmpresa().getListaViajes().get(k).getId().equals(viaje.getId())) {
                             throw new ExcepcionIdDeViajeEnUso();

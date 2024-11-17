@@ -4,10 +4,33 @@
  */
 package Vista.VentanasCliente;
 
-public class PanelReservasCliente extends javax.swing.JPanel {
+import Modelo.Cliente;
+import javax.swing.table.DefaultTableModel;
 
-    public PanelReservasCliente() {
+public class PanelReservasCliente extends javax.swing.JPanel {
+    private Cliente cliente;
+    public PanelReservasCliente(Cliente cliente) {
         initComponents();
+        this.cliente=cliente;
+        llenarTabla();
+    }
+    
+    private void llenarTabla(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new Object[]{"Estado", "ID de viaje", "Destino de viaje", "Fecha de reserva", "Hora de reserva", "Cantidad de tiquetes", "Precio viaje", "Total a pagar"});
+        for (int i = 0; i < cliente.getListaReservas().size(); i++) {
+            model.addRow(new Object[]{
+               cliente.getListaReservas().get(i).isEstado()==true? "Activo": "Inactivo",
+               cliente.getListaReservas().get(i).getViaje().getId(),
+               cliente.getListaReservas().get(i).getViaje().getDestino(),
+               cliente.getListaReservas().get(i).getFechaDeReserva(),
+               cliente.getListaReservas().get(i).getHoraDeReserva(),
+               cliente.getListaReservas().get(i).getCantidadDeTiquetes(),
+               cliente.getListaReservas().get(i).getViaje().getPrecioViaje(),
+               cliente.getListaReservas().get(i).getCantidadDeTiquetes()*cliente.getListaReservas().get(i).getViaje().getPrecioViaje(),
+            });
+        }
+        tablaReservas.setModel(model);
     }
 
     @SuppressWarnings("unchecked")
@@ -23,6 +46,8 @@ public class PanelReservasCliente extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaReservas = new javax.swing.JTable();
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setLayout(new java.awt.BorderLayout());
@@ -90,13 +115,28 @@ public class PanelReservasCliente extends javax.swing.JPanel {
                 .addGap(12, 12, 12))
         );
 
+        tablaReservas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaReservas);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -104,7 +144,9 @@ public class PanelReservasCliente extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 762, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 75, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -127,7 +169,7 @@ public class PanelReservasCliente extends javax.swing.JPanel {
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(837, Short.MAX_VALUE)))
+                    .addContainerGap(868, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -141,6 +183,8 @@ public class PanelReservasCliente extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tablaReservas;
     // End of variables declaration//GEN-END:variables
 }

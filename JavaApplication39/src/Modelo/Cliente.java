@@ -16,7 +16,7 @@ public class Cliente extends Usuario implements Serializable{
     private String telefono;
     private int edad;
     private String direccion;
-    //private Lista<Reserva> listaReservas;
+    private Lista<Reserva> listaReservas;
     private Lista<Tiquete> listaTiquetes;
     //private Lista<Reserva> listaReservasCanceladas;
     private SerializadoraUsuarios serializadoraUsuarios;
@@ -29,6 +29,7 @@ public class Cliente extends Usuario implements Serializable{
         this.edad=edad;
         this.direccion=direccion;
         this.listaTiquetes=new Lista<>();
+        this.listaReservas=new Lista<>();
         this.serializadoraUsuarios= new SerializadoraUsuarios();
         this.controladorRegistro= new ControladorRegistro();
     }
@@ -39,6 +40,7 @@ public class Cliente extends Usuario implements Serializable{
        VentanaPrincipalCliente ventana = new VentanaPrincipalCliente(cliente1);
        ventana.setVisible(true);
     }
+
         
     public void guardarCompraTiquete(Tiquete tiquete) {
         Lista<Usuario> usuarios = serializadoraUsuarios.leerObjeto();
@@ -56,7 +58,6 @@ public class Cliente extends Usuario implements Serializable{
         } 
     }
     
-
     public void eliminarCompraTiquete(int codigoTiquete){
         Lista<Usuario> usuarios = serializadoraUsuarios.leerObjeto();
 
@@ -95,6 +96,20 @@ public class Cliente extends Usuario implements Serializable{
     private void desacumularPuntos(Tiquete tiquete){
         int puntosAcumuladosPorTiquete = calcularPuntos(tiquete);
         this.puntosAcumulados -= puntosAcumuladosPorTiquete;
+    }
+    
+    public void guardarReserva(Reserva reserva){
+        Lista<Usuario> usuarios = serializadoraUsuarios.leerObjeto();
+        for (int i = 0; i < usuarios.size(); i++) {
+            if (usuarios.get(i).getCorreo().equals(this.correo)) {
+                this.listaReservas.add(reserva);
+                Cliente cliente = (Cliente) usuarios.get(i);
+                cliente.setListaReservas(this.listaReservas);
+                controladorRegistro.setUsuarios(usuarios);
+                serializadoraUsuarios.escribirObjeto(usuarios);
+                break; 
+            }
+        } 
     }
 
     public int getPuntosAcumulados() {
@@ -186,5 +201,15 @@ public class Cliente extends Usuario implements Serializable{
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }  
+
+    public Lista<Reserva> getListaReservas() {
+        return listaReservas;
+    }
+
+    public void setListaReservas(Lista<Reserva> listaReservas) {
+        this.listaReservas = listaReservas;
+    }
+    
+    
 
 }

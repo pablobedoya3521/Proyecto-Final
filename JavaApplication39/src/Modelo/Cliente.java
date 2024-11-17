@@ -11,57 +11,88 @@ import Vista.VentanasCliente.VentanaPrincipalCliente;
 import java.io.Serializable;
 
 
-    public class Cliente extends Usuario implements Serializable{
-        private static final long serialVersionUID = 1L;
-        private int puntosAcumulados;
-        private String telefono;
-        private int edad;
-        private String direccion;
-        //private Lista<Reserva> listaReservas;
-        private Lista<Tiquete> listaTiquetes;
-        //private Lista<Reserva> listaReservasCanceladas;
-        private SerializadoraUsuarios serializadoraUsuarios;
-        private ControladorRegistro controladorRegistro;
+public class Cliente extends Usuario implements Serializable{
+    private static final long serialVersionUID = 1L;
+    private int puntosAcumulados;
+    private String telefono;
+    private int edad;
+    private String direccion;
+    //private Lista<Reserva> listaReservas;
+    private Lista<Tiquete> listaTiquetes;
+    //private Lista<Reserva> listaReservasCanceladas;
+    private SerializadoraUsuarios serializadoraUsuarios;
+    private ControladorRegistro controladorRegistro;
         
-        public Cliente(String nombre, String apellido, String cedula, String correo, String contraseña, String telefono, int edad, String direccion) {
-            super(nombre, apellido, cedula, correo, contraseña);
-            this.puntosAcumulados=0;
-            this.telefono=telefono;
-            this.edad=edad;
-            this.direccion=direccion;
-            this.listaTiquetes=new Lista<>();
-            this.serializadoraUsuarios= new SerializadoraUsuarios();
-            this.controladorRegistro= new ControladorRegistro();
-        }
+    public Cliente(String nombre, String apellido, String cedula, String correo, String contraseña, String telefono, int edad, String direccion) {
+        super(nombre, apellido, cedula, correo, contraseña);
+        this.puntosAcumulados=0;
+        this.telefono=telefono;
+        this.edad=edad;
+        this.direccion=direccion;
+        this.listaTiquetes=new Lista<>();
+        this.serializadoraUsuarios= new SerializadoraUsuarios();
+        this.controladorRegistro= new ControladorRegistro();
+    }
 
         //@Override
-        public void login(Object cliente) {
-           Cliente cliente1 = (Cliente) cliente;
-           VentanaPrincipalCliente ventana = new VentanaPrincipalCliente(cliente1);
-           ventana.setVisible(true);
-        }
+    public void login(Object cliente) {
+       Cliente cliente1 = (Cliente) cliente;
+       VentanaPrincipalCliente ventana = new VentanaPrincipalCliente(cliente1);
+       ventana.setVisible(true);
+    }
         
-public void guardarCompraTiquete(Tiquete tiquete) {
-    // Leer la lista de usuarios desde el archivo
-    Lista<Usuario> usuarios = serializadoraUsuarios.leerObjeto();
-    
-    // Buscar el cliente en la lista de usuarios
-    for (int i = 0; i < usuarios.size(); i++) {
-        if (usuarios.get(i).getCorreo().equals(this.correo)) {
-            // Agregar el tiquete a la lista de tiquetes del cliente
-            this.listaTiquetes.add(tiquete);
-            
-            // Actualizar el cliente en la lista de usuarios
-            Cliente cliente = (Cliente) usuarios.get(i);
-            cliente.setListaTiquetes(this.listaTiquetes);
-            
-            // Escribir la lista de usuarios actualizada en el archivo
-            controladorRegistro.setUsuarios(usuarios);
-            serializadoraUsuarios.escribirObjeto(usuarios);
-            break; // Salir del bucle una vez que se ha actualizado
+    public void guardarCompraTiquete(Tiquete tiquete) {
+        Lista<Usuario> usuarios = serializadoraUsuarios.leerObjeto();
+
+        for (int i = 0; i < usuarios.size(); i++) {
+            if (usuarios.get(i).getCorreo().equals(this.correo)) {
+                this.listaTiquetes.add(tiquete);
+                Cliente cliente = (Cliente) usuarios.get(i);
+                cliente.setListaTiquetes(this.listaTiquetes);
+                cliente.acumularPuntos(tiquete);
+                controladorRegistro.setUsuarios(usuarios);
+                serializadoraUsuarios.escribirObjeto(usuarios);
+                break; 
+            }
         }
     }
-}
+    
+
+    public void eliminarCompraTiquete(int codigoTiquete){
+        Lista<Usuario> usuarios = serializadoraUsuarios.leerObjeto();
+        for (int i = 0; i < usuarios.size(); i++) {
+            if (usuarios.get(i).getCorreo().equals(this.correo)) {
+                Cliente cliente = (Cliente) usuarios.get(i);
+                Lista<Tiquete> listaTiquetes = cliente.getListaTiquetes();
+                for (int j = 0; j < listaTiquetes.size(); j++) {
+                    if (listaTiquetes.get(j).getCodigoTiquete() == codigoTiquete) {
+                        Tiquete tiqueteCancelado = listaTiquetes.get(j);
+                        this.listaTiquetes.remove(j);
+                        cliente.setListaTiquetes(this.listaTiquetes);
+                        cliente.desacumularPuntos(tiqueteCancelado);
+                        controladorRegistro.setUsuarios(usuarios);
+                        serializadoraUsuarios.escribirObjeto(usuarios);
+                        break; 
+                    }
+                }
+            }
+        }
+    }
+    
+    private int calcularPuntos(Tiquete tiquete) {
+        double precioTiquete = tiquete.getViaje().getPrecioViaje(); 
+        return (int) (precioTiquete / 10000) * 3; 
+    }
+
+    private void acumularPuntos(Tiquete tiquete){
+        int puntosAcumuladosPorTiquete = calcularPuntos(tiquete);
+        this.puntosAcumulados += puntosAcumuladosPorTiquete;
+    }
+
+    private void desacumularPuntos(Tiquete tiquete){
+        int puntosAcumuladosPorTiquete = calcularPuntos(tiquete);
+        this.puntosAcumulados -= puntosAcumuladosPorTiquete;
+    }
 
     public int getPuntosAcumulados() {
         return puntosAcumulados;
@@ -103,42 +134,52 @@ public void guardarCompraTiquete(Tiquete tiquete) {
         this.listaTiquetes = listaTiquetes;
     }
 
+        @Override
     public String getNombre() {
         return nombre;
     }
 
+        @Override
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+        @Override
     public String getApellido() {
         return apellido;
     }
 
+        @Override
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
 
+        @Override
     public String getCedula() {
         return cedula;
     }
 
+        @Override
     public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 
+        @Override
     public String getCorreo() {
         return correo;
     }
 
+        @Override
     public void setCorreo(String correo) {
         this.correo = correo;
     }
 
+        @Override
     public String getContraseña() {
         return contraseña;
     }
 
+        @Override
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }  

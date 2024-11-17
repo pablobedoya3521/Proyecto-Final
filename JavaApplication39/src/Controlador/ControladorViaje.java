@@ -6,7 +6,7 @@ package Controlador;
 
 import Excepciones.ExcepcionAsientosInsuficientes;
 import Excepciones.ExcepcionCodigoTiqueteEnUso;
-import Excepciones.ExcepcionViajeVacio;
+import Excepciones.ExcepcionTiqueteVacio;
 import Modelo.Tiquete;
 import Modelo.Viaje;
 
@@ -21,15 +21,15 @@ public class ControladorViaje {
         viaje.guardarTiquete(tiquete);
     }
     
-    public void buscarTiquete(int codigoTiquete) throws ExcepcionViajeVacio{
+    public void buscarTiquete(int codigoTiquete) throws ExcepcionTiqueteVacio{
         viaje.buscarTiquete(codigoTiquete);
     }
     
-    public void eliminarTiquete(int codigoTiquete)throws ExcepcionViajeVacio{
+    public void eliminarTiquete(int codigoTiquete)throws ExcepcionTiqueteVacio{
         viaje.eliminarTiquete(codigoTiquete);
     }
     
-    public void modificarTiquete(Tiquete tiquete) throws ExcepcionViajeVacio{
-        viaje.modificar(tiquete);
+    public void modificarTiquete(Tiquete tiquete) throws ExcepcionTiqueteVacio{
+        viaje.modificarTiquete(tiquete);
     }
 }

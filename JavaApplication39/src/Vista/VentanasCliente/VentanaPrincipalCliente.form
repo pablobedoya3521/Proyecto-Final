@@ -233,7 +233,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="panelBotonesSuperiores" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="450" max="-2" attributes="0"/>
-                      <Component id="btnCliente" min="-2" pref="131" max="-2" attributes="0"/>
+                      <Component id="btnPuntos" min="-2" pref="131" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="btnCliente2" min="-2" pref="131" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
@@ -251,7 +251,7 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnCliente" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="btnPuntos" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                                   <Component id="btnCliente2" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                                   <Component id="btnRegresar" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                               </Group>
@@ -404,7 +404,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="btnCliente">
+            <Component class="javax.swing.JButton" name="btnPuntos">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
@@ -415,7 +415,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Imagenes/dolar (1).png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Puntos"/>
+                <Property name="text" type="java.lang.String" value="0"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
                     <MatteColorBorder bottom="1" left="20" right="1" top="1"/>
@@ -428,9 +428,6 @@
                 <Property name="horizontalAlignment" type="int" value="2"/>
                 <Property name="iconTextGap" type="int" value="12"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClienteActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnRegresar">
               <Properties>
@@ -484,9 +481,6 @@
                 <Property name="horizontalAlignment" type="int" value="2"/>
                 <Property name="iconTextGap" type="int" value="12"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCliente2ActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>

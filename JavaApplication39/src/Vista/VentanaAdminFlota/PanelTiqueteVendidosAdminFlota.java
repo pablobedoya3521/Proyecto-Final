@@ -5,7 +5,8 @@
 package Vista.VentanaAdminFlota;
 
 import Controlador.ControladorEmpresa;
-import Excepciones.ExcepcionViajeVacio;
+import Excepciones.ExcepcionTiqueteVacio;
+import Modelo.Cliente;
 import Modelo.Empresa;
 import Modelo.Tiquete;
 import Modelo.Viaje;
@@ -231,35 +232,43 @@ public class PanelTiqueteVendidosAdminFlota extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, mensaje, "Detalles del Bus", JOptionPane.INFORMATION_MESSAGE);
         }catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-        }catch (ExcepcionViajeVacio ex) {
+        }catch (ExcepcionTiqueteVacio ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnCancelarTiqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarTiqueteActionPerformed
-        try{
-            int codigoTiquete =Integer.parseInt(txtBuscar.getText());
+        try {
+            int codigoTiquete = Integer.parseInt(txtBuscar.getText());
             if (txtBuscar.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Por favor complete el campo de la placa.");
                 return;
             }
-            
-            int confirmacion = JOptionPane.showConfirmDialog(null,"¿Está seguro de eliminar el Tiquete con el codigo: " + codigoTiquete + "?","Confirmar eliminación",JOptionPane.YES_NO_OPTION);
-            
+
+            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar el Tiquete con el código: " + codigoTiquete + "?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+
             if (confirmacion == JOptionPane.YES_OPTION) {
                 Viaje viaje = new Viaje();
-                viaje.eliminarTiquete(codigoTiquete);
-                limpiarCampos();
-                llenarTabla();
-                JOptionPane.showMessageDialog(null, "Tiquete eliminado correctamete");
-           }
-            
-           
-        }catch (NumberFormatException ex) {
+                Tiquete tiqueteAEliminar = viaje.buscarTiquete(codigoTiquete); // Busca el tiquete a eliminar
+
+                if (tiqueteAEliminar != null && tiqueteAEliminar.getCliente() != null) {
+                    Cliente cliente = tiqueteAEliminar.getCliente(); // Obtiene el cliente que compró el tiquete
+                    cliente.eliminarCompraTiquete(codigoTiquete); // Llama al método para eliminar el tiquete del cliente
+
+                    viaje.eliminarTiquete(codigoTiquete); // Elimina el tiquete del viaje
+                    limpiarCampos();
+                    llenarTabla();
+                    JOptionPane.showMessageDialog(null, "Tiquete eliminado correctamente");
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se encontró el tiquete o no tiene asociado un cliente.");
+                }
+            }
+        } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-        }catch (ExcepcionViajeVacio ex) {
+        } catch (ExcepcionTiqueteVacio ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
+
     }//GEN-LAST:event_btnCancelarTiqueteActionPerformed
 
 

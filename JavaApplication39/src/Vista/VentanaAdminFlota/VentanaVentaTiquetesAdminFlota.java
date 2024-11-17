@@ -9,6 +9,7 @@ import Controlador.ControladorRegistro;
 import Controlador.ControladorViaje;
 import Excepciones.ExcepcionAsientosInsuficientes;
 import Excepciones.ExcepcionCodigoTiqueteEnUso;
+import Excepciones.ExcepcionTiqueteVacio;
 import Excepciones.ExcepcionUsuarioNoEncontrado;
 import Excepciones.ExcepcionViajeVacio;
 import Modelo.Cliente;
@@ -275,7 +276,7 @@ try {
             
         }catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-        }catch (ExcepcionViajeVacio ex) {
+        }catch (ExcepcionTiqueteVacio ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -310,7 +311,7 @@ try {
             
         }catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-        } catch (ExcepcionViajeVacio | ExcepcionUsuarioNoEncontrado ex) {
+        } catch (ExcepcionViajeVacio | ExcepcionUsuarioNoEncontrado | ExcepcionTiqueteVacio ex) {
             JOptionPane.showMessageDialog(null,ex.getMessage());
         }
     }//GEN-LAST:event_btnModificarActionPerformed

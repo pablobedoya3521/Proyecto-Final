@@ -6,6 +6,7 @@ package Modelo;
 
 import Excepciones.ExcepcionAsientosInsuficientes;
 import Excepciones.ExcepcionCodigoTiqueteEnUso;
+import Excepciones.ExcepcionTiqueteVacio;
 import Excepciones.ExcepcionViajeVacio;
 import Persistencia.SerializadoraCaseta;
 import Util.Lista;
@@ -78,7 +79,7 @@ public void guardarTiquete(Tiquete tiquete) throws ExcepcionCodigoTiqueteEnUso, 
         }
     }
 
-    // Luego buscamos el viaje para verificar asientos y guardar el tiquete
+    // busco el viaje para verificar asientos y guardar el tiquete
     for (int i = 0; i < casetas.length; i++) {
         for (int j = 0; j < casetas[i].length; j++) {
             Empresa empresa = casetas[i][j].getEmpresa();
@@ -87,15 +88,11 @@ public void guardarTiquete(Tiquete tiquete) throws ExcepcionCodigoTiqueteEnUso, 
                 for (int k = 0; k < listaViajes.size(); k++) {
                     Viaje viaje = listaViajes.get(k);
                     if (viaje.getId().equals(this.id)) {
-                        // Verificar si hay suficientes asientos disponibles
                         int asientosDisponibles = viaje.getBus().getNumAsientos();
                         if (asientosDisponibles < tiquete.getCantidad()) {
                             throw new ExcepcionAsientosInsuficientes();
                         }
-                        
-                        // Si hay suficientes asientos, procedemos a guardar el tiquete
                         viaje.getListaTiquetes().add(tiquete);
-                        // Actualizamos el número de asientos disponibles
                         viaje.getBus().setNumAsientos(asientosDisponibles - tiquete.getCantidad());
                         serializadora.escribirObjeto(casetas);
                         return;
@@ -107,7 +104,7 @@ public void guardarTiquete(Tiquete tiquete) throws ExcepcionCodigoTiqueteEnUso, 
 }
 
     
-    public Tiquete buscarTiquete(int codigoTiquete) throws ExcepcionViajeVacio{
+    public Tiquete buscarTiquete(int codigoTiquete) throws ExcepcionTiqueteVacio{
         Caseta[][] casetas = serializadora.leerObjeto();
         
         for (int i = 0; i < casetas.length; i++) {
@@ -136,10 +133,10 @@ public void guardarTiquete(Tiquete tiquete) throws ExcepcionCodigoTiqueteEnUso, 
                 }
             }
         }
-        throw new ExcepcionViajeVacio();
+        throw new ExcepcionTiqueteVacio();
     }
     
-   public void eliminarTiquete(int codigoTiquete) throws ExcepcionViajeVacio {
+   public void eliminarTiquete(int codigoTiquete) throws ExcepcionTiqueteVacio {
     Caseta[][] casetas = serializadora.leerObjeto();
     
     for (int i = 0; i < casetas.length; i++) {
@@ -168,10 +165,10 @@ public void guardarTiquete(Tiquete tiquete) throws ExcepcionCodigoTiqueteEnUso, 
             }
         }
     }
-    throw new ExcepcionViajeVacio();
+    throw new ExcepcionTiqueteVacio();
 }
     
-    public void modificar(Tiquete tiquete) throws ExcepcionViajeVacio {
+    public void modificarTiquete(Tiquete tiquete) throws ExcepcionTiqueteVacio {
         Caseta[][] casetas = serializadora.leerObjeto();
 
         for (int i = 0; i < casetas.length; i++) {
@@ -200,7 +197,7 @@ public void guardarTiquete(Tiquete tiquete) throws ExcepcionCodigoTiqueteEnUso, 
                 }
             }
         }
-        throw new ExcepcionViajeVacio();
+        throw new ExcepcionTiqueteVacio();
     }
     
     public String getId() {

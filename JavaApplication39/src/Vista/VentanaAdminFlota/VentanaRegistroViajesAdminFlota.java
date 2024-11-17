@@ -141,9 +141,9 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Valor Viaje");
 
-        txtFechaLLegada.setText("YYYY/MM/DD");
+        txtFechaLLegada.setText("YYYY-MM-DD");
 
-        txtFechaSalida.setText("YYYY/MM/DD");
+        txtFechaSalida.setText("YYYY-MM-DD");
 
         jLabel10.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));

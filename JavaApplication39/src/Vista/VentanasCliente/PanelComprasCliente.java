@@ -4,7 +4,11 @@
  */
 package Vista.VentanasCliente;
 
+import Excepciones.ExcepcionTiqueteVacio;
 import Modelo.Cliente;
+import Modelo.Tiquete;
+import Modelo.Viaje;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class PanelComprasCliente extends javax.swing.JPanel {
@@ -41,9 +45,9 @@ public class PanelComprasCliente extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtBuscar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaCompras = new javax.swing.JTable();
@@ -76,7 +80,12 @@ public class PanelComprasCliente extends javax.swing.JPanel {
 
         jLabel2.setText("Buscar");
 
-        jButton1.setText("Buscar");
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Eliminar");
 
@@ -90,9 +99,9 @@ public class PanelComprasCliente extends javax.swing.JPanel {
                 .addGap(198, 198, 198)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)
+                        .addComponent(btnBuscar)
                         .addGap(73, 73, 73)
                         .addComponent(jButton2))
                     .addComponent(jLabel2))
@@ -106,8 +115,8 @@ public class PanelComprasCliente extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar)
                     .addComponent(jButton2))
                 .addGap(13, 13, 13))
         );
@@ -168,9 +177,43 @@ public class PanelComprasCliente extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        try{
+            int codigoTiquete =Integer.parseInt(txtBuscar.getText());
+            if (txtBuscar.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Por favor complete el campo de la placa.");
+                return;
+            }
+            Viaje viaje = new Viaje();
+            Tiquete respuesta = viaje.buscarTiquete(codigoTiquete);
+            limpiarCampos();
+            
+            String mensaje = "<html><body style='width: 250px; padding: 5px;'>" +
+                    "<h2 style='color: #1a5f7a;'>Información del Bus</h2>" +
+                    "<hr>" +
+                    "<b>Codigo del tiquete:</b> " + respuesta.getCodigoTiquete() + "<br><br>" +
+                    "<b>Correo de cliente:</b> " + respuesta.getCliente().getCorreo() + "<br><br>" +
+                    "<b>Fecha de compra:</b> " + respuesta.getFechaDeCompra() + "<br><br>" +
+                    "<b>Hora de compra:</b> " + respuesta.getHoraDeCompra() + "<br><br>" +
+                    "<b>Destino de viaje:</b> " + respuesta.getViaje().getDestino() + "<br><br>" +
+                    "<b>Cantidad de asientos:</b> " + respuesta.getCantidad() + "<br><br>" +
+                    "</body></html>";
+    
+            JOptionPane.showMessageDialog(null, mensaje, "Detalles del Bus", JOptionPane.INFORMATION_MESSAGE);
+        }catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+        }catch (ExcepcionTiqueteVacio ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void limpiarCampos(){
+        txtBuscar.setText("");
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -179,7 +222,7 @@ public class PanelComprasCliente extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tablaCompras;
+    private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,7 @@
 package Modelo;
 
 import Controlador.ControladorRegistro;
+import Excepciones.ExcepcionTiqueteVacio;
 import Persistencia.SerializadoraUsuarios;
 import Util.Lista;
 import Vista.VentanasCliente.VentanaPrincipalCliente;
@@ -55,29 +56,36 @@ public class Cliente extends Usuario implements Serializable{
                 break; 
             }
         }
+        
+        
     }
     
 
     public void eliminarCompraTiquete(int codigoTiquete){
-        Lista<Usuario> usuarios = serializadoraUsuarios.leerObjeto();
-        for (int i = 0; i < usuarios.size(); i++) {
-            if (usuarios.get(i).getCorreo().equals(this.correo)) {
-                Cliente cliente = (Cliente) usuarios.get(i);
-                Lista<Tiquete> listaTiquetes = cliente.getListaTiquetes();
+    Lista<Usuario> usuarios = serializadoraUsuarios.leerObjeto();
+   
+    for (int i = 0; i < usuarios.size(); i++) {
+        if (usuarios.get(i).getCorreo().equals(this.correo)) {
+            Cliente cliente = (Cliente) usuarios.get(i);
+            Lista<Tiquete> listaTiquetes = cliente.getListaTiquetes();
+
+            if (listaTiquetes != null && !listaTiquetes.isEmpty()) {
                 for (int j = 0; j < listaTiquetes.size(); j++) {
                     if (listaTiquetes.get(j).getCodigoTiquete() == codigoTiquete) {
                         Tiquete tiqueteCancelado = listaTiquetes.get(j);
-                        this.listaTiquetes.remove(j);
-                        cliente.setListaTiquetes(this.listaTiquetes);
+                        listaTiquetes.remove(j);
+                        cliente.setListaTiquetes(listaTiquetes);
                         cliente.desacumularPuntos(tiqueteCancelado);
                         controladorRegistro.setUsuarios(usuarios);
                         serializadoraUsuarios.escribirObjeto(usuarios);
-                        break; 
+                        break; // Salimos del bucle una vez que se elimina el tiquete
                     }
                 }
             }
         }
     }
+
+}
     
     private int calcularPuntos(Tiquete tiquete) {
         double precioTiquete = tiquete.getViaje().getPrecioViaje(); 

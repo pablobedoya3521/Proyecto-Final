@@ -83,7 +83,7 @@ public class Cliente extends Usuario implements Serializable{
     }
     
     private int calcularPuntos(Tiquete tiquete) {
-        double precioTiquete = tiquete.getViaje().getPrecioViaje(); 
+        double precioTiquete = tiquete.getViaje().getPrecioViaje()*tiquete.getCantidad(); 
         return (int) (precioTiquete / 10000) * 3; 
     }
 

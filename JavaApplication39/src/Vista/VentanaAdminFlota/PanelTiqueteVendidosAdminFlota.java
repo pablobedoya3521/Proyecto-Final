@@ -25,7 +25,7 @@ public class PanelTiqueteVendidosAdminFlota extends javax.swing.JPanel {
     
     private void llenarTabla() {
          DefaultTableModel model = new DefaultTableModel();
-         model.setColumnIdentifiers(new Object[]{"Codigo", "Cliente", "Fecha de compra", "Hora de compra", "Destino de viaje", "Cantidad de asientos", "Precio de tiquete"});
+         model.setColumnIdentifiers(new Object[]{"Codigo", "Cliente", "Fecha de compra", "Hora de compra", "Destino de viaje", "Cantidad de tiquetes", "Precio de tiquete", "Total"});
 
          Lista<Viaje> listaViajes = controladorEmpresa.getEmpresa().getListaViajes();
         if (listaViajes != null) {
@@ -43,7 +43,8 @@ public class PanelTiqueteVendidosAdminFlota extends javax.swing.JPanel {
                                  tiquete.getHoraDeCompra(),
                                  tiquete.getViaje().getDestino(),
                                  tiquete.getCantidad(),
-                                 tiquete.getViaje().getPrecioViaje()
+                                 tiquete.getViaje().getPrecioViaje(),
+                                 tiquete.getCantidad()*tiquete.getViaje().getPrecioViaje()
                             });
                         }
                     }

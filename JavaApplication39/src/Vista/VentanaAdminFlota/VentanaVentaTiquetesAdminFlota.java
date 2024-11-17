@@ -91,7 +91,7 @@ public class VentanaVentaTiquetesAdminFlota extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Cantidad de asientos");
+        jLabel6.setText("Cantidad de tiquetes");
 
         btnVolver.setBackground(new java.awt.Color(51, 0, 0));
         btnVolver.setText("Volver");

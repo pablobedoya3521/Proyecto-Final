@@ -23,7 +23,7 @@ public class PanelComprasCliente extends javax.swing.JPanel {
    
         private void llenarTabla() {
             DefaultTableModel model = new DefaultTableModel();
-            model.setColumnIdentifiers(new Object[]{"Codigo", "Fecha de compra", "Hora de compra", "Destino de viaje", "Precio", "Hora de salida", "Hora de llegada", "Fecha de salida", "Fecha de llegada"});
+            model.setColumnIdentifiers(new Object[]{"Codigo", "Fecha de compra", "Hora de compra", "Destino de viaje", "Precio del viaje", "Hora de salida", "Hora de llegada", "Fecha de salida", "Fecha de llegada", "Total"});
             for (int i = 0; i < cliente.getListaTiquetes().size(); i++) {
                 model.addRow(new Object[]{
                     cliente.getListaTiquetes().get(i).getCodigoTiquete(),
@@ -34,7 +34,8 @@ public class PanelComprasCliente extends javax.swing.JPanel {
                     cliente.getListaTiquetes().get(i).getViaje().getHoraDeSalida(),
                     cliente.getListaTiquetes().get(i).getViaje().getHoraDeSalida(),
                     cliente.getListaTiquetes().get(i).getViaje().getFechaSalida(),
-                    cliente.getListaTiquetes().get(i).getViaje().getHoraDeLlegada()
+                    cliente.getListaTiquetes().get(i).getViaje().getHoraDeLlegada(),
+                    cliente.getListaTiquetes().get(i).getCantidad()*cliente.getListaTiquetes().get(i).getViaje().getPrecioViaje()
                 });
             }
             tablaCompras.setModel(model);

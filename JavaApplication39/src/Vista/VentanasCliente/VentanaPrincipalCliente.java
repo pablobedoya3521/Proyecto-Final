@@ -249,6 +249,11 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
         btnPuntos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnPuntos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnPuntos.setIconTextGap(12);
+        btnPuntos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPuntosActionPerformed(evt);
+            }
+        });
 
         btnRegresar.setBackground(new java.awt.Color(51, 51, 51));
         btnRegresar.setForeground(new java.awt.Color(255, 0, 51));
@@ -385,6 +390,12 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
         cambio.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnPuntosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPuntosActionPerformed
+      VentanaCanjeos cambio = new VentanaCanjeos(this.cliente);
+      cambio.setVisible(true);
+      this.dispose();
+    }//GEN-LAST:event_btnPuntosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

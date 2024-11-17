@@ -54,6 +54,7 @@ public class PanelComprasCliente extends javax.swing.JPanel {
         txtBuscar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
+        btnDevolver = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaCompras = new javax.swing.JTable();
 
@@ -92,6 +93,8 @@ public class PanelComprasCliente extends javax.swing.JPanel {
             }
         });
 
+        btnDevolver.setText("Devolver");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -104,9 +107,11 @@ public class PanelComprasCliente extends javax.swing.JPanel {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBuscar))
+                        .addComponent(btnBuscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDevolver))
                     .addComponent(jLabel2))
-                .addContainerGap(615, Short.MAX_VALUE))
+                .addContainerGap(522, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,7 +122,8 @@ public class PanelComprasCliente extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar))
+                    .addComponent(btnBuscar)
+                    .addComponent(btnDevolver))
                 .addGap(13, 13, 13))
         );
 
@@ -214,6 +220,7 @@ public class PanelComprasCliente extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnDevolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

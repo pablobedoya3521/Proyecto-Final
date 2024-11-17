@@ -5,7 +5,11 @@
 package Vista.VentanasCliente;
 
 import Modelo.Caseta;
+import Modelo.Viaje;
 import Persistencia.SerializadoraCaseta;
+import Util.Lista;
+import Validador.Buscador;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class PanelViajesDisponiblesCliente extends javax.swing.JPanel {
@@ -55,9 +59,9 @@ public class PanelViajesDisponiblesCliente extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtBuscar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaViajes = new javax.swing.JTable();
@@ -90,7 +94,12 @@ public class PanelViajesDisponiblesCliente extends javax.swing.JPanel {
 
         jLabel2.setText("Buscar");
 
-        jButton1.setText("Buscar");
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Reservar");
 
@@ -104,9 +113,9 @@ public class PanelViajesDisponiblesCliente extends javax.swing.JPanel {
                 .addGap(166, 166, 166)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(btnBuscar)
                         .addGap(37, 37, 37)
                         .addComponent(jButton2))
                     .addComponent(jLabel2))
@@ -120,8 +129,8 @@ public class PanelViajesDisponiblesCliente extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar)
                     .addComponent(jButton2))
                 .addGap(13, 13, 13))
         );
@@ -188,9 +197,57 @@ public class PanelViajesDisponiblesCliente extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        String referencia = txtBuscar.getText();
+        Buscador buscador = new Buscador();
+        Lista<Viaje> listaViajes=buscador.buscar(referencia);
+        if(listaViajes.isEmpty()){
+            JOptionPane.showMessageDialog(null, "No se encontró ningun registro");
+            return;
+        }
+        llenarTabla2(listaViajes);
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void llenarTabla2(Lista<Viaje> listaViajes) {
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new Object[]{"Placa de bus", "ID", "Precio", "Origen", "Destino", "Hora de salida", "Hora de llegada", "Fecha de creacion", "Empresa" });
+
+        for (int i = 0; i < listaViajes.size(); i++) {
+            Viaje viaje = listaViajes.get(i);
+            String nombreEmpresa = buscarEmpresaDelViaje(viaje);
+                model.addRow(new Object[]{
+                    viaje.getBus().getPlaca(),
+                    viaje.getId(),
+                    viaje.getPrecioViaje(),
+                    viaje.getOrigen(),
+                    viaje.getDestino(),
+                    viaje.getHoraDeSalida(),
+                    viaje.getHoraDeLlegada(),
+                    viaje.getFechaCreacion(),
+                    nombreEmpresa
+                 });
+        }
+
+        tablaViajes.setModel(model);
+    }
+
+    private String buscarEmpresaDelViaje(Viaje viaje) {
+        for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; j < casetas[i].length; j++) {
+                if (casetas[i][j].getEmpresa() != null) {
+                    for (int k = 0; k < casetas[i][j].getEmpresa().getListaViajes().size(); k++) {
+                        if (casetas[i][j].getEmpresa().getListaViajes().get(k).getId().equals(viaje.getId())) {
+                            return casetas[i][j].getEmpresa().getNombreEmpresa();
+                        }
+                    }
+                }
+            }
+        }
+        return "Empresa no encontrada"; // Por si no se encuentra la empresa
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -199,7 +256,7 @@ public class PanelViajesDisponiblesCliente extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tablaViajes;
+    private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

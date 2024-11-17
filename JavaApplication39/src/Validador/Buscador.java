@@ -8,33 +8,43 @@ import Modelo.Caseta;
 import Modelo.Viaje;
 import Persistencia.SerializadoraCaseta;
 import Util.Lista;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 public class Buscador {
     private SerializadoraCaseta serializadoraCaseta;
-    
+
     public Buscador() {
-        this.serializadoraCaseta= new SerializadoraCaseta();
+        this.serializadoraCaseta = new SerializadoraCaseta();
     }
-    
-    
-    public Lista<Viaje> buscar(String referencia){
-        Caseta[][] casetas= serializadoraCaseta.leerObjeto();
-        Lista<Viaje> nuevaLista= new Lista<>();
+
+    public Lista<Viaje> buscar(String referencia) {
+        Caseta[][] casetas = serializadoraCaseta.leerObjeto();
+        Lista<Viaje> nuevaLista = new Lista<>();
+
         for (int i = 0; i < casetas.length; i++) {
             for (int j = 0; j < casetas[i].length; j++) {
-               if(casetas[i][j].getEmpresa()!=null){
+                if (casetas[i][j].getEmpresa() != null) {
                     Lista<Viaje> listaObtenida = casetas[i][j].getEmpresa().getListaViajes();
-                for (int k = 0; k < listaObtenida.size(); k++) {
-                    String fecha = listaObtenida.get(k).getFechaSalida();
-                    String destino = listaObtenida.get(k).getDestino();
-                    Viaje viaje = listaObtenida.get(k);
-                    if (fecha.equals(referencia)) {
-                        nuevaLista.add(viaje);
-                    }else if (destino.equals(referencia)) {
-                        nuevaLista.add(viaje);
+                    for (int k = 0; k < listaObtenida.size(); k++) {
+                        Viaje viaje = listaObtenida.get(k);
+                        String destino = viaje.getDestino();
+                        LocalDate fechaSalida = viaje.getFechaSalida();
+
+                        // Comparar la referencia como fecha
+                        try {
+                            LocalDate fechaReferencia = LocalDate.parse(referencia);
+                            if (fechaSalida.equals(fechaReferencia)) {
+                                nuevaLista.add(viaje);
+                            }
+                        } catch (DateTimeParseException e) {
+                            // Si no se puede parsear como fecha, se intenta como destino
+                            if (destino.equals(referencia)) {
+                                nuevaLista.add(viaje);
+                            }
+                        }
                     }
                 }
-               }
             }
         }
         return nuevaLista;

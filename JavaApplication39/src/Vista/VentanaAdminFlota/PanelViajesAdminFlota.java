@@ -24,21 +24,32 @@ public class PanelViajesAdminFlota extends javax.swing.JPanel {
     
     private void llenarTabla() {
         DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new Object[]{"ID", "Placa de bus", "Precio", "Origen", "Destino", "Hora de salida", "Hora de llegada","Fecha de salida","Fecha de llegada", "Fecha de creacion"});
+        model.setColumnIdentifiers(new Object[]{
+            "ID", "Estado", "Placa de bus", "Puestos disponibles", "Precio", 
+            "Origen", "Destino", "Hora de salida", "Hora de llegada", 
+            "Fecha de salida", "Fecha de llegada", "Fecha de creación"
+        });
+
         for (int i = 0; i < controladorEmpresa.getEmpresa().getListaViajes().size(); i++) {
+            Viaje viaje = controladorEmpresa.getEmpresa().getListaViajes().get(i);
+            viaje.actualizarEstado();
+            // Agregar fila con el estado del viaje
             model.addRow(new Object[]{
-                controladorEmpresa.getEmpresa().getListaViajes().get(i).getId(),
-                controladorEmpresa.getEmpresa().getListaViajes().get(i).getBus().getPlaca(),
-                controladorEmpresa.getEmpresa().getListaViajes().get(i).getPrecioViaje(),
-                controladorEmpresa.getEmpresa().getListaViajes().get(i).getOrigen(),
-                controladorEmpresa.getEmpresa().getListaViajes().get(i).getDestino(),
-                controladorEmpresa.getEmpresa().getListaViajes().get(i).getHoraDeSalida(),
-                controladorEmpresa.getEmpresa().getListaViajes().get(i).getHoraDeLlegada(),
-                controladorEmpresa.getEmpresa().getListaViajes().get(i).getFechaSalida(),
-                controladorEmpresa.getEmpresa().getListaViajes().get(i).getFechaLLegada(),
-                controladorEmpresa.getEmpresa().getListaViajes().get(i).getFechaCreacion(),
+                viaje.getId(),                             // ID del viaje
+                viaje.getEstado(),                         // Estado del viaje
+                viaje.getBus().getPlaca(),                 // Placa del bus
+                viaje.getBus().getNumAsientos(),           // Puestos disponibles
+                viaje.getPrecioViaje(),                    // Precio del viaje
+                viaje.getOrigen(),                         // Origen
+                viaje.getDestino(),                        // Destino
+                viaje.getHoraDeSalida(),                   // Hora de salida
+                viaje.getHoraDeLlegada(),                  // Hora de llegada
+                viaje.getFechaSalida(),                    // Fecha de salida
+                viaje.getFechaLLegada(),                   // Fecha de llegada
+                viaje.getFechaCreacion()                   // Fecha de creación
             });
         }
+
         tablaViajes.setModel(model);
     }
     
@@ -206,10 +217,12 @@ public class PanelViajesAdminFlota extends javax.swing.JPanel {
                 return;
             }
             Viaje respuesta = controladorEmpresa.buscarViaje(id);
+            respuesta.actualizarEstado();
             String mensaje = "<html><body style='width: 250px; padding: 5px;'>" +
                     "<h2 style='color: #1a5f7a;'>Información del Bus</h2>" +
                     "<hr>" +
                     "<b>ID del viaje:</b> " + respuesta.getId() + "<br><br>" +
+                    "<b>Estado del viaje:</b> " + respuesta.getEstado() + "<br><br>" +
                     "<b>Placa del bus:</b> " + respuesta.getBus().getPlaca()+ "<br><br>" +
                     "<b>Precio del viaje:</b> " + respuesta.getPrecioViaje() + "<br><br>" +
                     "<b>Origen:</b> " + respuesta.getOrigen() + "<br><br>" +

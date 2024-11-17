@@ -14,6 +14,10 @@ import Modelo.Bus;
 import Modelo.Empresa;
 import Modelo.Viaje;
 import Validador.ValidarDisponibilidadDeBus;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import javax.swing.JOptionPane;
 
 public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
@@ -289,85 +293,107 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnModificarViajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarViajeActionPerformed
-        try{
+        try {
             String id = txtId.getText();
             String destino = txtDestino.getText();
-            String horaDeSalida = txtHoraDeSalida.getText();
-            String horaDeLlegada = txtHoraDeLlegada.getText();
-            String fechaSalida = txtFechaSalida.getText();
-            String fechaLLegada= txtFechaLLegada.getText();
+            String horaDeSalidaStr = txtHoraDeSalida.getText();
+            String horaDeLlegadaStr = txtHoraDeLlegada.getText();
+            String fechaSalidaStr = txtFechaSalida.getText();
+            String fechaLLegadaStr = txtFechaLLegada.getText();
             String placa = txtBus.getText();
             double valorViaje = Double.parseDouble(txtValorViaje.getText());
 
-            if (txtId.getText().isEmpty()|| txtDestino.getText().isEmpty() ||
-                txtHoraDeSalida.getText().isEmpty() || txtHoraDeLlegada.getText().isEmpty()||
-                txtBus.getText().isEmpty() || txtValorViaje.getText().isEmpty() || txtFechaSalida.getText().isEmpty() ||
-                txtFechaLLegada.getText().isEmpty()) {
+            // Validar campos vacíos
+            if (id.isEmpty() || destino.isEmpty() || horaDeSalidaStr.isEmpty() || 
+                horaDeLlegadaStr.isEmpty() || placa.isEmpty() || txtValorViaje.getText().isEmpty() || 
+                fechaSalidaStr.isEmpty() || fechaLLegadaStr.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
                 return;
             }
 
-            Bus bus=controladorEmpresa.buscarBus(placa);
+            // Convertir String a LocalTime y LocalDate
+            LocalTime horaDeSalida = LocalTime.parse(horaDeSalidaStr);
+            LocalTime horaDeLlegada = LocalTime.parse(horaDeLlegadaStr);
+            LocalDate fechaSalida = LocalDate.parse(fechaSalidaStr);
+            LocalDate fechaLLegada = LocalDate.parse(fechaLLegadaStr);
 
-            Viaje viaje=new Viaje(id,destino,horaDeSalida,horaDeLlegada, horaDeSalida, horaDeLlegada, bus, valorViaje);
+            Bus bus = controladorEmpresa.buscarBus(placa);
+
+            // Crear el objeto Viaje
+            Viaje viaje = new Viaje(id, destino, horaDeSalida, horaDeLlegada, fechaSalida, fechaLLegada, bus, valorViaje);
             controladorEmpresa.modificarViaje(viaje);
             JOptionPane.showMessageDialog(null, "Viaje modificado correctamente");
 
-        }catch (NumberFormatException ex) {
+        } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-        }catch (ExcepcionBusVacio | ExcepcionViajeVacio ex){
+        } catch (DateTimeParseException ex) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese fechas y horas en el formato correcto.");
+        } catch (ExcepcionBusVacio | ExcepcionViajeVacio ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_btnModificarViajeActionPerformed
 
     private void btnBuscarViajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarViajeActionPerformed
-        try{
-            String id = txtBuscar.getText();
-            if (txtBuscar.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-                return;
-            }
-            Viaje respuesta = controladorEmpresa.buscarViaje(id);
-            txtBus.setText(respuesta.getBus().getPlaca());
-            txtDestino.setText(respuesta.getDestino());
-            txtFechaLLegada.setText(respuesta.getFechaLLegada());
-            txtFechaSalida.setText(respuesta.getFechaSalida());
-            txtHoraDeLlegada.setText(respuesta.getHoraDeLlegada());
-            txtHoraDeSalida.setText(respuesta.getHoraDeSalida());
-            txtValorViaje.setText(String.valueOf(respuesta.getPrecioViaje()));
-            txtId.setText(respuesta.getId());
+        try {
+           String id = txtBuscar.getText();
+           if (id.isEmpty()) {
+               JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+               return;
+           }
 
-        }catch (NumberFormatException ex){
-            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-        } catch (ExcepcionViajeVacio ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
+           Viaje respuesta = controladorEmpresa.buscarViaje(id);
+
+           // Formateadores para las fechas y horas
+           DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+           DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+           // Establecer los valores en los campos de texto
+           txtBus.setText(respuesta.getBus().getPlaca());
+           txtDestino.setText(respuesta.getDestino());
+           txtFechaLLegada.setText(respuesta.getFechaLLegada().format(dateFormatter));
+           txtFechaSalida.setText(respuesta.getFechaSalida().format(dateFormatter));
+           txtHoraDeLlegada.setText(respuesta.getHoraDeLlegada().format(timeFormatter));
+           txtHoraDeSalida.setText(respuesta.getHoraDeSalida().format(timeFormatter));
+           txtValorViaje.setText(String.valueOf(respuesta.getPrecioViaje()));
+           txtId.setText(respuesta.getId());
+
+       } catch (ExcepcionViajeVacio ex) {
+           JOptionPane.showMessageDialog(null, ex.getMessage());
+       }
     }//GEN-LAST:event_btnBuscarViajeActionPerformed
 
     private void btnGuardarViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarViajesActionPerformed
         try {
             String id = txtId.getText();
             String destino = txtDestino.getText();
-            String horaDeSalida = txtHoraDeSalida.getText();
-            String horaDeLlegada = txtHoraDeLlegada.getText();
-            String fechaSalida = txtFechaSalida.getText();
-            String fechaLLegada= txtFechaLLegada.getText();
+            String horaDeSalidaStr = txtHoraDeSalida.getText();
+            String horaDeLlegadaStr = txtHoraDeLlegada.getText();
+            String fechaSalidaStr = txtFechaSalida.getText();
+            String fechaLLegadaStr = txtFechaLLegada.getText();
             String placa = txtBus.getText();
             double valorViaje = Double.parseDouble(txtValorViaje.getText());
 
-            if (txtId.getText().isEmpty()|| txtDestino.getText().isEmpty() ||
-                txtHoraDeSalida.getText().isEmpty() || txtHoraDeLlegada.getText().isEmpty()||
-                txtBus.getText().isEmpty() || txtValorViaje.getText().isEmpty() || txtFechaSalida.getText().isEmpty() ||
-                txtFechaLLegada.getText().isEmpty()) {
+            // Validar campos vacíos
+            if (id.isEmpty() || destino.isEmpty() || 
+                horaDeSalidaStr.isEmpty() || horaDeLlegadaStr.isEmpty() ||
+                placa.isEmpty() || txtValorViaje.getText().isEmpty() || 
+                fechaSalidaStr.isEmpty() || fechaLLegadaStr.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
                 return;
             }
 
+            // Convertir String a LocalTime y LocalDate
+            LocalTime horaDeSalida = LocalTime.parse(horaDeSalidaStr);
+            LocalTime horaDeLlegada = LocalTime.parse(horaDeLlegadaStr);
+            LocalDate fechaSalida = LocalDate.parse(fechaSalidaStr);
+            LocalDate fechaLLegada = LocalDate.parse(fechaLLegadaStr);
+
             Bus bus = controladorEmpresa.buscarBus(placa);
 
+            // Crear el objeto Viaje
             Viaje viaje = new Viaje(id, destino, horaDeSalida, horaDeLlegada, fechaSalida, fechaLLegada, bus, valorViaje);
-            ValidarDisponibilidadDeBus validarBus= new ValidarDisponibilidadDeBus();
-            validarBus.validarDisponibilidadDeBus(this.empresa,viaje );
+            ValidarDisponibilidadDeBus validarBus = new ValidarDisponibilidadDeBus();
+            validarBus.validarDisponibilidadDeBus(this.empresa, viaje);
             controladorEmpresa.guardarViaje(viaje);
             JOptionPane.showMessageDialog(null, "Viaje guardado correctamente");
             limpiarCampos();
@@ -375,6 +401,8 @@ public class VentanaRegistroViajesAdminFlota extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+        } catch (DateTimeParseException ex) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese fechas y horas en el formato correcto.");
         }
     }//GEN-LAST:event_btnGuardarViajesActionPerformed
 

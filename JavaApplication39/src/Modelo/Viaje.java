@@ -13,17 +13,19 @@ import Persistencia.SerializadoraCaseta;
 import Util.Lista;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 
 public class Viaje implements Serializable{
     private static final long serialVersionUID = 1L;
-    private String id;
+     private String id;
     private String origen;
     private String destino;
-    private String horaDeSalida;
-    private String horaDeLlegada;
-    private String fechaSalida;
-    private String fechaLLegada;
+    private LocalTime horaDeSalida; // Cambiado a LocalTime
+    private LocalTime horaDeLlegada; // Cambiado a LocalTime
+    private LocalDate fechaSalida; // Cambiado a LocalDate
+    private LocalDate fechaLLegada; // Cambiado a LocalDate
     private LocalDate fechaCreacion;
     private Bus bus;
     private double precioViaje;
@@ -32,23 +34,24 @@ public class Viaje implements Serializable{
     private SerializadoraCaseta serializadora;
     private Lista<Reserva> listaReservas;
 
-    public Viaje(String id,String destino, String horaDeSalida, 
-            String horaDeLlegada, String fechaSalida, String fechaLLegada, Bus bus, double precioViaje) {
+    public Viaje(String id, String destino, LocalTime horaDeSalida, 
+                 LocalTime horaDeLlegada, LocalDate fechaSalida, LocalDate fechaLLegada, 
+                 Bus bus, double precioViaje) {
         
         this.id=id;
         this.origen = "Armenia";
         this.destino = destino;
-        this.horaDeSalida=horaDeSalida;
+        this.horaDeSalida = horaDeSalida;
         this.horaDeLlegada = horaDeLlegada;
-        this.fechaSalida=fechaSalida;
-        this.fechaLLegada=fechaLLegada;
+        this.fechaSalida = fechaSalida;
+        this.fechaLLegada = fechaLLegada;
         this.fechaCreacion = LocalDate.now();
         this.bus = bus;
         this.precioViaje = precioViaje;
-        this.estado="Programado";
-        this.listaTiquetes=new Lista<>();
-        this.listaReservas= new Lista<>();
-        this.serializadora=new SerializadoraCaseta();
+        this.estado = "Programado";
+        this.listaTiquetes = new Lista<>();
+        this.listaReservas = new Lista<>();
+        this.serializadora = new SerializadoraCaseta();
     }
 
     public Viaje() {
@@ -282,6 +285,23 @@ public class Viaje implements Serializable{
         }
     }
     
+    public void actualizarEstado() {
+        LocalDate ahoraFecha = LocalDate.now();
+        LocalTime ahoraHora = LocalTime.now();
+        LocalDateTime ahora = LocalDateTime.of(ahoraFecha, ahoraHora);
+        
+        // Combinar LocalDate y LocalTime para crear LocalDateTime
+        LocalDateTime fechaSalida = LocalDateTime.of(this.fechaSalida, this.horaDeSalida);
+        LocalDateTime fechaLlegada = LocalDateTime.of(this.fechaLLegada, this.horaDeLlegada);
+
+        // Cambiar el estado del viaje según la fecha y hora
+        if (ahora.isAfter(fechaSalida) && ahora.isBefore(fechaLlegada)) {
+            this.estado = "En Curso";
+        } else if (ahora.isAfter(fechaLlegada)) {
+            this.estado = "Finalizado";
+        }
+    }
+
     public String getId() {
         return id;
     }
@@ -302,26 +322,41 @@ public class Viaje implements Serializable{
         return destino;
     }
 
-    public String getHoraDeSalida() {
-        return horaDeSalida;
-    }
-
-    public void setHoraDeSalida(String horaDeSalida) {
-        this.horaDeSalida = horaDeSalida;
-    }
-
     public void setDestino(String destino) {
         this.destino = destino;
     }
 
-    public String getHoraDeLlegada() {
+    public LocalTime getHoraDeSalida() {
+        return horaDeSalida;
+    }
+
+    public void setHoraDeSalida(LocalTime horaDeSalida) {
+        this.horaDeSalida = horaDeSalida;
+    }
+
+    public LocalTime getHoraDeLlegada() {
         return horaDeLlegada;
     }
 
-    public void setHoraDeLlegada(String horaDeLlegada) {
+    public void setHoraDeLlegada(LocalTime horaDeLlegada) {
         this.horaDeLlegada = horaDeLlegada;
     }
-    
+
+    public LocalDate getFechaSalida() {
+        return fechaSalida;
+    }
+
+    public void setFechaSalida(LocalDate fechaSalida) {
+        this.fechaSalida = fechaSalida;
+    }
+
+    public LocalDate getFechaLLegada() {
+        return fechaLLegada;
+    }
+
+    public void setFechaLLegada(LocalDate fechaLLegada) {
+        this.fechaLLegada = fechaLLegada;
+    }
 
     public LocalDate getFechaCreacion() {
         return fechaCreacion;
@@ -355,28 +390,20 @@ public class Viaje implements Serializable{
         this.estado = estado;
     }
 
-    public String getFechaSalida() {
-        return fechaSalida;
-    }
-
-    public void setFechaSalida(String fechaSalida) {
-        this.fechaSalida = fechaSalida;
-    }
-
-    public String getFechaLLegada() {
-        return fechaLLegada;
-    }
-
-    public void setFechaLLegada(String fechaLLegada) {
-        this.fechaLLegada = fechaLLegada;
-    }
-
     public Lista<Tiquete> getListaTiquetes() {
         return listaTiquetes;
     }
 
     public void setListaTiquetes(Lista<Tiquete> listaTiquetes) {
         this.listaTiquetes = listaTiquetes;
+    }
+
+    public SerializadoraCaseta getSerializadora() {
+        return serializadora;
+    }
+
+    public void setSerializadora(SerializadoraCaseta serializadora) {
+        this.serializadora = serializadora;
     }
 
     public Lista<Reserva> getListaReservas() {
@@ -386,5 +413,6 @@ public class Viaje implements Serializable{
     public void setListaReservas(Lista<Reserva> listaReservas) {
         this.listaReservas = listaReservas;
     }
+    
     
 }

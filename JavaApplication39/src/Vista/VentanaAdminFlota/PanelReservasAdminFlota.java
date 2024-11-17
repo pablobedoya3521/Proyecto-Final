@@ -15,6 +15,8 @@ import Modelo.Reserva;
 import Modelo.Tiquete;
 import Modelo.Viaje;
 import Util.Lista;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -77,7 +79,7 @@ public class PanelReservasAdminFlota extends javax.swing.JPanel {
         txtBuscar = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         btnEfectuar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaReservas = new javax.swing.JTable();
@@ -117,7 +119,12 @@ public class PanelReservasAdminFlota extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("Eliminar");
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnEfectuar.setText("Efectuar");
         btnEfectuar.addActionListener(new java.awt.event.ActionListener() {
@@ -140,7 +147,7 @@ public class PanelReservasAdminFlota extends javax.swing.JPanel {
                         .addGap(30, 30, 30)
                         .addComponent(btnBuscar)
                         .addGap(28, 28, 28)
-                        .addComponent(jButton2)
+                        .addComponent(btnCancelar)
                         .addGap(18, 18, 18)
                         .addComponent(btnEfectuar))
                     .addComponent(jLabel8))
@@ -156,7 +163,7 @@ public class PanelReservasAdminFlota extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar)
-                    .addComponent(jButton2)
+                    .addComponent(btnCancelar)
                     .addComponent(btnEfectuar))
                 .addGap(13, 13, 13))
         );
@@ -201,7 +208,7 @@ public class PanelReservasAdminFlota extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 60, Short.MAX_VALUE))
+                .addGap(0, 54, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(200, 200, 200)
@@ -292,11 +299,52 @@ public class PanelReservasAdminFlota extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, mensaje, "Detalles de la reserva", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        try {
+            String codigoReserva = txtBuscar.getText();
+
+            Reserva reservaEncontrada = null;
+            Viaje viajeEncontrado = null;
+            Lista<Viaje> listaViajes = empresa.getListaViajes();
+
+            // Buscar la reserva y el viaje correspondiente
+            for (int i = 0; i < listaViajes.size(); i++) {
+                Viaje viaje = listaViajes.get(i);
+                Lista<Reserva> listaReservas = viaje.getListaReservas();
+                for (int j = 0; j < listaReservas.size(); j++) {
+                    Reserva reserva = listaReservas.get(j);
+                    if (reserva.getCodigo().equals(codigoReserva)) {
+                        reservaEncontrada = reserva;
+                        viajeEncontrado = viaje;
+                        break;
+                    }
+                }
+                if (reservaEncontrada != null) break;
+            }
+
+            if (reservaEncontrada == null) {
+                JOptionPane.showMessageDialog(null, "Reserva no encontrada");
+                return;
+            }
+
+            // Eliminar la reserva tanto del cliente como del viaje original
+            Cliente cliente = reservaEncontrada.getCliente();
+            cliente.eliminarReserva(codigoReserva);
+            viajeEncontrado.eliminarReserva(codigoReserva);
+
+            JOptionPane.showMessageDialog(null, "Reserva cancelada correctamente");
+            llenarTabla(); // Actualizar la tabla después de cancelar
+
+        } catch (ExcepcionReservaVacia ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEfectuar;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;

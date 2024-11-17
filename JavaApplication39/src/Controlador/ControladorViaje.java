@@ -13,6 +13,7 @@ import Modelo.Viaje;
 
 public class ControladorViaje {
     private Viaje viaje;
+    
     public ControladorViaje(Viaje viaje){
         this.viaje=viaje;
     }

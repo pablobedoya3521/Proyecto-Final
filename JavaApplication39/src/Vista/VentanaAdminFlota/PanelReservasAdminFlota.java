@@ -76,7 +76,7 @@ public class PanelReservasAdminFlota extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btnEfectuar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -110,7 +110,12 @@ public class PanelReservasAdminFlota extends javax.swing.JPanel {
 
         jLabel8.setText("Buscar");
 
-        jButton1.setText("Buscar");
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Eliminar");
 
@@ -133,7 +138,7 @@ public class PanelReservasAdminFlota extends javax.swing.JPanel {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(jButton1)
+                        .addComponent(btnBuscar)
                         .addGap(28, 28, 28)
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
@@ -150,7 +155,7 @@ public class PanelReservasAdminFlota extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
+                    .addComponent(btnBuscar)
                     .addComponent(jButton2)
                     .addComponent(btnEfectuar))
                 .addGap(13, 13, 13))
@@ -252,10 +257,45 @@ public class PanelReservasAdminFlota extends javax.swing.JPanel {
         } 
     }//GEN-LAST:event_btnEfectuarActionPerformed
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        String codigoReserva = txtBuscar.getText();
+        Reserva reservaEncontrada= null;
+        Lista<Viaje> listaViajes= empresa.getListaViajes();
+        for (int i = 0; i < listaViajes.size(); i++) {
+            Viaje viaje = listaViajes.get(i);
+            Lista<Reserva> listaReservas = viaje.getListaReservas();
+            for (int j = 0; j < listaReservas.size(); j++) {
+                Reserva reserva = listaReservas.get(j);
+                if(reserva.getCodigo().equals(codigoReserva)){
+                    reservaEncontrada=reserva;
+                }
+            }
+        }
+        
+        if(reservaEncontrada==null){
+            JOptionPane.showMessageDialog(null, "Reserva no encontrada, los siento");
+            return;
+        }
+        
+         String mensaje = "<html><body style='width: 250px; padding: 5px;'>" +
+                        "<h2 style='color: #1a5f7a;'>Información del Bus</h2>" +
+                        "<hr>" +
+                        "<b>ID de reserva:</b> " + reservaEncontrada.getCodigo() + "<br><br>" +
+                        "<b>Cliente:</b> " + reservaEncontrada.getCliente().getCorreo()+ "<br><br>" +
+                        "<b>Fecha de reserva:</b> " + reservaEncontrada.getFechaDeReserva() + "<br><br>" +
+                        "<b>Hora de reserva:</b> " + reservaEncontrada.getHoraDeReserva() + "<br><br>" +
+                        "<b>Cantidad de tiquetes:</b> " + reservaEncontrada.getCantidadDeTiquetes() + "<br><br>" +
+                        "<b>Destino de viaje:</b> " + reservaEncontrada.getViaje().getDestino() + "<br><br>" +
+                        "<b>Precio de viaje:</b> " + reservaEncontrada.getViaje().getPrecioViaje()+ "<br><br>" +
+                        "<b>Total a pagar:</b> " + reservaEncontrada.getViaje().getPrecioViaje()*reservaEncontrada.getCantidadDeTiquetes() + "<br><br>" +
+                        "</body></html>";
+            JOptionPane.showMessageDialog(null, mensaje, "Detalles de la reserva", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEfectuar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel8;

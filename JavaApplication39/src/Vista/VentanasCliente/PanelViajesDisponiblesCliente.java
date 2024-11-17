@@ -34,28 +34,33 @@ public class PanelViajesDisponiblesCliente extends javax.swing.JPanel {
     
     private void llenarTabla() {
         DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new Object[]{"Placa de bus", "ID", "Precio", "Origen", "Destino", "Hora de salida", "Hora de llegada", "Fecha de creacion", "Empresa" });
-        
+        model.setColumnIdentifiers(new Object[]{
+            "Placa de bus", "ID", "Precio", "Origen", "Destino", 
+            "Hora de salida", "Hora de llegada", "Fecha de creacion", "Empresa"
+        });
+
         for (int i = 0; i < casetas.length; i++) {
             for (int j = 0; j < casetas[i].length; j++) {
-                if(casetas[i][j].getEmpresa()!=null){
+                if (casetas[i][j].getEmpresa() != null) {
                     for (int k = 0; k < casetas[i][j].getEmpresa().getListaViajes().size(); k++) {
+                        Viaje viaje = casetas[i][j].getEmpresa().getListaViajes().get(k);
+
                         model.addRow(new Object[]{
-                            casetas[i][j].getEmpresa().getListaViajes().get(k).getBus().getPlaca(),
-                            casetas[i][j].getEmpresa().getListaViajes().get(i).getId(),
-                            casetas[i][j].getEmpresa().getListaViajes().get(i).getPrecioViaje(),
-                            casetas[i][j].getEmpresa().getListaViajes().get(i).getOrigen(),
-                            casetas[i][j].getEmpresa().getListaViajes().get(i).getDestino(),
-                            casetas[i][j].getEmpresa().getListaViajes().get(i).getHoraDeSalida(),
-                            casetas[i][j].getEmpresa().getListaViajes().get(i).getHoraDeLlegada(),
-                            casetas[i][j].getEmpresa().getListaViajes().get(i).getFechaCreacion(),
+                            viaje.getBus().getPlaca(),
+                            viaje.getId(),
+                            viaje.getPrecioViaje(),
+                            viaje.getOrigen(),
+                            viaje.getDestino(),
+                            viaje.getHoraDeSalida(),
+                            viaje.getHoraDeLlegada(),
+                            viaje.getFechaCreacion(),
                             casetas[i][j].getEmpresa().getNombreEmpresa()
                         });
                     }
                 }
             }
         }
-        
+
         tablaViajes.setModel(model);
     }
 
@@ -267,8 +272,8 @@ public class PanelViajesDisponiblesCliente extends javax.swing.JPanel {
                 if (cantidadTiquetes > 0) {
                     try{
                         Reserva reserva = new Reserva(idViaje,this.cliente, viajeSeleccionado, cantidadTiquetes);
-                        cliente.guardarReserva(reserva);
                         viajeSeleccionado.guardarReserva(reserva);
+                        cliente.guardarReserva(reserva);
                         JOptionPane.showMessageDialog(null, "Reserva solicitada correctamente");
                     } catch (ExcepcionCodigoReservaEnUso | ExcepcionAsientosInsuficientes ex) {
                         JOptionPane.showMessageDialog(null, ex.getMessage());

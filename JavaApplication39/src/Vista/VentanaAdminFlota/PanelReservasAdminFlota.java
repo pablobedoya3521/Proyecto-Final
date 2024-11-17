@@ -4,53 +4,65 @@
  */
 package Vista.VentanaAdminFlota;
 
+import Controlador.ControladorEmpresa;
+import Controlador.ControladorViaje;
+import Excepciones.ExcepcionAsientosInsuficientes;
+import Excepciones.ExcepcionCodigoTiqueteEnUso;
+import Excepciones.ExcepcionReservaVacia;
+import Modelo.Cliente;
 import Modelo.Empresa;
 import Modelo.Reserva;
+import Modelo.Tiquete;
 import Modelo.Viaje;
+import Util.Lista;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class PanelReservasAdminFlota extends javax.swing.JPanel {
     private Empresa empresa;
+    private ControladorEmpresa controladorEmpresa;
 
     public PanelReservasAdminFlota(Empresa empresa) {
         initComponents();
-        this.empresa=empresa;
+        this.controladorEmpresa= new ControladorEmpresa(empresa);
+        this.empresa=controladorEmpresa.getEmpresa();
         llenarTabla();
     }
     
     private void llenarTabla() {
-        DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new Object[]{
-            "Correo de cliente", "Nombre de cliente", "Fecha de reserva", 
-            "Hora de reserva", "Codigo de reserva", "Cantidad de tiquetes", 
-            "Precio viaje", "Destino", "Total a pagar"
-        });
+         DefaultTableModel model = new DefaultTableModel();
+         model.setColumnIdentifiers(new Object[]{
+             "Codigo de reserva", "Correo de cliente", "Nombre de cliente", 
+             "Fecha de reserva", "Hora de reserva", "Cantidad de tiquetes", 
+             "Precio viaje", "Destino", "Total a pagar"
+         });
 
-        for (int i = 0; i < empresa.getListaViajes().size(); i++) {
-            Viaje viaje = empresa.getListaViajes().get(i);
+         for (int i = 0; i < empresa.getListaViajes().size(); i++) {
+             Viaje viaje = empresa.getListaViajes().get(i);
 
-            if (viaje != null && viaje.getListaReservas() != null) {
-                // Iterar sobre las reservas de cada viaje
-                for (int j = 0; j < viaje.getListaReservas().size(); j++) {
-                    Reserva reserva = viaje.getListaReservas().get(j);
+             if (viaje != null && viaje.getListaReservas() != null) {
+                 // Iterar sobre las reservas de cada viaje
+                 for (int j = 0; j < viaje.getListaReservas().size(); j++) {
+                     Reserva reserva = viaje.getListaReservas().get(j);
 
-                    if (reserva != null && reserva.getCliente() != null) {
-                        model.addRow(new Object[]{
-                            reserva.getCliente().getCorreo(),
-                            reserva.getCliente().getNombre(),
-                            reserva.getFechaDeReserva(),
-                            reserva.getHoraDeReserva(),
-                            reserva.getCodigo(),
-                            reserva.getCantidadDeTiquetes(),
-                            viaje.getPrecioViaje(),
-                            viaje.getDestino(),
-                            viaje.getPrecioViaje() * reserva.getCantidadDeTiquetes()
+                     if (reserva != null && reserva.getCliente() != null) {
+                         model.addRow(new Object[]{
+                             reserva.getCodigo(),                     // Codigo de reserva
+                             reserva.getCliente().getCorreo(),       // Correo de cliente
+                             reserva.getCliente().getNombre(),       // Nombre de cliente
+                             reserva.getFechaDeReserva(),            // Fecha de reserva
+                             reserva.getHoraDeReserva(),             // Hora de reserva
+                             reserva.getCantidadDeTiquetes(),        // Cantidad de tiquetes
+                             viaje.getPrecioViaje(),                 // Precio viaje
+                             viaje.getDestino(),                     // Destino
+                             viaje.getPrecioViaje() * reserva.getCantidadDeTiquetes() // Total a pagar
                         });
                     }
                 }
             }
         }
-        tablaReservas.setModel(model);
+
+         tablaReservas.setModel(model);
     }
 
     @SuppressWarnings("unchecked")
@@ -62,11 +74,11 @@ public class PanelReservasAdminFlota extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtBuscar = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnEfectuar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaReservas = new javax.swing.JTable();
 
@@ -102,7 +114,12 @@ public class PanelReservasAdminFlota extends javax.swing.JPanel {
 
         jButton2.setText("Eliminar");
 
-        jButton3.setText("Efectuar");
+        btnEfectuar.setText("Efectuar");
+        btnEfectuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEfectuarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -114,13 +131,13 @@ public class PanelReservasAdminFlota extends javax.swing.JPanel {
                 .addGap(153, 153, 153)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(jButton1)
                         .addGap(28, 28, 28)
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3))
+                        .addComponent(btnEfectuar))
                     .addComponent(jLabel8))
                 .addContainerGap(388, Short.MAX_VALUE))
         );
@@ -132,10 +149,10 @@ public class PanelReservasAdminFlota extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btnEfectuar))
                 .addGap(13, 13, 13))
         );
 
@@ -199,11 +216,47 @@ public class PanelReservasAdminFlota extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnEfectuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEfectuarActionPerformed
+        String codigoReserva = txtBuscar.getText();
+        Reserva reservaEncontrada= null;
+        Lista<Viaje> listaViajes= empresa.getListaViajes();
+        for (int i = 0; i < listaViajes.size(); i++) {
+            Viaje viaje = listaViajes.get(i);
+            Lista<Reserva> listaReservas = viaje.getListaReservas();
+            for (int j = 0; j < listaReservas.size(); j++) {
+                Reserva reserva = listaReservas.get(j);
+                if(reserva.getCodigo().equals(codigoReserva)){
+                    reservaEncontrada=reserva;
+                }
+            }
+        }
+        
+        if(reservaEncontrada==null){
+            JOptionPane.showMessageDialog(null, "Reserva no encontrada, los siento");
+            return;
+        }
+        try{
+        Viaje viaje = reservaEncontrada.getViaje();
+        Cliente cliente = reservaEncontrada.getCliente();
+        int cantidad= reservaEncontrada.getCantidadDeTiquetes();
+        ControladorViaje controladorViaje= new ControladorViaje(viaje);
+        controladorViaje.eliminarReserva(codigoReserva);
+        cliente.eliminarReserva(codigoReserva);
+        Tiquete tiquete = new Tiquete(viaje, cliente, cantidad);
+        controladorViaje.guardarTiquete(tiquete);
+        cliente.guardarCompraTiquete(tiquete);
+        JOptionPane.showMessageDialog(null, "Reserva efectiva correctamente");
+        llenarTabla();
+        } catch (ExcepcionCodigoTiqueteEnUso | ExcepcionAsientosInsuficientes | ExcepcionReservaVacia ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        } 
+    }//GEN-LAST:event_btnEfectuarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEfectuar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
@@ -211,7 +264,7 @@ public class PanelReservasAdminFlota extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tablaReservas;
+    private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

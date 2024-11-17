@@ -25,7 +25,7 @@ public class Reserva implements Serializable{
         this.estado = true;
         this.cantidadDeTiquetes = cantidadDeTiquetes;
         this.fechaDeReserva=LocalDate.now();
-        this.horaDeReserva=LocalTime.now();
+        this.horaDeReserva=LocalTime.now().withNano(0);
     }
 
     public Cliente getCliente() {

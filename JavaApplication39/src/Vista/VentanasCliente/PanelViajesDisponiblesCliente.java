@@ -14,8 +14,6 @@ import Modelo.Viaje;
 import Persistencia.SerializadoraCaseta;
 import Util.Lista;
 import Validador.Buscador;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -35,8 +33,10 @@ public class PanelViajesDisponiblesCliente extends javax.swing.JPanel {
     private void llenarTabla() {
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new Object[]{
-            "Placa de bus", "ID", "Precio", "Origen", "Destino", 
-            "Hora de salida", "Hora de llegada", "Fecha de creacion", "Empresa"
+            "ID viaje", "Placa de bus", "Puestos disponibles", 
+            "Precio", "Origen", "Destino", 
+            "Hora de salida", "Hora de llegada", 
+            "Fecha de creacion", "Empresa"
         });
 
         for (int i = 0; i < casetas.length; i++) {
@@ -46,15 +46,16 @@ public class PanelViajesDisponiblesCliente extends javax.swing.JPanel {
                         Viaje viaje = casetas[i][j].getEmpresa().getListaViajes().get(k);
 
                         model.addRow(new Object[]{
-                            viaje.getBus().getPlaca(),
-                            viaje.getId(),
-                            viaje.getPrecioViaje(),
-                            viaje.getOrigen(),
-                            viaje.getDestino(),
-                            viaje.getHoraDeSalida(),
-                            viaje.getHoraDeLlegada(),
-                            viaje.getFechaCreacion(),
-                            casetas[i][j].getEmpresa().getNombreEmpresa()
+                            viaje.getId(),                             // ID viaje
+                            viaje.getBus().getPlaca(),                // Placa de bus
+                            viaje.getBus().getNumAsientos(),          // Puestos disponibles
+                            viaje.getPrecioViaje(),                   // Precio
+                            viaje.getOrigen(),                        // Origen
+                            viaje.getDestino(),                       // Destino
+                            viaje.getHoraDeSalida(),                  // Hora de salida
+                            viaje.getHoraDeLlegada(),                 // Hora de llegada
+                            viaje.getFechaCreacion(),                 // Fecha de creación
+                            casetas[i][j].getEmpresa().getNombreEmpresa() // Empresa
                         });
                     }
                 }
@@ -158,13 +159,13 @@ public class PanelViajesDisponiblesCliente extends javax.swing.JPanel {
         tablaViajes.setForeground(new java.awt.Color(255, 255, 255));
         tablaViajes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9"
             }
         ));
         jScrollPane1.setViewportView(tablaViajes);
@@ -289,14 +290,16 @@ public class PanelViajesDisponiblesCliente extends javax.swing.JPanel {
 
     private void llenarTabla2(Lista<Viaje> listaViajes) {
         DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new Object[]{"Placa de bus", "ID", "Precio", "Origen", "Destino", "Hora de salida", "Hora de llegada", "Fecha de creacion", "Empresa" });
+        model.setColumnIdentifiers(new Object[]{ "ID viaje","Placa de bus","Puestos disponibles", "Precio", "Origen", "Destino", "Hora de salida", "Hora de llegada", "Fecha de creacion", "Empresa" });
 
         for (int i = 0; i < listaViajes.size(); i++) {
             Viaje viaje = listaViajes.get(i);
             String nombreEmpresa = buscarEmpresaDelViaje(viaje);
                 model.addRow(new Object[]{
-                    viaje.getBus().getPlaca(),
                     viaje.getId(),
+                    viaje.getBus().getPlaca(),
+                    viaje.getBus().getNumAsientos(),
+                    
                     viaje.getPrecioViaje(),
                     viaje.getOrigen(),
                     viaje.getDestino(),

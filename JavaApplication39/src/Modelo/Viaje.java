@@ -7,6 +7,7 @@ package Modelo;
 import Excepciones.ExcepcionAsientosInsuficientes;
 import Excepciones.ExcepcionCodigoReservaEnUso;
 import Excepciones.ExcepcionCodigoTiqueteEnUso;
+import Excepciones.ExcepcionReservaVacia;
 import Excepciones.ExcepcionTiqueteVacio;
 import Persistencia.SerializadoraCaseta;
 import Util.Lista;
@@ -245,6 +246,42 @@ public class Viaje implements Serializable{
         }
     }
     
+    public void eliminarReserva(String codigoReserva) throws ExcepcionReservaVacia {
+        Caseta[][] casetas = serializadora.leerObjeto();
+        boolean reservaEncontrada = false;
+
+        for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; j < casetas[i].length; j++) {
+                Empresa empresa = casetas[i][j].getEmpresa();
+                if (empresa != null) {
+                    Lista<Viaje> listaViajes = empresa.getListaViajes();
+                    for (int k = 0; k < listaViajes.size(); k++) {
+                        Viaje viaje = listaViajes.get(k);
+                        if (viaje.getId().equals(this.id)) {
+                            Lista<Reserva> reservas = viaje.getListaReservas();
+                            for (int l = 0; l < reservas.size(); l++) {
+                                Reserva reservaActual = reservas.get(l);
+                                if (reservaActual.getCodigo().equals(codigoReserva)) {
+                                    int asientosActuales = viaje.getBus().getNumAsientos();
+                                    int asientosADevolver = reservaActual.getCantidadDeTiquetes();
+                                    reservas.remove(l);
+                                    viaje.getBus().setNumAsientos(asientosActuales + asientosADevolver);
+                                    reservaEncontrada = true;
+                                    serializadora.escribirObjeto(casetas);
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (!reservaEncontrada) {
+            throw new ExcepcionReservaVacia();
+        }
+    }
+    
     public String getId() {
         return id;
     }
@@ -350,6 +387,4 @@ public class Viaje implements Serializable{
         this.listaReservas = listaReservas;
     }
     
-    
-  
 }

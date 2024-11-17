@@ -111,7 +111,38 @@ public class Cliente extends Usuario implements Serializable{
             }
         } 
     }
+    
+    public void eliminarReserva(String codigoReserva) {
+        Lista<Usuario> usuarios = serializadoraUsuarios.leerObjeto();
 
+        for (int i = 0; i < usuarios.size(); i++) {
+            if (usuarios.get(i).getCorreo().equals(this.correo)) {
+                Cliente cliente = (Cliente) usuarios.get(i);
+                Lista<Reserva> listaReservasCliente = cliente.getListaReservas();
+                boolean reservaEliminada = false;
+
+                for (int j = 0; j < listaReservasCliente.size(); j++) {
+                    if (listaReservasCliente.get(j).getCodigo().equals(codigoReserva)) {
+                        listaReservasCliente.remove(j);
+                        // Actualizar tanto el cliente serializado como la instancia actual
+                        cliente.setListaReservas(listaReservasCliente);
+                        this.listaReservas = listaReservasCliente; // Actualizar la lista local
+                        controladorRegistro.setUsuarios(usuarios);
+                        serializadoraUsuarios.escribirObjeto(usuarios);
+                        reservaEliminada = true;
+                        break;
+                    }
+                }
+
+                if (!reservaEliminada) {
+                    System.out.println("Reserva con código " + codigoReserva + " no encontrada.");
+                }
+                break;
+            }
+        }
+    }
+
+    
     public int getPuntosAcumulados() {
         return puntosAcumulados;
     }

@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-
 public class Tiquete implements Serializable{
     private static final long serialVersionUID = 1L; 
     private static int contador = 1;
@@ -34,33 +33,32 @@ public class Tiquete implements Serializable{
     }
     
     private int obtenerCodigo() {
-    Caseta[][] casetas = serializadoraCaseta.leerObjeto();
-    int maxCodigo = 0;
+        Caseta[][] casetas = serializadoraCaseta.leerObjeto();
+        int maxCodigo = 0;
 
-    for (int i = 0; i < casetas.length; i++) {
-        for (int j = 0; j < casetas[i].length; j++) {
-            Empresa empresa = casetas[i][j].getEmpresa();
-            if (empresa != null) {
-                // Iterar por la lista de viajes
-                for (int k = 0; k < empresa.getListaViajes().size(); k++) {
-                    Viaje viajeActual = empresa.getListaViajes().get(k);
-                    if (viajeActual.getId().equals(this.viaje.getId())) {
-                        // Iterar por la lista de tiquetes
-                        for (int l = 0; l < viajeActual.getListaTiquetes().size(); l++) {
-                            Tiquete tiqueteActual = viajeActual.getListaTiquetes().get(l);
-                            if (tiqueteActual.getCodigoTiquete() > maxCodigo) {
-                                maxCodigo = tiqueteActual.getCodigoTiquete();
+        for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; j < casetas[i].length; j++) {
+                Empresa empresa = casetas[i][j].getEmpresa();
+                if (empresa != null) {
+
+                    for (int k = 0; k < empresa.getListaViajes().size(); k++) {
+                        Viaje viajeActual = empresa.getListaViajes().get(k);
+                        if (viajeActual.getId().equals(this.viaje.getId())) {
+
+                            for (int l = 0; l < viajeActual.getListaTiquetes().size(); l++) {
+                                Tiquete tiqueteActual = viajeActual.getListaTiquetes().get(l);
+                                if (tiqueteActual.getCodigoTiquete() > maxCodigo) {
+                                    maxCodigo = tiqueteActual.getCodigoTiquete();
+                                }
                             }
                         }
                     }
                 }
             }
         }
-    }
 
-    // Retorna el próximo código disponible
-    return maxCodigo + 1;
-}
+        return maxCodigo + 1;
+    }
 
     public int getCodigoTiquete() {
         return codigoTiquete;
@@ -109,6 +107,5 @@ public class Tiquete implements Serializable{
     public void setHoraDeCompra(LocalTime horaDeCompra) {
         this.horaDeCompra = horaDeCompra;
     }
-
     
 }

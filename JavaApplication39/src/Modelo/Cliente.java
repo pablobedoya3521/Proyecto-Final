@@ -5,12 +5,10 @@
 package Modelo;
 
 import Controlador.ControladorRegistro;
-import Excepciones.ExcepcionTiqueteVacio;
 import Persistencia.SerializadoraUsuarios;
 import Util.Lista;
 import Vista.VentanasCliente.VentanaPrincipalCliente;
 import java.io.Serializable;
-
 
 public class Cliente extends Usuario implements Serializable{
     private static final long serialVersionUID = 1L;
@@ -55,37 +53,34 @@ public class Cliente extends Usuario implements Serializable{
                 serializadoraUsuarios.escribirObjeto(usuarios);
                 break; 
             }
-        }
-        
-        
+        } 
     }
     
 
     public void eliminarCompraTiquete(int codigoTiquete){
-    Lista<Usuario> usuarios = serializadoraUsuarios.leerObjeto();
-   
-    for (int i = 0; i < usuarios.size(); i++) {
-        if (usuarios.get(i).getCorreo().equals(this.correo)) {
-            Cliente cliente = (Cliente) usuarios.get(i);
-            Lista<Tiquete> listaTiquetes = cliente.getListaTiquetes();
+        Lista<Usuario> usuarios = serializadoraUsuarios.leerObjeto();
 
-            if (listaTiquetes != null && !listaTiquetes.isEmpty()) {
-                for (int j = 0; j < listaTiquetes.size(); j++) {
-                    if (listaTiquetes.get(j).getCodigoTiquete() == codigoTiquete) {
-                        Tiquete tiqueteCancelado = listaTiquetes.get(j);
-                        listaTiquetes.remove(j);
-                        cliente.setListaTiquetes(listaTiquetes);
-                        cliente.desacumularPuntos(tiqueteCancelado);
-                        controladorRegistro.setUsuarios(usuarios);
-                        serializadoraUsuarios.escribirObjeto(usuarios);
-                        break; // Salimos del bucle una vez que se elimina el tiquete
+        for (int i = 0; i < usuarios.size(); i++) {
+            if (usuarios.get(i).getCorreo().equals(this.correo)) {
+                Cliente cliente = (Cliente) usuarios.get(i);
+                Lista<Tiquete> listaTiquetes = cliente.getListaTiquetes();
+
+                if (listaTiquetes != null && !listaTiquetes.isEmpty()) {
+                    for (int j = 0; j < listaTiquetes.size(); j++) {
+                        if (listaTiquetes.get(j).getCodigoTiquete() == codigoTiquete) {
+                            Tiquete tiqueteCancelado = listaTiquetes.get(j);
+                            listaTiquetes.remove(j);
+                            cliente.setListaTiquetes(listaTiquetes);
+                            cliente.desacumularPuntos(tiqueteCancelado);
+                            controladorRegistro.setUsuarios(usuarios);
+                            serializadoraUsuarios.escribirObjeto(usuarios);
+                            break; // Salimos del bucle una vez que se elimina el tiquete
+                        }
                     }
                 }
             }
         }
     }
-
-}
     
     private int calcularPuntos(Tiquete tiquete) {
         double precioTiquete = tiquete.getViaje().getPrecioViaje(); 

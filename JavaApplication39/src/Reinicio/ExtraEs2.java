@@ -5,7 +5,7 @@ import Excepciones.ExcepcionCorreoEnUso;
 import Modelo.AdministradorTerminal;
 
 public class ExtraEs2 {
-   private static ControladorRegistro controlador = new ControladorRegistro(); // Inicializar controlador
+   private static ControladorRegistro controlador = new ControladorRegistro();
 
     public static void main(String[] args) {
         try {

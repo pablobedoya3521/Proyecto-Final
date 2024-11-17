@@ -11,7 +11,6 @@ import Persistencia.SerializadoraUsuarios;
 import Util.Lista;
 import java.io.Serializable;
 
-
 public class ControladorRegistro implements Serializable{
     private static final long serialVersionUID = 1L;
     private Lista<Usuario> usuarios;

@@ -23,13 +23,18 @@ public class PanelComprasCliente extends javax.swing.JPanel {
    
         private void llenarTabla() {
             DefaultTableModel model = new DefaultTableModel();
-            model.setColumnIdentifiers(new Object[]{"Codigo", "Fecha de compra", "Hora de compra", "Destino de viaje"});
+            model.setColumnIdentifiers(new Object[]{"Codigo", "Fecha de compra", "Hora de compra", "Destino de viaje", "Precio", "Hora de salida", "Hora de llegada", "Fecha de salida", "Fecha de llegada"});
             for (int i = 0; i < cliente.getListaTiquetes().size(); i++) {
                 model.addRow(new Object[]{
                     cliente.getListaTiquetes().get(i).getCodigoTiquete(),
                     cliente.getListaTiquetes().get(i).getFechaDeCompra(),
                     cliente.getListaTiquetes().get(i).getHoraDeCompra(),
                     cliente.getListaTiquetes().get(i).getViaje().getDestino(),
+                    cliente.getListaTiquetes().get(i).getViaje().getPrecioViaje(),
+                    cliente.getListaTiquetes().get(i).getViaje().getHoraDeSalida(),
+                    cliente.getListaTiquetes().get(i).getViaje().getHoraDeSalida(),
+                    cliente.getListaTiquetes().get(i).getViaje().getFechaSalida(),
+                    cliente.getListaTiquetes().get(i).getViaje().getHoraDeLlegada()
                 });
             }
             tablaCompras.setModel(model);
@@ -48,7 +53,6 @@ public class PanelComprasCliente extends javax.swing.JPanel {
         txtBuscar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaCompras = new javax.swing.JTable();
 
@@ -87,8 +91,6 @@ public class PanelComprasCliente extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("Eliminar");
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -101,11 +103,9 @@ public class PanelComprasCliente extends javax.swing.JPanel {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBuscar)
-                        .addGap(73, 73, 73)
-                        .addComponent(jButton2))
+                        .addComponent(btnBuscar))
                     .addComponent(jLabel2))
-                .addContainerGap(455, Short.MAX_VALUE))
+                .addContainerGap(615, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,8 +116,7 @@ public class PanelComprasCliente extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar)
-                    .addComponent(jButton2))
+                    .addComponent(btnBuscar))
                 .addGap(13, 13, 13))
         );
 
@@ -214,7 +213,6 @@ public class PanelComprasCliente extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

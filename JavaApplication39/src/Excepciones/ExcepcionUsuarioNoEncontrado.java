@@ -4,7 +4,6 @@
  */
 package Excepciones;
 
-
 public class ExcepcionUsuarioNoEncontrado extends Exception{
        public ExcepcionUsuarioNoEncontrado(){
         super("Usuario no encontrado, debes de registrarte");

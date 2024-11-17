@@ -230,7 +230,7 @@ public class PanelTiqueteVendidosAdminFlota extends javax.swing.JPanel {
                     "<b>Cantidad de asientos:</b> " + respuesta.getCantidad() + "<br><br>" +
                     "</body></html>";
     
-            JOptionPane.showMessageDialog(null, mensaje, "Detalles del Bus", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, mensaje, "Detalles del Tiquete", JOptionPane.INFORMATION_MESSAGE);
         }catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
         }catch (ExcepcionTiqueteVacio ex) {
@@ -271,7 +271,6 @@ public class PanelTiqueteVendidosAdminFlota extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_btnCancelarTiqueteActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;

@@ -87,6 +87,7 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
             }
         });
 
+        btnVolver.setBackground(new java.awt.Color(51, 0, 0));
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

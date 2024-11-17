@@ -4,7 +4,6 @@
  */
 package Excepciones;
 
-
 public class ExcepcionContraseñaIncorrecta extends Exception {
     public ExcepcionContraseñaIncorrecta(){
         super("Contraseña Incorrecta, inténtalo de nuevo");

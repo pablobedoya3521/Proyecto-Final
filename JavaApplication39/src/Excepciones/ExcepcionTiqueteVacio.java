@@ -4,10 +4,6 @@
  */
 package Excepciones;
 
-/**
- *
- * @author juan
- */
 public class ExcepcionTiqueteVacio extends Exception{
 
     public ExcepcionTiqueteVacio() {

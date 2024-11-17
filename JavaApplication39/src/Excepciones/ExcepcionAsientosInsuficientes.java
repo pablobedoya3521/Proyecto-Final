@@ -4,10 +4,6 @@
  */
 package Excepciones;
 
-/**
- *
- * @author juan
- */
 public class ExcepcionAsientosInsuficientes extends Exception {
     public ExcepcionAsientosInsuficientes() {
         super("No hay suficientes asientos disponibles para realizar esta venta");

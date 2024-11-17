@@ -7,7 +7,6 @@ package Modelo;
 import Excepciones.ExcepcionAsientosInsuficientes;
 import Excepciones.ExcepcionCodigoTiqueteEnUso;
 import Excepciones.ExcepcionTiqueteVacio;
-import Excepciones.ExcepcionViajeVacio;
 import Persistencia.SerializadoraCaseta;
 import Util.Lista;
 import java.io.Serializable;
@@ -30,11 +29,11 @@ public class Viaje implements Serializable{
     private Lista<Tiquete> listaTiquetes;
     private SerializadoraCaseta serializadora;
 
-    public Viaje(String id, String origen, String destino, String horaDeSalida, 
+    public Viaje(String id,String destino, String horaDeSalida, 
             String horaDeLlegada, String fechaSalida, String fechaLLegada, Bus bus, double precioViaje) {
         
         this.id=id;
-        this.origen = origen;
+        this.origen = "Armenia";
         this.destino = destino;
         this.horaDeSalida=horaDeSalida;
         this.horaDeLlegada = horaDeLlegada;
@@ -54,54 +53,54 @@ public class Viaje implements Serializable{
     
     
     
-public void guardarTiquete(Tiquete tiquete) throws ExcepcionCodigoTiqueteEnUso, ExcepcionAsientosInsuficientes {
-    Caseta[][] casetas = serializadora.leerObjeto();
+    public void guardarTiquete(Tiquete tiquete) throws ExcepcionCodigoTiqueteEnUso, ExcepcionAsientosInsuficientes {
+        Caseta[][] casetas = serializadora.leerObjeto();
 
-    // Primero verificamos si el código del tiquete ya existe
-    for (int i = 0; i < casetas.length; i++) {
-        for (int j = 0; j < casetas[i].length; j++) {
-            Empresa empresa = casetas[i][j].getEmpresa();
-            if (empresa != null) {
-                Lista<Viaje> listaViajes = empresa.getListaViajes();
-                for (int k = 0; k < listaViajes.size(); k++) {
-                    Viaje viaje = listaViajes.get(k);
-                    if(viaje.getId().equals(this.id)){
-                        Lista<Tiquete> tiquetes = viaje.getListaTiquetes();
-                        for (int l = 0; l < tiquetes.size(); l++) {
-                            Tiquete tiqueteAdquirido = tiquetes.get(l);
-                            if(tiqueteAdquirido.getCodigoTiquete() == tiquete.getCodigoTiquete()){
-                                throw new ExcepcionCodigoTiqueteEnUso();
+        // Primero verificamos si el código del tiquete ya existe
+        for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; j < casetas[i].length; j++) {
+                Empresa empresa = casetas[i][j].getEmpresa();
+                if (empresa != null) {
+                    Lista<Viaje> listaViajes = empresa.getListaViajes();
+                    for (int k = 0; k < listaViajes.size(); k++) {
+                        Viaje viaje = listaViajes.get(k);
+                        if(viaje.getId().equals(this.id)){
+                            Lista<Tiquete> tiquetes = viaje.getListaTiquetes();
+                            for (int l = 0; l < tiquetes.size(); l++) {
+                                Tiquete tiqueteAdquirido = tiquetes.get(l);
+                                if(tiqueteAdquirido.getCodigoTiquete() == tiquete.getCodigoTiquete()){
+                                    throw new ExcepcionCodigoTiqueteEnUso();
+                                }
                             }
                         }
                     }
                 }
             }
         }
-    }
 
-    // busco el viaje para verificar asientos y guardar el tiquete
-    for (int i = 0; i < casetas.length; i++) {
-        for (int j = 0; j < casetas[i].length; j++) {
-            Empresa empresa = casetas[i][j].getEmpresa();
-            if (empresa != null) {
-                Lista<Viaje> listaViajes = empresa.getListaViajes();
-                for (int k = 0; k < listaViajes.size(); k++) {
-                    Viaje viaje = listaViajes.get(k);
-                    if (viaje.getId().equals(this.id)) {
-                        int asientosDisponibles = viaje.getBus().getNumAsientos();
-                        if (asientosDisponibles < tiquete.getCantidad()) {
-                            throw new ExcepcionAsientosInsuficientes();
+        // busco el viaje para verificar asientos y guardar el tiquete
+        for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; j < casetas[i].length; j++) {
+                Empresa empresa = casetas[i][j].getEmpresa();
+                if (empresa != null) {
+                    Lista<Viaje> listaViajes = empresa.getListaViajes();
+                    for (int k = 0; k < listaViajes.size(); k++) {
+                        Viaje viaje = listaViajes.get(k);
+                        if (viaje.getId().equals(this.id)) {
+                            int asientosDisponibles = viaje.getBus().getNumAsientos();
+                            if (asientosDisponibles < tiquete.getCantidad()) {
+                                throw new ExcepcionAsientosInsuficientes();
+                            }
+                            viaje.getListaTiquetes().add(tiquete);
+                            viaje.getBus().setNumAsientos(asientosDisponibles - tiquete.getCantidad());
+                            serializadora.escribirObjeto(casetas);
+                            return;
                         }
-                        viaje.getListaTiquetes().add(tiquete);
-                        viaje.getBus().setNumAsientos(asientosDisponibles - tiquete.getCantidad());
-                        serializadora.escribirObjeto(casetas);
-                        return;
                     }
                 }
             }
         }
     }
-}
 
     
     public Tiquete buscarTiquete(int codigoTiquete) throws ExcepcionTiqueteVacio{
@@ -109,22 +108,16 @@ public void guardarTiquete(Tiquete tiquete) throws ExcepcionCodigoTiqueteEnUso, 
         
         for (int i = 0; i < casetas.length; i++) {
             for (int j = 0; j < casetas[i].length; j++) {
-              // Obtener la empresa asociada a la caseta actual
+            
               Empresa empresa = casetas[i][j].getEmpresa();
 
                 if (empresa != null) {
                   Lista<Viaje> listaViajes = empresa.getListaViajes();
-
-                  // Iterar sobre la lista de viajes de la empresa
                     for (int k = 0; k < listaViajes.size(); k++) {
                       Viaje viaje = listaViajes.get(k);
                       Lista<Tiquete> listaTiquetes = viaje.getListaTiquetes();
-
-                      // Iterar sobre la lista de tiquetes del viaje actual
                         for (int l = 0; l < listaTiquetes.size(); l++) {
                           Tiquete tiquete = listaTiquetes.get(l);
-
-                          // Verificar si el código del tiquete coincide con el buscado
                             if (tiquete.getCodigoTiquete() == codigoTiquete) {
                                 return tiquete;
                             }
@@ -136,37 +129,37 @@ public void guardarTiquete(Tiquete tiquete) throws ExcepcionCodigoTiqueteEnUso, 
         throw new ExcepcionTiqueteVacio();
     }
     
-   public void eliminarTiquete(int codigoTiquete) throws ExcepcionTiqueteVacio {
-    Caseta[][] casetas = serializadora.leerObjeto();
-    
-    for (int i = 0; i < casetas.length; i++) {
-        for (int j = 0; j < casetas[i].length; j++) {
-            Empresa empresa = casetas[i][j].getEmpresa();
-            if (empresa != null) {
-                Lista<Viaje> listaViajes = empresa.getListaViajes();
-                for (int k = 0; k < listaViajes.size(); k++) {
-                    Viaje viaje = listaViajes.get(k);
-                    Lista<Tiquete> listaTiquetes = viaje.getListaTiquetes();
-                    for (int l = 0; l < listaTiquetes.size(); l++) {
-                        Tiquete tiquete = listaTiquetes.get(l);
-                        if (tiquete.getCodigoTiquete() == codigoTiquete) {
-                            // Antes de eliminar el tiquete, restauramos los asientos
-                            int asientosActuales = viaje.getBus().getNumAsientos();
-                            int asientosARestaurar = tiquete.getCantidad();
-                            viaje.getBus().setNumAsientos(asientosActuales + asientosARestaurar);
-                            
-                            // Ahora sí eliminamos el tiquete
-                            listaTiquetes.remove(l);
-                            serializadora.escribirObjeto(casetas);
-                            return;
+    public void eliminarTiquete(int codigoTiquete) throws ExcepcionTiqueteVacio {
+        Caseta[][] casetas = serializadora.leerObjeto();
+
+        for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; j < casetas[i].length; j++) {
+                Empresa empresa = casetas[i][j].getEmpresa();
+                if (empresa != null) {
+                    Lista<Viaje> listaViajes = empresa.getListaViajes();
+                    for (int k = 0; k < listaViajes.size(); k++) {
+                        Viaje viaje = listaViajes.get(k);
+                        Lista<Tiquete> listaTiquetes = viaje.getListaTiquetes();
+                        for (int l = 0; l < listaTiquetes.size(); l++) {
+                            Tiquete tiquete = listaTiquetes.get(l);
+                            if (tiquete.getCodigoTiquete() == codigoTiquete) {
+                                // Antes de eliminar el tiquete, devolvemos los asientos
+                                int asientosActuales = viaje.getBus().getNumAsientos();
+                                int asientosARestaurar = tiquete.getCantidad();
+                                viaje.getBus().setNumAsientos(asientosActuales + asientosARestaurar);
+
+                                // Ahora sí eliminamos el tiquete
+                                listaTiquetes.remove(l);
+                                serializadora.escribirObjeto(casetas);
+                                return;
+                            }
                         }
                     }
                 }
             }
         }
+        throw new ExcepcionTiqueteVacio();
     }
-    throw new ExcepcionTiqueteVacio();
-}
     
     public void modificarTiquete(Tiquete tiquete) throws ExcepcionTiqueteVacio {
         Caseta[][] casetas = serializadora.leerObjeto();

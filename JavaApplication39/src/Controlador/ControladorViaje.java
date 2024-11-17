@@ -10,7 +10,6 @@ import Excepciones.ExcepcionTiqueteVacio;
 import Modelo.Tiquete;
 import Modelo.Viaje;
 
-
 public class ControladorViaje {
     private Viaje viaje;
     public ControladorViaje(Viaje viaje){

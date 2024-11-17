@@ -5,7 +5,6 @@
 
 package Vista.VentanaAdminFlota;
 
-
 import Modelo.Empresa;
 import Vista.Login;
 import com.formdev.flatlaf.FlatLightLaf;
@@ -257,11 +256,6 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
         btnAdministradorFlota.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAdministradorFlota.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnAdministradorFlota.setIconTextGap(12);
-        btnAdministradorFlota.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdministradorFlotaActionPerformed(evt);
-            }
-        });
 
         btnSalir.setBackground(new java.awt.Color(51, 51, 51));
         btnSalir.setForeground(new java.awt.Color(255, 0, 51));
@@ -379,10 +373,6 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
         showJPanel(new PanelBusesAdminFlota(this.empresa));
     }//GEN-LAST:event_btnBusesActionPerformed
 
-    private void btnAdministradorFlotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministradorFlotaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAdministradorFlotaActionPerformed
-
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         Login cambio=new Login();
         cambio.setVisible(true);
@@ -397,7 +387,6 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     private void btnViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViajesActionPerformed
        showJPanel(new PanelViajesAdminFlota(this.empresa));
     }//GEN-LAST:event_btnViajesActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Container;
@@ -418,5 +407,4 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     private javax.swing.JLabel mensaje;
     private javax.swing.JPanel menu;
     // End of variables declaration//GEN-END:variables
-
 }

@@ -4,7 +4,6 @@
  */
 package Excepciones;
 
-
 public class ExcepcionBusYaAsignado extends Exception{
 
     public ExcepcionBusYaAsignado() {

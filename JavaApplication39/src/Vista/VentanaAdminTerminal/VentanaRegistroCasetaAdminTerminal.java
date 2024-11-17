@@ -13,7 +13,7 @@ import Modelo.Empresa;
 import javax.swing.JOptionPane;
 
 public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
-  
+    private Caseta caseta;
     private ControladorRegistro controladorRegistro;
     private ControladorCasetas controladorCaseta;
 
@@ -24,6 +24,7 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
         pack(); 
        this.controladorRegistro= new ControladorRegistro();
        this.controladorCaseta=new ControladorCasetas(caseta);
+       this.caseta=caseta;
     }
 
     @SuppressWarnings("unchecked")
@@ -62,24 +63,13 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
         txtHorario = new javax.swing.JTextField();
         btnArrendar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
+        verInfo = new javax.swing.JButton();
 
         jLabel9.setText("Correo");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-
-        txtNit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNitActionPerformed(evt);
-            }
-        });
-
-        txtNombreEmpresa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreEmpresaActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("NIT");
 
@@ -121,27 +111,9 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
 
-        txtValorArrendo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtValorArrendoActionPerformed(evt);
-            }
-        });
-
-        txtCantPlazas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCantPlazasActionPerformed(evt);
-            }
-        });
-
         jLabel3.setText("Valor Arrendamiento");
 
         jLabel4.setText("Cantidad de Plazas");
-
-        txtUbicacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUbicacionActionPerformed(evt);
-            }
-        });
 
         jLabel14.setText("Ubicacion de la caseta");
 
@@ -211,7 +183,7 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 52, Short.MAX_VALUE)
+                .addGap(0, 38, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,10 +269,18 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
             }
         });
 
+        btnVolver.setBackground(new java.awt.Color(51, 0, 0));
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);
+            }
+        });
+
+        verInfo.setText("Ver informacion del arrendador");
+        verInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verInfoActionPerformed(evt);
             }
         });
 
@@ -313,16 +293,20 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(verInfo)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(btnVolver)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnArrendar)
-                        .addGap(186, 186, 186))))
+                        .addGap(183, 183, 183))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,33 +318,19 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnArrendar)
-                            .addComponent(btnVolver))
-                        .addContainerGap())
+                            .addComponent(btnVolver)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43))))
+                        .addGap(38, 38, 38)
+                        .addComponent(verInfo)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtNitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNitActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNitActionPerformed
-
-    private void txtNombreEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreEmpresaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreEmpresaActionPerformed
-
-    private void txtValorArrendoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorArrendoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtValorArrendoActionPerformed
-
-    private void txtCantPlazasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantPlazasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantPlazasActionPerformed
 
     private void btnArrendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArrendarActionPerformed
          try {
@@ -389,18 +359,19 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
         }
 
         AdministradorFlota administradorFlota = new AdministradorFlota(nivelExp, sueldo, horarios, cedula, nombre, apellido, correo, contraseña);
-        controladorRegistro.guardar(administradorFlota);
+        
         Empresa empresa = new Empresa(nit, nombreEmpresa, administradorFlota);
         
-     
         boolean asignado = controladorCaseta.AsignarEmpresa(empresa);
-        controladorCaseta.asignarCantidadPlazas(cantPlazas);
-        controladorCaseta.asignarValorArrendamiento(valorArrendo);
-        controladorCaseta.asignarUbicacion(ubicacion);
+       
         if (asignado) {
-            JOptionPane.showMessageDialog(null, "Empresa asignada correctamente.");
+            JOptionPane.showMessageDialog(null, "Arrendado correctamente.");
+            controladorRegistro.guardar(administradorFlota);
+            controladorCaseta.asignarCantidadPlazas(cantPlazas);
+            controladorCaseta.asignarValorArrendamiento(valorArrendo);
+            controladorCaseta.asignarUbicacion(ubicacion);
         } else {
-            JOptionPane.showMessageDialog(null, "No se pudo asignar la empresa, ya hay una empresa asignada.");
+            JOptionPane.showMessageDialog(null, "Error, ya hay una empresa y un administrador asignados");
             return;
         }
 
@@ -420,9 +391,25 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
        this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
-    private void txtUbicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUbicacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUbicacionActionPerformed
+    private void verInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verInfoActionPerformed
+       if(caseta.getEmpresa()!=null){
+            String mensaje = "<html><body style='width: 250px; padding: 5px;'>" +
+                    "<h2 style='color: #1a5f7a;'>Información del Bus</h2>" +
+                    "<hr>" +
+                    "<b>Ubicacion de la caseta:</b> " + caseta.getUbicacion() + "<br><br>" +
+                    "<bCantidad de plazas:</b> " + caseta.getCantidadPlazas() + "<br><br>" +
+                    "<b>Valor de arrendo:</b> " + caseta.getValorArrendamiento() + "<br><br>" +
+                    "<hr>" +
+                    "<b>Empresa a cargo:</b> " + caseta.getEmpresa().getNombreEmpresa() + "<br><br>" +
+                    "<b>Nombre del Administrador:</b> " + caseta.getEmpresa().getAdministradorFlota().getNombre() + "<br><br>" +
+                    "<b>Correo del Administrador:</b> " + caseta.getEmpresa().getAdministradorFlota().getCorreo() + "<br><br>" +
+                    "<b>Cedula del Administrador:</b> " + caseta.getEmpresa().getAdministradorFlota().getCedula() + "<br><br>" +
+                    "</body></html>";
+             JOptionPane.showMessageDialog(null, mensaje, "Detalles del Bus", JOptionPane.INFORMATION_MESSAGE);
+       }else{
+           JOptionPane.showMessageDialog(null, "Esta caseta todavia no ha sido arrendada");
+       }
+    }//GEN-LAST:event_verInfoActionPerformed
 
    
 
@@ -459,5 +446,6 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
     private javax.swing.JTextField txtSueldo;
     private javax.swing.JTextField txtUbicacion;
     private javax.swing.JTextField txtValorArrendo;
+    private javax.swing.JButton verInfo;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,7 +4,6 @@
  */
 package Excepciones;
 
-
 public class ExcepcionIdDeViajeEnUso extends Exception{
     public ExcepcionIdDeViajeEnUso(){
         super("No se puede crear el viaje, id en uso");

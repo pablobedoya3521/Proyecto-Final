@@ -22,20 +22,20 @@ public class Empresa implements Serializable{
     private Lista<Viaje> listaViajes;
     private SerializadoraCaseta serializadora;
     
-public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFlota){
-       this.nit = nit;
-       this.nombreEmpresa = nombreEmpresa;
-       this.administradorFlota = administradorFlota;
-       this.listaBuses = new Lista<>();
-       this.listaViajes = new Lista<>();
-       this.serializadora = new SerializadoraCaseta();
-   }
+    public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFlota){
+        this.nit = nit;
+        this.nombreEmpresa = nombreEmpresa;
+        this.administradorFlota = administradorFlota;
+        this.listaBuses = new Lista<>();
+        this.listaViajes = new Lista<>();
+        this.serializadora = new SerializadoraCaseta();
+    }
     
-    //metodos de bus
+    //metodos de bus 
+    //guardar bus
     public void guardarBus(Bus bus) throws ExcepcionBusYaRegistrado, ExcepcionCantidadPlazasNula {
         Caseta[][] casetas = serializadora.leerObjeto();
-
-       
+        //valido que el bus no este registrado previamente
         for (int i = 0; i < casetas.length; i++) {
             for (int j = 0; j < casetas[i].length; j++) {
                 if (casetas[i][j].getEmpresa() != null) {
@@ -47,7 +47,7 @@ public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFl
                 }
             }
         }
-
+        //guardo el bus en la empresa que le corresponde
         boolean busGuardado = false;
         for (int i = 0; i < casetas.length; i++) {
             for (int j = 0; j < casetas[i].length; j++) {
@@ -58,20 +58,22 @@ public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFl
                         casetas[i][j].setEmpresa(this);
                         serializadora.escribirObjeto(casetas);
                         busGuardado = true;
-                        break; //detengo la funcion ahi, para que no vuelva y recorr
+                        break; 
                     }
                 }
             }
+            //si lo guarde detengo la funcion
             if (busGuardado) {
-                break; //salgo del bucle y del metodo ya que si pude guardar el bus
+                break;
             }
         }
-
+        //si no se pudo guardar fue porq las plazas no me dejaron, osea, no hay plazas disponibles
         if (!busGuardado) {
             throw new ExcepcionCantidadPlazasNula();
         }
     }
     
+    //buscar bus
     public Bus buscarBus(String placa) throws ExcepcionBusVacio{
         Caseta[][] casetas = serializadora.leerObjeto();
         for (int i = 0; i < casetas.length; i++) {
@@ -88,6 +90,7 @@ public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFl
         throw new ExcepcionBusVacio();
     }
     
+    //eliminar bus
     public void eliminarBus(String placa) throws ExcepcionBusVacio {
         Caseta[][] casetas = serializadora.leerObjeto();
         boolean busEncontrado = false;
@@ -102,7 +105,7 @@ public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFl
                         Viaje viaje = listaViajes.get(k);
                         if (viaje.getBus() != null && viaje.getBus().getPlaca().equals(placa)) {
                             listaViajes.remove(k);
-                            k--; // Para evitar saltar el siguiente viaje
+                            k--; 
                         }
                     }
                 }
@@ -125,16 +128,15 @@ public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFl
                 }
             }
         }
-
+        //si el bus durante el proceso no se elimino fue porq no se encontro
         if (!busEncontrado) {
             throw new ExcepcionBusVacio();
         }
 
-        // Serializar los cambios
         serializadora.escribirObjeto(casetas);
     }
 
-    
+    //modificar bus
     public void modificarBus(Bus bus) throws ExcepcionBusVacio {
         boolean modificado = false;
         Caseta[][] casetas = serializadora.leerObjeto();
@@ -146,7 +148,6 @@ public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFl
                 listaBuses.get(k).setMarca(bus.getMarca());
                 listaBuses.get(k).setPotenciaMotor(bus.getPotenciaMotor());
                 listaBuses.get(k).setTipoCombustible(bus.getTipoCombustible());
-                listaBuses.get(k).setNumAsientos(bus.getNumAsientos());
                 modificado = true;
                 break;
             }
@@ -227,9 +228,9 @@ public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFl
                     Lista<Viaje> listaViajes = empresa.getListaViajes();
                     for (int k = 0; k < listaViajes.size(); k++) {
                         if (listaViajes.get(k).getId().equals(id)) {
-                            listaViajes.remove(k); // Eliminar el viaje de la lista
+                            listaViajes.remove(k); 
                             viajeEncontrado = true;
-                            break; // Salir del bucle
+                            break;
                         }
                     }
                 }
@@ -239,8 +240,7 @@ public Empresa(int nit, String nombreEmpresa, AdministradorFlota administradorFl
         if (!viajeEncontrado) {
             throw new ExcepcionViajeVacio();
         }
-
-        // Serializar los cambios
+        
         serializadora.escribirObjeto(casetas);
     }
     

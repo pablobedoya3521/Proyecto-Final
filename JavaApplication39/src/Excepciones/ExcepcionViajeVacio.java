@@ -4,7 +4,6 @@
  */
 package Excepciones;
 
-
 public class ExcepcionViajeVacio extends Exception{
     public ExcepcionViajeVacio(){
         super("No existe ningun viaje con este ID");

@@ -76,5 +76,5 @@ public class ControladorEmpresa{
     public void modificarViaje(Viaje viaje)throws ExcepcionViajeVacio{
         empresa.modificarViaje(viaje);
     }
-
+    
 }

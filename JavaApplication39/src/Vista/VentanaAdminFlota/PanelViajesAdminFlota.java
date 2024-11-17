@@ -221,7 +221,7 @@ public class PanelViajesAdminFlota extends javax.swing.JPanel {
                     "<b>Fecha de creacion:</b> " + respuesta.getFechaCreacion() + "<br><br>" +
                     "</body></html>";
     
-            JOptionPane.showMessageDialog(null, mensaje, "Detalles del Bus", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, mensaje, "Detalles del Viaje", JOptionPane.INFORMATION_MESSAGE);
         }catch (NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
         } catch (ExcepcionViajeVacio ex) {

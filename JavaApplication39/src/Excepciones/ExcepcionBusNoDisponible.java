@@ -4,10 +4,6 @@
  */
 package Excepciones;
 
-/**
- *
- * @author juan
- */
 public class ExcepcionBusNoDisponible extends Exception{
     public ExcepcionBusNoDisponible(){
         super("Este bus no se encuentra disponible en ese lapso de tiempo");

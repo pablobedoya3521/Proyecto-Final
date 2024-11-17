@@ -227,20 +227,20 @@ public class VentanaCanjeos extends javax.swing.JFrame {
 
     private Viaje buscarViajeEnCasetas(String idViaje) {
         Caseta[][] casetas = serializadoraCaseta.leerObjeto();
-    for (int i = 0; i < casetas.length; i++) {
-        for (int j = 0; j < casetas[i].length; j++) {
-            if (casetas[i][j] != null && casetas[i][j].getEmpresa() != null) {
-                Empresa empresa = casetas[i][j].getEmpresa();
-                Lista<Viaje> viajes = empresa.getListaViajes();
-                for (int k = 0; k < viajes.size(); k++) {
-                    if (viajes.get(k).getId().equals(idViaje)) {
-                        return viajes.get(k);
+        for (int i = 0; i < casetas.length; i++) {
+            for (int j = 0; j < casetas[i].length; j++) {
+                if (casetas[i][j] != null && casetas[i][j].getEmpresa() != null) {
+                    Empresa empresa = casetas[i][j].getEmpresa();
+                    Lista<Viaje> viajes = empresa.getListaViajes();
+                    for (int k = 0; k < viajes.size(); k++) {
+                        if (viajes.get(k).getId().equals(idViaje)) {
+                            return viajes.get(k);
+                        }
                     }
                 }
             }
         }
-    }
-    return null;
+     return null;
    }
     
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed

@@ -327,14 +327,19 @@ public class PanelReservasAdminFlota extends javax.swing.JPanel {
                 return;
             }
 
-            // Eliminar la reserva tanto del cliente como del viaje original
-            Cliente cliente = reservaEncontrada.getCliente();
-            cliente.eliminarReserva(codigoReserva);
-            viajeEncontrado.eliminarReserva(codigoReserva);
+            if(!(reservaEncontrada.getViaje().getEstado().equals("En Curso") || reservaEncontrada.getViaje().getEstado().equals("Finalizado"))){
+                    // Eliminar la reserva tanto del cliente como del viaje original
+                Cliente cliente = reservaEncontrada.getCliente();
+                cliente.eliminarReserva(codigoReserva);
+                viajeEncontrado.eliminarReserva(codigoReserva);
 
-            JOptionPane.showMessageDialog(null, "Reserva cancelada correctamente");
-            llenarTabla(); // Actualizar la tabla después de cancelar
-
+                JOptionPane.showMessageDialog(null, "Reserva cancelada correctamente");
+                llenarTabla(); // Actualizar la tabla después de cancelar
+            }else{
+                JOptionPane.showMessageDialog(null, "No se puede cancelar esta reserva.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
+            
         } catch (ExcepcionReservaVacia ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }

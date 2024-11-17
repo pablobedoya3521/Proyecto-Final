@@ -4,8 +4,10 @@
  */
 package Vista.VentanasCliente;
 
+import Excepciones.ExcepcionReservaVacia;
 import Modelo.Cliente;
 import Modelo.Reserva;
+import Modelo.Viaje;
 import Util.Lista;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -48,7 +50,7 @@ public class PanelReservasCliente extends javax.swing.JPanel {
         txtBuscar = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnCancelarReserva = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaReservas = new javax.swing.JTable();
 
@@ -87,7 +89,12 @@ public class PanelReservasCliente extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("Cancelar reserva");
+        btnCancelarReserva.setText("Cancelar reserva");
+        btnCancelarReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarReservaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -103,7 +110,7 @@ public class PanelReservasCliente extends javax.swing.JPanel {
                         .addGap(29, 29, 29)
                         .addComponent(btnBuscar)
                         .addGap(29, 29, 29)
-                        .addComponent(jButton2))
+                        .addComponent(btnCancelarReserva))
                     .addComponent(jLabel8))
                 .addContainerGap(385, Short.MAX_VALUE))
         );
@@ -118,7 +125,7 @@ public class PanelReservasCliente extends javax.swing.JPanel {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnBuscar)
-                            .addComponent(jButton2)))
+                            .addComponent(btnCancelarReserva)))
                     .addComponent(jLabel1))
                 .addGap(12, 12, 12))
         );
@@ -215,10 +222,48 @@ public class PanelReservasCliente extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, mensaje, "Detalles de la reserva", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void btnCancelarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarReservaActionPerformed
+       try {
+                 String codigoReserva = txtBuscar.getText();
+        
+        // Buscar la reserva en la lista de reservas del cliente
+        Reserva reservaEncontrada = null;
+        Lista<Reserva> reservasCliente = cliente.getListaReservas();
+        
+        for (int i = 0; i < reservasCliente.size(); i++) {
+            Reserva reserva = reservasCliente.get(i);
+            if (reserva.getCodigo().equals(codigoReserva)) {
+                reservaEncontrada = reserva;
+                break;
+            }
+        }
+
+        if (reservaEncontrada == null) {
+            JOptionPane.showMessageDialog(null, "Reserva no encontrada");
+            return;
+        }
+
+            if(!(reservaEncontrada.getViaje().getEstado().equals("En Curso") || reservaEncontrada.getViaje().getEstado().equals("Finalizado"))){
+                    // Eliminar la reserva tanto del cliente como del viaje original
+                Cliente cliente = reservaEncontrada.getCliente();
+                cliente.eliminarReserva(codigoReserva);
+                reservaEncontrada.getViaje().eliminarReserva(codigoReserva);
+                JOptionPane.showMessageDialog(null, "Reserva cancelada correctamente");
+                llenarTabla(); // Actualizar la tabla después de cancelar
+            }else{
+                JOptionPane.showMessageDialog(null, "No se puede cancelar esta reserva.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
+            
+        } catch (ExcepcionReservaVacia ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_btnCancelarReservaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnCancelarReserva;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;

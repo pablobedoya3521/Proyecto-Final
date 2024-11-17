@@ -258,7 +258,8 @@ public class PanelViajesDisponiblesCliente extends javax.swing.JPanel {
 
         if (viajeEncontrado && viajeSeleccionado != null) {
             viajeSeleccionado.actualizarEstado();
-            String mensaje = "<html><body style='width: 250px; padding: 5px;'>" +
+            if(!(viajeSeleccionado.getEstado().equals("En Curso") || viajeSeleccionado.getEstado().equals("Finalizado"))){
+                String mensaje = "<html><body style='width: 250px; padding: 5px;'>" +
                         "<h2 style='color: #1a5f7a;'>Información del Bus</h2>" +
                         "<hr>" +
                         "<b>ID del viaje:</b> " + viajeSeleccionado.getId() + "<br><br>" +
@@ -274,9 +275,9 @@ public class PanelViajesDisponiblesCliente extends javax.swing.JPanel {
                         "<b>Fecha de creacion:</b> " + viajeSeleccionado.getFechaCreacion() + "<br><br>" +
                             "<b>Cuantos tiquetes desea comprar?:</b> "+
                         "</body></html>";
-            String input = JOptionPane.showInputDialog(null, mensaje, "Reservar Tiquetes", JOptionPane.QUESTION_MESSAGE);
+                String input = JOptionPane.showInputDialog(null, mensaje, "Reservar Tiquetes", JOptionPane.QUESTION_MESSAGE);
 
-            int cantidadTiquetes = Integer.parseInt(input);
+                int cantidadTiquetes = Integer.parseInt(input);
                 if (cantidadTiquetes > 0) {
                     try{
                         Reserva reserva = new Reserva(idViaje,this.cliente, viajeSeleccionado, cantidadTiquetes);
@@ -289,7 +290,10 @@ public class PanelViajesDisponiblesCliente extends javax.swing.JPanel {
                 } else {
                     JOptionPane.showMessageDialog(null, "Por favor, ingresa un número válido de tiquetes.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-
+            }else{
+                JOptionPane.showMessageDialog(null, "No se puede reservar este viaje.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
         } else {
             JOptionPane.showMessageDialog(null, "No se encontró el viaje.", "Error", JOptionPane.ERROR_MESSAGE);
         }

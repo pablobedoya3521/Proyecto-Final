@@ -279,6 +279,11 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
         btnCliente2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCliente2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnCliente2.setIconTextGap(12);
+        btnCliente2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCliente2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout headLayout = new javax.swing.GroupLayout(head);
         head.setLayout(headLayout);
@@ -396,6 +401,10 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
       cambio.setVisible(true);
       this.dispose();
     }//GEN-LAST:event_btnPuntosActionPerformed
+
+    private void btnCliente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCliente2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCliente2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -108,7 +108,7 @@ public class PanelViajesAdminFlota extends javax.swing.JPanel {
             }
         });
 
-        btnEliminar.setText("Eliminar");
+        btnEliminar.setText("Cancelar viaje");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -189,7 +189,7 @@ public class PanelViajesAdminFlota extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 63, Short.MAX_VALUE))
+                .addGap(0, 24, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(742, 742, 742)
@@ -249,7 +249,12 @@ public class PanelViajesAdminFlota extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
                 return;
             }
-            
+            Viaje viajeEncontrado=controladorEmpresa.buscarViaje(id);
+            viajeEncontrado.actualizarEstado();
+            if(viajeEncontrado.getEstado().equals("En Curso")){
+                JOptionPane.showMessageDialog(null, "No se puede cancelar este viaje.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             
             int confirmacion = JOptionPane.showConfirmDialog(null,"¿Está seguro de eliminar el viaje con ID " + id + "?","Confirmar eliminación",JOptionPane.YES_NO_OPTION);
             if (confirmacion == JOptionPane.YES_OPTION) {

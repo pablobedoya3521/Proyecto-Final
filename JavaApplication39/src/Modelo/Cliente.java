@@ -15,22 +15,24 @@ public class Cliente extends Usuario implements Serializable{
     private int puntosAcumulados;
     private String telefono;
     private int edad;
-    private String direccion;
+    private double monto;
     private Lista<Reserva> listaReservas;
     private Lista<Tiquete> listaTiquetes;
+    private Lista<Devolucion> listaDevoluciones;
     private Lista<Tiquete> listaCanjeos;
     private SerializadoraUsuarios serializadoraUsuarios;
     private ControladorRegistro controladorRegistro;
         
-    public Cliente(String nombre, String apellido, String cedula, String correo, String contraseña, String telefono, int edad, String direccion) {
+    public Cliente(String nombre, String apellido, String cedula, String correo, String contraseña, String telefono, int edad, double monto) {
         super(nombre, apellido, cedula, correo, contraseña);
         this.puntosAcumulados=0;
         this.telefono=telefono;
         this.edad=edad;
-        this.direccion=direccion;
+        this.monto=monto;
         this.listaTiquetes=new Lista<>();
         this.listaReservas=new Lista<>();
         this.listaCanjeos= new Lista<>();
+        this.listaDevoluciones= new Lista<>();
         this.serializadoraUsuarios= new SerializadoraUsuarios();
         this.controladorRegistro= new ControladorRegistro();
     }
@@ -52,6 +54,7 @@ public class Cliente extends Usuario implements Serializable{
                 Cliente cliente = (Cliente) usuarios.get(i);
                 cliente.setListaTiquetes(this.listaTiquetes);
                 cliente.acumularPuntos(tiquete);
+                cliente.descontarMonto(tiquete);
                 controladorRegistro.setUsuarios(usuarios);
                 serializadoraUsuarios.escribirObjeto(usuarios);
                 break; 
@@ -74,6 +77,21 @@ public class Cliente extends Usuario implements Serializable{
         } 
     }
     
+    public void guardarDevolucion(Tiquete tiquete) {
+        Lista<Usuario> usuarios = serializadoraUsuarios.leerObjeto();
+        Devolucion devolucion = new Devolucion(tiquete);
+        for (int i = 0; i < usuarios.size(); i++) {
+            if (usuarios.get(i).getCorreo().equals(this.correo)) {
+                this.listaDevoluciones.add(devolucion);
+                Cliente cliente = (Cliente) usuarios.get(i);
+                cliente.setListaDevoluciones(this.listaDevoluciones);
+                controladorRegistro.setUsuarios(usuarios);
+                serializadoraUsuarios.escribirObjeto(usuarios);
+                break; 
+            }
+        } 
+    }
+    
     public void eliminarCompraTiquete(int codigoTiquete){
         Lista<Usuario> usuarios = serializadoraUsuarios.leerObjeto();
 
@@ -89,6 +107,7 @@ public class Cliente extends Usuario implements Serializable{
                             listaTiquetes.remove(j);
                             cliente.setListaTiquetes(listaTiquetes);
                             cliente.desacumularPuntos(tiqueteCancelado);
+                            cliente.aumentarMonto(tiqueteCancelado);
                             controladorRegistro.setUsuarios(usuarios);
                             serializadoraUsuarios.escribirObjeto(usuarios);
                             break; // Salimos del bucle una vez que se elimina el tiquete
@@ -161,6 +180,16 @@ public class Cliente extends Usuario implements Serializable{
             }
         }
     }
+    
+    private void descontarMonto(Tiquete tiquete){
+        double precioTiquete = tiquete.getViaje().getPrecioViaje()*tiquete.getCantidad();
+        this.monto-=precioTiquete;
+    }
+    
+    private void aumentarMonto(Tiquete tiquete){
+        double precioTiquete = tiquete.getViaje().getPrecioViaje()*tiquete.getCantidad();
+        this.monto+=precioTiquete;
+    }
 
     
     public int getPuntosAcumulados() {
@@ -187,12 +216,12 @@ public class Cliente extends Usuario implements Serializable{
         this.edad = edad;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public double getMonto() {
+        return monto;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setMonto(double monto) {
+        this.monto = monto;
     }
 
     public Lista<Tiquete> getListaTiquetes() {
@@ -267,6 +296,14 @@ public class Cliente extends Usuario implements Serializable{
 
     public void setListaCanjeos(Lista<Tiquete> listaCanjeos) {
         this.listaCanjeos = listaCanjeos;
+    }
+
+    public Lista<Devolucion> getListaDevoluciones() {
+        return listaDevoluciones;
+    }
+
+    public void setListaDevoluciones(Lista<Devolucion> listaDevoluciones) {
+        this.listaDevoluciones = listaDevoluciones;
     }
     
     

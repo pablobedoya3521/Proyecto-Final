@@ -4,10 +4,30 @@
  */
 package Vista.VentanasCliente;
 
-public class PanelDevolucionesCliente extends javax.swing.JPanel {
+import Modelo.Cliente;
+import javax.swing.table.DefaultTableModel;
 
-    public PanelDevolucionesCliente() {
+public class PanelDevolucionesCliente extends javax.swing.JPanel {
+    private Cliente cliente;
+    public PanelDevolucionesCliente(Cliente cliente) {
         initComponents();
+        this.cliente= cliente;
+        llenarTabla();
+    }
+    
+    private void llenarTabla() {
+            DefaultTableModel model = new DefaultTableModel();
+            model.setColumnIdentifiers(new Object[]{"Fecha de devolucion", "Hora de devolucion", "Cdigo de tiquete", "Destino de viaje", "Precio del viaje"});
+            for (int i = 0; i < cliente.getListaDevoluciones().size(); i++) {
+                model.addRow(new Object[]{
+                    cliente.getListaDevoluciones().get(i).getFechaDevolucion(),
+                    cliente.getListaDevoluciones().get(i).getHoraDevolucion(),
+                    cliente.getListaDevoluciones().get(i).getTiquete().getCodigoTiquete(),
+                    cliente.getListaDevoluciones().get(i).getTiquete().getViaje().getDestino(),
+                    cliente.getListaDevoluciones().get(i).getTiquete().getViaje().getPrecioViaje(),
+                });
+            }
+            tablaDevoluciones.setModel(model);
     }
 
     @SuppressWarnings("unchecked")
@@ -21,7 +41,7 @@ public class PanelDevolucionesCliente extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaDevoluciones = new javax.swing.JTable();
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setLayout(new java.awt.BorderLayout());
@@ -72,18 +92,18 @@ public class PanelDevolucionesCliente extends javax.swing.JPanel {
                 .addGap(13, 13, 13))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaDevoluciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaDevoluciones);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -141,6 +161,6 @@ public class PanelDevolucionesCliente extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaDevoluciones;
     // End of variables declaration//GEN-END:variables
 }

@@ -30,6 +30,7 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
         this.controladorRegistro=new ControladorRegistro();
         this.cliente=cliente;
         btnPuntos.setText(String.valueOf(cliente.getPuntosAcumulados()));
+        btnCliente2.setText(String.valueOf(cliente.getMonto()));
     }
     
     
@@ -383,7 +384,7 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNotificacionesActionPerformed
 
     private void btnDevolucionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolucionesActionPerformed
-        showJPanel(new PanelDevolucionesCliente());
+        showJPanel(new PanelDevolucionesCliente(this.cliente));
     }//GEN-LAST:event_btnDevolucionesActionPerformed
 
     private void btnComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprasActionPerformed

@@ -9,6 +9,7 @@ import Controlador.ControladorRegistro;
 import Controlador.ControladorViaje;
 import Excepciones.ExcepcionAsientosInsuficientes;
 import Excepciones.ExcepcionCodigoTiqueteEnUso;
+import Excepciones.ExcepcionMontoInsuficiente;
 import Excepciones.ExcepcionUsuarioNoEncontrado;
 import Excepciones.ExcepcionViajeVacio;
 import Modelo.Cliente;
@@ -186,39 +187,44 @@ public class VentanaVentaTiquetesAdminFlota extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
-try {
-        String idViaje = txtIdViaje.getText();
-        int cantidad = Integer.parseInt(txtCantidad.getText());
-        String correo = txtCliente.getText();
-        
-        if (txtIdViaje.getText().isEmpty() || txtCantidad.getText().isEmpty() || 
-            txtCliente.getText().isEmpty() || txtFecha.getText().isEmpty() || txtHora.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-            return;
+        try {
+            String idViaje = txtIdViaje.getText();
+            int cantidad = Integer.parseInt(txtCantidad.getText());
+            String correo = txtCliente.getText();
+
+            if (txtIdViaje.getText().isEmpty() || txtCantidad.getText().isEmpty() || 
+                txtCliente.getText().isEmpty() || txtFecha.getText().isEmpty() || txtHora.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+                return;
+            }
+
+            Viaje viaje = controladorEmpresa.buscarViaje(idViaje); // Busco el viaje
+            if (viaje.getBus().getNumAsientos() <= 0) {
+                JOptionPane.showMessageDialog(null, "No hay más puestos disponibles");
+                return;
+            }
+            viaje.actualizarEstado();
+            if(viaje.getEstado().equals("En Curso") || viaje.getEstado().equals("Finalizado")){
+                JOptionPane.showMessageDialog(null, "No se puede vender este tiquete.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            Usuario usuario = controladorRegistro.buscar(correo); // Busco el cliente
+            if (!(usuario instanceof Cliente)) {
+                throw new ExcepcionUsuarioNoEncontrado();
+            }
+
+            Cliente cliente = (Cliente) usuario; // Uso el cliente para la instancia
+            ControladorViaje controladorViaje = new ControladorViaje(viaje); // Creo el controlador
+            Tiquete tiquete = new Tiquete(viaje, cliente, cantidad); // Creo el tiquete
+            controladorViaje.guardarTiquete(tiquete); // Guardar el tiquete
+            cliente.guardarCompraTiquete(tiquete); // Guardar el tiquete también en el cliente
+            JOptionPane.showMessageDialog(null, "Tiquete vendido");
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+        } catch (ExcepcionViajeVacio | ExcepcionUsuarioNoEncontrado | ExcepcionCodigoTiqueteEnUso | ExcepcionAsientosInsuficientes | ExcepcionMontoInsuficiente ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        
-        Viaje viaje = controladorEmpresa.buscarViaje(idViaje); // Busco el viaje
-        if (viaje.getBus().getNumAsientos() <= 0) {
-            JOptionPane.showMessageDialog(null, "No hay más puestos disponibles");
-            return;
-        }
-        
-        Usuario usuario = controladorRegistro.buscar(correo); // Busco el cliente
-        if (!(usuario instanceof Cliente)) {
-            throw new ExcepcionUsuarioNoEncontrado();
-        }
-        
-        Cliente cliente = (Cliente) usuario; // Uso el cliente para la instancia
-        ControladorViaje controladorViaje = new ControladorViaje(viaje); // Creo el controlador
-        Tiquete tiquete = new Tiquete(viaje, cliente, cantidad); // Creo el tiquete
-        controladorViaje.guardarTiquete(tiquete); // Guardar el tiquete
-        cliente.guardarCompraTiquete(tiquete); // Guardar el tiquete también en el cliente
-        JOptionPane.showMessageDialog(null, "Tiquete vendido");
-    } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-    } catch (ExcepcionViajeVacio | ExcepcionUsuarioNoEncontrado | ExcepcionCodigoTiqueteEnUso | ExcepcionAsientosInsuficientes ex) {
-        JOptionPane.showMessageDialog(null, ex.getMessage());
-    }
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed

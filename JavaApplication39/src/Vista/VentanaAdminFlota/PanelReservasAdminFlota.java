@@ -8,6 +8,7 @@ import Controlador.ControladorEmpresa;
 import Controlador.ControladorViaje;
 import Excepciones.ExcepcionAsientosInsuficientes;
 import Excepciones.ExcepcionCodigoTiqueteEnUso;
+import Excepciones.ExcepcionMontoInsuficiente;
 import Excepciones.ExcepcionReservaVacia;
 import Modelo.Cliente;
 import Modelo.Empresa;
@@ -15,8 +16,6 @@ import Modelo.Reserva;
 import Modelo.Tiquete;
 import Modelo.Viaje;
 import Util.Lista;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -259,7 +258,7 @@ public class PanelReservasAdminFlota extends javax.swing.JPanel {
         cliente.guardarCompraTiquete(tiquete);
         JOptionPane.showMessageDialog(null, "Reserva efectiva correctamente");
         llenarTabla();
-        } catch (ExcepcionCodigoTiqueteEnUso | ExcepcionAsientosInsuficientes | ExcepcionReservaVacia ex) {
+        } catch (ExcepcionCodigoTiqueteEnUso | ExcepcionAsientosInsuficientes | ExcepcionReservaVacia | ExcepcionMontoInsuficiente ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         } 
     }//GEN-LAST:event_btnEfectuarActionPerformed

@@ -62,7 +62,7 @@ public class Registro extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtEdad = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        txtDireccion = new javax.swing.JTextField();
+        txtMonto = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -168,11 +168,11 @@ public class Registro extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Edad");
 
-        txtDireccion.setBackground(new java.awt.Color(0, 0, 0));
+        txtMonto.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel11.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Direccion");
+        jLabel11.setText("Monto inicial");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -211,7 +211,7 @@ public class Registro extends javax.swing.JFrame {
                                         .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel11)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(185, 185, 185)
@@ -255,7 +255,7 @@ public class Registro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -315,16 +315,16 @@ public class Registro extends javax.swing.JFrame {
             String contraseña= txtContraseña.getText();
             String telefono= txtTelefono.getText();
             int edad= Integer.parseInt(txtEdad.getText());
-            String direccion = txtDireccion.getText();
+            double monto =Double.parseDouble(txtMonto.getText());
             
             if (txtNombre.getText().isEmpty()||txtApellido.getText().isEmpty() || txtCedula.getText().isEmpty() || 
                 txtCorreo.getText().isEmpty() || txtContraseña.getText().isEmpty() || txtTelefono.getText().isEmpty() || 
-                txtEdad.getText().isEmpty() || txtDireccion.getText().isEmpty()) {
+                txtEdad.getText().isEmpty() || txtMonto.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
                 return;
             }
 
-            Cliente cliente= new Cliente(nombre, apellido, cedula, correo, contraseña, telefono, edad, direccion);
+            Cliente cliente= new Cliente(nombre, apellido, cedula, correo, contraseña, telefono, edad, monto);
             controladorRegistro.guardar(cliente);
             JOptionPane.showMessageDialog(null, "Registrado Correctamente");
         }catch (NumberFormatException ex) {
@@ -357,8 +357,8 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtContraseña;
     private javax.swing.JTextField txtCorreo;
-    private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtEdad;
+    private javax.swing.JTextField txtMonto;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables

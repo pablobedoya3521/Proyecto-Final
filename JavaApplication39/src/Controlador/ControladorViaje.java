@@ -6,6 +6,7 @@ package Controlador;
 
 import Excepciones.ExcepcionAsientosInsuficientes;
 import Excepciones.ExcepcionCodigoTiqueteEnUso;
+import Excepciones.ExcepcionMontoInsuficiente;
 import Excepciones.ExcepcionReservaVacia;
 import Excepciones.ExcepcionTiqueteVacio;
 import Modelo.Tiquete;
@@ -18,7 +19,7 @@ public class ControladorViaje {
         this.viaje=viaje;
     }
 
-    public void guardarTiquete(Tiquete tiquete) throws ExcepcionCodigoTiqueteEnUso, ExcepcionAsientosInsuficientes{
+    public void guardarTiquete(Tiquete tiquete) throws ExcepcionCodigoTiqueteEnUso, ExcepcionAsientosInsuficientes, ExcepcionMontoInsuficiente{
         viaje.guardarTiquete(tiquete);
     }
     

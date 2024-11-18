@@ -32,7 +32,7 @@ public class PanelComprasCliente extends javax.swing.JPanel {
                     cliente.getListaTiquetes().get(i).getViaje().getDestino(),
                     cliente.getListaTiquetes().get(i).getViaje().getPrecioViaje(),
                     cliente.getListaTiquetes().get(i).getViaje().getHoraDeSalida(),
-                    cliente.getListaTiquetes().get(i).getViaje().getHoraDeSalida(),
+                    cliente.getListaTiquetes().get(i).getViaje().getHoraDeLlegada(),
                     cliente.getListaTiquetes().get(i).getViaje().getFechaSalida(),
                     cliente.getListaTiquetes().get(i).getViaje().getHoraDeLlegada(),
                     cliente.getListaTiquetes().get(i).getCantidad()*cliente.getListaTiquetes().get(i).getViaje().getPrecioViaje()
@@ -94,6 +94,11 @@ public class PanelComprasCliente extends javax.swing.JPanel {
         });
 
         btnDevolver.setText("Devolver");
+        btnDevolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDevolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -212,6 +217,46 @@ public class PanelComprasCliente extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolverActionPerformed
+        try {
+            int codigoTiquete = Integer.parseInt(txtBuscar.getText());
+            if (txtBuscar.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Por favor complete el campo de la placa.");
+                return;
+            }
+
+            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar el Tiquete con el código: " + codigoTiquete + "?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                Viaje viaje = new Viaje();
+                Tiquete tiqueteAEliminar = viaje.buscarTiquete(codigoTiquete); // Busca el tiquete a eliminar
+
+                if (tiqueteAEliminar != null ) {
+                    tiqueteAEliminar.getViaje().actualizarEstado();
+                    if(tiqueteAEliminar.getViaje().getEstado().equals("En Curso") || tiqueteAEliminar.getViaje().getEstado().equals("Finalizado")){
+                        JOptionPane.showMessageDialog(null, "No se puede cancelar este tiquete.", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    
+                    Cliente cliente = tiqueteAEliminar.getCliente(); // Obtiene el cliente que compró el tiquete
+                    cliente.guardarDevolucion(tiqueteAEliminar);
+                    cliente.eliminarCompraTiquete(codigoTiquete); // Llama al método para eliminar el tiquete del cliente
+                    
+                    viaje.eliminarTiquete(codigoTiquete); // Elimina el tiquete del viaje
+                    limpiarCampos();
+                    llenarTabla();
+                    JOptionPane.showMessageDialog(null, "Tiquete eliminado correctamente");
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se encontró el tiquete");
+                }
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+        } catch (ExcepcionTiqueteVacio ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_btnDevolverActionPerformed
 
     private void limpiarCampos(){
         txtBuscar.setText("");

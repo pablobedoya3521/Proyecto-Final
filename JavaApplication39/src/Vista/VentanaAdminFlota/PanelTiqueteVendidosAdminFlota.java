@@ -253,16 +253,21 @@ public class PanelTiqueteVendidosAdminFlota extends javax.swing.JPanel {
                 Viaje viaje = new Viaje();
                 Tiquete tiqueteAEliminar = viaje.buscarTiquete(codigoTiquete); // Busca el tiquete a eliminar
 
-                if (tiqueteAEliminar != null && tiqueteAEliminar.getCliente() != null) {
+                if (tiqueteAEliminar != null ) {
+                    tiqueteAEliminar.getViaje().actualizarEstado();
+                    if(tiqueteAEliminar.getViaje().getEstado().equals("En Curso") || tiqueteAEliminar.getViaje().getEstado().equals("Finalizado")){
+                        JOptionPane.showMessageDialog(null, "No se puede cancelar este tiquete.", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
                     Cliente cliente = tiqueteAEliminar.getCliente(); // Obtiene el cliente que compró el tiquete
                     cliente.eliminarCompraTiquete(codigoTiquete); // Llama al método para eliminar el tiquete del cliente
-
+                    
                     viaje.eliminarTiquete(codigoTiquete); // Elimina el tiquete del viaje
                     limpiarCampos();
                     llenarTabla();
                     JOptionPane.showMessageDialog(null, "Tiquete eliminado correctamente");
                 } else {
-                    JOptionPane.showMessageDialog(null, "No se encontró el tiquete o no tiene asociado un cliente.");
+                    JOptionPane.showMessageDialog(null, "No se encontró el tiquete");
                 }
             }
         } catch (NumberFormatException ex) {

@@ -272,7 +272,7 @@ public class VentanaRegistroBusesAdminFlota extends javax.swing.JFrame {
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         VentanaPrincipalAdminFlota cambio=new VentanaPrincipalAdminFlota(this.empresa);
         cambio.setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed

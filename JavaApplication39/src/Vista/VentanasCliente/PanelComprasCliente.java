@@ -226,7 +226,7 @@ public class PanelComprasCliente extends javax.swing.JPanel {
                 return;
             }
 
-            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar el Tiquete con el código: " + codigoTiquete + "?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Está seguro de devolver el Tiquete con el código: " + codigoTiquete + "?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
 
             if (confirmacion == JOptionPane.YES_OPTION) {
                 Viaje viaje = new Viaje();
@@ -240,13 +240,15 @@ public class PanelComprasCliente extends javax.swing.JPanel {
                     }
                     
                     Cliente cliente = tiqueteAEliminar.getCliente(); // Obtiene el cliente que compró el tiquete
-                    cliente.guardarDevolucion(tiqueteAEliminar);
                     cliente.eliminarCompraTiquete(codigoTiquete); // Llama al método para eliminar el tiquete del cliente
+                    cliente.guardarDevolucion(tiqueteAEliminar);
                     
+                    viaje.guardarDevolucion(tiqueteAEliminar);
                     viaje.eliminarTiquete(codigoTiquete); // Elimina el tiquete del viaje
                     limpiarCampos();
-                    llenarTabla();
+                    
                     JOptionPane.showMessageDialog(null, "Tiquete eliminado correctamente");
+                    llenarTabla();
                 } else {
                     JOptionPane.showMessageDialog(null, "No se encontró el tiquete");
                 }

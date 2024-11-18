@@ -54,7 +54,6 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
         background = new javax.swing.JPanel();
         menu = new javax.swing.JPanel();
         btnCrearViaje = new javax.swing.JButton();
-        btnEfectuarReserva = new javax.swing.JButton();
         btnGuardarBus = new javax.swing.JButton();
         btnVenderTiquete = new javax.swing.JButton();
         mensaje = new javax.swing.JLabel();
@@ -89,22 +88,6 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
             }
         });
         menu.add(btnCrearViaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 206, 320, 60));
-
-        btnEfectuarReserva.setBackground(new java.awt.Color(51, 51, 51));
-        btnEfectuarReserva.setForeground(new java.awt.Color(255, 255, 255));
-        btnEfectuarReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reservado (1).png"))); // NOI18N
-        btnEfectuarReserva.setText("Efectuar Reserva");
-        btnEfectuarReserva.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
-        btnEfectuarReserva.setBorderPainted(false);
-        btnEfectuarReserva.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnEfectuarReserva.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnEfectuarReserva.setIconTextGap(12);
-        btnEfectuarReserva.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEfectuarReservaActionPerformed(evt);
-            }
-        });
-        menu.add(btnEfectuarReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 320, 60));
 
         btnGuardarBus.setBackground(new java.awt.Color(51, 51, 51));
         btnGuardarBus.setForeground(new java.awt.Color(255, 255, 255));
@@ -348,10 +331,6 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
         cambio.setVisible(true);
     }//GEN-LAST:event_btnCrearViajeActionPerformed
 
-    private void btnEfectuarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEfectuarReservaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEfectuarReservaActionPerformed
-
     private void btnGuardarBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarBusActionPerformed
         VentanaRegistroBusesAdminFlota cambio = new VentanaRegistroBusesAdminFlota(this.empresa);
         cambio.setVisible(true);
@@ -366,7 +345,7 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReservasActionPerformed
 
     private void btnDevolucionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolucionesActionPerformed
-        showJPanel(new PanelDevolucionesAdminFlota());
+        showJPanel(new PanelDevolucionesAdminFlota(this.empresa));
     }//GEN-LAST:event_btnDevolucionesActionPerformed
 
     private void btnBusesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusesActionPerformed
@@ -395,7 +374,6 @@ public class VentanaPrincipalAdminFlota extends javax.swing.JFrame {
     private javax.swing.JButton btnBuses;
     private javax.swing.JButton btnCrearViaje;
     private javax.swing.JButton btnDevoluciones;
-    private javax.swing.JButton btnEfectuarReserva;
     private javax.swing.JButton btnGuardarBus;
     private javax.swing.JButton btnReservas;
     private javax.swing.JButton btnSalir;

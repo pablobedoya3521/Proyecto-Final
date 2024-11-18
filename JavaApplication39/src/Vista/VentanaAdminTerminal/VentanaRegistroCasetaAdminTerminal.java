@@ -365,11 +365,12 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
         boolean asignado = controladorCaseta.AsignarEmpresa(empresa);
        
         if (asignado) {
-            JOptionPane.showMessageDialog(null, "Arrendado correctamente.");
+            
             controladorRegistro.guardar(administradorFlota);
             controladorCaseta.asignarCantidadPlazas(cantPlazas);
             controladorCaseta.asignarValorArrendamiento(valorArrendo);
             controladorCaseta.asignarUbicacion(ubicacion);
+            JOptionPane.showMessageDialog(null, "Arrendado correctamente.");
         } else {
             JOptionPane.showMessageDialog(null, "Error, ya hay una empresa y un administrador asignados");
             return;
@@ -388,7 +389,7 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
        VentanaPrincipalAdminTerminal cambio = new VentanaPrincipalAdminTerminal();
        cambio.setVisible(true);
-       this.dispose();
+       dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void verInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verInfoActionPerformed

@@ -260,8 +260,9 @@ public class PanelTiqueteVendidosAdminFlota extends javax.swing.JPanel {
                         return;
                     }
                     Cliente cliente = tiqueteAEliminar.getCliente(); // Obtiene el cliente que compró el tiquete
+                    cliente.guardarDevolucion(tiqueteAEliminar);
                     cliente.eliminarCompraTiquete(codigoTiquete); // Llama al método para eliminar el tiquete del cliente
-                    
+                    viaje.guardarDevolucion(tiqueteAEliminar);
                     viaje.eliminarTiquete(codigoTiquete); // Elimina el tiquete del viaje
                     limpiarCampos();
                     llenarTabla();

@@ -34,6 +34,7 @@ public class Viaje implements Serializable{
     private Lista<Tiquete> listaTiquetes;
     private SerializadoraCaseta serializadora;
     private Lista<Reserva> listaReservas;
+    private Lista<Devolucion> listaDevoluciones;
 
     public Viaje(String id, String destino, LocalTime horaDeSalida, 
                  LocalTime horaDeLlegada, LocalDate fechaSalida, LocalDate fechaLLegada, 
@@ -52,6 +53,7 @@ public class Viaje implements Serializable{
         this.estado = "Programado";
         this.listaTiquetes = new Lista<>();
         this.listaReservas = new Lista<>();
+        this.listaDevoluciones= new Lista<>();
         this.serializadora = new SerializadoraCaseta();
     }
 
@@ -65,7 +67,7 @@ public class Viaje implements Serializable{
         Caseta[][] casetas = serializadora.leerObjeto();
         
         //valido monto del cliente
-        if(tiquete.getCliente().getMonto()>=tiquete.getViaje().getPrecioViaje()){
+        if(tiquete.getCliente().getMonto()>=tiquete.getViaje().getPrecioViaje()*tiquete.getCantidad()){
             
                 // despues verificamos si el código del tiquete ya existe
            for (int i = 0; i < casetas.length; i++) {
@@ -114,6 +116,27 @@ public class Viaje implements Serializable{
         }else{
             throw new ExcepcionMontoInsuficiente();
         } 
+    }
+    
+    public void guardarDevolucion(Tiquete tiquete){
+        Caseta[][] casetas = serializadora.leerObjeto();
+        Devolucion devolucion = new Devolucion(tiquete);
+         for (int i = 0; i < casetas.length; i++) {
+               for (int j = 0; j < casetas[i].length; j++) {
+                   Empresa empresa = casetas[i][j].getEmpresa();
+                   if (empresa != null) {
+                       Lista<Viaje> listaViajes = empresa.getListaViajes();
+                       for (int k = 0; k < listaViajes.size(); k++) {
+                           Viaje viaje = listaViajes.get(k);
+                           if (viaje.getId().equals(this.id)) {
+                               viaje.getListaDevoluciones().add(devolucion);
+                               serializadora.escribirObjeto(casetas);
+                               return;
+                           }
+                       }
+                   }
+               }
+           }
     }
 
     
@@ -420,6 +443,13 @@ public class Viaje implements Serializable{
     public void setListaReservas(Lista<Reserva> listaReservas) {
         this.listaReservas = listaReservas;
     }
-    
-    
+
+    public Lista<Devolucion> getListaDevoluciones() {
+        return listaDevoluciones;
+    }
+
+    public void setListaDevoluciones(Lista<Devolucion> listaDevoluciones) {
+        this.listaDevoluciones = listaDevoluciones;
+    }
+   
 }

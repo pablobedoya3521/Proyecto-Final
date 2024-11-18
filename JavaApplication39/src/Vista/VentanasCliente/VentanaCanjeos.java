@@ -256,7 +256,7 @@ public class VentanaCanjeos extends javax.swing.JFrame {
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
        VentanaPrincipalCliente cambio=new VentanaPrincipalCliente(this.cliente);
        cambio.setVisible(true);
-       this.dispose();
+       dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
     
     

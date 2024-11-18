@@ -38,4 +38,8 @@ public class ControladorViaje {
     public void eliminarReserva(String codigoReserva) throws ExcepcionReservaVacia{
         viaje.eliminarReserva(codigoReserva);
     }
+    
+    public void guardarDEvolucion(Tiquete tiquete){
+        viaje.guardarDevolucion(tiquete);
+    }
 }

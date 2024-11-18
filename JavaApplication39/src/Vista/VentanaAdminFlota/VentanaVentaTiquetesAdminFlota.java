@@ -230,7 +230,7 @@ public class VentanaVentaTiquetesAdminFlota extends javax.swing.JFrame {
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
        VentanaPrincipalAdminFlota cambio=new VentanaPrincipalAdminFlota(this.empresa);
        cambio.setVisible(true);
-       this.dispose();
+       dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
     
     

@@ -67,7 +67,7 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
         background = new javax.swing.JPanel();
         menu = new javax.swing.JPanel();
         mensaje = new javax.swing.JLabel();
-        btnReservar = new javax.swing.JButton();
+        btnCanjeos = new javax.swing.JButton();
         btnViajes = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
@@ -93,20 +93,20 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
         mensaje.setText("Transs-App");
         menu.add(mensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 156, -1));
 
-        btnReservar.setBackground(new java.awt.Color(51, 51, 51));
-        btnReservar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/factura (1) (1).png"))); // NOI18N
-        btnReservar.setText("Reservar");
-        btnReservar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
-        btnReservar.setBorderPainted(false);
-        btnReservar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnReservar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnReservar.setIconTextGap(12);
-        btnReservar.addActionListener(new java.awt.event.ActionListener() {
+        btnCanjeos.setBackground(new java.awt.Color(51, 51, 51));
+        btnCanjeos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/factura (1) (1).png"))); // NOI18N
+        btnCanjeos.setText("Canjeos");
+        btnCanjeos.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 20, 1, 1, new java.awt.Color(0, 0, 0)));
+        btnCanjeos.setBorderPainted(false);
+        btnCanjeos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCanjeos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnCanjeos.setIconTextGap(12);
+        btnCanjeos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReservarActionPerformed(evt);
+                btnCanjeosActionPerformed(evt);
             }
         });
-        menu.add(btnReservar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 330, 60));
+        menu.add(btnCanjeos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 330, 60));
 
         btnViajes.setBackground(new java.awt.Color(51, 51, 51));
         btnViajes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ubicacion (1).png"))); // NOI18N
@@ -358,9 +358,9 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnReservarActionPerformed
+    private void btnCanjeosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCanjeosActionPerformed
+        showJPanel(new PanelCanjeos(this.cliente));
+    }//GEN-LAST:event_btnCanjeosActionPerformed
 
     private void btnViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViajesActionPerformed
         showJPanel(new PanelViajesDisponiblesCliente(this.cliente));
@@ -393,13 +393,13 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         Login cambio = new Login();
         cambio.setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnPuntosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPuntosActionPerformed
       VentanaCanjeos cambio = new VentanaCanjeos(this.cliente);
       cambio.setVisible(true);
-      this.dispose();
+      dispose();
     }//GEN-LAST:event_btnPuntosActionPerformed
 
     private void btnCliente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCliente2ActionPerformed
@@ -410,13 +410,13 @@ public class VentanaPrincipalCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Container;
     private javax.swing.JPanel background;
+    private javax.swing.JButton btnCanjeos;
     private javax.swing.JButton btnCliente2;
     private javax.swing.JButton btnCompras;
     private javax.swing.JButton btnDevoluciones;
     private javax.swing.JButton btnNotificaciones;
     private javax.swing.JButton btnPuntos;
     private javax.swing.JButton btnRegresar;
-    private javax.swing.JButton btnReservar;
     private javax.swing.JButton btnReservas;
     private javax.swing.JButton btnViajes;
     private javax.swing.JPanel head;

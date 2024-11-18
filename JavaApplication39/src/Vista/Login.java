@@ -240,6 +240,7 @@ public class Login extends javax.swing.JFrame {
             validarContraseña.ValidarContraseña(correo, contraseña);
             Object informacion = validarInformacion.validarInformacion(correo);
             respuesta.login(informacion);
+            dispose();
         } catch (ExcepcionContraseñaIncorrecta | ExcepcionUsuarioNoEncontrado ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }

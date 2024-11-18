@@ -182,47 +182,48 @@ public class VentanaCanjeos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
-        try {
-                // Validación de campos vacíos
-                if (txtIdViaje.getText().isEmpty() || txtCantidad.getText().isEmpty() || 
-                    txtCliente.getText().isEmpty() || txtFecha.getText().isEmpty() || txtHora.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
-                    return;
-                }
+       try {
+        // Validación de campos vacíos
+        if (txtIdViaje.getText().isEmpty() || txtCantidad.getText().isEmpty() || 
+            txtCliente.getText().isEmpty() || txtFecha.getText().isEmpty() || txtHora.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+            return;
+        }
 
-                String idViaje = txtIdViaje.getText();
-                int cantidad = Integer.parseInt(txtCantidad.getText());
-                String correo = txtCliente.getText();
+        String idViaje = txtIdViaje.getText();
+        int cantidad = Integer.parseInt(txtCantidad.getText());
+        String correo = txtCliente.getText();
 
-                // Buscar el viaje en la matriz de casetas
-                Viaje viaje = buscarViajeEnCasetas(idViaje);
-                if (viaje == null) {
-                    JOptionPane.showMessageDialog(null, "Viaje no encontrado");
-                    return;
-                }
+        // Buscar el viaje en la matriz de casetas
+        Viaje viaje = buscarViajeEnCasetas(idViaje);
+        if (viaje == null) {
+            JOptionPane.showMessageDialog(null, "Viaje no encontrado");
+            return;
+        }
 
-                // Verificar disponibilidad de asientos
-                if (viaje.getBus().getNumAsientos() <= 0) {
-                    JOptionPane.showMessageDialog(null, "No hay más puestos disponibles");
-                    return;
-                }
-              
-                // Verificar puntos y precio del viaje
-                if (cliente.getPuntosAcumulados() > 90 && viaje.getPrecioViaje() <= 30000) {
-                    ControladorViaje controladorViaje = new ControladorViaje(viaje);
-                    Tiquete tiquete = new Tiquete(viaje, cliente, cantidad);
-                    controladorViaje.guardarTiquete(tiquete);
-                    cliente.guardarCompraTiquete(tiquete);
-                    JOptionPane.showMessageDialog(null, "Tiquete vendido exitosamente");
-                } else {
-                    JOptionPane.showMessageDialog(null, "No cumple con los requisitos de puntos o precio del viaje");
-                }
+        // Verificar disponibilidad de asientos
+        if (viaje.getBus().getNumAsientos() <= 0) {
+            JOptionPane.showMessageDialog(null, "No hay más puestos disponibles");
+            return;
+        }
+      
+        // Verificar puntos y precio del viaje
+        if (cliente.getPuntosAcumulados() > 90 && viaje.getPrecioViaje() <= 30000) {
+            ControladorViaje controladorViaje = new ControladorViaje(viaje);
+            Tiquete tiquete = new Tiquete(viaje, cliente, cantidad);
+            controladorViaje.guardarTiquete(tiquete);
+            // Solo guardar el canjeo, no la compra
+            cliente.guardarCanjeo(tiquete);
+            JOptionPane.showMessageDialog(null, "Tiquete canjeado exitosamente");
+        } else {
+            JOptionPane.showMessageDialog(null, "No cumple con los requisitos de puntos o precio del viaje");
+        }
 
-            } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
-            } catch (ExcepcionAsientosInsuficientes | ExcepcionCodigoTiqueteEnUso ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage());
-            }
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(null, "Por favor ingrese valores válidos en los campos numéricos.");
+    } catch (ExcepcionAsientosInsuficientes | ExcepcionCodigoTiqueteEnUso ex) {
+        JOptionPane.showMessageDialog(null, ex.getMessage());
+    }
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private Viaje buscarViajeEnCasetas(String idViaje) {

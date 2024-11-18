@@ -375,7 +375,7 @@ public class VentanaRegistroCasetaAdminTerminal extends javax.swing.JFrame {
             return;
         }
 
-        JOptionPane.showMessageDialog(null, "Arrendado correctamente");
+       
     } catch (ExcepcionCorreoEnUso ex) {
         JOptionPane.showMessageDialog(null, ex.getMessage());
     } catch (NumberFormatException ex) {

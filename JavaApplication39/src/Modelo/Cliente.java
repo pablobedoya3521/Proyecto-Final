@@ -18,7 +18,7 @@ public class Cliente extends Usuario implements Serializable{
     private String direccion;
     private Lista<Reserva> listaReservas;
     private Lista<Tiquete> listaTiquetes;
-    //private Lista<Reserva> listaReservasCanceladas;
+    private Lista<Tiquete> listaCanjeos;
     private SerializadoraUsuarios serializadoraUsuarios;
     private ControladorRegistro controladorRegistro;
         
@@ -30,6 +30,7 @@ public class Cliente extends Usuario implements Serializable{
         this.direccion=direccion;
         this.listaTiquetes=new Lista<>();
         this.listaReservas=new Lista<>();
+        this.listaCanjeos= new Lista<>();
         this.serializadoraUsuarios= new SerializadoraUsuarios();
         this.controladorRegistro= new ControladorRegistro();
     }
@@ -51,6 +52,21 @@ public class Cliente extends Usuario implements Serializable{
                 Cliente cliente = (Cliente) usuarios.get(i);
                 cliente.setListaTiquetes(this.listaTiquetes);
                 cliente.acumularPuntos(tiquete);
+                controladorRegistro.setUsuarios(usuarios);
+                serializadoraUsuarios.escribirObjeto(usuarios);
+                break; 
+            }
+        } 
+    }
+    
+    public void guardarCanjeo(Tiquete tiquete) {
+        Lista<Usuario> usuarios = serializadoraUsuarios.leerObjeto();
+        for (int i = 0; i < usuarios.size(); i++) {
+            if (usuarios.get(i).getCorreo().equals(this.correo)) {
+                this.listaCanjeos.add(tiquete);
+                Cliente cliente = (Cliente) usuarios.get(i);
+                cliente.setListaCanjeos(this.listaCanjeos);
+                cliente.desacumularPuntosDeCanjeo();
                 controladorRegistro.setUsuarios(usuarios);
                 serializadoraUsuarios.escribirObjeto(usuarios);
                 break; 
@@ -96,6 +112,10 @@ public class Cliente extends Usuario implements Serializable{
     private void desacumularPuntos(Tiquete tiquete){
         int puntosAcumuladosPorTiquete = calcularPuntos(tiquete);
         this.puntosAcumulados -= puntosAcumuladosPorTiquete;
+    }
+    
+    private void desacumularPuntosDeCanjeo(){
+        this.puntosAcumulados-=90;
     }
     
     public void guardarReserva(Reserva reserva){
@@ -239,6 +259,14 @@ public class Cliente extends Usuario implements Serializable{
 
     public void setListaReservas(Lista<Reserva> listaReservas) {
         this.listaReservas = listaReservas;
+    }
+
+    public Lista<Tiquete> getListaCanjeos() {
+        return listaCanjeos;
+    }
+
+    public void setListaCanjeos(Lista<Tiquete> listaCanjeos) {
+        this.listaCanjeos = listaCanjeos;
     }
     
     
